@@ -6,34 +6,34 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#F5F0E6] font-sans">
       {/* Hero - Full bleed image, no overlay text */}
-      <section className="relative w-full h-screen max-h-[800px]">
+      <section className="relative w-full h-[60vh] md:h-screen md:max-h-[800px]">
         <img 
           src="/hero-lobster.jpg" 
           alt="Cowboy riding a lobster over Dallas" 
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover object-center"
         />
       </section>
 
       {/* About - Offset, less centered */}
-      <section className="px-6 py-16 -mt-20 relative z-10">
-        <div className="max-w-lg ml-auto pr-8">
-          <h1 className="text-5xl md:text-7xl font-black text-[#CC5500] leading-[0.9] tracking-tighter">
+      <section className="px-4 py-12 -mt-20 relative z-10">
+        <div className="max-w-lg ml-auto pr-4 md:pr-8">
+          <h1 className="text-4xl md:text-7xl font-black text-[#CC5500] leading-[0.9] tracking-tighter">
             CLAW<br/>PLEX
           </h1>
-          <p className="mt-6 text-xl text-[#8B4513] max-w-xs">
+          <p className="mt-4 md:mt-6 text-lg md:text-xl text-[#8B4513] max-w-xs">
             Where DFW builds the future of AI.
           </p>
         </div>
       </section>
 
       {/* Event - Offset card, less rounded */}
-      <section className="px-6 pb-12">
-        <div className="max-w-sm ml-6">
-          <div className="bg-white p-6 shadow-[8px_8px_0_#CC5500]">
+      <section className="px-4 pb-10">
+        <div className="max-w-sm ml-4 md:ml-6">
+          <div className="bg-white p-5 md:p-6 shadow-[6px_6px_0_#CC5500] md:shadow-[8px_8px_0_#CC5500]">
             <p className="text-xs font-bold text-[#CC5500] uppercase tracking-widest mb-1">
               Next Event
             </p>
-            <h2 className="text-2xl font-bold text-[#8B4513]">
+            <h2 className="text-xl md:text-2xl font-bold text-[#8B4513]">
               ClawCon DFW
             </h2>
             <p className="text-[#8B4513]/70 mb-4">
@@ -43,7 +43,7 @@ export default function Home() {
               href="https://luma.com/clawcondfw?tk=k8qExi"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[#CC5500] font-bold hover:underline"
+              className="inline-flex items-center gap-2 text-[#CC5500] font-bold text-sm md:text-base hover:underline"
             >
               RSVP <ChevronRight className="h-4 w-4" />
             </a>
@@ -52,13 +52,13 @@ export default function Home() {
       </section>
 
       {/* Actions - Full width, less rounded */}
-      <section className="px-6 pb-16">
-        <div className="flex flex-col gap-4 max-w-sm ml-6">
+      <section className="px-4 pb-12">
+        <div className="flex flex-col gap-3 md:gap-4 max-w-sm ml-4 md:ml-6">
           <a
             href="https://discord.gg/q8kEquTu3z"
             target="_blank"
             rel="noopener noreferrer"
-            className="block bg-[#CC5500] text-white font-bold text-center py-4 shadow-[4px_4px_0_#8B4513] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#8B4513] transition-all"
+            className="block bg-[#CC5500] text-white font-bold text-center py-4 px-6 shadow-[4px_4px_0_#8B4513] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#8B4513] transition-all active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
           >
             Join the Discord
           </a>
@@ -66,7 +66,7 @@ export default function Home() {
             href="https://luma.com/clawcondfw?tk=k8qExi"
             target="_blank"
             rel="noopener noreferrer"
-            className="block border-2 border-[#CC5500] text-[#CC5500] font-bold text-center py-4 hover:bg-[#CC5500] hover:text-white transition-colors"
+            className="block border-2 border-[#CC5500] text-[#CC5500] font-bold text-center py-4 px-6 hover:bg-[#CC5500] hover:text-white transition-colors"
           >
             RSVP on Luma
           </a>
