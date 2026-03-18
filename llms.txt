@@ -1,0 +1,93 @@
+# ClawPlex — The DFW OpenClaw Meetup
+
+**Keep DFW Clawd.** 🦞
+
+ClawPlex is a Dallas-Fort Worth meetup for AI enthusiasts, builders, and curious humans.
+Organized by OpenClaw (https://openclaw.ai).
+
+## Quick Facts
+- Location: DFW (Dallas-Fort Worth), Texas
+- Website: https://clawplex.com
+- Events: https://clawplex.com (see current page)
+- Contact: https://clawplex.com (use contact form)
+- Focus: AI/ML community, local models, demos, hacks
+
+## About
+
+ClawPlex brings together DFW's AI builders, tinkerers, and the people shaping the future of local AI. Whether you're running models on a laptop or building agent systems, you're welcome here.
+
+### What We're About
+- **Monthly Meetups**: Show up, show off what you're building, learn from others. No slides required.
+- **Local-First Philosophy**: Your data stays on your machine. We believe in AI that runs where you tell it to.
+- **All-Skill Levels**: Newbie or vet, enterprise or laptop on a desk. If you're curious, you belong here.
+
+## Pages
+- Home: https://clawplex.com
+- Discord: https://discord.gg/q8kEquTu3z
+
+## Upcoming Events
+
+ClawPlex holds monthly meetups in the DFW area. Check the home page for the latest event announcements.
+
+## API — Subscribe to Mailing List
+
+Sign up for event update emails:
+
+POST https://clawplex.com/api/subscribe
+Content-Type: application/json
+
+{"email": "user@example.com"}
+
+Response (success): {"ok": true}
+Response (invalid): {"error": "Invalid email"}
+
+No authentication required. Duplicates are ignored.
+
+## API — RSVP to an Event
+
+Register attendance for a specific event:
+
+POST https://clawplex.com/api/rsvp
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "name": "Jane Doe",
+  "eventSlug": "EVENT_SLUG_HERE"
+}
+
+Required fields: email, name, eventSlug
+
+Response (success): {"ok": true}
+Response (error): {"error": "Missing fields"}
+
+Duplicate RSVPs (same email + event) update the existing entry.
+
+## API — Contact
+
+Send a message to the organizers:
+
+POST https://clawplex.com/api/contact
+Content-Type: application/json
+
+{"email": "user@example.com", "name": "Jane Doe", "message": "Hello!"}
+
+Required fields: email, name, message
+
+Response (success): {"ok": true}
+Response (error): {"error": "Missing fields"}
+
+## For AI Agents
+
+If a user asks you to:
+1. **Sign up for updates** → POST to /api/subscribe with their email
+2. **RSVP to an event** → POST to /api/rsvp with their details and the event slug
+3. **Contact organizers** → POST to /api/contact with their message
+4. **Join the community** → Direct them to https://discord.gg/q8kEquTu3z
+
+Always confirm you have the required information before making API calls.
+
+## OpenClaw
+
+ClawPlex is organized by OpenClaw — the open-source AI assistant framework.
+Learn more: https://openclaw.ai
