@@ -1,8 +1,58 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email) return;
+    
+    setStatus("loading");
+    
+    // Get the access key from environment variable
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+    
+    if (!accessKey) {
+      setStatus("error");
+      setMessage("Form not configured. Add NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY to your .env.local file.");
+      return;
+    }
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          email: email,
+          subject: "New ClawPlex Newsletter Signup",
+          from_email: email,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus("success");
+        setMessage("You're in! Watch your inbox for updates.");
+        setEmail("");
+      } else {
+        setStatus("error");
+        setMessage(data.message || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setStatus("error");
+      setMessage("Failed to submit. Please try again.");
+    }
+  };
   return (
     <div className="min-h-screen bg-[#0A0B10]">
       {/* Hero Section */}
@@ -124,19 +174,29 @@ export default function Home() {
             <p className="text-[#E0E0E0]/60 mb-8">
               Be the first to know about ClawCon and upcoming meetups.
             </p>
-            <form className="flex flex-col sm:flex-row gap-3" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex flex-col sm:flex-row gap-3" onSubmit={handleSubmit}>
               <input
                 type="email"
                 placeholder="your@email.com"
-                className="flex-1 bg-[#0A0B10] border border-white/10 rounded-lg px-4 py-3 text-[#E0E0E0] placeholder:text-[#E0E0E0]/30 focus:outline-none focus:border-[#FF4500]"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={status === "loading" || status === "success"}
+                className="flex-1 bg-[#0A0B10] border border-white/10 rounded-lg px-4 py-3 text-[#E0E0E0] placeholder:text-[#E0E0E0]/30 focus:outline-none focus:border-[#FF4500] disabled:opacity-50"
+                required
               />
               <button
                 type="submit"
-                className="bg-[#FF4500] text-white font-[family-name:var(--font-space-grotesk)] font-bold px-6 py-3 rounded-lg hover:scale-105 transition-transform"
+                disabled={status === "loading" || status === "success"}
+                className="bg-[#FF4500] text-white font-[family-name:var(--font-space-grotesk)] font-bold px-6 py-3 rounded-lg hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                JOIN
+                {status === "loading" ? "..." : status === "success" ? "✓" : "JOIN"}
               </button>
             </form>
+            {message && (
+              <p className={`mt-4 text-sm ${status === "success" ? "text-green-400" : status === "error" ? "text-red-400" : "text-[#E0E0E0]/60"}`}>
+                {message}
+              </p>
+            )}
           </motion.div>
         </div>
       </section>
