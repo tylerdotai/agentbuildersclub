@@ -1,23 +1,8 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 
-const DATA_FILE = path.join(process.cwd(), 'data', 'rsvps.json');
-
-function ensureFile() {
-  if (!fs.existsSync(DATA_FILE)) {
-    fs.writeFileSync(DATA_FILE, JSON.stringify([]));
-  }
-}
-
-function readRsvps() {
-  ensureFile();
-  return JSON.parse(fs.readFileSync(DATA_FILE, 'utf-8'));
-}
-
-function writeRsvps(rsvps: unknown[]) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(rsvps, null, 2));
-}
+// In-memory store for demo (ephemeral on serverless)
+// For production, use Vercel KV, Postgres, or another database
+const rsvps: Array<{ email: string; name: string; eventSlug: string; rsvpAt: string }> = [];
 
 export async function POST(request: Request) {
   try {
@@ -32,11 +17,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
     }
 
-    const rsvps = readRsvps();
-    
     // Check for existing RSVP (same email + event)
     const existingIndex = rsvps.findIndex(
-      (r: { email: string; eventSlug: string }) => r.email === email && r.eventSlug === eventSlug
+      r => r.email === email && r.eventSlug === eventSlug
     );
 
     const rsvp = {
@@ -51,8 +34,6 @@ export async function POST(request: Request) {
     } else {
       rsvps.push(rsvp);
     }
-
-    writeRsvps(rsvps);
 
     return NextResponse.json({ ok: true });
   } catch (error) {

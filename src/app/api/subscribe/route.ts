@@ -1,23 +1,8 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 
-const DATA_FILE = path.join(process.cwd(), 'data', 'subscribers.json');
-
-function ensureFile() {
-  if (!fs.existsSync(DATA_FILE)) {
-    fs.writeFileSync(DATA_FILE, JSON.stringify([]));
-  }
-}
-
-function readSubscribers() {
-  ensureFile();
-  return JSON.parse(fs.readFileSync(DATA_FILE, 'utf-8'));
-}
-
-function writeSubscribers(subscribers: unknown[]) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(subscribers, null, 2));
-}
+// In-memory store for demo (ephemeral on serverless)
+// For production, use Vercel KV, Postgres, or another database
+const subscribers: Array<{ email: string; subscribedAt: string }> = [];
 
 export async function POST(request: Request) {
   try {
@@ -28,19 +13,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
     }
 
-    const subscribers = readSubscribers();
-    
     // Check for duplicates
-    if (subscribers.some((s: { email: string }) => s.email === email)) {
-      return NextResponse.json({ ok: true });
+    if (!subscribers.some(s => s.email === email)) {
+      subscribers.push({
+        email,
+        subscribedAt: new Date().toISOString()
+      });
     }
-
-    subscribers.push({
-      email,
-      subscribedAt: new Date().toISOString()
-    });
-
-    writeSubscribers(subscribers);
 
     return NextResponse.json({ ok: true });
   } catch (error) {
