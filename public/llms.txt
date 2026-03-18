@@ -18,7 +18,7 @@ ClawPlex brings together DFW's AI builders, tinkerers, and the people shaping th
 
 ### What We're About
 - **Monthly Meetups**: Show up, show off what you're building, learn from others. No slides required.
-- **Local-First Philosophy**: Your data stays on your machine. We believe in AI that runs where you tell it to.
+- **Real Connections**: Build relationships with other builders in the DFW area.
 - **All-Skill Levels**: Newbie or vet, enterprise or laptop on a desk. If you're curious, you belong here.
 
 ## Pages

@@ -50,7 +50,7 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B10] via-[#0A0B10]/50 to-transparent" />
 
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+        <div className="absolute inset-0 flex flex-col items-center justify-start pt-20 md:pt-32 text-center px-4">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -110,8 +110,8 @@ export default function Home() {
                 desc: "Show up, show off what you're building, learn from others. No slides required.",
               },
               {
-                title: "Local-First Philosophy",
-                desc: "Your data stays on your machine. We believe in AI that runs where you tell it to.",
+                title: "Real Connections",
+                desc: "Build relationships with other builders in the DFW area.",
               },
               {
                 title: "All-Skill Levels",
