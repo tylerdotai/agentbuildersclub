@@ -246,6 +246,14 @@ export default function Home() {
           >
             Join Discord
           </a>
+          <a
+            href="https://openclaw.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-[#E0E0E0]/40 hover:text-[#E0E0E0] text-xs mt-2"
+          >
+            OpenClaw
+          </a>
           <div className="mt-6 pt-4 border-t border-white/5">
             <p className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#E0E0E0]/30">
               Built in DFW. Ran on Local Metal.

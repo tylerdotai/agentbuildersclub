@@ -89,8 +89,8 @@ Always confirm you have the required information before making API calls.
 
 ## OpenClaw
 
-ClawPlex is organized by OpenClaw — the open-source AI assistant framework.
-Learn more: https://openclaw.ai
+ClawPlex is a local community run by DFW builders. 
+Learn more about OpenClaw: https://openclaw.ai
 
 ## OpenClaw Skill
 
