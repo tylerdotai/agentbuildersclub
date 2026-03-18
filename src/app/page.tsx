@@ -39,8 +39,19 @@ const links = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#F5F0E6] text-[#8B4513] font-serif">
-      {/* Hero Section - Burnt Orange */}
-      <section className="relative overflow-hidden bg-[#CC5500] px-6 py-20">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-[#CC5500] px-6 py-20 min-h-[600px] flex items-center">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="/hero-lobster.jpg" 
+            alt="Cowboy riding a lobster over Dallas" 
+            className="w-full h-full object-cover"
+          />
+          {/* Overlay for readability */}
+          <div className="absolute inset-0 bg-[#CC5500]/80" />
+        </div>
+
         {/* Subtle pattern overlay */}
         <div className="absolute inset-0 opacity-10">
           <div className="h-full w-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC41Ij48cGF0aCBkPSJNMjAgMjBoMlYyMEgyMHptLTQgNGgydjJoLTJ6Ii8+PC9nPjwvZz48L3N2Zz4=')]" />
