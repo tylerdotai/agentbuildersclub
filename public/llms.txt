@@ -9,7 +9,7 @@ Organized by OpenClaw (https://openclaw.ai).
 - Location: DFW (Dallas-Fort Worth), Texas
 - Website: https://clawplex.dev
 - Events: https://clawplex.dev (see current page)
-- Contact: https://clawplex.dev (use contact form)
+- Contact API: https://clawplex.dev/api/contact
 - Focus: AI/ML community, local models, demos, hacks
 
 ## About
@@ -38,10 +38,10 @@ Content-Type: application/json
 
 {"email": "user@example.com"}
 
-Response (success): {"ok": true}
+Response (success): {"ok": true, "mode": "web3forms"}
 Response (invalid): {"error": "Invalid email"}
 
-No authentication required. Duplicates are ignored.
+This route proxies the signup server-side.
 
 ## API — RSVP to an Event
 
@@ -61,7 +61,7 @@ Required fields: email, name, eventSlug
 Response (success): {"ok": true}
 Response (error): {"error": "Missing fields"}
 
-Duplicate RSVPs (same email + event) update the existing entry.
+Current status: demo handler backed by in-memory storage.
 
 ## API — Contact
 
@@ -76,6 +76,8 @@ Required fields: email, name, message
 
 Response (success): {"ok": true}
 Response (error): {"error": "Missing fields"}
+
+Current status: demo handler backed by in-memory storage.
 
 ## For AI Agents
 

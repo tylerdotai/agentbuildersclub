@@ -1,6 +1,6 @@
 # ClawPlex
 
-DFW's local AI builder community site - part meetup page, part lightweight agent surface, part launchpad for ClawCon.
+DFW's local AI builder community site. It is the public landing page for the Dallas-Fort Worth OpenClaw chapter, the current event surface for ClawCon, and a small agent-facing API/docs endpoint.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -12,51 +12,71 @@ DFW's local AI builder community site - part meetup page, part lightweight agent
 - Agent docs: https://clawplex.dev/llms.txt
 - Skill file: https://clawplex.dev/clawplex.skill.md
 
-## About
-
-ClawPlex is the Dallas-Fort Worth OpenClaw community hub. The site is a focused landing page for the local meetup: it introduces the community, points people to Discord, highlights the next event, and publishes machine-readable docs for agents that want to interact with it.
-
 ## What Is In This Repo
 
-- A single-page marketing site for the DFW AI meetup
-- Event and community links for Discord and ClawCon
+- A Next.js 16 landing page for the DFW OpenClaw chapter
+- Typed site content for the hero, event, hosts, and FAQ sections
 - Agent-facing docs in `public/llms.txt` and `public/clawplex.skill.md`
-- Demo API routes for subscribe, RSVP, and contact flows
+- Public API routes for subscribe, RSVP, and contact flows
+- Vitest coverage for the homepage and subscribe API contract
 
-## Tech Stack
+## API
 
-| Layer | Technology |
-|-------|------------|
-| App | Next.js 16, React 19, TypeScript |
-| Styling | Tailwind CSS 4 |
-| Motion | Framer Motion |
-| UI Utilities | Base UI, CVA, lucide-react |
-| Agent Docs | Static files in `public/` |
+### Subscribe
 
-## Agent Endpoints
+```http
+POST /api/subscribe
+Content-Type: application/json
 
-The repo includes three POST endpoints under `src/app/api/`:
+{"email":"user@example.com"}
+```
 
-- `/api/subscribe` - add an email to the demo subscriber list
-- `/api/rsvp` - save or update an RSVP for an event slug
-- `/api/contact` - send a contact message to organizers
+Success response:
 
-These handlers currently use in-memory arrays, so they are best treated as demo/reference implementations rather than durable production storage.
+```json
+{"ok":true,"mode":"web3forms"}
+```
+
+This route proxies newsletter signup server-side through Web3Forms so the homepage no longer posts directly from the browser to the upstream endpoint.
+
+### RSVP
+
+```http
+POST /api/rsvp
+Content-Type: application/json
+
+{"email":"user@example.com","name":"Jane Doe","eventSlug":"clawcon-dfw"}
+```
+
+Current status: demo handler backed by in-memory storage.
+
+### Contact
+
+```http
+POST /api/contact
+Content-Type: application/json
+
+{"email":"user@example.com","name":"Jane Doe","message":"Hello!"}
+```
+
+Current status: demo handler backed by in-memory storage.
 
 ## Local Development
 
 ```bash
 npm install
 npm run dev
+npm run build
+npm test
 ```
 
 Then open `http://localhost:3000`.
 
 ## Notes
 
-- The homepage newsletter form currently posts to Web3Forms.
-- Agent-oriented documentation lives in `public/llms.txt` and `public/clawplex.skill.md`.
-- If you want persistent RSVP or contact storage, swap the demo API routes over to a database or hosted backend.
+- Deploy path is GitHub -> Vercel.
+- The homepage newsletter form now submits to `/api/subscribe`.
+- RSVP and contact still need durable persistence if you want them to be production data stores.
 
 ## License
 
