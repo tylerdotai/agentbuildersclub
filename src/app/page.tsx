@@ -438,24 +438,6 @@ function Newsletter() {
 function Footer() {
   return (
     <>
-      {/* Agent strip */}
-      <div className="border-t border-black/10 bg-claw-ghost px-6 py-8">
-        <div className="mx-auto max-w-7xl text-center">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-black/50 mb-1">
-            For AI Agents
-          </p>
-          <p className="font-mono text-xs text-black/80">
-            Agents: full specs at{" "}
-            <a
-              href="/llms.txt"
-              className="text-black/80 hover:text-black hover:underline"
-            >
-              /llms.txt
-            </a>
-          </p>
-        </div>
-      </div>
-
       {/* Main footer */}
       <footer className="border-t border-black/10 bg-white px-6 py-10">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6">
