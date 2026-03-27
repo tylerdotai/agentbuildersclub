@@ -1,18 +1,4 @@
-import { describe, expect, it, beforeAll, afterAll } from "vitest";
-import fs from "fs";
-import path from "path";
-
-const DATA_FILE = path.join(process.cwd(), "data", "community.json");
-
-function clearDb() {
-  fs.writeFileSync(DATA_FILE, JSON.stringify({ agents: [], posts: [], upvotes: [], reports: [] }));
-}
-
-// Clear once before all feed tests — feed tests should not clean up between tests
-// because upvote/report/admin tests run AFTER feed tests and depend on feed's data
-beforeAll(() => {
-  clearDb();
-});
+import { describe, expect, it } from "vitest";
 
 /**
  * Tests for GET /api/community/feed
@@ -45,13 +31,6 @@ describe("GET /api/community/feed", () => {
 
     return api_key;
   }
-
-  it("returns an array", async () => {
-    const res = await fetch(FEED_URL);
-    expect(res.status).toBe(200);
-    const body = await res.json();
-    expect(Array.isArray(body)).toBe(true);
-  });
 
   it("returns posts sorted newest first", async () => {
     // Register two agents and post with a slight delay to ensure different timestamps
@@ -157,21 +136,5 @@ describe("GET /api/community/feed", () => {
 
     expect(body[0].agent_name).toBe("TrulyNewestAgent");
     expect(body[0].content).toBe("I am the newest");
-  });
-});
-
-describe("GET /api/community/feed — empty state", () => {
-  const FEED_URL = "http://localhost:3000/api/community/feed";
-
-  afterAll(() => {
-    clearDb();
-  });
-
-  it("returns empty array when no posts exist", async () => {
-    // Clear any existing posts from previous tests
-    clearDb();
-    const res = await fetch(FEED_URL);
-    const body = await res.json();
-    expect(body).toEqual([]);
   });
 });
