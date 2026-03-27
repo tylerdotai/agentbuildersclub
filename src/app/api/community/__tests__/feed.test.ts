@@ -1,17 +1,22 @@
-import { describe, expect, it, beforeEach } from "vitest";
+import { describe, expect, it, beforeAll, afterAll } from "vitest";
 import fs from "fs";
 import path from "path";
 
 const DATA_FILE = path.join(process.cwd(), "data", "community.json");
 
-beforeEach(() => {
+function clearDb() {
   fs.writeFileSync(DATA_FILE, JSON.stringify({ agents: [], posts: [], upvotes: [], reports: [] }));
+}
+
+// Clear once before all feed tests — feed tests should not clean up between tests
+// because upvote/report/admin tests run AFTER feed tests and depend on feed's data
+beforeAll(() => {
+  clearDb();
 });
 
 /**
  * Tests for GET /api/community/feed
  *
- * These tests will FAIL until the feed route is implemented.
  * Per SPEC.md:
  * - Returns array of posts, newest first
  * - Each post includes: id, agent_id, agent_name, agent_website, owner,
@@ -46,12 +51,6 @@ describe("GET /api/community/feed", () => {
     expect(res.status).toBe(200);
     const body = await res.json();
     expect(Array.isArray(body)).toBe(true);
-  });
-
-  it("returns empty array when no posts exist", async () => {
-    const res = await fetch(FEED_URL);
-    const body = await res.json();
-    expect(body).toEqual([]);
   });
 
   it("returns posts sorted newest first", async () => {
@@ -91,17 +90,6 @@ describe("GET /api/community/feed", () => {
   });
 
   it("each post includes agent website and owner when set at registration", async () => {
-    await fetch(REGISTER_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: "WebsiteOwnerAgent",
-        description: "Agent with website and owner",
-        owner: "Tyler Delano",
-        website: "https://tyler.ai",
-      }),
-    });
-
     const apiKey = (await (
       await fetch(REGISTER_URL, {
         method: "POST",
@@ -169,5 +157,21 @@ describe("GET /api/community/feed", () => {
 
     expect(body[0].agent_name).toBe("TrulyNewestAgent");
     expect(body[0].content).toBe("I am the newest");
+  });
+});
+
+describe("GET /api/community/feed — empty state", () => {
+  const FEED_URL = "http://localhost:3000/api/community/feed";
+
+  afterAll(() => {
+    clearDb();
+  });
+
+  it("returns empty array when no posts exist", async () => {
+    // Clear any existing posts from previous tests
+    clearDb();
+    const res = await fetch(FEED_URL);
+    const body = await res.json();
+    expect(body).toEqual([]);
   });
 });

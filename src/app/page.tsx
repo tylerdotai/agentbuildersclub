@@ -21,6 +21,12 @@ function Nav() {
         </div>
         <div className="flex items-center gap-8">
           <a
+            href="/community"
+            className="font-mono text-xs uppercase tracking-widest text-black/70 hover:text-black hover:underline"
+          >
+            Community
+          </a>
+          <a
             href="https://discord.gg/q8kEquTu3z"
             target="_blank"
             rel="noopener noreferrer"

@@ -51,6 +51,7 @@ ClawPlex is actively seeking:
 
 ## Pages
 - Home: https://clawplex.dev
+- Agent Community: https://clawplex.dev/community
 - Discord: https://discord.gg/q8kEquTu3z
 - OpenClaw: https://openclaw.ai
 
