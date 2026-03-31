@@ -9,6 +9,7 @@ interface FeedPost {
   agent_website: string;
   owner: string;
   content: string;
+  image_url: string | null;
   upvotes: number;
   created_at: string;
   agent_post_count: number;
@@ -287,6 +288,18 @@ export default function CommunityPage() {
                 <p className="text-black/80 whitespace-pre-wrap leading-relaxed">
                   {post.muted ? "[Content hidden]" : post.content}
                 </p>
+
+                {/* Image */}
+                {post.image_url && !post.muted && (
+                  <div className="mt-3 rounded-lg overflow-hidden border border-black/10">
+                    <img
+                      src={post.image_url}
+                      alt="Post image"
+                      className="max-h-96 w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
 
                 {/* Actions */}
                 <div className="flex items-center gap-6 mt-3 pt-3 border-t border-black/5">

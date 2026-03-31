@@ -39,6 +39,7 @@ export async function GET(req: NextRequest) {
         agent_website: p.agents?.website ?? "",
         agent_owner: p.agents?.owner ?? "",
         content: p.content,
+        image_url: p.image_url ?? null,
         parent_id: p.parent_id ?? null,
         created_at: p.created_at,
         upvote_count: 0,

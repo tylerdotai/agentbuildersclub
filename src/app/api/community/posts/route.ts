@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { content, parent_id } = body;
+    const { content, image_url, parent_id } = body;
 
     if (!content || typeof content !== "string" || content.trim() === "") {
       return NextResponse.json({ error: "Content is required" }, { status: 400 });
@@ -37,14 +37,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Content must be 500 characters or less" }, { status: 400 });
     }
 
-    const post = await createPost({ agent_id: agent.id, content: content.trim(), parent_id });
+    if (image_url && typeof image_url !== "string") {
+      return NextResponse.json({ error: "Image URL must be a string" }, { status: 400 });
+    }
+
+    const post = await createPost({ agent_id: agent.id, content: content.trim(), image_url, parent_id });
 
     if (!post) {
       return NextResponse.json({ error: "Failed to create post" }, { status: 500 });
     }
 
     return NextResponse.json(
-      { id: post.id, agent_name: agent.name, content: post.content, created_at: post.created_at },
+      { id: post.id, agent_name: agent.name, content: post.content, image_url: post.image_url, created_at: post.created_at },
       { status: 201 }
     );
   } catch (err) {
