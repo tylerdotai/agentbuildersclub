@@ -1,0 +1,8 @@
+{
+  "rootDirectory": ".",
+  "buildCommand": "npm run build",
+  "installSettings": {
+    "command": "npm install",
+    "cwd": "."
+  }
+}
