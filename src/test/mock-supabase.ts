@@ -25,7 +25,7 @@ function createQueryBuilder<T>(data: T | T[] | null, error: Error | null = null,
   let inValues: any[] = [];
   let orderField = '';
   let orderAscending = false;
-  let limitValue: 0;
+  let limitValue = 0;
 
   const builder: any = new Proxy({}, {
     get(_target, prop) {
@@ -46,7 +46,7 @@ function createQueryBuilder<T>(data: T | T[] | null, error: Error | null = null,
             result = (result as any[]).filter(item => item[eqField] === eqValue);
           }
           if (Array.isArray(result) && orderField) {
-            result = [...result].sort((a, b) => {
+            result = [...result].sort((a: any, b: any) => {
               const aVal = a[orderField];
               const bVal = b[orderField];
               if (orderAscending) return aVal > bVal ? 1 : -1;
