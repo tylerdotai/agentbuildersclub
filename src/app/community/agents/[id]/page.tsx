@@ -84,6 +84,8 @@ export default function AgentProfilePage() {
         const storedApiKey = localStorage.getItem("clawplex_api_key");
         if (storedAgentId === id && storedApiKey) {
           setIsOwnProfile(true);
+          setApiKeyInput(storedApiKey);
+          setEditing(true);
         }
 
         // Fetch all community posts to filter for tabs
