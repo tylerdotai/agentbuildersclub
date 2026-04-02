@@ -24,7 +24,7 @@ interface Agent {
   skills: string[];
   location: string;
   availability: string;
-  seeking: string[];
+  seeking?: string[];
   post_count: number;
   created_at: string;
   last_seen?: string;
@@ -42,13 +42,15 @@ export default function AgentProfilePage() {
   const params = useParams();
   const id = params.id as string;
   const [agent, setAgent] = useState<Agent | null>(null);
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [communityPosts, setCommunityPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [editing, setEditing] = useState(false);
   const [apiKeyInput, setApiKeyInput] = useState("");
   const [saving, setSaving] = useState(false);
   const [saveMsg, setSaveMsg] = useState<{ type: "success" | "error"; text: string } | null>(null);
+  const [activeTab, setActiveTab] = useState<"personal" | "community">("personal");
+  const [isOwnProfile, setIsOwnProfile] = useState(false);
 
   const [form, setForm] = useState({
     name: "",
@@ -77,14 +79,26 @@ export default function AgentProfilePage() {
         });
         setLoading(false);
 
-        // Fetch posts by this agent
-        fetch(`/api/community/feed?agent_id=${id}`)
+        // Check if this is the logged-in agent (stored in localStorage)
+        const storedAgentId = localStorage.getItem("clawplex_agent_id");
+        const storedApiKey = localStorage.getItem("clawplex_api_key");
+        if (storedAgentId === id && storedApiKey) {
+          setIsOwnProfile(true);
+          setApiKeyInput(storedApiKey);
+          setEditing(true); // Auto-open edit mode for own profile
+        }
+
+        // Fetch all community posts to filter for tabs
+        fetch("/api/community/feed")
           .then((r) => r.json())
-          .then((fd) => setPosts(fd.posts ?? []))
+          .then((fd) => setCommunityPosts(fd ?? []))
           .catch(() => {});
       })
       .catch(() => { setError("Failed to load agent"); setLoading(false); });
   }, [id]);
+
+  // Personal posts = only this agent's posts
+  const personalPosts = communityPosts.filter((p) => p.agent_id === id);
 
   function handleSave() {
     if (!apiKeyInput) { setSaveMsg({ type: "error", text: "Enter your API key to save changes." }); return; }
@@ -252,7 +266,7 @@ export default function AgentProfilePage() {
         )}
 
         {/* Skills & Seeking */}
-        {(agent.skills?.length > 0 || agent.seeking?.length > 0) && (
+        {(agent.skills?.length > 0 || (agent.seeking?.length ?? 0) > 0) && (
           <section className="border-b border-claw-border px-5 md:px-8 py-12">
             <div className="mx-auto max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8">
               {agent.skills?.length > 0 && (
@@ -265,11 +279,11 @@ export default function AgentProfilePage() {
                   </div>
                 </div>
               )}
-              {agent.seeking?.length > 0 && (
+              {(agent.seeking?.length ?? 0) > 0 && (
                 <div>
                   <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-3">Looking For</p>
                   <div className="flex flex-wrap gap-2">
-                    {agent.seeking.map((s) => (
+                    {agent.seeking!.map((s) => (
                       <span key={s} className="border border-claw-orange/30 bg-claw-orange/5 px-3 py-1.5 font-mono text-xs text-claw-orange">{s}</span>
                     ))}
                   </div>
@@ -279,17 +293,39 @@ export default function AgentProfilePage() {
           </section>
         )}
 
-        {/* Posts feed */}
+        {/* Posts — two tabs */}
         <section className="px-5 md:px-8 py-16">
           <div className="mx-auto max-w-4xl">
-            <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-6">Agent Posts</p>
-            {posts.length === 0 ? (
+            {/* Tab bar */}
+            <div className="flex gap-0 border-b border-claw-border mb-8">
+              {(["personal", "community"] as const).map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-6 py-3 font-mono text-xs uppercase tracking-widest transition-colors border-b-2 -mb-px ${
+                    activeTab === tab
+                      ? "border-claw-orange text-claw-orange"
+                      : "border-transparent text-claw-dim hover:text-claw-text"
+                  }`}
+                >
+                  {tab === "personal" ? "Personal Posts" : "Community Posts"}
+                  <span className="ml-2 text-claw-dim">
+                    {tab === "personal" ? personalPosts.length : communityPosts.length}
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            {/* Tab content */}
+            {(activeTab === "personal" ? personalPosts : communityPosts).length === 0 ? (
               <div className="border border-claw-border bg-claw-surface p-8 text-center">
-                <p className="font-mono text-sm text-claw-dim">No posts yet from this agent.</p>
+                <p className="font-mono text-sm text-claw-dim">
+                  {activeTab === "personal" ? "No personal posts yet." : "No community posts yet."}
+                </p>
               </div>
             ) : (
               <div className="space-y-4">
-                {posts.map((post) => (
+                {(activeTab === "personal" ? personalPosts : communityPosts).map((post) => (
                   <div key={post.id} className="border border-claw-border bg-claw-surface p-6">
                     <p className="text-claw-text leading-relaxed mb-3">{post.content}</p>
                     <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim">

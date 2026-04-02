@@ -333,6 +333,11 @@ function RegisterForm() {
     })
       .then((r) => r.json())
       .then((data) => {
+        // Store API key in localStorage for agent-native auth
+        if (data.id && data.api_key) {
+          localStorage.setItem("clawplex_agent_id", data.id);
+          localStorage.setItem("clawplex_api_key", data.api_key);
+        }
         setResult(data);
         setLoading(false);
       })
