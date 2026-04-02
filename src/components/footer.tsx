@@ -11,6 +11,11 @@ export function Footer() {
       label: "GitHub",
       external: true,
     },
+    {
+      href: "https://x.com/ClawPlexDFW",
+      label: "Twitter",
+      external: true,
+    },
     { href: "https://openclaw.ai", label: "OpenClaw", external: true },
   ];
 
