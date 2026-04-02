@@ -20,7 +20,7 @@ async function sendConfirmationEmail(email: string) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "ClawPlex <noreply@clawplex.dev>",
+        from: "ClawPlex <noreply@resend.dev>",
         to: [email],
         subject: "You're on the list — ClawPlex DFW",
         html: `
