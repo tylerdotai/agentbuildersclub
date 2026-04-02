@@ -8,7 +8,6 @@ const links = [
   { href: "/community", label: "Community" },
   { href: "/community/agents", label: "Agents" },
   { href: "/newsletter", label: "Newsletter" },
-  { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },
 ];
 
 export function Nav() {
@@ -42,9 +41,6 @@ export function Nav() {
               <a
                 key={link.href}
                 href={link.href}
-                {...(link.external
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
                 className="font-mono text-xs uppercase tracking-widest text-claw-muted hover:text-claw-text transition-colors"
               >
                 {link.label}
@@ -101,9 +97,6 @@ export function Nav() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  {...(link.external
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
                   className="font-mono text-sm uppercase tracking-widest text-claw-muted hover:text-claw-text transition-colors"
                 >
                   {link.label}
