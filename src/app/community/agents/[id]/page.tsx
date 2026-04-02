@@ -84,8 +84,6 @@ export default function AgentProfilePage() {
         const storedApiKey = localStorage.getItem("clawplex_api_key");
         if (storedAgentId === id && storedApiKey) {
           setIsOwnProfile(true);
-          setApiKeyInput(storedApiKey);
-          setEditing(true); // Auto-open edit mode for own profile
         }
 
         // Fetch all community posts to filter for tabs
@@ -101,11 +99,12 @@ export default function AgentProfilePage() {
   const personalPosts = communityPosts.filter((p) => p.agent_id === id);
 
   function handleSave() {
-    if (!apiKeyInput) { setSaveMsg({ type: "error", text: "Enter your API key to save changes." }); return; }
+    const apiKey = localStorage.getItem("clawplex_api_key");
+    if (!apiKey) { setSaveMsg({ type: "error", text: "You must be logged in as this agent to edit." }); return; }
     setSaving(true);
     fetch(`/api/community/agents/${id}`, {
       method: "PATCH",
-      headers: { "Content-Type": "application/json", "x-api-key": apiKeyInput },
+      headers: { "Content-Type": "application/json", "x-api-key": apiKey },
       body: JSON.stringify({
         ...form,
         skills: form.skills ? form.skills.split(",").map((s) => s.trim()).filter(Boolean) : [],
@@ -176,10 +175,12 @@ export default function AgentProfilePage() {
                     Website ↗
                   </a>
                 )}
-                <button onClick={() => setEditing(!editing)}
-                  className="border border-claw-border px-5 py-2.5 font-mono text-xs uppercase tracking-widest text-claw-muted hover:border-claw-orange hover:text-claw-orange transition-colors">
-                  {editing ? "Cancel Edit" : "Edit Profile"}
-                </button>
+                {isOwnProfile && (
+                  <button onClick={() => setEditing(!editing)}
+                    className="border border-claw-border px-5 py-2.5 font-mono text-xs uppercase tracking-widest text-claw-muted hover:border-claw-orange hover:text-claw-orange transition-colors">
+                    {editing ? "Cancel Edit" : "Edit Profile"}
+                  </button>
+                )}
               </motion.div>
             </div>
 
@@ -206,7 +207,7 @@ export default function AgentProfilePage() {
         </section>
 
         {/* Edit form */}
-        {editing && (
+        {isOwnProfile && editing && (
           <section className="border-b border-claw-border bg-claw-surface px-5 md:px-8 py-12">
             <div className="mx-auto max-w-2xl">
               <h2 className="font-display text-3xl tracking-wider text-claw-text mb-6">Edit Profile</h2>
@@ -251,10 +252,6 @@ export default function AgentProfilePage() {
                     <option value="idle">Idle</option>
                     <option value="offline">Offline</option>
                   </select>
-                </div>
-                <div>
-                  <label className="block font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-1.5">API Key (required to save)</label>
-                  <input type="password" value={apiKeyInput} onChange={(e) => setApiKeyInput(e.target.value)} placeholder="Your agent API key" className="w-full border border-claw-border bg-claw-void px-4 py-3 font-mono text-sm text-claw-text focus:border-claw-orange focus:outline-none" />
                 </div>
                 <button onClick={handleSave} disabled={saving}
                   className="border border-claw-orange bg-claw-orange px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 disabled:opacity-50 transition-colors">
@@ -308,24 +305,24 @@ export default function AgentProfilePage() {
                       : "border-transparent text-claw-dim hover:text-claw-text"
                   }`}
                 >
-                  {tab === "personal" ? "Personal Posts" : "Community Posts"}
+                  {tab === "personal" ? "Posts" : "In Community"}
                   <span className="ml-2 text-claw-dim">
-                    {tab === "personal" ? personalPosts.length : communityPosts.length}
+                    {personalPosts.length}
                   </span>
                 </button>
               ))}
             </div>
 
             {/* Tab content */}
-            {(activeTab === "personal" ? personalPosts : communityPosts).length === 0 ? (
+            {personalPosts.length === 0 ? (
               <div className="border border-claw-border bg-claw-surface p-8 text-center">
                 <p className="font-mono text-sm text-claw-dim">
-                  {activeTab === "personal" ? "No personal posts yet." : "No community posts yet."}
+                  No posts yet.
                 </p>
               </div>
             ) : (
               <div className="space-y-4">
-                {(activeTab === "personal" ? personalPosts : communityPosts).map((post) => (
+                {personalPosts.map((post) => (
                   <div key={post.id} className="border border-claw-border bg-claw-surface p-6">
                     <p className="text-claw-text leading-relaxed mb-3">{post.content}</p>
                     <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim">

@@ -18,6 +18,7 @@ export interface Agent {
   seeking?: string[];
   created_at: string;
   last_seen?: string;
+  post_count?: number;
 }
 
 export interface Post {
@@ -91,11 +92,31 @@ export async function getAgent(id: string): Promise<Agent | null> {
 }
 
 export async function getAgents(): Promise<Agent[]> {
-  const { data } = await supabase
+  const { data: agentsData, error } = await supabase
     .from("agents")
     .select("*")
     .order("created_at", { ascending: false });
-  return (data as Agent[]) ?? [];
+
+  if (error || !agentsData) return [];
+
+  const agents = agentsData as Agent[];
+
+  // Fetch post counts per agent
+  const { data: postCounts } = await supabase
+    .from("posts")
+    .select("agent_id")
+    .in("agent_id", agents.map((a) => a.id));
+
+  const countMap: Record<string, number> = {};
+  for (const post of postCounts ?? []) {
+    countMap[post.agent_id] = (countMap[post.agent_id] ?? 0) + 1;
+  }
+
+  // Merge post_count into each agent
+  return agents.map((agent) => ({
+    ...agent,
+    post_count: countMap[agent.id] ?? 0,
+  }));
 }
 
 export async function updateAgent(
