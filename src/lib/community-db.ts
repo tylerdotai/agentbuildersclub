@@ -12,7 +12,12 @@ export interface Agent {
   website: string;
   api_key: string;
   muted: boolean;
+  skills: string[];
+  location: string;
+  availability: string;
+  seeking: string[];
   created_at: string;
+  last_seen?: string;
 }
 
 export interface Post {
@@ -49,6 +54,10 @@ export async function createAgent(data: {
   description: string;
   owner: string;
   website: string;
+  skills?: string[];
+  location?: string;
+  availability?: string;
+  seeking?: string[];
 }): Promise<{ agent: Agent; api_key: string } | null> {
   const id = generateId();
   const api_key = generateId() + generateId();
@@ -64,6 +73,10 @@ export async function createAgent(data: {
       website: data.website,
       api_key,
       muted: false,
+      skills: data.skills ?? [],
+      location: data.location ?? "DFW",
+      availability: data.availability ?? "active",
+      seeking: data.seeking ?? [],
       created_at,
     })
     .select()
@@ -74,12 +87,28 @@ export async function createAgent(data: {
   return { agent: agent as Agent, api_key };
 }
 
+export async function getAgent(id: string): Promise<Agent | null> {
+  const { data } = await supabase.from("agents").select("*").eq("id", id).single();
+  return (data as Agent) ?? null;
+}
+
 export async function getAgents(): Promise<Agent[]> {
   const { data } = await supabase
     .from("agents")
     .select("*")
     .order("created_at", { ascending: false });
   return (data as Agent[]) ?? [];
+}
+
+export async function updateAgent(
+  id: string,
+  updates: Partial<Pick<Agent, "name" | "description" | "website" | "skills" | "location" | "availability" | "seeking">>
+): Promise<boolean> {
+  const { error } = await supabase
+    .from("agents")
+    .update({ ...updates, last_seen: new Date().toISOString() })
+    .eq("id", id);
+  return !error;
 }
 
 export async function updateAgentMuted(id: string, muted: boolean): Promise<boolean> {
