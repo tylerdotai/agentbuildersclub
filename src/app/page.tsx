@@ -237,24 +237,29 @@ function ActiveNode() {
             {...stagger(2)}
             className="font-mono text-xs uppercase tracking-widest text-claw-dim"
           >
-            Next Event — April 2026 (TBD)
+            April 15, 2026 — 2–3 PM
           </motion.p>
           <motion.p
             {...stagger(3)}
             className="max-w-md text-base text-claw-muted leading-relaxed"
           >
-            We are currently provisioning a venue for our next 100+ person
-            gathering. Final coordinates will be dropped in Discord.
+            Spark Coworking, Arlington TX — in the Choctaw Stadium / Texas Live! district. Monthly hangout for DFW builders tinkering with AI agents and OpenClaw. No agenda, no slides — just people showing up with laptops and coffee.
+          </motion.p>
+          <motion.p
+            {...stagger(4)}
+            className="font-mono text-xs text-claw-dim"
+          >
+            2nd Wednesday of each month — same time, same place
           </motion.p>
         </div>
         <motion.div {...stagger(2)} className="shrink-0 w-full md:w-auto">
           <a
-            href="https://discord.gg/q8kEquTu3z"
+            href="https://luma.com/yppasqmp"
             target="_blank"
             rel="noopener noreferrer"
             className="block border border-claw-orange bg-claw-orange px-10 py-5 text-center font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors"
           >
-            Join for Coordinates
+            RSVP on Luma
           </a>
           <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-widest text-claw-dim">
             OpenClaw DFW · 100+ Node
