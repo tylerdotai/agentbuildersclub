@@ -259,6 +259,7 @@ function TheSignal() {
             <div
               key={i}
               className="relative border border-claw-border bg-claw-surface overflow-hidden aspect-square md:aspect-auto md:h-[200px]"
+              style={{ position: "relative" }}
             >
               <Image
                 src={`/clawcon-${i}.webp`}
@@ -371,6 +372,7 @@ function ActiveNode() {
             target="_blank"
             rel="noopener noreferrer"
             className="block relative overflow-hidden border border-claw-border hover:border-claw-orange/50 transition-colors aspect-video md:w-[400px]"
+            style={{ position: "relative" }}
           >
             <Image
               src="/spark-arlington.png"

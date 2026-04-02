@@ -22,7 +22,8 @@ export function Nav() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8 md:py-4">
           {/* Logo */}
           <a href="/" className="flex items-center gap-3">
-            <div className="relative flex h-8 w-8 items-center justify-center overflow-hidden border border-claw-border">
+            <div className="relative flex h-8 w-8 items-center justify-center overflow-hidden border border-claw-border"
+              style={{ position: "relative" }}>
               <Image
                 src="/hero-lobster.webp"
                 alt="ClawPlex"
