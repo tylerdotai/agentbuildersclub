@@ -1,6 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  outputFileTracingRoot: "/Users/soup/clawplex",
-};
+const nextConfig = {};
 
 export default nextConfig;
