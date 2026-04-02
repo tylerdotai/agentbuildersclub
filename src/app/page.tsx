@@ -86,14 +86,6 @@ function Hero() {
           className="mt-10 flex flex-col sm:flex-row justify-center gap-3"
         >
           <a
-            href="https://discord.gg/q8kEquTu3z"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border border-claw-orange bg-claw-orange px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors text-center"
-          >
-            Join Discord
-          </a>
-          <a
             href="#recap"
             className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-muted hover:text-claw-text transition-colors text-center"
           >
@@ -169,7 +161,7 @@ function TheSignal() {
           {[
             { label: "Venue", value: "Spark Coworking" },
             { label: "Format", value: "No Slides. Just Build." },
-            { label: "Next", value: "April 2026 — TBD" },
+            { label: "Next", value: "April 15 — Spark Arlington" },
           ].map((item, i) => (
             <div
               key={item.label}
@@ -245,26 +237,35 @@ function ActiveNode() {
           >
             Spark Coworking, Arlington TX — in the Choctaw Stadium / Texas Live! district. Monthly hangout for DFW builders tinkering with AI agents and OpenClaw. No agenda, no slides — just people showing up with laptops and coffee.
           </motion.p>
-          <motion.p
-            {...stagger(4)}
-            className="font-mono text-xs text-claw-dim"
-          >
-            2nd Wednesday of each month — same time, same place
-          </motion.p>
         </div>
-        <motion.div {...stagger(2)} className="shrink-0 w-full md:w-auto">
+        <div className="shrink-0 w-full md:w-auto">
           <a
-            href="https://luma.com/yppasqmp"
+            href="https://sparkcoworking.com/arlington/"
             target="_blank"
             rel="noopener noreferrer"
-            className="block border border-claw-orange bg-claw-orange px-10 py-5 text-center font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors"
+            className="block relative overflow-hidden border border-claw-border hover:border-claw-orange/50 transition-colors aspect-video md:w-[400px]"
           >
-            RSVP on Luma
+            <Image
+              src="/spark-arlington.png"
+              alt="Spark Coworking Arlington"
+              fill
+              className="object-cover hover:scale-105 transition-transform duration-500"
+            />
           </a>
-          <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-            OpenClaw DFW · 100+ Node
-          </p>
-        </motion.div>
+          <motion.div {...stagger(2)} className="mt-4 w-full md:w-auto">
+            <a
+              href="https://luma.com/yppasqmp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block border border-claw-orange bg-claw-orange px-10 py-5 text-center font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors"
+            >
+              RSVP on Luma
+            </a>
+            <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-widest text-claw-dim">
+              OpenClaw DFW · 100+ Node
+            </p>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -325,17 +326,9 @@ function Partnerships() {
               <h3 className="font-display text-2xl tracking-wider text-claw-text mb-3">
                 {card.title}
               </h3>
-              <p className="text-claw-muted mb-5 leading-relaxed">
+              <p className="text-claw-muted leading-relaxed">
                 {card.desc}
               </p>
-              <a
-                href="https://discord.gg/q8kEquTu3z"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-sm text-claw-orange hover:text-claw-orange/80 transition-colors"
-              >
-                DISCORD →
-              </a>
             </motion.div>
           ))}
         </div>
