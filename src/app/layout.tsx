@@ -40,6 +40,7 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://clawplex.dev/_next/static/chunks/6bfc4bf6ea41a460.css" crossOrigin="anonymous" />
       </head>
       <body className="bg-black text-white font-sans antialiased">
         <AppShell>{children}</AppShell>

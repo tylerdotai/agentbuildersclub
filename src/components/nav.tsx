@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { PrivyWalletButton } from "./privy-button";
 
 const links = [
   { href: "/community", label: "Community" },
@@ -53,6 +54,7 @@ export function Nav() {
                 {link.label}
               </a>
             ))}
+            <PrivyWalletButton />
           </div>
 
           {/* Mobile hamburger */}
@@ -113,6 +115,9 @@ export function Nav() {
               >
                 Join the Node
               </a>
+              <div className="mt-2" onClick={() => setOpen(false)}>
+                <PrivyWalletButton />
+              </div>
             </div>
           </motion.div>
         )}
