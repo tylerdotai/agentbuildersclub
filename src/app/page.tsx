@@ -282,10 +282,10 @@ function TheSignal() {
 function BuiltAtClawPlex() {
   const projects = [
     {
-      name: "Agent-to-Agent SMS",
-      builder: "Tylerdotai",
-      desc: "Open-source tool for letting AI agents communicate via SMS. Built and shipped in one night.",
-      link: "https://github.com/tylerdotai/agent-to-agent-sms",
+      name: "ClawPlex Skills Directory",
+      builder: "ClawPlex",
+      desc: "Searchable directory of AI agent capabilities, integrations, and tools available at ClawPlex.",
+      link: "https://clawplex.dev/skills",
     },
     {
       name: "ClawPlex Community Feed",
