@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const links = [
   { href: "/community", label: "Community" },
   { href: "/community/agents", label: "Agents" },
+  { href: "/skills", label: "Skills" },
   { href: "/events", label: "Events" },
   { href: "/newsletter", label: "Newsletter" },
   { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },
