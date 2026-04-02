@@ -7,7 +7,9 @@ import { motion, AnimatePresence } from "framer-motion";
 const links = [
   { href: "/community", label: "Community" },
   { href: "/community/agents", label: "Agents" },
+  { href: "/events", label: "Events" },
   { href: "/newsletter", label: "Newsletter" },
+  { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },
 ];
 
 export function Nav() {
@@ -41,19 +43,14 @@ export function Nav() {
               <a
                 key={link.href}
                 href={link.href}
+                {...(link.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
                 className="font-mono text-xs uppercase tracking-widest text-claw-muted hover:text-claw-text transition-colors"
               >
                 {link.label}
               </a>
             ))}
-            <a
-              href="https://discord.gg/q8kEquTu3z"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border border-claw-orange bg-claw-orange/10 px-5 py-2 font-mono text-xs uppercase tracking-widest text-claw-orange hover:bg-claw-orange hover:text-claw-void transition-all"
-            >
-              Join the Node
-            </a>
           </div>
 
           {/* Mobile hamburger */}
@@ -97,6 +94,9 @@ export function Nav() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
+                  {...(link.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
                   className="font-mono text-sm uppercase tracking-widest text-claw-muted hover:text-claw-text transition-colors"
                 >
                   {link.label}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
@@ -20,12 +20,52 @@ function stagger(i: number) {
   return { ...fade, transition: { duration: 0.7, ease, delay: i * 0.08 } };
 }
 
-/* ── Hero ─────────────────────────────────────────────────────────────────── */
+/* ── Countdown ───────────────────────────────────────────────────────────── */
+function Countdown({ target }: { target: Date }) {
+  const [days, setDays] = useState(0);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+
+  useEffect(() => {
+    function update() {
+      const diff = target.getTime() - Date.now();
+      if (diff <= 0) {
+        setDays(0); setHours(0); setMinutes(0);
+        return;
+      }
+      setDays(Math.floor(diff / 86400000));
+      setHours(Math.floor((diff % 86400000) / 3600000));
+      setMinutes(Math.floor((diff % 3600000) / 60000));
+    }
+    update();
+    const id = setInterval(update, 60000);
+    return () => clearInterval(id);
+  }, [target]);
+
+  return (
+    <div className="flex gap-6 font-mono text-xs uppercase tracking-widest text-claw-orange">
+      {[
+        { val: days, label: "Days" },
+        { val: hours, label: "Hours" },
+        { val: minutes, label: "Min" },
+      ].map(({ val, label }) => (
+        <div key={label} className="text-center">
+          <div className="text-4xl md:text-5xl font-display text-claw-text">{String(val).padStart(2, "0")}</div>
+          <div className="text-[10px] text-claw-dim mt-1">{label}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ── Hero — Event-driven ─────────────────────────────────────────────────── */
 function Hero() {
+  const eventDate = new Date("2026-04-15T14:00:00-05:00");
+
   return (
     <section className="relative">
       {/* Full-bleed image */}
-      <div className="relative h-[75vh] min-h-[520px] overflow-hidden">
+      <div className="relative h-[85vh] min-h-[600px] overflow-hidden">
         <Image
           src="/hero-lobster.webp"
           alt="Cowboy riding a lobster over Dallas — ClawPlex DFW"
@@ -33,107 +73,153 @@ function Hero() {
           priority
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-claw-void/30 via-claw-void/50 to-claw-void" />
+        <div className="absolute inset-0 bg-gradient-to-b from-claw-void/40 via-claw-void/60 to-claw-void" />
 
-        {/* Overlay headline */}
-        <div className="absolute inset-0 flex flex-col items-center justify-end pb-16 md:pb-24 px-5">
+        {/* Overlay */}
+        <div className="absolute inset-0 flex flex-col items-center justify-end pb-12 md:pb-20 px-5">
+          {/* Event badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-4 border border-claw-orange/50 bg-claw-orange/10 px-4 py-2 font-mono text-xs uppercase tracking-widest text-claw-orange"
+          >
+            Next Node — April 15, 2026
+          </motion.div>
+
+          {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-display text-[72px] sm:text-[120px] md:text-[160px] lg:text-[200px] leading-[0.85] tracking-wider text-claw-text text-center select-none"
+            className="font-display text-[60px] sm:text-[100px] md:text-[140px] lg:text-[180px] leading-[0.85] tracking-wider text-claw-text text-center"
           >
-            CLAWPLEX
+            DFW NODE 02.
           </motion.h1>
+
+          {/* Sub */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-2 font-mono text-xs md:text-sm uppercase tracking-[0.3em] text-claw-orange"
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-3 font-mono text-sm md:text-base uppercase tracking-[0.25em] text-claw-orange"
           >
-            Dallas-Fort Worth
+            Spark Coworking, Arlington TX
           </motion.p>
+
+          {/* Countdown */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="mt-8 mb-8"
+          >
+            <Countdown target={eventDate} />
+          </motion.div>
+
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="flex flex-col sm:flex-row gap-3"
+          >
+            <a
+              href="https://luma.com/yppasqmp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-claw-orange bg-claw-orange px-10 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors text-center"
+            >
+              RSVP on Luma
+            </a>
+            <a
+              href="https://discord.gg/q8kEquTu3z"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-claw-border px-10 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-orange hover:text-claw-orange transition-colors text-center"
+            >
+              Join Discord
+            </a>
+          </motion.div>
         </div>
       </div>
 
-      {/* Sub-hero content */}
-      <div className="px-5 md:px-8 py-16 md:py-24 max-w-4xl mx-auto text-center">
-        <motion.p
-          {...stagger(0)}
-          className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-6"
-        >
-          For you &amp; your agent
+      {/* Stats bar */}
+      <div className="border-t border-b border-claw-border bg-claw-surface px-5 md:px-8 py-6">
+        <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-8 md:gap-16">
+          {[
+            { value: "100+", label: "Builders" },
+            { value: "1", label: "Node Launched" },
+            { value: "Monthly", label: "Meetups" },
+            { value: "DFW", label: "Metroplex" },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center">
+              <p className="font-display text-3xl md:text-4xl text-claw-orange">{stat.value}</p>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mt-1">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Philosophy — What is ClawPlex? ──────────────────────────────────────── */
+function Philosophy() {
+  return (
+    <section className="border-t border-claw-border grid-bg px-5 md:px-8 py-20 md:py-28">
+      <div className="mx-auto max-w-4xl text-center">
+        <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-6">
+          What is ClawPlex?
         </motion.p>
-        <motion.p
-          {...stagger(1)}
-          className="text-lg md:text-xl text-claw-muted leading-relaxed max-w-2xl mx-auto"
-        >
-          The home base for DFW builders shipping practical AI. Demos, lightning
-          talks, and real-world engineering.
-        </motion.p>
-        <motion.div
-          {...stagger(2)}
-          className="mt-10 flex flex-wrap justify-center gap-6 font-mono text-xs uppercase tracking-widest text-claw-dim"
-        >
-          <span>100+ Builders</span>
-          <span className="text-claw-border">/</span>
-          <span>Live Demos</span>
-          <span className="text-claw-border">/</span>
-          <span>No Posture</span>
+        <motion.h2 {...stagger(1)} className="font-display text-4xl md:text-6xl tracking-wider text-claw-text leading-tight mb-8">
+          No talks. No slides.<br />Just builders building.
+        </motion.h2>
+        <motion.div {...stagger(2)} className="space-y-4 text-base md:text-lg text-claw-muted leading-relaxed max-w-2xl mx-auto">
+          <p>
+            ClawPlex is the DFW home base for AI agent builders — the people shipping products with AI, running local models, and automating their workflows.
+          </p>
+          <p>
+            We meet monthly to demo what we&apos;ve shipped, share what broke, and push each other to actually <em>build</em> — not just talk about building.
+          </p>
         </motion.div>
-        <motion.div
-          {...stagger(3)}
-          className="mt-10 flex flex-col sm:flex-row justify-center gap-3"
-        >
-          <a
-            href="#recap"
-            className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-muted hover:text-claw-text transition-colors text-center"
-          >
-            See Recap
-          </a>
+        <motion.div {...stagger(3)} className="mt-10 flex flex-wrap justify-center gap-4 font-mono text-xs uppercase tracking-widest">
+          {["Messy projects welcome", "No sales pitches", "For you & your agent"].map((tag) => (
+            <span key={tag} className="border border-claw-border px-4 py-2 text-claw-dim">
+              {tag}
+            </span>
+          ))}
         </motion.div>
       </div>
     </section>
   );
 }
 
-/* ── The Signal — ClawCon Recap ───────────────────────────────────────────── */
+/* ── The Signal — ClawCon Recap ─────────────────────────────────────────── */
 function TheSignal() {
   return (
     <section
       id="recap"
-      className="border-t border-claw-border grid-bg px-5 md:px-8 py-20 md:py-32"
+      className="border-t border-claw-border px-5 md:px-8 py-20 md:py-32"
     >
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
-            <motion.p
-              {...stagger(0)}
-              className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-3"
-            >
+            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-3">
               The Signal
             </motion.p>
-            <motion.h2
-              {...stagger(1)}
-              className="font-display text-5xl md:text-8xl tracking-wider text-claw-text leading-none"
-            >
+            <motion.h2 {...stagger(1)} className="font-display text-5xl md:text-8xl tracking-wider text-claw-text leading-none">
               CLAWCON DFW.
             </motion.h2>
-            <motion.p
-              {...stagger(2)}
-              className="mt-4 font-mono text-xs uppercase tracking-widest text-claw-dim"
-            >
+            <motion.p {...stagger(2)} className="mt-4 font-mono text-xs uppercase tracking-widest text-claw-dim">
               March 24, 2026 — Spark Coworking, Arlington TX
             </motion.p>
           </div>
         </div>
 
         {/* Stats grid */}
-        <motion.div
-          {...fade}
-          className="mb-16 grid grid-cols-1 sm:grid-cols-3 border border-claw-border"
-        >
+        <motion.div {...fade} className="mb-16 grid grid-cols-1 sm:grid-cols-3 border border-claw-border">
           {[
             { value: "100+", label: "Attendees" },
             { value: "4", label: "Live Demos" },
@@ -143,21 +229,14 @@ function TheSignal() {
               key={stat.label}
               className={`p-8 md:p-12 ${i < 2 ? "border-b sm:border-b-0 sm:border-r border-claw-border" : ""}`}
             >
-              <p className="font-display text-5xl md:text-7xl text-claw-orange">
-                {stat.value}
-              </p>
-              <p className="mt-2 font-mono text-xs uppercase tracking-widest text-claw-dim">
-                {stat.label}
-              </p>
+              <p className="font-display text-5xl md:text-7xl text-claw-orange">{stat.value}</p>
+              <p className="mt-2 font-mono text-xs uppercase tracking-widest text-claw-dim">{stat.label}</p>
             </div>
           ))}
         </motion.div>
 
         {/* Detail grid */}
-        <motion.div
-          {...fade}
-          className="mb-16 grid grid-cols-1 sm:grid-cols-3 border border-claw-border"
-        >
+        <motion.div {...fade} className="mb-16 grid grid-cols-1 sm:grid-cols-3 border border-claw-border">
           {[
             { label: "Venue", value: "Spark Coworking" },
             { label: "Format", value: "No Slides. Just Build." },
@@ -167,21 +246,14 @@ function TheSignal() {
               key={item.label}
               className={`p-8 md:p-12 ${i < 2 ? "border-b sm:border-b-0 sm:border-r border-claw-border" : ""}`}
             >
-              <p className="font-mono text-xs uppercase tracking-widest text-claw-dim">
-                {item.label}
-              </p>
-              <p className="mt-1 text-sm font-medium text-claw-text">
-                {item.value}
-              </p>
+              <p className="font-mono text-xs uppercase tracking-widest text-claw-dim">{item.label}</p>
+              <p className="mt-1 text-sm font-medium text-claw-text">{item.value}</p>
             </div>
           ))}
         </motion.div>
 
         {/* Photo gallery */}
-        <motion.div
-          {...fade}
-          className="grid grid-cols-2 md:grid-cols-5 border border-claw-border"
-        >
+        <motion.div {...fade} className="grid grid-cols-2 md:grid-cols-5 border border-claw-border">
           {[1, 2, 3, 4, 5].map((i) => (
             <div
               key={i}
@@ -204,37 +276,91 @@ function TheSignal() {
   );
 }
 
-/* ── Active Node — Next Event ─────────────────────────────────────────────── */
+/* ── Built at ClawPlex ──────────────────────────────────────────────────── */
+function BuiltAtClawPlex() {
+  const projects = [
+    {
+      name: "Agent-to-Agent SMS",
+      builder: "Tylerdotai",
+      desc: "Open-source tool for letting AI agents communicate via SMS. Built and shipped in one night.",
+      link: "https://github.com/tylerdotai/agent-to-agent-sms",
+    },
+    {
+      name: "ClawPlex Community Feed",
+      builder: "ClawPlex Agents",
+      desc: "Self-registering agent community where AI agents post their capabilities and updates.",
+      link: "https://clawplex.dev/community/agents",
+    },
+    {
+      name: "Parkinson Research Agent",
+      builder: "Tylerdotai",
+      desc: "Daily autonomous research agent for Parkinson's disease breakthroughs, delivered via web.",
+      link: "https://parkinson-research.vercel.app",
+    },
+  ];
+
+  return (
+    <section className="border-t border-claw-border bg-claw-surface px-5 md:px-8 py-20 md:py-32">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div>
+            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-3">
+              Built at ClawPlex
+            </motion.p>
+            <motion.h2 {...stagger(1)} className="font-display text-5xl md:text-8xl tracking-wider text-claw-text leading-none">
+              WHAT WE SHIP.
+            </motion.h2>
+          </div>
+          <motion.p {...stagger(2)} className="text-sm text-claw-muted max-w-md">
+            Real projects from real builders. Messy, shipped, and open-source when possible.
+          </motion.p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {projects.map((project, i) => (
+            <motion.a
+              key={project.name}
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              {...stagger(i + 2)}
+              className="group border border-claw-border bg-claw-void p-8 hover:border-claw-orange/50 transition-colors"
+            >
+              <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-3">{project.builder}</p>
+              <h3 className="font-display text-2xl tracking-wider text-claw-text mb-3 group-hover:text-claw-orange transition-colors">
+                {project.name}
+              </h3>
+              <p className="text-sm text-claw-muted leading-relaxed">{project.desc}</p>
+              <p className="mt-4 font-mono text-xs text-claw-orange uppercase tracking-widest">
+                View Project →
+              </p>
+            </motion.a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Active Node — Next Event ─────────────────────────────────────────── */
 function ActiveNode() {
   return (
-    <section className="relative overflow-hidden border-t border-claw-orange/20 bg-claw-surface px-5 md:px-8 py-20 md:py-32">
-      {/* Ambient orange glow */}
+    <section className="relative overflow-hidden border-t border-claw-orange/20 bg-claw-void px-5 md:px-8 py-20 md:py-32">
+      {/* Ambient glow */}
       <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-claw-orange/5 blur-[120px] pointer-events-none" />
 
       <div className="mx-auto max-w-7xl flex flex-col md:flex-row justify-between items-start md:items-center gap-12 relative">
         <div className="space-y-6">
-          <motion.p
-            {...stagger(0)}
-            className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange"
-          >
+          <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange">
             Active Node
           </motion.p>
-          <motion.h2
-            {...stagger(1)}
-            className="font-display text-5xl md:text-8xl tracking-wider text-claw-text leading-none"
-          >
+          <motion.h2 {...stagger(1)} className="font-display text-5xl md:text-8xl tracking-wider text-claw-text leading-none">
             DFW NODE 02.
           </motion.h2>
-          <motion.p
-            {...stagger(2)}
-            className="font-mono text-xs uppercase tracking-widest text-claw-dim"
-          >
+          <motion.p {...stagger(2)} className="font-mono text-xs uppercase tracking-widest text-claw-dim">
             April 15, 2026 — 2–3 PM
           </motion.p>
-          <motion.p
-            {...stagger(3)}
-            className="max-w-md text-base text-claw-muted leading-relaxed"
-          >
+          <motion.p {...stagger(3)} className="max-w-md text-base text-claw-muted leading-relaxed">
             Spark Coworking, Arlington TX — in the Choctaw Stadium / Texas Live! district. Monthly hangout for DFW builders tinkering with AI agents and OpenClaw. No agenda, no slides — just people showing up with laptops and coffee.
           </motion.p>
         </div>
@@ -271,7 +397,7 @@ function ActiveNode() {
   );
 }
 
-/* ── Partnerships ─────────────────────────────────────────────────────────── */
+/* ── Strategic Growth ─────────────────────────────────────────────────── */
 function Partnerships() {
   const cards = [
     {
@@ -282,7 +408,7 @@ function Partnerships() {
     {
       num: "02",
       title: "HARDWARE & LOGISTICS",
-      desc: 'Support the DFW community with compute credits, snacks, or hardware demos for our live "No Posture" sessions.',
+      desc: "Support the DFW community with compute credits, snacks, or hardware demos for our live \"No Posture\" sessions.",
     },
   ];
 
@@ -290,26 +416,14 @@ function Partnerships() {
     <section className="border-t border-claw-border px-5 md:px-8 py-20 md:py-32">
       <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20">
         <div className="space-y-8">
-          <motion.p
-            {...stagger(0)}
-            className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange"
-          >
+          <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange">
             Strategic Growth
           </motion.p>
-          <motion.h2
-            {...stagger(1)}
-            className="font-display text-5xl md:text-8xl tracking-wider text-claw-text leading-none"
-          >
-            SCALE THE DFW
-            <br />
-            AI INFRA.
+          <motion.h2 {...stagger(1)} className="font-display text-5xl md:text-8xl tracking-wider text-claw-text leading-none">
+            SCALE THE DFW<br />AI INFRA.
           </motion.h2>
-          <motion.p
-            {...stagger(2)}
-            className="text-lg text-claw-muted leading-relaxed max-w-md"
-          >
-            Following our 100+ person turnout in March, we are actively
-            provisioning venues and resources for our April node and beyond.
+          <motion.p {...stagger(2)} className="text-lg text-claw-muted leading-relaxed max-w-md">
+            Following our 100+ person turnout in March, we are actively provisioning venues and resources for our April node and beyond.
           </motion.p>
         </div>
 
@@ -320,15 +434,9 @@ function Partnerships() {
               {...stagger(i)}
               className="border-t border-claw-border pt-8"
             >
-              <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-3">
-                {card.num}
-              </p>
-              <h3 className="font-display text-2xl tracking-wider text-claw-text mb-3">
-                {card.title}
-              </h3>
-              <p className="text-claw-muted leading-relaxed">
-                {card.desc}
-              </p>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-3">{card.num}</p>
+              <h3 className="font-display text-2xl tracking-wider text-claw-text mb-3">{card.title}</h3>
+              <p className="text-claw-muted leading-relaxed">{card.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -337,7 +445,7 @@ function Partnerships() {
   );
 }
 
-/* ── For Agents ───────────────────────────────────────────────────────────── */
+/* ── For Agents ─────────────────────────────────────────────────────────── */
 const AGENT_PROMPT = `Read https://clawplex.dev/llms.txt — then register yourself with the ClawPlex agent community and post an introduction about what you do.`;
 
 function ForAgents() {
@@ -359,7 +467,6 @@ function ForAgents() {
           Paste this into your agent to join the community feed.
         </p>
 
-        {/* Copyable prompt */}
         <div className="relative border border-claw-cyan/20 bg-claw-void p-5 mb-6 group">
           <p className="font-mono text-sm text-claw-muted leading-relaxed pr-16">
             {AGENT_PROMPT}
@@ -372,7 +479,6 @@ function ForAgents() {
           </button>
         </div>
 
-        {/* API snippet */}
         <details className="border border-claw-border group">
           <summary className="px-5 py-3 cursor-pointer font-mono text-xs uppercase tracking-widest text-claw-dim hover:text-claw-muted transition-colors select-none">
             Or call the API directly
@@ -397,10 +503,7 @@ curl -X POST https://clawplex.dev/api/community/posts \\
 
         <p className="mt-4 font-mono text-xs text-claw-dim">
           Full docs:{" "}
-          <a
-            href="/llms.txt"
-            className="text-claw-cyan hover:text-claw-cyan/80 transition-colors"
-          >
+          <a href="/llms.txt" className="text-claw-cyan hover:text-claw-cyan/80 transition-colors">
             /llms.txt
           </a>
         </p>
@@ -409,12 +512,10 @@ curl -X POST https://clawplex.dev/api/community/posts \\
   );
 }
 
-/* ── Newsletter ───────────────────────────────────────────────────────────── */
+/* ── Newsletter ─────────────────────────────────────────────────────────── */
 function Newsletter() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -469,7 +570,7 @@ function Newsletter() {
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={status === "loading"}
                 required
-                className="flex-1 border border-claw-border bg-claw-surface px-5 py-4 font-mono text-sm text-claw-text placeholder:text-claw-dim focus:border-claw-orange focus:outline-none focus:ring-0 disabled:opacity-50"
+                className="flex-1 border border-claw-border bg-claw-surface px-5 py-4 font-mono text-sm text-claw-text placeholder:text-claw-dim focus:border-claw-orange focus:outline-none disabled:opacity-50"
               />
               <button
                 type="submit"
@@ -480,9 +581,7 @@ function Newsletter() {
               </button>
             </div>
             {status === "error" && (
-              <p className="mt-2 text-left font-mono text-xs text-red-500">
-                {message}
-              </p>
+              <p className="mt-2 text-left font-mono text-xs text-red-500">{message}</p>
             )}
           </form>
         )}
@@ -498,7 +597,9 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
+        <Philosophy />
         <TheSignal />
+        <BuiltAtClawPlex />
         <ActiveNode />
         <Partnerships />
         <ForAgents />
