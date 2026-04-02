@@ -158,9 +158,21 @@ export function SkillCard({ skill, index = 0 }: SkillCardProps) {
   const [selected, setSelected] = useState(false);
   const [copied, setCopied] = useState(false);
 
+  function buildSkillMd(s: Skill): string {
+    const frontmatter = [
+      "---",
+      `name: ${s.name.toLowerCase().replace(/[^a-z0-9-]/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "").slice(0, 64)}`,
+      `description: ${s.description.slice(0, 1024)}`,
+      "---",
+      "",
+      s.instructions,
+    ].join("\n");
+    return frontmatter;
+  }
+
   function handleInstall(e: React.MouseEvent) {
     e.stopPropagation();
-    navigator.clipboard.writeText(skill.instructions).then(() => {
+    navigator.clipboard.writeText(buildSkillMd(skill)).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
     });
