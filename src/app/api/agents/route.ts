@@ -3,7 +3,7 @@ import { getAgents } from "@/lib/community-db";
 
 export const runtime = "nodejs";
 
-export async function GET(req: NextRequest) {
+export async function GET(_req: NextRequest) {
   try {
     const agents = await getAgents();
 
