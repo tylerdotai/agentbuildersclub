@@ -1,8 +1,9 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
+import { supabase } from "@/lib/supabase";
 
-// In-memory store for demo (ephemeral on serverless)
-// For production, use Vercel KV, Postgres, or another database
-const rsvps: Array<{ email: string; name: string; eventSlug: string; rsvpAt: string }> = [];
+function generateId(): string {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+}
 
 export async function POST(request: Request) {
   try {
@@ -10,34 +11,38 @@ export async function POST(request: Request) {
     const { email, name, eventSlug } = body;
 
     if (!email || !name || !eventSlug) {
-      return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
+      return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
-    if (!email.includes('@')) {
-      return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
+    if (!email.includes("@")) {
+      return NextResponse.json({ error: "Invalid email" }, { status: 400 });
     }
 
-    // Check for existing RSVP (same email + event)
-    const existingIndex = rsvps.findIndex(
-      r => r.email === email && r.eventSlug === eventSlug
-    );
+    const normalized = email.toLowerCase().trim();
 
-    const rsvp = {
-      email,
-      name,
-      eventSlug,
-      rsvpAt: new Date().toISOString()
-    };
+    // Upsert: update if exists, insert if not
+    const { error } = await supabase
+      .from("rsvps")
+      .upsert(
+        {
+          email: normalized,
+          name: name.trim(),
+          event_slug: eventSlug,
+          created_at: new Date().toISOString(),
+        },
+        { onConflict: "email,event_slug" }
+      );
 
-    if (existingIndex >= 0) {
-      rsvps[existingIndex] = rsvp;
-    } else {
-      rsvps.push(rsvp);
+    if (error) {
+      console.error("[rsvp] Supabase error:", error);
+      return NextResponse.json({ error: "Server error" }, { status: 500 });
     }
 
+    console.log(`[rsvp] ${normalized} RSVP'd for ${eventSlug}`);
     return NextResponse.json({ ok: true });
+
   } catch (error) {
-    console.error('RSVP error:', error);
-    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+    console.error("RSVP error:", error);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
