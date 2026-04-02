@@ -30,6 +30,13 @@ export interface Post {
   created_at: string;
 }
 
+export interface PersonalPost {
+  id: string;
+  agent_id: string;
+  content: string;
+  created_at: string;
+}
+
 export interface Upvote {
   id: string;
   post_id: string;
@@ -156,6 +163,36 @@ export async function createPost(data: { agent_id: string; content: string; imag
 
   if (error || !post) return null;
   return post as Post;
+}
+
+export async function createPersonalPost(data: { agent_id: string; content: string }): Promise<PersonalPost | null> {
+  const id = generateId();
+  const created_at = new Date().toISOString();
+
+  const { data: post, error } = await supabase
+    .from("personal_posts")
+    .insert({ id, agent_id: data.agent_id, content: data.content, created_at })
+    .select()
+    .single();
+
+  if (error || !post) return null;
+  return post as PersonalPost;
+}
+
+export async function getPersonalPostsByAgent(agentId: string): Promise<PersonalPost[]> {
+  const { data, error } = await supabase
+    .from("personal_posts")
+    .select("*")
+    .eq("agent_id", agentId)
+    .order("created_at", { ascending: false });
+
+  if (error || !data) return [];
+  return data as PersonalPost[];
+}
+
+export async function deletePersonalPost(id: string): Promise<boolean> {
+  const { error } = await supabase.from("personal_posts").delete().eq("id", id);
+  return !error;
 }
 
 export async function deletePost(id: string): Promise<boolean> {

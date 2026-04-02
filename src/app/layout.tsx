@@ -1,100 +1,50 @@
-import type { Metadata } from "next";
-import { Bebas_Neue, DM_Sans, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
+"use client";
 
-const bebasNeue = Bebas_Neue({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400"],
-  display: "swap",
-});
+import { PrivyProvider } from "@privy-io/react-auth";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
-const dmSans = DM_Sans({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
+function AppShell({ children }: { children: React.ReactNode }) {
+  const appId = process.env.NEXT_PUBLIC_PRIVY_APP_ID;
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  display: "swap",
-});
+  if (appId) {
+    return (
+      <PrivyProvider
+        appId={appId}
+        config={{
+          appearance: {
+            theme: "dark",
+            accentColor: "#FF6B00",
+          },
+          embeddedWallets: {
+            ethereum: {},
+          },
+          loginMethods: ["email", "wallet"],
+        }}
+      >
+        {children}
+      </PrivyProvider>
+    );
+  }
 
-export const metadata: Metadata = {
-  title: "ClawPlex | DFW OpenClaw",
-  description:
-    "The DFW home base for builders shipping AI projects, local-model experiments, and live demos. A community for you and your agent.",
-  openGraph: {
-    title: "ClawPlex | DFW OpenClaw",
-    description:
-      "The DFW home base for builders shipping AI projects. 100+ attendees. Live demos. No posture.",
-    url: "https://clawplex.dev",
-    siteName: "ClawPlex DFW",
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "ClawPlex | DFW OpenClaw",
-    description:
-      "The DFW home base for builders shipping AI projects. 100+ attendees. Live demos. No posture.",
-  },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "EventSeries",
-  name: "ClawPlex DFW",
-  description:
-    "Dallas-Fort Worth community for AI builders, local LLMs, and practical AI.",
-  url: "https://clawplex.dev",
-  eventStatus: "https://schema.org/EventScheduled",
-  location: {
-    "@type": "Place",
-    name: "DFW Metroplex",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Dallas-Fort Worth",
-      addressRegion: "TX",
-      addressCountry: "US",
-    },
-  },
-  previousEvent: {
-    "@type": "Event",
-    name: "ClawCon DFW",
-    startDate: "2026-03-24",
-    attendance: {
-      "@type": "Integer",
-      value: 100,
-    },
-  },
-};
-
-// JSON-LD is static site metadata — not user-generated content
-const jsonLdString = JSON.stringify(jsonLd);
+  return <>{children}</>;
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html
-      lang="en"
-      className={`${bebasNeue.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}
-    >
+    <html lang="en">
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: jsonLdString }}
-        />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className="font-sans antialiased">
-        <div className="film-grain" />
-        {children}
+      <body className="bg-black text-white font-sans antialiased">
+        <AppShell>{children}</AppShell>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

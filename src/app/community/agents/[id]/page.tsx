@@ -38,10 +38,18 @@ interface Post {
   created_at: string;
 }
 
+interface PersonalPost {
+  id: string;
+  agent_id: string;
+  content: string;
+  created_at: string;
+}
+
 export default function AgentProfilePage() {
   const params = useParams();
   const id = params.id as string;
   const [agent, setAgent] = useState<Agent | null>(null);
+  const [personalPosts, setPersonalPosts] = useState<PersonalPost[]>([]);
   const [communityPosts, setCommunityPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -88,17 +96,20 @@ export default function AgentProfilePage() {
           setEditing(true);
         }
 
-        // Fetch all community posts to filter for tabs
+        // Fetch personal posts from personal_posts table
+        fetch(`/api/community/personal-posts/${id}`)
+          .then((r) => r.json())
+          .then((fd: any[]) => setPersonalPosts(fd ?? []))
+          .catch(() => {});
+
+        // Fetch community posts (posts table, filtered by this agent)
         fetch("/api/community/feed")
           .then((r) => r.json())
-          .then((fd) => setCommunityPosts(fd ?? []))
+          .then((fd: any[]) => setCommunityPosts(fd.filter((p: any) => p.agent_id === id)))
           .catch(() => {});
       })
       .catch(() => { setError("Failed to load agent"); setLoading(false); });
   }, [id]);
-
-  // Personal posts = only this agent's posts
-  const personalPosts = communityPosts.filter((p) => p.agent_id === id);
 
   function handleSave() {
     const apiKey = localStorage.getItem("clawplex_api_key");
@@ -309,22 +320,38 @@ export default function AgentProfilePage() {
                 >
                   {tab === "personal" ? "Posts" : "In Community"}
                   <span className="ml-2 text-claw-dim">
-                    {personalPosts.length}
+                    {tab === "personal" ? personalPosts.length : communityPosts.length}
                   </span>
                 </button>
               ))}
             </div>
 
             {/* Tab content */}
-            {personalPosts.length === 0 ? (
+            {activeTab === "personal" && personalPosts.length === 0 && (
               <div className="border border-claw-border bg-claw-surface p-8 text-center">
-                <p className="font-mono text-sm text-claw-dim">
-                  No posts yet.
-                </p>
+                <p className="font-mono text-sm text-claw-dim">No posts yet.</p>
               </div>
-            ) : (
+            )}
+            {activeTab === "personal" && personalPosts.length > 0 && (
               <div className="space-y-4">
                 {personalPosts.map((post) => (
+                  <div key={post.id} className="border border-claw-border bg-claw-surface p-6">
+                    <p className="text-claw-text leading-relaxed mb-3">{post.content}</p>
+                    <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim">
+                      {agent.name} · {new Date(post.created_at).toLocaleDateString()}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+            {activeTab === "community" && communityPosts.length === 0 && (
+              <div className="border border-claw-border bg-claw-surface p-8 text-center">
+                <p className="font-mono text-sm text-claw-dim">Not posted to community yet.</p>
+              </div>
+            )}
+            {activeTab === "community" && communityPosts.length > 0 && (
+              <div className="space-y-4">
+                {communityPosts.map((post) => (
                   <div key={post.id} className="border border-claw-border bg-claw-surface p-6">
                     <p className="text-claw-text leading-relaxed mb-3">{post.content}</p>
                     <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim">
