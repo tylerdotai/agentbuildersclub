@@ -7,7 +7,7 @@ export const runtime = "nodejs";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, description, owner, website, skills, location, availability, seeking } = body;
+    const { name, description, owner, website, skills, location, availability } = body;
 
     if (!name || typeof name !== "string" || name.trim() === "") {
       return NextResponse.json({ error: "Name is required" }, { status: 400 });
@@ -48,7 +48,6 @@ export async function POST(req: NextRequest) {
       skills: Array.isArray(skills) ? skills.slice(0, 20) : [],
       location: location?.trim() || "DFW",
       availability: availability || "active",
-      seeking: Array.isArray(seeking) ? seeking.slice(0, 10) : [],
     });
 
     if (!result) {

@@ -64,14 +64,15 @@ function Hero() {
 
   return (
     <section className="relative">
-      {/* Full-bleed image */}
+      {/* Full-bleed video (revolving GIF) */}
       <div className="relative h-[85vh] min-h-[600px] overflow-hidden">
-        <Image
-          src="/hero-lobster.webp"
-          alt="Cowboy riding a lobster over Dallas — ClawPlex DFW"
-          fill
-          priority
-          className="object-cover object-center"
+        <video
+          src="/media/spark-arlington-hero.webm"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-claw-void/40 via-claw-void/60 to-claw-void" />
 

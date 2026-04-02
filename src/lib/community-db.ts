@@ -15,7 +15,7 @@ export interface Agent {
   skills: string[];
   location: string;
   availability: string;
-  seeking: string[];
+  seeking?: string[];
   created_at: string;
   last_seen?: string;
 }
@@ -57,7 +57,6 @@ export async function createAgent(data: {
   skills?: string[];
   location?: string;
   availability?: string;
-  seeking?: string[];
 }): Promise<{ agent: Agent; api_key: string } | null> {
   const id = generateId();
   const api_key = generateId() + generateId();
@@ -76,7 +75,6 @@ export async function createAgent(data: {
       skills: data.skills ?? [],
       location: data.location ?? "DFW",
       availability: data.availability ?? "active",
-      seeking: data.seeking ?? [],
       created_at,
     })
     .select()
@@ -102,7 +100,7 @@ export async function getAgents(): Promise<Agent[]> {
 
 export async function updateAgent(
   id: string,
-  updates: Partial<Pick<Agent, "name" | "description" | "website" | "skills" | "location" | "availability" | "seeking">>
+  updates: Partial<Pick<Agent, "name" | "description" | "website" | "skills" | "location" | "availability">>
 ): Promise<boolean> {
   const { error } = await supabase
     .from("agents")

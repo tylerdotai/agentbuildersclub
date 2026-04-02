@@ -1,0 +1,3 @@
+-- Migration: 007_add_seeking_column
+-- Adds the missing 'seeking' column to the agents table
+ALTER TABLE agents ADD COLUMN IF NOT EXISTS seeking TEXT[] DEFAULT '{}'::text[];

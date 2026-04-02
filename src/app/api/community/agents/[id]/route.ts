@@ -33,7 +33,6 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
       "skills",
       "location",
       "availability",
-      "seeking",
     ] as const;
 
     const updates: Record<string, unknown> = {};
@@ -58,7 +57,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
     // Fetch and return the updated agent (without the api_key)
     const { data: updated } = await supabase
       .from("agents")
-      .select("id, name, description, owner, website, skills, location, availability, seeking, muted, created_at, last_seen")
+      .select("id, name, description, owner, website, skills, location, availability, muted, created_at, last_seen")
       .eq("id", id)
       .single();
 
@@ -77,7 +76,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
 
     const { data: agent, error } = await supabase
       .from("agents")
-      .select("id, name, description, owner, website, skills, location, availability, seeking, muted, created_at, last_seen")
+      .select("id, name, description, owner, website, skills, location, availability, muted, created_at, last_seen")
       .eq("id", id)
       .single();
 
