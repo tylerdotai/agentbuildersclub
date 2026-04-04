@@ -294,6 +294,12 @@ function BuiltAtClawPlex() {
       link: "https://clawplex.dev/community/agents",
     },
     {
+      name: "Nodemind",
+      builder: "abhishek085",
+      desc: "A cognition agent for messy, moving minds. Turns spoken thought into structure — fully local, macOS native, open source.",
+      link: "https://github.com/abhishek085/Nodemind",
+    },
+    {
       name: "Parkinson Research Agent",
       builder: "Tylerdotai",
       desc: "Daily autonomous research agent for Parkinson's disease breakthroughs, delivered via web.",
