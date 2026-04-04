@@ -300,6 +300,12 @@ function BuiltAtClawPlex() {
       link: "https://github.com/abhishek085/Nodemind",
     },
     {
+      name: "Y2",
+      builder: "Tobalo",
+      desc: "OSINT platform and intelligence API with real-time global monitoring and 40+ AI models.",
+      link: "https://y2.dev",
+    },
+    {
       name: "Parkinson Research Agent",
       builder: "Tylerdotai",
       desc: "Daily autonomous research agent for Parkinson's disease breakthroughs, delivered via web.",
