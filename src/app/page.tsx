@@ -57,34 +57,37 @@ function Countdown({ target }: { target: Date }) {
   );
 }
 
-/* ── HeroBanner — Headline + image ────────────────────────────────────── */
+/* ── HeroBanner — Headline overlaid on banner image ─────────────────────── */
 function HeroBanner() {
   return (
-    <div className="relative" style={{ minHeight: "380px" }}>
-      {/* Headline at the top — fully readable, no image underneath */}
-      <div className="relative z-10 px-5 pt-16 pb-10 text-center bg-claw-void">
-        <h1 className="font-display text-5xl md:text-7xl tracking-wider text-claw-text leading-tight">
+    <div
+      className="relative"
+      style={{ height: "75vh", minHeight: "500px" }}
+    >
+      {/* Banner image */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: "url('/clawplex-banner.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center top",
+        }}
+      />
+      {/* Dark gradient overlay — makes headline readable over image */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "linear-gradient(to bottom, #0C0C0E 0%, rgba(12,12,14,0.7) 40%, rgba(12,12,14,0.85) 100%)",
+        }}
+      />
+      {/* Headline — centered on image */}
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-5 text-center">
+        <h1 className="font-display text-5xl md:text-7xl tracking-wider text-claw-text leading-tight mb-6 max-w-4xl">
           Built by builders, for builders.
         </h1>
-      </div>
-
-      {/* Banner image below headline */}
-      <div className="relative" style={{ height: "55vh", minHeight: "300px" }}>
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: "url('/clawplex-banner.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center top",
-          }}
-        />
-        {/* Fade to dark at bottom */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(to bottom, transparent 30%, #0C0C0E 100%)",
-          }}
-        />
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange">
+          DFW AI Builder Community
+        </p>
       </div>
     </div>
   );
@@ -95,12 +98,6 @@ function WhatIsClawPlex() {
   return (
     <section className="border-t border-claw-border px-5 md:px-8 py-16 md:py-24">
       <div className="mx-auto max-w-4xl text-center">
-        <motion.p
-          {...stagger(0)}
-          className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-6"
-        >
-          DFW AI Builder Community
-        </motion.p>
         <motion.div
           {...stagger(2)}
           className="space-y-4 text-base md:text-lg text-claw-muted leading-relaxed max-w-2xl mx-auto mb-10"
