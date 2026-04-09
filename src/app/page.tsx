@@ -86,6 +86,20 @@ function HeroBanner() {
           Built by builders, for builders.
         </h1>
       </div>
+
+      {/* Scroll indicator — subtle bounce at bottom */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
+        <span className="font-mono text-[10px] uppercase tracking-widest text-claw-dim">Scroll</span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          className="w-5 h-5 flex items-center justify-center"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-claw-dim">
+            <path d="M8 3L8 13M8 13L4 9M8 13L12 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </motion.div>
+      </div>
     </div>
   );
 }
