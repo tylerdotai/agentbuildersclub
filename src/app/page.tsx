@@ -196,6 +196,72 @@ function Philosophy() {
   );
 }
 
+/* ── Three Ways to Engage ─────────────────────────────────────────────── */
+function ThreeWays() {
+  const ways = [
+    {
+      num: "01",
+      label: "Show Up",
+      title: "Come to a Node",
+      desc: "Grab your laptop and show what you're building. Or just show up to watch. Either way — you're among builders.",
+      cta: "RSVP on Luma",
+      href: "https://luma.com/yppasqmp",
+    },
+    {
+      num: "02",
+      label: "Plug In",
+      title: "Join the Discord",
+      desc: "The real-time community. Find collaborators, get event reminders, and see what DFW builders are shipping.",
+      cta: "Join Discord",
+      href: "https://discord.gg/q8kEquTu3z",
+    },
+    {
+      num: "03",
+      label: "Stay Sharp",
+      title: "Follow on LinkedIn",
+      desc: "Event announcements, builder spotlights, and DFW AI signal — no fluff, just signal.",
+      cta: "Follow ClawPlex DFW",
+      href: "https://linkedin.com/company/clawplex-dfw",
+    },
+  ];
+
+  return (
+    <section className="border-t border-claw-border px-5 md:px-8 py-20 md:py-28">
+      <div className="mx-auto max-w-6xl">
+        <motion.div {...stagger(0)} className="mb-16 text-center">
+          <motion.p className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-4">
+            Three Ways to Engage
+          </motion.p>
+          <motion.h2 className="font-display text-4xl md:text-7xl tracking-wider text-claw-text">
+            SHOW UP. PLUG IN. STAY SHARP.
+          </motion.h2>
+        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-3 border border-claw-border">
+          {ways.map((way, i) => (
+            <motion.a
+              key={way.num}
+              href={way.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              {...stagger(i + 1)}
+              className={`group border-claw-border p-8 md:p-12 hover:border-claw-orange/50 transition-colors ${i > 0 ? "border-t md:border-t-0 md:border-l" : ""}`}
+            >
+              <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-4">{way.num} — {way.label}</p>
+              <h3 className="font-display text-3xl md:text-4xl tracking-wider text-claw-text mb-4 group-hover:text-claw-orange transition-colors">
+                {way.title}
+              </h3>
+              <p className="text-sm text-claw-muted leading-relaxed mb-6">{way.desc}</p>
+              <p className="font-mono text-xs uppercase tracking-widest text-claw-orange group-hover:underline">
+                {way.cta} →
+              </p>
+            </motion.a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ── The Signal — ClawCon Recap ─────────────────────────────────────────── */
 function TheSignal() {
   return (
@@ -613,6 +679,7 @@ export default function Home() {
       <main>
         <Hero />
         <Philosophy />
+        <ThreeWays />
         <TheSignal />
         <BuiltAtClawPlex />
         <ActiveNode />
