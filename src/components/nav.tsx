@@ -30,7 +30,7 @@ export function Nav() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8 md:py-4">
           {/* Logo */}
           <a href="/" className="flex items-center gap-3">
-            <div className="relative flex h-9 w-9 items-center justify-center overflow-hidden">
+            <div className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-claw-border bg-claw-surface">
               <Image
                 src="/clawplex-logo.png"
                 alt="ClawPlex"
@@ -42,9 +42,7 @@ export function Nav() {
             <span className="font-display text-xl tracking-wider text-claw-text">
               CLAWPLEX
             </span>
-            <span className="hidden sm:inline border border-claw-orange/30 bg-claw-orange/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-claw-orange">
-              DFW
-            </span>
+
           </a>
 
           {/* Desktop */}

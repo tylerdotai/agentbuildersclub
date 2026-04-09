@@ -33,7 +33,7 @@ export function Footer() {
           {/* Brand column */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="relative flex h-8 w-8 items-center justify-center overflow-hidden">
+              <div className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-claw-border bg-claw-surface">
                 <Image
                   src="/clawplex-logo.png"
                   alt="ClawPlex"
