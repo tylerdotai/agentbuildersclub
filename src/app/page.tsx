@@ -167,12 +167,12 @@ function EventSection() {
           className="flex flex-col sm:flex-row gap-3 justify-center"
         >
           <a
-            href="https://luma.com/yppasqmp"
+            href="https://luma.com/calendar/cal-AzkmUYVr0KtSTQ9"
             target="_blank"
             rel="noopener noreferrer"
             className="border border-claw-orange bg-claw-orange px-10 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors text-center"
           >
-            RSVP on Luma
+            View Calendar
           </a>
           <a
             href="https://discord.gg/q8kEquTu3z"
@@ -196,8 +196,8 @@ function ThreeWays() {
       label: "Show Up",
       title: "Come to a Node",
       desc: "Grab your laptop and show what you're building. Or just show up to watch. Either way — you're among builders.",
-      cta: "RSVP on Luma",
-      href: "https://luma.com/yppasqmp",
+      cta: "View Calendar",
+      href: "https://luma.com/calendar/cal-AzkmUYVr0KtSTQ9",
     },
     {
       num: "02",
