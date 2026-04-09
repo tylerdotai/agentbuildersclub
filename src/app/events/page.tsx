@@ -29,7 +29,7 @@ const events = [
     venue: "CreateFW",
     location: "Fort Worth, TX",
     description:
-      "Monthly ClawPlex DFW meetup in Fort Worth, hosted with FTW DAO at CreateFW. No agenda, no slides — just builders showing what they are working on.",
+      "Weekly ClawPlex DFW meetup in Fort Worth, hosted with FTW DAO at CreateFW. No agenda, no slides — just builders showing what they are working on.",
     rsvp: "https://luma.com/0oum4slu",
     image: "/createfw-fort-worth.png",
     stats: null,
@@ -43,7 +43,7 @@ const events = [
     venue: "Spark Coworking",
     location: "Arlington, TX (Texas Live! district)",
     description:
-      "Monthly hangout for DFW builders tinkering with AI agents and OpenClaw. No agenda, no slides — just people showing up with laptops and coffee. Come show what you're building or just hang with other builders.",
+      "Weekly meetup for DFW builders tinkering with AI agents and OpenClaw. No agenda, no slides — just people showing up with laptops and coffee. Come show what you're building or just hang with other builders.",
     rsvp: "https://luma.com/yppasqmp",
     image: "/spark-arlington.png",
     stats: null,
@@ -78,7 +78,7 @@ export default function EventsPage() {
       <main>
         {/* Header */}
         <section className="border-b border-claw-border px-5 md:px-8 py-16 md:py-24">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-4xl text-center">
             <motion.p
               {...stagger(0)}
               className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-4"
@@ -87,12 +87,12 @@ export default function EventsPage() {
             </motion.p>
             <motion.h1
               {...stagger(1)}
-              className="font-display text-6xl md:text-9xl tracking-wider text-claw-text leading-none"
+              className="font-display text-4xl md:text-6xl tracking-wider text-claw-text leading-none"
             >
               NODES &amp; EVENTS.
             </motion.h1>
-            <motion.p {...stagger(2)} className="mt-4 text-base text-claw-muted max-w-xl">
-              Monthly meetups for DFW AI builders. No talks. No slides. Just people
+            <motion.p {...stagger(2)} className="mt-4 text-base text-claw-muted max-w-xl mx-auto">
+              Weekly meetups for DFW AI builders. No talks. No slides. Just people
               with laptops and coffee, being honest about what they&apos;re building.
             </motion.p>
           </div>
@@ -101,10 +101,10 @@ export default function EventsPage() {
         {/* Upcoming */}
         {upcoming.length > 0 && (
           <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
-            <div className="mx-auto max-w-7xl">
+            <div className="mx-auto max-w-5xl">
               <motion.p
                 {...stagger(0)}
-                className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-10"
+                className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-10 text-center"
               >
                 Upcoming
               </motion.p>
@@ -157,10 +157,10 @@ export default function EventsPage() {
         {/* Past */}
         {past.length > 0 && (
           <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
-            <div className="mx-auto max-w-7xl">
+            <div className="mx-auto max-w-5xl">
               <motion.p
                 {...stagger(0)}
-                className="font-mono text-xs uppercase tracking-[0.2em] text-claw-dim mb-10"
+                className="font-mono text-xs uppercase tracking-[0.2em] text-claw-dim mb-10 text-center"
               >
                 Past Events
               </motion.p>
@@ -214,7 +214,7 @@ export default function EventsPage() {
             <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-widest text-claw-dim mb-4">
               See you at the next node
             </motion.p>
-            <motion.h2 {...stagger(1)} className="font-display text-4xl md:text-6xl tracking-wider text-claw-text mb-6">
+            <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-5xl tracking-wider text-claw-text mb-6">
               GET THE DROP.
             </motion.h2>
             <motion.p {...stagger(2)} className="text-base text-claw-muted mb-8">

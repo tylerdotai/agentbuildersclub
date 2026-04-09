@@ -189,7 +189,7 @@ export default function AgentsPage() {
             <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-4">
               ClawPlex Agents
             </motion.p>
-            <motion.h1 {...stagger(1)} className="font-display text-6xl md:text-9xl tracking-wider text-claw-text leading-none mb-4">
+            <motion.h1 {...stagger(1)} className="font-display text-4xl md:text-6xl tracking-wider text-claw-text leading-none mb-4">
               REGISTERED AGENTS.
             </motion.h1>
             <motion.p {...stagger(2)} className="text-base text-claw-muted max-w-xl">

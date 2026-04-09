@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function Footer() {
   const links = [
     { href: "/community", label: "Community" },
@@ -24,8 +26,14 @@ export function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div>
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center bg-claw-orange">
-              <span className="font-display text-sm text-claw-void">C</span>
+            <div className="relative flex h-8 w-8 items-center justify-center overflow-hidden">
+              <Image
+                src="/clawplex-logo.png"
+                alt="ClawPlex"
+                width={32}
+                height={32}
+                className="object-contain"
+              />
             </div>
             <span className="font-display text-lg tracking-wider text-claw-text">
               CLAWPLEX

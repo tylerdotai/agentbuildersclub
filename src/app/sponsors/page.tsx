@@ -74,7 +74,7 @@ export default function SponsorsPage() {
       <main>
         {/* Header */}
         <section className="border-b border-claw-border px-5 md:px-8 py-16 md:py-24">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-5xl">
             <motion.p
               {...stagger(0)}
               className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-4"
@@ -83,11 +83,11 @@ export default function SponsorsPage() {
             </motion.p>
             <motion.h1
               {...stagger(1)}
-              className="font-display text-6xl md:text-9xl tracking-wider text-claw-text leading-none"
+              className="font-display text-4xl md:text-6xl tracking-wider text-claw-text leading-none"
             >
               SPONSOR.
             </motion.h1>
-            <motion.p {...stagger(2)} className="mt-4 text-base text-claw-muted max-w-xl">
+            <motion.p {...stagger(2)} className="mt-4 text-base text-claw-muted max-w-2xl">
               ClawPlex is a volunteer-run community for DFW builders shipping AI products. Sponsors make it free to attend and keep the focus on building — not logistics.
             </motion.p>
           </div>
@@ -95,30 +95,30 @@ export default function SponsorsPage() {
 
         {/* What we're building */}
         <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
-          <div className="mx-auto max-w-4xl text-center">
+          <div className="mx-auto max-w-5xl">
             <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-6">
-              What we're building
+              What we&apos;re building
             </motion.p>
-            <motion.h2 {...stagger(1)} className="font-display text-4xl md:text-6xl tracking-wider text-claw-text mb-8">
+            <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-5xl tracking-wider text-claw-text mb-8">
               The DFW AI builder community deserves a real meetup scene.
             </motion.h2>
-            <motion.div {...stagger(2)} className="space-y-4 text-base text-claw-muted leading-relaxed">
-              <p>
+            <div className="space-y-4 text-base text-claw-muted leading-relaxed max-w-3xl">
+              <motion.p {...stagger(2)}>
                 Dallas-Fort Worth has serious AI talent — people shipping local models, building agents, automating workflows. But most of them are doing it alone in home offices.
-              </p>
-              <p>
+              </motion.p>
+              <motion.p {...stagger(3)}>
                 ClawPlex exists to connect them. No vendor pitches. No conference theater. Just builders showing real work to other builders.
-              </p>
-              <p>
-                100+ people showed up to ClawCon in March. April 15th is Node 02. We're building a weekly rotation across the metro. Sponsors make this sustainable.
-              </p>
-            </motion.div>
+              </motion.p>
+              <motion.p {...stagger(4)}>
+                100+ people showed up to ClawCon in March. April 15th is Node 02. We&apos;re building a weekly rotation across the metro. Sponsors make this sustainable.
+              </motion.p>
+            </div>
           </div>
         </section>
 
         {/* Tiers */}
         <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-5xl">
             <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-10">
               Sponsorship Tiers
             </motion.p>
@@ -132,7 +132,7 @@ export default function SponsorsPage() {
                   <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-4">
                     {tier.tagline}
                   </p>
-                  <h3 className="font-display text-3xl md:text-4xl tracking-wider text-claw-text mb-2">
+                  <h3 className="font-display text-2xl md:text-3xl tracking-wider text-claw-text mb-2">
                     {tier.name}
                   </h3>
                   <p className="font-mono text-xs text-claw-orange uppercase tracking-widest mb-6">
@@ -144,7 +144,7 @@ export default function SponsorsPage() {
                   <ul className="space-y-3 mb-8">
                     {tier.perks.map((perk) => (
                       <li key={perk} className="flex items-start gap-3 text-sm text-claw-muted">
-                        <span className="text-claw-orange mt-0.5">→</span>
+                        <span className="text-claw-orange mt-0.5 shrink-0">→</span>
                         {perk}
                       </li>
                     ))}
@@ -157,27 +157,30 @@ export default function SponsorsPage() {
 
         {/* Who should sponsor */}
         <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-5xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
+              {/* Left: copy */}
               <div>
                 <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-6">
                   Who should sponsor
                 </motion.p>
-                <motion.h2 {...stagger(1)} className="font-display text-4xl md:text-6xl tracking-wider text-claw-text mb-6">
+                <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-4xl tracking-wider text-claw-text mb-6">
                   You know who you are.
                 </motion.h2>
-                <motion.p {...stagger(2)} className="text-base text-claw-muted leading-relaxed mb-6">
+                <motion.p {...stagger(2)} className="text-base text-claw-muted leading-relaxed mb-4">
                   Coworking spaces that want to be known as where AI builders hang out. Local AI companies hiring talent. Coffee roasters who want their brand in front of developers. Restaurants looking for a recurring community event.
                 </motion.p>
                 <motion.p {...stagger(3)} className="text-base text-claw-muted leading-relaxed">
-                  You don't need to be big. You just need to show up.
+                  You don&apos;t need to be big. You just need to show up.
                 </motion.p>
               </div>
+
+              {/* Right: stats */}
               <div>
                 <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-6">
                   What we offer
                 </motion.p>
-                <motion.div {...stagger(1)} className="space-y-6">
+                <div className="space-y-6">
                   {[
                     { value: "100+", label: "Builders per event (growing)" },
                     { value: "4x", label: "Events per month across DFW" },
@@ -185,13 +188,13 @@ export default function SponsorsPage() {
                     { value: "0", label: "Vendor pitches — builders only" },
                   ].map((stat) => (
                     <div key={stat.label} className="border-t border-claw-border pt-4">
-                      <p className="font-display text-4xl text-claw-orange">{stat.value}</p>
+                      <p className="font-display text-3xl text-claw-orange">{stat.value}</p>
                       <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mt-1">
                         {stat.label}
                       </p>
                     </div>
                   ))}
-                </motion.div>
+                </div>
               </div>
             </div>
           </div>
@@ -199,11 +202,11 @@ export default function SponsorsPage() {
 
         {/* Current sponsors */}
         <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-5xl">
             <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-dim mb-10">
               Venue Partners
             </motion.p>
-            <div className="flex flex-wrap gap-8 items-center">
+            <div className="flex flex-wrap gap-6">
               {[
                 { name: "Spark Coworking", url: "https://sparkcoworking.com/arlington/", note: "Arlington" },
                 { name: "CreateFW", url: "https://thedec.co/", note: "Fort Worth" },
@@ -225,28 +228,28 @@ export default function SponsorsPage() {
 
         {/* Contact */}
         <section className="px-5 md:px-8 py-20 md:py-28">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="mx-auto max-w-5xl">
             <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-4">
               Get in touch
             </motion.p>
-            <motion.h2 {...stagger(1)} className="font-display text-4xl md:text-6xl tracking-wider text-claw-text mb-6">
+            <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-5xl tracking-wider text-claw-text mb-6">
               LET&apos;S TALK.
             </motion.h2>
             <motion.p {...stagger(2)} className="text-base text-claw-muted mb-8">
               Reach out on Discord or LinkedIn. We can figure out what makes sense for your organization.
             </motion.p>
-            <motion.div {...stagger(3)} className="flex flex-col sm:flex-row gap-3 justify-center">
+            <motion.div {...stagger(3)} className="flex gap-3">
               <a
                 href="https://discord.gg/q8kEquTu3z"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-claw-orange bg-claw-orange px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors text-center"
+                className="border border-claw-orange bg-claw-orange px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors"
               >
                 Discord
               </a>
               <Link
                 href="/"
-                className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-orange hover:text-claw-orange transition-colors text-center"
+                className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-orange hover:text-claw-orange transition-colors"
               >
                 Back to Home
               </Link>

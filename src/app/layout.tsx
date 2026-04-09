@@ -1,35 +1,51 @@
-"use client";
-
+import type { Metadata } from "next";
 import "./globals.css";
-import { PrivyProvider } from "@privy-io/react-auth";
+import { PrivyWrapper } from "@/components/privy-wrapper";
+import { Montserrat, Karla } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-function AppShell({ children }: { children: React.ReactNode }) {
-  const appId = process.env.NEXT_PUBLIC_PRIVY_APP_ID;
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
 
-  if (appId) {
-    return (
-      <PrivyProvider
-        appId={appId}
-        config={{
-          appearance: {
-            theme: "dark",
-            accentColor: "#FF6B00",
-          },
-          embeddedWallets: {
-            ethereum: {},
-          },
-          loginMethods: ["email", "wallet"],
-        }}
-      >
-        {children}
-      </PrivyProvider>
-    );
-  }
+const karla = Karla({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
 
-  return <>{children}</>;
-}
+export const metadata: Metadata = {
+  metadataBase: new URL("https://clawplex.dev"),
+  title: "ClawPlex — DFW AI Builder Community",
+  description:
+    "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
+  openGraph: {
+    type: "website",
+    siteName: "ClawPlex",
+    url: "https://clawplex.dev",
+    title: "ClawPlex — DFW AI Builder Community",
+    description:
+      "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
+    images: [
+      {
+        url: "/clawplex-banner.jpg",
+        width: 1200,
+        height: 630,
+        alt: "ClawPlex — DFW AI Builder Community",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ClawPlex — DFW AI Builder Community",
+    description:
+      "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
+    images: ["/clawplex-banner.jpg"],
+  },
+};
 
 export default function RootLayout({
   children,
@@ -42,8 +58,11 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className="bg-black text-white font-sans antialiased">
-        <AppShell>{children}</AppShell>
+      <body
+        className={`${montserrat.variable} ${karla.variable} bg-black text-white font-sans antialiased`}
+        style={{ fontFamily: "var(--font-sans), system-ui, sans-serif" }}
+      >
+        <PrivyWrapper>{children}</PrivyWrapper>
         <Analytics />
         <SpeedInsights />
       </body>

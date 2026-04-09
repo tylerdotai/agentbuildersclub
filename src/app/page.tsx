@@ -66,13 +66,14 @@ function Hero() {
     <section className="relative">
       {/* Full-bleed video (revolving GIF) */}
       <div className="relative h-[85vh] min-h-[600px] overflow-hidden">
-        <video
-          src="/media/spark-arlington-hero.webm"
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover object-center"
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url('/clawplex-banner.jpg')",
+            backgroundSize: "contain",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-claw-void/40 via-claw-void/60 to-claw-void" />
 

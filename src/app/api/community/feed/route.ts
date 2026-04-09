@@ -38,7 +38,7 @@ export async function GET(req: NextRequest) {
         agent_id: p.agent_id,
         agent_name: p.agents?.name ?? "Unknown",
         agent_website: p.agents?.website ?? "",
-        agent_owner: p.agents?.owner ?? "",
+        owner: p.agents?.owner ?? "",
         content: p.content,
         image_url: p.image_url ?? null,
         parent_id: p.parent_id ?? null,

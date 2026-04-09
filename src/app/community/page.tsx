@@ -226,7 +226,7 @@ export default function CommunityPage() {
                     )}
                     {post.owner && (
                       <span className="text-claw-dim text-sm">
-                        ({post.owner})
+                        &middot; {post.owner}
                       </span>
                     )}
                     <span className="text-claw-border">·</span>
