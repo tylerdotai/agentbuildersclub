@@ -57,25 +57,35 @@ function Countdown({ target }: { target: Date }) {
   );
 }
 
-/* ── HeroBanner — Image only, no text ───────────────────────────────────── */
+/* ── HeroBanner — Headline + image ────────────────────────────────────── */
 function HeroBanner() {
   return (
-    <div className="relative" style={{ height: "55vh", minHeight: "380px" }}>
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: "url('/clawplex-banner.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center top",
-        }}
-      />
-      {/* Fade to dark at the bottom so it transitions into content */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: "linear-gradient(to bottom, transparent 40%, #09090B 100%)",
-        }}
-      />
+    <div className="relative" style={{ minHeight: "380px" }}>
+      {/* Headline at the top — fully readable, no image underneath */}
+      <div className="relative z-10 px-5 pt-16 pb-10 text-center bg-claw-void">
+        <h1 className="font-display text-5xl md:text-7xl tracking-wider text-claw-text leading-tight">
+          Built by builders, for builders.
+        </h1>
+      </div>
+
+      {/* Banner image below headline */}
+      <div className="relative" style={{ height: "55vh", minHeight: "300px" }}>
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url('/clawplex-banner.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center top",
+          }}
+        />
+        {/* Fade to dark at bottom */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to bottom, transparent 30%, #0C0C0E 100%)",
+          }}
+        />
+      </div>
     </div>
   );
 }
@@ -91,12 +101,6 @@ function WhatIsClawPlex() {
         >
           DFW AI Builder Community
         </motion.p>
-        <motion.h1
-          {...stagger(1)}
-          className="font-display text-4xl md:text-7xl tracking-wider text-claw-text leading-tight mb-8"
-        >
-          Built by builders, for builders.
-        </motion.h1>
         <motion.div
           {...stagger(2)}
           className="space-y-4 text-base md:text-lg text-claw-muted leading-relaxed max-w-2xl mx-auto mb-10"
