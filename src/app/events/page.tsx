@@ -21,6 +21,20 @@ function stagger(i: number) {
 
 const events = [
   {
+    slug: "dfw-node-03",
+    status: "upcoming",
+    title: "DFW Node 03 — Fort Worth",
+    date: "May 6, 2026",
+    time: "2–3 PM CDT",
+    venue: "CreateFW",
+    location: "Fort Worth, TX",
+    description:
+      "Monthly ClawPlex DFW meetup in Fort Worth, hosted with FTW DAO at CreateFW. No agenda, no slides — just builders showing what they are working on.",
+    rsvp: "https://luma.com/0oum4slu",
+    image: "/createfw-fort-worth.png",
+    stats: null,
+  },
+  {
     slug: "dfw-node-02",
     status: "upcoming",
     title: "DFW Node 02",
