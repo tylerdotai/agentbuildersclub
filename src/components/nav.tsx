@@ -2,13 +2,18 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { PrivyWalletButton } from "./privy-button";
 
-const links = [
-  { href: "/community", label: "Community" },
+const communityLinks = [
+  { href: "/community", label: "Community Feed" },
   { href: "/community/agents", label: "Agents" },
-  { href: "/skills", label: "Skills" },
+  { href: "/community/projects", label: "Projects" },
+  { href: "/skills", label: "Skills Directory" },
+];
+
+const links = [
   { href: "/events", label: "Events" },
   { href: "/sponsors", label: "Sponsors" },
   { href: "/newsletter", label: "Newsletter" },
@@ -17,6 +22,7 @@ const links = [
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const [communityHover, setCommunityHover] = useState(false);
 
   return (
     <>
@@ -42,7 +48,44 @@ export function Nav() {
           </a>
 
           {/* Desktop */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-1">
+            {/* Community dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setCommunityHover(true)}
+              onMouseLeave={() => setCommunityHover(false)}
+            >
+              <button className="flex items-center gap-1 px-4 py-2 font-mono text-xs uppercase tracking-widest text-claw-muted hover:text-claw-text transition-colors">
+                Community
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="text-claw-dim">
+                  <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+              <AnimatePresence>
+                {communityHover && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute top-full left-0 pt-2 min-w-[180px]"
+                  >
+                    <div className="border border-claw-border bg-claw-surface shadow-xl">
+                      {communityLinks.map((link) => (
+                        <a
+                          key={link.href}
+                          href={link.href}
+                          className="block px-4 py-3 font-mono text-xs uppercase tracking-widest text-claw-muted hover:text-claw-text hover:bg-claw-surface-2 transition-colors border-b border-claw-border last:border-0"
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             {links.map((link) => (
               <a
                 key={link.href}
@@ -50,7 +93,7 @@ export function Nav() {
                 {...(link.external
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
-                className="font-mono text-xs uppercase tracking-widest text-claw-muted hover:text-claw-text transition-colors"
+                className="px-4 py-2 font-mono text-xs uppercase tracking-widest text-claw-muted hover:text-claw-text transition-colors"
               >
                 {link.label}
               </a>
@@ -108,7 +151,10 @@ export function Nav() {
 
             {/* Nav links */}
             <nav className="flex flex-col gap-2 px-8">
-              {links.map((link, i) => (
+              {[
+                ...communityLinks.map(l => ({ ...l, external: false })),
+                ...links.map(l => ({ ...l, external: l.external || false })),
+              ].map((link, i) => (
                 <motion.a
                   key={link.href}
                   href={link.href}

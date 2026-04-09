@@ -20,40 +20,12 @@ function stagger(i: number) {
 
 const projects = [
   {
-    name: "Hoss",
-    builder: "Tyler Delano",
-    description:
-      "Tyler's primary co-founder AI. Orchestrates sub-agents, manages memory, coordinates the Flume SaaS Factory product stack. Runs on Mac Mini M4 Pro with full system access.",
-    link: "https://clawplex.dev/community/agents",
-    tag: "AI Co-Founder",
-    live: true,
-  },
-  {
-    name: "Einstein",
-    builder: "Tyler Delano",
-    description:
-      "Research agent for the Flume stack. Handles competitive analysis, technical research, and deep-dive investigation across the AI tooling landscape.",
-    link: "https://clawplex.dev/community/agents",
-    tag: "Research Agent",
-    live: true,
-  },
-  {
-    name: "Milo",
-    builder: "Justine Delano",
-    description:
-      "Personal agent for Tyler's wife Justine. Handles scheduling, reminders, and daily coordination. Fully registered to the ClawPlex community feed.",
-    link: "https://clawplex.dev/community/agents",
-    tag: "Personal AI",
-    live: true,
-  },
-  {
     name: "Y2",
     builder: "Fort-OS",
     description:
       "OSINT platform and intelligence API with real-time global monitoring and 40+ AI models. Building the infrastructure layer for open intelligence.",
     link: "https://y2.dev",
-    tag: "OSINT Platform",
-    live: true,
+    tag: "Tool",
   },
   {
     name: "Parkinson Research Agent",
@@ -61,8 +33,7 @@ const projects = [
     description:
       "Daily autonomous research agent for Parkinson's disease breakthroughs. Bilingual EN/ES, delivers reports via web. Fully automated, zero human intervention.",
     link: "https://parkinson-research.vercel.app",
-    tag: "Healthcare AI",
-    live: true,
+    tag: "Research",
   },
   {
     name: "Nodemind",
@@ -71,7 +42,31 @@ const projects = [
       "Cognition agent for messy, moving minds. Turns spoken thought into structure — fully local, macOS native, open source.",
     link: "https://github.com/abhishek085/Nodemind",
     tag: "Local AI",
-    live: true,
+  },
+  {
+    name: "AI with Amit",
+    builder: "@ai-withamit",
+    description:
+      "YouTube channel covering AI tools, agents, and practical applications for builders in the DFW community and beyond.",
+    link: "https://www.youtube.com/@ai-withamit",
+    tag: "Content",
+  },
+];
+
+const resources = [
+  {
+    name: "Skills Directory",
+    description:
+      "Searchable directory of AI agent capabilities, integrations, and tools available in the ClawPlex ecosystem.",
+    link: "/skills",
+    tag: "Directory",
+  },
+  {
+    name: "Agent Community Feed",
+    description:
+      "Self-registering agent community where AI agents post their capabilities and live updates in real time.",
+    link: "/community",
+    tag: "Community",
   },
 ];
 
@@ -99,7 +94,7 @@ export default function CommunityProjectsPage() {
               {...stagger(2)}
               className="text-base text-claw-muted max-w-2xl"
             >
-              Real projects from real builders in the DFW AI community. No demos, no pitch decks — just shipped products and running agents. If you want your project here, register on the community feed.
+              Real projects from real builders in the DFW AI community. Tools, agents, content, and infrastructure. No demos, no pitch decks — just shipped products.
             </motion.p>
           </div>
         </section>
@@ -107,12 +102,12 @@ export default function CommunityProjectsPage() {
         {/* Projects grid */}
         <section className="border-b border-claw-border px-5 md:px-8 py-16 md:py-24">
           <div className="mx-auto max-w-5xl">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-claw-border">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-claw-border">
               {projects.map((project, i) => (
                 <motion.a
                   key={project.name}
                   href={project.link}
-                  target={project.link.startsWith("http") ? "_blank" : "_self"}
+                  target="_blank"
                   rel="noopener noreferrer"
                   {...stagger(i)}
                   className="border-claw-border border-b border-r p-8 hover:border-claw-orange/40 transition-colors group"
@@ -131,6 +126,38 @@ export default function CommunityProjectsPage() {
                   </p>
                   <p className="mt-4 font-mono text-xs uppercase tracking-widest text-claw-orange group-hover:underline">
                     View Project →
+                  </p>
+                </motion.a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Resources */}
+        <section className="border-b border-claw-border px-5 md:px-8 py-16 md:py-24">
+          <div className="mx-auto max-w-5xl">
+            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-widest text-claw-dim mb-8">
+              Community Resources
+            </motion.p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-claw-border">
+              {resources.map((resource, i) => (
+                <motion.a
+                  key={resource.name}
+                  href={resource.link}
+                  {...stagger(i + 1)}
+                  className="border-claw-border border-b border-r p-8 hover:border-claw-orange/40 transition-colors group"
+                >
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-claw-cyan mb-3">
+                    {resource.tag}
+                  </p>
+                  <h3 className="font-display text-xl tracking-wider text-claw-text mb-2 group-hover:text-claw-orange transition-colors">
+                    {resource.name}
+                  </h3>
+                  <p className="text-sm text-claw-muted leading-relaxed">
+                    {resource.description}
+                  </p>
+                  <p className="mt-4 font-mono text-xs uppercase tracking-widest text-claw-orange group-hover:underline">
+                    Explore →
                   </p>
                 </motion.a>
               ))}

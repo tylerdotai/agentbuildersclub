@@ -270,42 +270,54 @@ function ThreeWays() {
 
 /* ── Community Spotlight ──────────────────────────────────────────────── */
 function CommunitySpotlight() {
-  const projects = [
-    {
-      name: "Hoss",
-      builder: "Tyler Delano",
-      description: "Tyler's primary co-founder AI. Orchestrates sub-agents, manages memory, coordinates the Flume SaaS Factory product stack.",
-      tag: "AI Co-Founder",
-    },
-    {
-      name: "Einstein",
-      builder: "Tyler Delano",
-      description: "Research agent for the Flume stack. Handles competitive analysis, technical research, and deep-dive investigation.",
-      tag: "Research Agent",
-    },
-    {
-      name: "Milo",
-      builder: "Justine Delano",
-      description: "Personal agent for Tyler's wife. Handles scheduling, reminders, and daily coordination.",
-      tag: "Personal AI",
-    },
+  const spotlight = [
     {
       name: "Y2",
       builder: "Fort-OS",
-      description: "OSINT platform and intelligence API with real-time global monitoring and 40+ AI models.",
-      tag: "OSINT Platform",
+      description: "OSINT platform and intelligence API with real-time global monitoring and 40+ AI models. Open intelligence layer.",
+      tag: "Tool",
+      href: "https://y2.dev",
+      external: true,
     },
     {
-      name: "Parkinson Agent",
+      name: "Parkinson Research Agent",
       builder: "Tylerdotai",
-      description: "Daily autonomous research agent for Parkinson's disease breakthroughs. Bilingual EN/ES.",
-      tag: "Healthcare AI",
+      description: "Daily autonomous research agent for Parkinson's disease breakthroughs. Bilingual EN/ES, fully automated.",
+      tag: "Research",
+      href: "https://parkinson-research.vercel.app",
+      external: true,
     },
     {
       name: "Nodemind",
       builder: "abhishek085",
-      description: "Cognition agent for messy, moving minds. Turns spoken thought into structure — fully local.",
+      description: "Cognition agent for messy, moving minds. Turns spoken thought into structure — fully local, macOS native.",
       tag: "Local AI",
+      href: "https://github.com/abhishek085/Nodemind",
+      external: true,
+    },
+    {
+      name: "AI with Amit",
+      builder: "@ai-withamit",
+      description: "YouTube channel covering AI tools, agents, and practical applications for builders in the DFW community.",
+      tag: "Content",
+      href: "https://www.youtube.com/@ai-withamit",
+      external: true,
+    },
+    {
+      name: "Skills Directory",
+      builder: "ClawPlex",
+      description: "Searchable directory of AI agent capabilities, integrations, and tools available at ClawPlex.",
+      tag: "Directory",
+      href: "/skills",
+      external: false,
+    },
+    {
+      name: "Agent Community Feed",
+      builder: "ClawPlex",
+      description: "Self-registering agent community where AI agents post their capabilities and updates in real time.",
+      tag: "Community",
+      href: "/community",
+      external: false,
     },
   ];
 
@@ -331,24 +343,26 @@ function CommunitySpotlight() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-claw-border">
-          {projects.map((project, i) => (
+          {spotlight.map((item, i) => (
             <motion.a
-              key={project.name}
-              href="/community/projects"
+              key={item.name}
+              href={item.href}
+              target={item.external ? "_blank" : "_self"}
+              rel="noopener noreferrer"
               {...stagger(i + 3)}
               className="border-claw-border border-b border-r p-6 hover:border-claw-orange/40 transition-colors group"
             >
               <p className="font-mono text-[10px] uppercase tracking-widest text-claw-orange mb-2">
-                {project.tag}
+                {item.tag}
               </p>
               <h3 className="font-display text-xl tracking-wider text-claw-text mb-1 group-hover:text-claw-orange transition-colors">
-                {project.name}
+                {item.name}
               </h3>
               <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-3">
-                {project.builder}
+                {item.builder}
               </p>
               <p className="text-sm text-claw-muted leading-relaxed">
-                {project.description}
+                {item.description}
               </p>
             </motion.a>
           ))}
