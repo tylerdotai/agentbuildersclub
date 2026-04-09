@@ -82,12 +82,9 @@ function HeroBanner() {
       />
       {/* Headline — centered on image */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-5 text-center">
-        <h1 className="font-display text-5xl md:text-7xl tracking-wider text-claw-text leading-tight mb-6 max-w-4xl">
+        <h1 className="font-display text-5xl md:text-7xl tracking-wider text-claw-text leading-tight max-w-4xl">
           Built by builders, for builders.
         </h1>
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange">
-          DFW AI Builder Community
-        </p>
       </div>
     </div>
   );
@@ -98,6 +95,18 @@ function WhatIsClawPlex() {
   return (
     <section className="border-t border-claw-border px-5 md:px-8 py-16 md:py-24">
       <div className="mx-auto max-w-4xl text-center">
+        <motion.p
+          {...stagger(0)}
+          className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-4"
+        >
+          DFW AI Builder Community
+        </motion.p>
+        <motion.h1
+          {...stagger(1)}
+          className="font-display text-4xl md:text-6xl tracking-wider text-claw-text leading-tight mb-8"
+        >
+          Built by builders, for builders.
+        </motion.h1>
         <motion.div
           {...stagger(2)}
           className="space-y-4 text-base md:text-lg text-claw-muted leading-relaxed max-w-2xl mx-auto mb-10"
