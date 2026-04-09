@@ -42,14 +42,14 @@ function Countdown({ target }: { target: Date }) {
   }, [target]);
 
   return (
-    <div className="flex gap-6 font-mono text-xs uppercase tracking-widest text-claw-orange">
+    <div className="flex gap-8 font-mono text-xs uppercase tracking-widest text-claw-orange">
       {[
         { val: days, label: "Days" },
         { val: hours, label: "Hours" },
         { val: minutes, label: "Min" },
       ].map(({ val, label }) => (
         <div key={label} className="text-center">
-          <div className="text-4xl md:text-5xl font-display text-claw-text">{String(val).padStart(2, "0")}</div>
+          <div className="text-5xl md:text-6xl font-display text-claw-text">{String(val).padStart(2, "0")}</div>
           <div className="text-[10px] text-claw-dim mt-1">{label}</div>
         </div>
       ))}
@@ -57,113 +57,128 @@ function Countdown({ target }: { target: Date }) {
   );
 }
 
-/* ── Hero — What is ClawPlex + Event ─────────────────────────────────────── */
-function Hero() {
+/* ── HeroBanner — Image only, no text ───────────────────────────────────── */
+function HeroBanner() {
+  return (
+    <div className="relative" style={{ height: "55vh", minHeight: "380px" }}>
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: "url('/clawplex-banner.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center top",
+        }}
+      />
+      {/* Fade to dark at the bottom so it transitions into content */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "linear-gradient(to bottom, transparent 40%, #09090B 100%)",
+        }}
+      />
+    </div>
+  );
+}
+
+/* ── What is ClawPlex ───────────────────────────────────────────────────── */
+function WhatIsClawPlex() {
+  return (
+    <section className="border-t border-claw-border px-5 md:px-8 py-16 md:py-24">
+      <div className="mx-auto max-w-4xl text-center">
+        <motion.p
+          {...stagger(0)}
+          className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-6"
+        >
+          DFW AI Builder Community
+        </motion.p>
+        <motion.h1
+          {...stagger(1)}
+          className="font-display text-4xl md:text-7xl tracking-wider text-claw-text leading-tight mb-8"
+        >
+          Built by builders, for builders.
+        </motion.h1>
+        <motion.div
+          {...stagger(2)}
+          className="space-y-4 text-base md:text-lg text-claw-muted leading-relaxed max-w-2xl mx-auto mb-10"
+        >
+          <p>
+            ClawPlex is the DFW home base for AI agent builders — the people shipping products with AI, running local models, and automating their workflows.
+          </p>
+          <p>
+            We meet weekly to demo what we&apos;ve shipped, share what broke, and push each other to actually <strong className="text-claw-text font-medium">build</strong> — not just talk about building.
+          </p>
+        </motion.div>
+        <motion.div
+          {...stagger(3)}
+          className="flex flex-wrap justify-center gap-3 font-mono text-[10px] uppercase tracking-widest"
+        >
+          {["Weekly meetups", "No sales pitches", "For you & your agent"].map((tag) => (
+            <span key={tag} className="border border-claw-border px-3 py-1.5 text-claw-dim">
+              {tag}
+            </span>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Event Section — Countdown + RSVP ──────────────────────────────────── */
+function EventSection() {
   const eventDate = new Date("2026-04-15T14:00:00-05:00");
 
   return (
-    <section className="relative">
-      {/* Banner */}
-      <div className="relative h-[75vh] min-h-[500px] overflow-hidden">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: "url('/clawplex-banner.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center top",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-claw-void/30 via-claw-void/40 to-claw-void/90" />
+    <section className="border-t border-claw-border px-5 md:px-8 py-16 md:py-24">
+      <div className="mx-auto max-w-4xl text-center">
+        <motion.p
+          {...stagger(0)}
+          className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-4"
+        >
+          Next Node
+        </motion.p>
+        <motion.h2
+          {...stagger(1)}
+          className="font-display text-3xl md:text-5xl tracking-wider text-claw-text mb-2"
+        >
+          DFW Node 02 — Arlington
+        </motion.h2>
+        <motion.p
+          {...stagger(2)}
+          className="font-mono text-sm text-claw-dim uppercase tracking-widest mb-10"
+        >
+          April 15, 2026 · 2–3 PM · Spark Coworking, Arlington TX
+        </motion.p>
 
-        {/* Content — centered */}
-        <div className="relative z-10 flex flex-col items-center justify-center h-full px-5 py-16 text-center">
-          {/* Label */}
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-claw-orange"
-          >
-            DFW AI Builder Community
-          </motion.p>
+        {/* Countdown */}
+        <motion.div
+          {...stagger(3)}
+          className="mb-10"
+        >
+          <Countdown target={eventDate} />
+        </motion.div>
 
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="font-display text-5xl md:text-7xl tracking-wider text-claw-text leading-tight mb-6 max-w-4xl"
+        {/* CTAs */}
+        <motion.div
+          {...stagger(4)}
+          className="flex flex-col sm:flex-row gap-3 justify-center"
+        >
+          <a
+            href="https://luma.com/yppasqmp"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-claw-orange bg-claw-orange px-10 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors text-center"
           >
-            Built by builders, for builders.
-          </motion.h1>
-
-          {/* Intro */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.35 }}
-            className="space-y-3 max-w-2xl mb-10"
+            RSVP on Luma
+          </a>
+          <a
+            href="https://discord.gg/q8kEquTu3z"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-claw-border px-10 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-orange hover:text-claw-orange transition-colors text-center"
           >
-            <p className="text-base md:text-lg text-claw-muted leading-relaxed">
-              ClawPlex is the DFW home base for AI agent builders — the people shipping products with AI, running local models, and automating their workflows.
-            </p>
-            <p className="text-base text-claw-muted leading-relaxed">
-              We meet weekly to demo what we&apos;ve shipped, share what broke, and push each other to actually <span className="text-claw-text font-medium">build</span> — not just talk about building.
-            </p>
-          </motion.div>
-
-          {/* Event info + Countdown */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="mb-8"
-          >
-            <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-3">
-              Next Node — April 15, 2026 · Spark Coworking, Arlington TX
-            </p>
-            <Countdown target={eventDate} />
-          </motion.div>
-
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-3"
-          >
-            <a
-              href="https://luma.com/yppasqmp"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border border-claw-orange bg-claw-orange px-10 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors text-center"
-            >
-              RSVP on Luma
-            </a>
-            <a
-              href="https://discord.gg/q8kEquTu3z"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border border-claw-border px-10 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-orange hover:text-claw-orange transition-colors text-center"
-            >
-              Join Discord
-            </a>
-          </motion.div>
-
-          {/* Tags */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.7 }}
-            className="mt-8 flex flex-wrap justify-center gap-3 font-mono text-[10px] uppercase tracking-widest"
-          >
-            {["Weekly meetups", "No sales pitches", "For you & your agent"].map((tag) => (
-              <span key={tag} className="border border-claw-border px-3 py-1.5 text-claw-dim">
-                {tag}
-              </span>
-            ))}
-          </motion.div>
-        </div>
+            Join Discord
+          </a>
+        </motion.div>
       </div>
     </section>
   );
@@ -319,7 +334,9 @@ export default function Home() {
     <div className="min-h-screen">
       <Nav />
       <main>
-        <Hero />
+        <HeroBanner />
+        <WhatIsClawPlex />
+        <EventSection />
         <ThreeWays />
         <Newsletter />
       </main>
