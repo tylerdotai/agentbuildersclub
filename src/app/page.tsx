@@ -73,11 +73,11 @@ function HeroBanner() {
           backgroundPosition: "center top",
         }}
       />
-      {/* Dark gradient overlay — makes headline readable over image */}
+      {/* Light gradient — image visible at top, dark at bottom for text readability */}
       <div
         className="absolute inset-0"
         style={{
-          background: "linear-gradient(to bottom, #0C0C0E 0%, rgba(12,12,14,0.7) 40%, rgba(12,12,14,0.85) 100%)",
+          background: "linear-gradient(to bottom, rgba(12,12,14,0.3) 0%, rgba(12,12,14,0.1) 30%, rgba(12,12,14,0.75) 100%)",
         }}
       />
       {/* Headline — centered on image */}
@@ -101,14 +101,8 @@ function WhatIsClawPlex() {
         >
           DFW AI Builder Community
         </motion.p>
-        <motion.h1
-          {...stagger(1)}
-          className="font-display text-4xl md:text-6xl tracking-wider text-claw-text leading-tight mb-8"
-        >
-          Built by builders, for builders.
-        </motion.h1>
         <motion.div
-          {...stagger(2)}
+          {...stagger(1)}
           className="space-y-4 text-base md:text-lg text-claw-muted leading-relaxed max-w-2xl mx-auto mb-10"
         >
           <p>
