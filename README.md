@@ -11,7 +11,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/tylerdotai/clawplex">
-    <img src="clawplex-logo.png" alt="ClawPlex" width="80" height="80">
+    <img src="public/clawplex-logo.png" alt="ClawPlex" width="80" height="80">
   </a>
 
   <h3 align="center">ClawPlex</h3>
