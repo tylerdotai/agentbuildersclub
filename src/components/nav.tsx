@@ -10,6 +10,7 @@ const links = [
   { href: "/community/agents", label: "Agents" },
   { href: "/skills", label: "Skills" },
   { href: "/events", label: "Events" },
+  { href: "/sponsors", label: "Sponsors" },
   { href: "/newsletter", label: "Newsletter" },
   { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },
 ];
@@ -82,43 +83,68 @@ export function Nav() {
         </div>
       </nav>
 
-      {/* Mobile menu panel */}
+      {/* Mobile full-screen overlay */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-[57px] z-40 border-b border-claw-border bg-claw-void/95 backdrop-blur-xl md:hidden"
+            className="fixed inset-0 z-40 bg-claw-void/98 backdrop-blur-xl md:hidden flex flex-col justify-center"
+            onClick={() => setOpen(false)}
           >
-            <div className="flex flex-col p-6 gap-5">
-              {links.map((link) => (
-                <a
+            {/* Close X in top right */}
+            <button
+              onClick={() => setOpen(false)}
+              className="absolute top-5 right-5 p-2"
+              aria-label="Close menu"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-claw-text">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+
+            {/* Nav links */}
+            <nav className="flex flex-col gap-2 px-8">
+              {links.map((link, i) => (
+                <motion.a
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3, delay: i * 0.06 }}
                   {...(link.external
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
-                  className="font-mono text-sm uppercase tracking-widest text-claw-muted hover:text-claw-text transition-colors"
+                  className="font-display text-5xl md:text-7xl tracking-wider text-claw-text hover:text-claw-orange transition-colors py-2 border-b border-claw-border/20 last:border-0"
                 >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
+            </nav>
+
+            {/* Bottom CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.3, delay: links.length * 0.06 + 0.1 }}
+              className="mt-auto px-8 pb-16"
+            >
               <a
                 href="https://discord.gg/q8kEquTu3z"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="mt-2 border border-claw-orange bg-claw-orange/10 px-5 py-3 text-center font-mono text-sm uppercase tracking-widest text-claw-orange hover:bg-claw-orange hover:text-claw-void transition-all"
+                className="block w-full border border-claw-orange bg-claw-orange py-4 text-center font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors"
               >
                 Join the Node
               </a>
-              <div className="mt-2" onClick={() => setOpen(false)}>
-                <PrivyWalletButton />
-              </div>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
