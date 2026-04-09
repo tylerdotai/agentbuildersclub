@@ -140,10 +140,10 @@ export function Nav() {
             {/* Close X in top right */}
             <button
               onClick={() => setOpen(false)}
-              className="absolute top-5 right-5 p-2"
+              className="absolute top-6 right-6 p-3 border border-claw-border bg-claw-surface flex items-center justify-center"
               aria-label="Close menu"
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-claw-text">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-claw-text">
                 <line x1="18" y1="6" x2="6" y2="18" />
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
@@ -166,7 +166,7 @@ export function Nav() {
                   {...(link.external
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
-                  className="font-display text-5xl md:text-7xl tracking-wider text-claw-text hover:text-claw-orange transition-colors py-2 border-b border-claw-border/20 last:border-0"
+                  className="font-display text-2xl md:text-4xl tracking-wider text-claw-text hover:text-claw-orange transition-colors py-2 border-b border-claw-border/20 last:border-0"
                 >
                   {link.label}
                 </motion.a>
