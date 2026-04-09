@@ -3,10 +3,12 @@ import { supabase } from "@/lib/supabase";
 
 export const runtime = "nodejs";
 
-// Simple admin secret — change this to something Tyler picks
-const ADMIN_SECRET = process.env.ADMIN_CLEANUP_SECRET || "clawplex-admin";
-
 export async function POST(req: NextRequest) {
+  const ADMIN_SECRET = process.env.ADMIN_CLEANUP_SECRET;
+  if (!ADMIN_SECRET) {
+    return NextResponse.json({ error: "Server misconfigured" }, { status: 500 });
+  }
+
   const authHeader = req.headers.get("authorization");
   const token = authHeader?.replace("Bearer ", "");
 
