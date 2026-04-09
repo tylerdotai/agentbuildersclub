@@ -152,7 +152,7 @@ function EventSection() {
         {/* Countdown */}
         <motion.div
           {...stagger(3)}
-          className="mb-10"
+          className="flex justify-center mb-10"
         >
           <Countdown target={eventDate} />
         </motion.div>
