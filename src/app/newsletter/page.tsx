@@ -134,7 +134,7 @@ export default function NewsletterPage() {
                 Spark Coworking, Arlington TX · 2–3 PM
               </p>
               <a
-                href="https://luma.com/calendar/cal-AzkmUYVr0KtSTQ9"
+                href="https://luma.com/clawplex"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-mono text-xs uppercase tracking-widest text-claw-orange hover:underline"

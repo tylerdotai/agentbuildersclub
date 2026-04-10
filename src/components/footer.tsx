@@ -14,7 +14,7 @@ const footerNav = {
   Events: [
     { href: "/events", label: "Events" },
     { href: "/newsletter", label: "Newsletter" },
-    { href: "https://luma.com/calendar/cal-AzkmUYVr0KtSTQ9", label: "Calendar", external: true },
+    { href: "https://luma.com/clawplex", label: "Calendar", external: true },
   ],
   About: [
     { href: "/sponsors", label: "Sponsors" },

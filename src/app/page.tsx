@@ -181,7 +181,7 @@ function EventSection() {
           className="flex flex-col sm:flex-row gap-3 justify-center"
         >
           <a
-            href="https://luma.com/calendar/cal-AzkmUYVr0KtSTQ9"
+            href="https://luma.com/clawplex"
             target="_blank"
             rel="noopener noreferrer"
             className="border border-claw-orange bg-claw-orange px-10 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors text-center"
@@ -211,7 +211,7 @@ function ThreeWays() {
       title: "Come to a Node",
       desc: "Grab your laptop and show what you're building. Or just show up to watch. Either way — you're among builders.",
       cta: "View Calendar",
-      href: "https://luma.com/calendar/cal-AzkmUYVr0KtSTQ9",
+      href: "https://luma.com/clawplex",
     },
     {
       num: "02",
