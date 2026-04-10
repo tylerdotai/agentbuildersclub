@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
@@ -64,6 +65,21 @@ const tiers = [
       "First look at community research and survey data",
     ],
     color: "border-claw-success",
+  },
+];
+
+const venuePartners = [
+  {
+    name: "Spark Coworking",
+    image: "/spark-arlington.png",
+    url: "https://sparkcoworking.com/arlington/",
+    location: "Arlington, TX",
+  },
+  {
+    name: "CreateFW",
+    image: "/createfw-fort-worth.png",
+    url: "https://thedec.co/",
+    location: "Fort Worth, TX",
   },
 ];
 
@@ -200,27 +216,38 @@ export default function SponsorsPage() {
           </div>
         </section>
 
-        {/* Current sponsors */}
+        {/* Venue Partners */}
         <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
           <div className="mx-auto max-w-5xl">
             <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-dim mb-10">
               Venue Partners
             </motion.p>
-            <div className="flex flex-wrap gap-6">
-              {[
-                { name: "Spark Coworking", url: "https://sparkcoworking.com/arlington/", note: "Arlington" },
-                { name: "CreateFW", url: "https://thedec.co/", note: "Fort Worth" },
-              ].map((venue) => (
-                <motion.a
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {venuePartners.map((venue, i) => (
+                <motion.div
                   key={venue.name}
-                  href={venue.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  {...fade}
-                  className="border border-claw-border px-8 py-4 font-mono text-sm text-claw-dim hover:border-claw-orange hover:text-claw-orange transition-colors"
+                  {...stagger(i + 1)}
                 >
-                  {venue.name} — {venue.note}
-                </motion.a>
+                  <div className="group relative overflow-hidden border border-claw-border aspect-video hover:border-claw-orange transition-colors">
+                    <a
+                      href={venue.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute inset-0 z-10"
+                      aria-label={`Visit ${venue.name} website`}
+                    />
+                    <Image
+                      src={venue.image}
+                      alt={venue.name}
+                      fill
+                      className="object-cover group-hover:opacity-80 transition-opacity"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-claw-void/90 border-t border-claw-border px-4 py-3 flex items-center justify-between">
+                      <span className="font-mono text-sm text-claw-text">{venue.name}</span>
+                      <span className="font-mono text-xs text-claw-dim">{venue.location}</span>
+                    </div>
+                  </div>
+                </motion.div>
               ))}
             </div>
           </div>

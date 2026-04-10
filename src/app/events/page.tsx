@@ -98,61 +98,34 @@ export default function EventsPage() {
           </div>
         </section>
 
-        {/* Upcoming */}
-        {upcoming.length > 0 && (
-          <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
-            <div className="mx-auto max-w-5xl">
-              <motion.p
-                {...stagger(0)}
-                className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-10 text-center"
-              >
-                Upcoming
-              </motion.p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                {upcoming.map((event, i) => (
-                  <motion.div key={event.slug} {...stagger(i + 1)}>
-                    <div className="relative overflow-hidden border border-claw-border aspect-video mb-8">
-                      <Image
-                        src={event.image}
-                        alt={event.title}
-                        fill
-                        className="object-cover"
-                      />
-                      <div className="absolute top-4 left-4 border border-claw-orange bg-claw-orange/90 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-claw-void">
-                        Upcoming
-                      </div>
-                    </div>
-                    <h2 className="font-display text-4xl md:text-5xl tracking-wider text-claw-text mb-2">
-                      {event.title}.
-                    </h2>
-                    <p className="font-mono text-sm text-claw-dim uppercase tracking-widest mb-4">
-                      {event.date} — {event.time}
-                    </p>
-                    <p className="font-mono text-xs text-claw-muted uppercase tracking-widest mb-1">
-                      {event.venue}
-                    </p>
-                    <p className="font-mono text-xs text-claw-dim uppercase tracking-widest mb-6">
-                      {event.location}
-                    </p>
-                    <p className="text-base text-claw-muted leading-relaxed mb-8">
-                      {event.description}
-                    </p>
-                    {event.rsvp && (
-                      <a
-                        href={event.rsvp}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block border border-claw-orange bg-claw-orange px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors"
-                      >
-                        RSVP on Luma
-                      </a>
-                    )}
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
+        {/* Calendar */}
+        <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
+          <div className="mx-auto max-w-5xl">
+            <motion.p
+              {...stagger(0)}
+              className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-10 text-center"
+            >
+              Upcoming
+            </motion.p>
+            <motion.div
+              {...stagger(1)}
+              className="relative w-full"
+              style={{ paddingTop: "75%" }}
+            >
+              <iframe
+                src="https://luma.com/embed/calendar/cal-AzkmUYVr0KtSTQ9/events"
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                style={{ border: "1px solid #bfcbda88", borderRadius: "4px", position: "absolute", top: 0, left: 0 }}
+                allowFullScreen
+                aria-hidden="false"
+                tabIndex={0}
+                title="ClawPlex Events Calendar"
+              />
+            </motion.div>
+          </div>
+        </section>
 
         {/* Past */}
         {past.length > 0 && (
