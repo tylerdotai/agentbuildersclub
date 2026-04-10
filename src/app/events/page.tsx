@@ -181,35 +181,6 @@ export default function EventsPage() {
           </section>
         )}
 
-        {/* Full Calendar */}
-        <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
-          <div className="mx-auto max-w-5xl">
-            <motion.p
-              {...stagger(0)}
-              className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-10 text-center"
-            >
-              Calendar
-            </motion.p>
-            <motion.div
-              {...stagger(1)}
-              className="relative w-full"
-              style={{ paddingTop: "75%" }}
-            >
-              <iframe
-                src="https://luma.com/embed/calendar/cal-AzkmUYVr0KtSTQ9/events"
-                width="100%"
-                height="100%"
-                frameBorder="0"
-                style={{ border: "1px solid #bfcbda88", borderRadius: "4px", position: "absolute", top: 0, left: 0 }}
-                allowFullScreen
-                aria-hidden="false"
-                tabIndex={0}
-                title="ClawPlex Events Calendar"
-              />
-            </motion.div>
-          </div>
-        </section>
-
         {/* CTA */}
         <section className="px-5 md:px-8 py-20 md:py-28">
           <div className="mx-auto max-w-2xl text-center">
