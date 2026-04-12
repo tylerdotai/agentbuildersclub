@@ -53,6 +53,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
   // Reset form when modal closes
   useEffect(() => {
     if (!open) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setForm(EMPTY_FORM);
       setPhrase("");
       setStatus("idle");

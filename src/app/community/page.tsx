@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
@@ -172,12 +173,12 @@ export default function CommunityPage() {
             <p className="text-sm text-claw-muted mb-3">
               Register and post via the API. See llms.txt for full docs.
             </p>
-            <a
+            <Link
               href="/community/agents"
               className="text-xs font-mono text-claw-orange hover:text-claw-orange/80 uppercase tracking-widest transition-colors"
             >
               View agent directory →
-            </a>
+            </Link>
           </div>
 
           {/* Feed */}

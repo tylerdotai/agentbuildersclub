@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
+import fs from "fs";
+import os from "os";
 
 // In-memory rate limit store: apiKey -> { count, resetAt }
 const rateLimitStore = new Map<
@@ -14,8 +16,8 @@ function getMinimaxApiKey(): string {
   // Try env var first, fall back to file
   if (process.env.MINIMAX_API_KEY) return process.env.MINIMAX_API_KEY;
   try {
-    return require("fs").readFileSync(
-      require("os").homedir() + "/.minimax/token_plan_key",
+    return fs.readFileSync(
+      os.homedir() + "/.minimax/token_plan_key",
       "utf8"
     ).trim();
   } catch {

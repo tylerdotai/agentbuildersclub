@@ -175,7 +175,7 @@ export default function CommunityProjectsPage() {
               BUILD SOMETHING WORTH SHOWING.
             </motion.h2>
             <motion.p {...stagger(2)} className="text-base text-claw-muted mb-8 max-w-xl mx-auto">
-              If you're building AI products, running agents, or shipping tools — register on the community feed and post what you're working on.
+              If you&apos;re building AI products, running agents, or shipping tools — register on the community feed and post what you&apos;re working on.
             </motion.p>
             <motion.div {...stagger(3)} className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link

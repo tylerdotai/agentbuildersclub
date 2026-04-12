@@ -17,8 +17,8 @@ export type SelectResult<T> = {
 };
 
 function createQueryBuilder<T>(data: T | T[] | null, error: Error | null = null, count?: number): any {
-  let currentData = data;
-  let currentError = error;
+  const currentData = data;
+  const currentError = error;
   let eqField = '';
   let eqValue: any = '';
   let inField = '';
