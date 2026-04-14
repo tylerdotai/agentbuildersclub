@@ -539,7 +539,7 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
                 { name: "KiloClaw", image: "/kilocode-logo.png", url: "https://kilocode.pxf.io/OYnK0N", tagline: "AI Coding Agent" },
-                { name: "FTW DAO", image: "/ftwdao-logo.png", url: "https://linktr.ee/ftwdao", tagline: "Web3 Funding & Community" },
+                { name: "FTW DAO", image: "/ftwdao-logo.png", url: "https://fwtx.city", tagline: "Web3 Funding & Community" },
                 { name: "Spark Coworking", image: "/spark-arlington.png", url: "https://sparkcoworking.com/arlington/", tagline: "Venue Host" },
                 { name: "CreateFW", image: "/createfw-fort-worth.png", url: "https://thedec.co/", tagline: "Venue Host" },
               ].map((partner, i) => (

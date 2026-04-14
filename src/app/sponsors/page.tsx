@@ -78,7 +78,7 @@ const partners = [
   {
     name: "FTW DAO",
     image: "/ftwdao-logo.png",
-    url: "https://linktr.ee/ftwdao",
+    url: "https://fwtx.city",
     tagline: "Web3 Funding & Community",
   },
 ];
