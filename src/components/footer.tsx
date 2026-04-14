@@ -80,6 +80,53 @@ export function Footer() {
         </div>
       </div>
 
+      {/* Supported By — Clawstin style orange banner */}
+      <div className="bg-claw-orange">
+        <div className="mx-auto max-w-5xl px-5 md:px-8 py-12 flex flex-col items-center gap-6">
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-claw-void/70">
+            Supported By
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {[
+              { name: "KiloClaw", image: "/kilocode-logo.png", url: "https://kilocode.pxf.io/OYnK0N" },
+              { name: "FTW DAO", image: "/ftwdao-logo.png", url: "https://fwtx.city" },
+              { name: "Spark Coworking", image: "/spark-arlington.png", url: "https://sparkcoworking.com/arlington/" },
+              { name: "CreateFW", image: "/createfw-fort-worth.png", url: "https://thedec.co/" },
+            ].map((partner) => (
+              <a
+                key={partner.name}
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={partner.name}
+                className="group flex items-center justify-center"
+              >
+                <div className="relative w-16 h-10 brightness-0 invert">
+                  <Image
+                    src={partner.image}
+                    alt={partner.name}
+                    fill
+                    className="object-contain group-hover:opacity-70 transition-opacity"
+                  />
+                </div>
+              </a>
+            ))}
+          </div>
+          <div className="w-px h-4 bg-claw-void/30" />
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-claw-void/70">
+            A COMMUNITY THING FOR <span className="underline">OPENCLAW</span> · DFW
+          </p>
+          <a
+            href="https://discord.gg/q8kEquTu3z"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-[10px] uppercase tracking-[0.2em] text-claw-void/70 underline hover:text-claw-void transition-colors"
+          >
+            Contact
+          </a>
+        </div>
+      </div>
+
       {/* Bottom bar */}
       <div className="border-t border-claw-border">
         <div className="mx-auto max-w-7xl px-5 md:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
