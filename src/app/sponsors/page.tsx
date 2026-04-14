@@ -74,6 +74,7 @@ const partners = [
     image: "/kilocode-logo.png",
     url: "https://kilocode.pxf.io/OYnK0N",
     tagline: "AI Coding Agent",
+    location: "DFW",
     description:
       "A fully managed AI coding agent platform. One-click deploy, secure VMs, access to 500+ models via Kilo Gateway. I run OpenClaw daily — if you want a personal AI assistant set up in 5 minutes, message me and I'll walk you through it.",
   },
@@ -82,16 +83,15 @@ const partners = [
     image: "/ftwdao-logo.png",
     url: "https://fwtx.city",
     tagline: "Web3 Funding & Community",
+    location: "Global",
     description:
       "A global community, talent network, and investor DAO focused on funding diverse founding teams. Building the infrastructure to disrupt the VC ecosystem with diversity at the center.",
   },
-];
-
-const venuePartners = [
   {
     name: "Spark Coworking",
     image: "/spark-arlington.png",
     url: "https://sparkcoworking.com/arlington/",
+    tagline: "Venue Host",
     location: "Arlington, TX",
     description:
       "Coworking space adjacent to Choctaw Stadium and Texas Live! District. The most collaborative workspace in Arlington for entrepreneurs, creators, and innovators.",
@@ -100,6 +100,7 @@ const venuePartners = [
     name: "CreateFW",
     image: "/createfw-fort-worth.png",
     url: "https://thedec.co/",
+    tagline: "Venue Host",
     location: "Fort Worth, TX",
     description:
       "Fort Worth's creative hub for makers, builders, and entrepreneurs. Home to ClawPlex's DFW Node events and the wider Fort Worth startup community.",
@@ -239,20 +240,23 @@ export default function SponsorsPage() {
           </div>
         </section>
 
-        {/* Partners — full descriptions with logos }---*/}
+        {/* Partners — 2-column grid with uniform logo sizing }---*/}
         <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
           <div className="mx-auto max-w-5xl">
-            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-dim mb-10">
+            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-10">
               Partners
             </motion.p>
-            <div className="space-y-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-claw-border">
               {partners.map((partner, i) => (
-                <motion.div
+                <motion.a
                   key={partner.name}
+                  href={partner.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   {...stagger(i + 1)}
-                  className="flex flex-col md:flex-row gap-8 items-start"
+                  className="group flex flex-row items-center gap-5 p-8 border-claw-border border-b last:border-b-0 md:border-b md:border-r odd:md:border-r-0 hover:bg-claw-surface transition-colors"
                 >
-                  <div className="relative w-full md:w-48 h-24 shrink-0">
+                  <div className="relative shrink-0 w-24 h-12">
                     <Image
                       src={partner.image}
                       alt={partner.name}
@@ -260,76 +264,20 @@ export default function SponsorsPage() {
                       className="object-contain"
                     />
                   </div>
-                  <div className="flex-1">
-                    <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-3">
-                      <h3 className="font-display text-2xl tracking-wider text-claw-text">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-3 mb-2">
+                      <h3 className="font-display text-xl tracking-wider text-claw-text group-hover:text-claw-orange transition-colors">
                         {partner.name}
                       </h3>
                       <span className="font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                        {partner.tagline}
+                        {partner.tagline} · {partner.location}
                       </span>
                     </div>
-                    <p className="text-sm text-claw-muted leading-relaxed mb-4">
+                    <p className="text-sm text-claw-muted leading-relaxed">
                       {partner.description}
                     </p>
-                    <a
-                      href={partner.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-mono text-xs uppercase tracking-widest text-claw-orange hover:underline"
-                    >
-                      Visit →
-                    </a>
                   </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Venue Partners }---*/}
-        <section className="px-5 md:px-8 py-20 md:py-28">
-          <div className="mx-auto max-w-5xl">
-            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-dim mb-10">
-              Venue Partners
-            </motion.p>
-            <div className="space-y-12">
-              {venuePartners.map((venue, i) => (
-                <motion.div
-                  key={venue.name}
-                  {...stagger(i + 1)}
-                  className="flex flex-col md:flex-row gap-8 items-start"
-                >
-                  <div className="relative w-full md:w-48 h-24 shrink-0">
-                    <Image
-                      src={venue.image}
-                      alt={venue.name}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-3">
-                      <h3 className="font-display text-2xl tracking-wider text-claw-text">
-                        {venue.name}
-                      </h3>
-                      <span className="font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                        {venue.location}
-                      </span>
-                    </div>
-                    <p className="text-sm text-claw-muted leading-relaxed mb-4">
-                      {venue.description}
-                    </p>
-                    <a
-                      href={venue.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-mono text-xs uppercase tracking-widest text-claw-orange hover:underline"
-                    >
-                      Visit →
-                    </a>
-                  </div>
-                </motion.div>
+                </motion.a>
               ))}
             </div>
           </div>

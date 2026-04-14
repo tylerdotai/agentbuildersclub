@@ -80,13 +80,13 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Supported By — Clawstin style orange banner */}
+      {/* Supported By — orange strip at bottom }---*/}
       <div className="bg-claw-orange">
-        <div className="mx-auto max-w-5xl px-5 md:px-8 py-12 flex flex-col items-center gap-6">
-          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-claw-void/70">
+        <div className="mx-auto max-w-7xl px-5 md:px-8 py-10 flex flex-col items-center gap-4">
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-claw-void/80">
             Supported By
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+          <div className="flex flex-wrap justify-center items-center gap-10">
             {[
               { name: "KiloClaw", image: "/kilocode-logo.png", url: "https://kilocode.pxf.io/OYnK0N" },
               { name: "FTW DAO", image: "/ftwdao-logo.png", url: "https://fwtx.city" },
@@ -101,29 +101,22 @@ export function Footer() {
                 aria-label={partner.name}
                 className="group flex items-center justify-center"
               >
-                <div className="relative w-16 h-10 brightness-0 invert">
+                <div className="relative h-8 w-auto aspect-ratio-auto">
                   <Image
                     src={partner.image}
                     alt={partner.name}
-                    fill
-                    className="object-contain group-hover:opacity-70 transition-opacity"
+                    width={96}
+                    height={32}
+                    className="object-contain h-8 w-auto brightness-0 invert"
                   />
                 </div>
               </a>
             ))}
           </div>
           <div className="w-px h-4 bg-claw-void/30" />
-          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-claw-void/70">
-            A COMMUNITY THING FOR <span className="underline">OPENCLAW</span> · DFW
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-claw-void/80">
+            A community thing for <span className="underline">OpenClaw</span> · DFW
           </p>
-          <a
-            href="https://discord.gg/q8kEquTu3z"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono text-[10px] uppercase tracking-[0.2em] text-claw-void/70 underline hover:text-claw-void transition-colors"
-          >
-            Contact
-          </a>
         </div>
       </div>
 
