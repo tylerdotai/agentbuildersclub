@@ -80,46 +80,6 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Supported By — orange strip at bottom }---*/}
-      <div className="bg-claw-orange">
-        <div className="mx-auto max-w-7xl px-5 md:px-8 py-10 flex flex-col items-center gap-4">
-          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-claw-void/80">
-            Supported By
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-10">
-            {[
-              { name: "KiloClaw", image: "/kilocode-logo.png", url: "https://kilocode.pxf.io/OYnK0N" },
-              { name: "FTW DAO", image: "/ftwdao-logo.png", url: "https://fwtx.city" },
-              { name: "Spark Coworking", image: "/spark-arlington.png", url: "https://sparkcoworking.com/arlington/" },
-              { name: "CreateFW", image: "/createfw-fort-worth.png", url: "https://thedec.co/" },
-            ].map((partner) => (
-              <a
-                key={partner.name}
-                href={partner.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={partner.name}
-                className="group flex items-center justify-center"
-              >
-                <div className="relative h-8 w-auto aspect-ratio-auto">
-                  <Image
-                    src={partner.image}
-                    alt={partner.name}
-                    width={96}
-                    height={32}
-                    className="object-contain h-8 w-auto brightness-0 invert"
-                  />
-                </div>
-              </a>
-            ))}
-          </div>
-          <div className="w-px h-4 bg-claw-void/30" />
-          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-claw-void/80">
-            A community thing for <span className="underline">OpenClaw</span> · DFW
-          </p>
-        </div>
-      </div>
-
       {/* Bottom bar */}
       <div className="border-t border-claw-border">
         <div className="mx-auto max-w-7xl px-5 md:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
