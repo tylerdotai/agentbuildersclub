@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
@@ -528,6 +530,44 @@ export default function Home() {
         <EventSection />
         <ThreeWays />
         <CommunitySpotlight />
+        {/* Partners */}
+        <section className="border-t border-claw-border px-5 md:px-8 py-20 md:py-28">
+          <div className="mx-auto max-w-5xl">
+            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-dim mb-10">
+              Partners
+            </motion.p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[
+                { name: "KiloClaw", image: "/kilocode-logo.png", url: "https://kilocode.pxf.io/OYnK0N", tagline: "AI Coding Agent" },
+                { name: "FTW DAO", image: "/ftwdao-logo.png", url: "https://linktr.ee/ftwdao", tagline: "Web3 Funding & Community" },
+                { name: "Spark Coworking", image: "/spark-arlington.png", url: "https://sparkcoworking.com/arlington/", tagline: "Venue Host" },
+                { name: "CreateFW", image: "/createfw-fort-worth.png", url: "https://thedec.co/", tagline: "Venue Host" },
+              ].map((partner, i) => (
+                <motion.a
+                  key={partner.name}
+                  href={partner.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  {...stagger(i + 1)}
+                  className="group flex flex-col items-center justify-center gap-3 p-6 border border-claw-border hover:border-claw-orange transition-colors"
+                >
+                  <div className="relative w-16 h-16">
+                    <Image
+                      src={partner.image}
+                      alt={partner.name}
+                      fill
+                      className="object-contain group-hover:opacity-80 transition-opacity"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <p className="font-mono text-xs text-claw-text">{partner.name}</p>
+                    <p className="font-mono text-[10px] text-claw-dim mt-0.5">{partner.tagline}</p>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+          </div>
+        </section>
         <ForAgents />
         <Newsletter />
       </main>
