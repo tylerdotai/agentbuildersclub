@@ -38,6 +38,11 @@ function createQueryBuilder(table: string) {
       }
 
       return {
+        in: (inField: string, values: any[]) => ({
+          then: (resolve: (val: { data: any[]; error: null }) => void) => {
+            resolve({ data: store.filter((r: any) => values.includes(r[inField])), error: null });
+          },
+        }),
         eq: (f1: string, v1: any) => ({
           eq: (f2: string, v2: any) => ({
             single: () => Promise.resolve({ data: runEqChain([f1, v1, f2, v2])[0] ?? null, error: null }),
