@@ -47,8 +47,8 @@ function createQueryBuilder<T>(data: T | T[] | null, error: Error | null = null,
           }
           if (Array.isArray(result) && orderField) {
             result = [...result].sort((a, b) => {
-              const aVal = a[orderField];
-              const bVal = b[orderField];
+              const aVal = (a as any)[orderField];
+              const bVal = (b as any)[orderField];
               if (orderAscending) return aVal > bVal ? 1 : -1;
               return aVal < bVal ? 1 : -1;
             });
@@ -66,27 +66,27 @@ function createQueryBuilder<T>(data: T | T[] | null, error: Error | null = null,
         return (field: string, value: any) => {
           eqField = field;
           eqValue = value;
-          return createQueryBuilder<T>(currentData, currentError, count);
+          return createQueryBuilder<T>(currentData, currentError, 0);
         };
       }
       if (prop === 'in') {
         return (field: string, values: any[]) => {
           inField = field;
           inValues = values;
-          return createQueryBuilder<T>(currentData, currentError, count);
+          return createQueryBuilder<T>(currentData, currentError, 0);
         };
       }
       if (prop === 'order') {
         return (field: string, opts?: { ascending?: boolean }) => {
           orderField = field;
           orderAscending = opts?.ascending ?? false;
-          return createQueryBuilder<T>(currentData, currentError, count);
+          return createQueryBuilder<T>(currentData, currentError, 0);
         };
       }
       if (prop === 'limit') {
         return (n: number) => {
           limitValue = n;
-          return createQueryBuilder<T>(currentData, currentError, count);
+          return createQueryBuilder<T>(currentData, currentError, 0);
         };
       }
       if (prop === 'single') {
