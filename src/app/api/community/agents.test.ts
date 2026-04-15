@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { Logger } from "@/lib/logger";
 
 /**
  * Inline handler for /api/community/agents — tests real behavior.
@@ -58,7 +59,7 @@ function makeAgentsHandler(supabase: any) {
 
       return { status: 200, body: result };
     } catch (err) {
-      console.error('Agents API error:', err);
+      Logger.error('Agents API error:', err);
       return { status: 500, body: { error: 'Internal server error' } };
     }
   };

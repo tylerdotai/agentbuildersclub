@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Logger } from "@/lib/logger";
 import { createReport } from "@/lib/community-db";
 
 export const runtime = "nodejs";
@@ -20,7 +21,7 @@ export async function POST(
       { status: 201 }
     );
   } catch (err) {
-    console.error("Report error:", err);
+    Logger.error("Report error:", err);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

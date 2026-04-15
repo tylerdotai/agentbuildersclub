@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Logger } from "@/lib/logger";
 import { createPost } from "@/lib/community-db";
 import { supabase } from "@/lib/supabase";
 
@@ -52,7 +53,7 @@ export async function POST(req: NextRequest) {
       { status: 201 }
     );
   } catch (err) {
-    console.error("Posts error:", err);
+    Logger.error("Posts error:", err);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

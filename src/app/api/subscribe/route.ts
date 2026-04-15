@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { Logger } from "@/lib/logger";
 import { supabase } from "@/lib/supabase";
 
 function isValidEmail(email: unknown): email is string {
@@ -8,7 +9,7 @@ function isValidEmail(email: unknown): email is string {
 async function sendConfirmationEmail(email: string) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    console.log("[subscribe] RESEND_API_KEY not set, skipping confirmation email");
+    
     return;
   }
 
@@ -39,12 +40,12 @@ async function sendConfirmationEmail(email: string) {
 
     if (!response.ok) {
       const error = await response.text();
-      console.error("[subscribe] Resend error:", error);
+      Logger.error("[subscribe] Resend error:", error);
     } else {
-      console.log("[subscribe] Confirmation email sent to:", email);
+      
     }
   } catch (error) {
-    console.error("[subscribe] Failed to send confirmation email:", error);
+    Logger.error("[subscribe] Failed to send confirmation email:", error);
   }
 }
 
@@ -80,18 +81,18 @@ export async function POST(request: Request) {
       if (insertError.code === "23505") {
         return NextResponse.json({ ok: true, message: "Already subscribed!" });
       }
-      console.error("[subscribe] Insert error:", insertError);
+      Logger.error("[subscribe] Insert error:", insertError);
       return NextResponse.json({ error: "Server error" }, { status: 500 });
     }
 
     // Send confirmation email via Resend (non-blocking)
-    sendConfirmationEmail(normalized).catch(console.error);
+    sendConfirmationEmail(normalized).catch((err) => Logger.error("subscribe", "Confirmation email failed", err));
 
-    console.log(`[subscribe] ${normalized} subscribed`);
+    
     return NextResponse.json({ ok: true });
 
   } catch (error) {
-    console.error("Subscribe error:", error);
+    Logger.error("Subscribe error:", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

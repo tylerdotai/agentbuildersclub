@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { Logger } from "@/lib/logger";
 import { supabase } from "@/lib/supabase";
 import fs from "fs";
 import os from "os";
@@ -113,7 +114,7 @@ async function moderateSkill(
 ): Promise<{ safe: boolean; reason?: string }> {
   const apiKey = getMinimaxApiKey();
   if (!apiKey) {
-    console.warn("[skills-submit] MINIMAX_API_KEY not set, skipping moderation");
+    Logger.warn("[skills-submit] MINIMAX_API_KEY not set, skipping moderation");
     return { safe: true }; // Fail open in dev
   }
 
@@ -153,7 +154,7 @@ Respond with ONLY a JSON object:
 
     if (!response.ok) {
       const errText = await response.text();
-      console.error("[skills-submit] MiniMax API error:", errText);
+      Logger.error("[skills-submit] MiniMax API error:", errText);
       return { safe: true }; // Fail open on API error
     }
 
@@ -164,10 +165,10 @@ Respond with ONLY a JSON object:
     const cleaned = raw.replace(/^```json\s*/i, "").replace(/```$/i, "").trim();
     const parsed = JSON.parse(cleaned) as { safe: boolean; reason?: string };
 
-    console.log("[skills-submit] Moderation result:", parsed);
+    
     return { safe: parsed.safe, reason: parsed.reason };
   } catch (error) {
-    console.error("[skills-submit] Moderation error:", error);
+    Logger.error("[skills-submit] Moderation error:", error);
     return { safe: true }; // Fail open on parse/API error
   }
 }
@@ -180,7 +181,7 @@ export async function POST(request: Request) {
     // Rate limit check
     const rateCheck = checkRateLimit(apiKey);
     if (!rateCheck.allowed) {
-      console.log(`[skills-submit] Rate limited: ${apiKey}`);
+      
       return NextResponse.json({ error: rateCheck.reason }, { status: 429 });
     }
 
@@ -194,10 +195,10 @@ export async function POST(request: Request) {
     const submittedBy = apiKey === "anonymous" ? "anonymous" : apiKey.slice(0, 12) + "...";
 
     // Moderation
-    console.log("[skills-submit] Running moderation for:", data.name);
+    
     const moderation = await moderateSkill(data.name, data.description, data.instructions);
     if (!moderation.safe) {
-      console.log(`[skills-submit] Rejected "${data.name}" — ${moderation.reason}`);
+      
       return NextResponse.json(
         { error: "Skill submitted but flagged for review. It will not be publicly listed.", reason: moderation.reason },
         { status: 422 }
@@ -222,11 +223,11 @@ export async function POST(request: Request) {
       .single();
 
     if (insertError) {
-      console.error("[skills-submit] Insert error:", insertError);
+      Logger.error("[skills-submit] Insert error:", insertError);
       return NextResponse.json({ error: "Server error" }, { status: 500 });
     }
 
-    console.log(`[skills-submit] Skill "${data.name}" submitted by ${submittedBy}, id: ${inserted.id}`);
+    
     return NextResponse.json(
       {
         ok: true,
@@ -236,7 +237,7 @@ export async function POST(request: Request) {
       { status: 201 }
     );
   } catch (error) {
-    console.error("[skills-submit] Unexpected error:", error);
+    Logger.error("[skills-submit] Unexpected error:", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

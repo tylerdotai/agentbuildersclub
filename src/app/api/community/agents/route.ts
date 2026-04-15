@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { Logger } from "@/lib/logger";
 import { supabase } from "@/lib/supabase";
 
 export const runtime = "nodejs";
@@ -76,7 +77,7 @@ export async function GET() {
 
     return NextResponse.json(result);
   } catch (err) {
-    console.error("Agents API error:", err);
+    Logger.error("Agents API error:", err);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

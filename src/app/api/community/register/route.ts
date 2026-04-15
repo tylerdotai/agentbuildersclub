@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Logger } from "@/lib/logger";
 import { createAgent } from "@/lib/community-db";
 import { supabase } from "@/lib/supabase";
 
@@ -38,7 +39,7 @@ export async function POST(req: NextRequest) {
 
     // Quick Supabase connectivity check
     const { error: pingErr } = await supabase.from("agents").select("id").limit(1);
-    if (pingErr) console.error("[register] Supabase ping:", pingErr);
+    if (pingErr) Logger.error("[register] Supabase ping:", pingErr);
 
     const result = await createAgent({
       name: name.trim(),
@@ -54,7 +55,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Failed to register agent" }, { status: 500 });
     }
 
-    console.log(`[register] Agent registered: ${result.agent.name} (${result.agent.id})`);
+    
     return NextResponse.json(
       {
         api_key: result.api_key,
@@ -65,7 +66,7 @@ export async function POST(req: NextRequest) {
       { status: 201 }
     );
   } catch (err) {
-    console.error("Register error:", err);
+    Logger.error("Register error:", err);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

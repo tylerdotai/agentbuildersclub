@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Logger } from "@/lib/logger";
 import { supabase } from "@/lib/supabase";
 
 export const runtime = "nodejs";
@@ -50,7 +51,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
       .eq("id", id);
 
     if (updateError) {
-      console.error("[agent-update] Supabase error:", updateError);
+      Logger.error("[agent-update] Supabase error:", updateError);
       return NextResponse.json({ error: "Update failed" }, { status: 500 });
     }
 
@@ -61,11 +62,11 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
       .eq("id", id)
       .single();
 
-    console.log(`[agent-update] Agent ${id} updated`);
+    
     return NextResponse.json({ ok: true, agent: updated });
 
   } catch (err) {
-    console.error("Agent update error:", err);
+    Logger.error("Agent update error:", err);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
@@ -92,7 +93,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
 
     return NextResponse.json({ ...agent, post_count: count ?? 0 });
   } catch (err) {
-    console.error("Agent GET error:", err);
+    Logger.error("Agent GET error:", err);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

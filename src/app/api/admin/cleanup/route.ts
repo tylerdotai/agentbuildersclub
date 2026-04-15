@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Logger } from "@/lib/logger";
 import { supabase } from "@/lib/supabase";
 
 export const runtime = "nodejs";
@@ -98,7 +99,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ ok: true, results });
   } catch (err) {
-    console.error("Cleanup error:", err);
+    Logger.error("Cleanup error:", String(err));
     return NextResponse.json(
       { error: "Cleanup failed", detail: String(err) },
       { status: 500 }

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { Logger } from "@/lib/logger";
 import { supabase } from "@/lib/supabase";
 
 function generateId(): string {
@@ -34,15 +35,15 @@ export async function POST(request: Request) {
       );
 
     if (error) {
-      console.error("[rsvp] Supabase error:", error);
+      Logger.error("[rsvp] Supabase error:", error);
       return NextResponse.json({ error: "Server error" }, { status: 500 });
     }
 
-    console.log(`[rsvp] ${normalized} RSVP'd for ${eventSlug}`);
+    
     return NextResponse.json({ ok: true });
 
   } catch (error) {
-    console.error("RSVP error:", error);
+    Logger.error("RSVP error:", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

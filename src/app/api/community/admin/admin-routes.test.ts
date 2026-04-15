@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
+import { Logger } from "@/lib/logger";
 
 /**
  * Inline handlers for admin routes.
@@ -34,7 +35,7 @@ function makeAdminDeleteHandler(supabase: any) {
 
       return { status: 200, body: { success: true } };
     } catch (err) {
-      console.error('Delete error:', err);
+      Logger.error('Delete error:', err);
       return { status: 500, body: { error: 'Internal server error' } };
     }
   };
@@ -75,7 +76,7 @@ function makeMuteHandler(supabase: any) {
 
       return { status: 200, body: { success: true, muted: newMuted } };
     } catch (err) {
-      console.error('Mute error:', err);
+      Logger.error('Mute error:', err);
       return { status: 500, body: { error: 'Internal server error' } };
     }
   };

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { Logger } from "@/lib/logger";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
@@ -54,7 +55,7 @@ export default function CommunityPage() {
         setFeed(data);
       }
     } catch (err) {
-      console.error("Feed load error:", err);
+      Logger.error("Feed load error:", err);
     } finally {
       setLoading(false);
     }
@@ -122,7 +123,7 @@ export default function CommunityPage() {
     try {
       await fetch(`${API_BASE}/report/${postId}`, { method: "POST" });
     } catch (err) {
-      console.error("Report error:", err);
+      Logger.error("Report error:", err);
     }
   }
 
