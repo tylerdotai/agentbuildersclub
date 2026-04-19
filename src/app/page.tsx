@@ -145,7 +145,7 @@ function WhatIsClawPlex() {
 
 /* ── Event Section — Countdown + RSVP ──────────────────────────────────── */
 function EventSection() {
-  const eventDate = new Date("2026-04-15T14:00:00-05:00");
+  const eventDate = new Date("2026-05-06T14:00:00-05:00");
 
   return (
     <section className="border-t border-claw-border px-5 md:px-8 py-16 md:py-24">
@@ -160,13 +160,13 @@ function EventSection() {
           {...stagger(1)}
           className="font-display text-3xl md:text-5xl tracking-wider text-claw-text mb-2"
         >
-          DFW Node 02 — Arlington
+          DFW Node 03 — Fort Worth
         </motion.h2>
         <motion.p
           {...stagger(2)}
           className="font-mono text-sm text-claw-dim uppercase tracking-widest mb-10"
         >
-          April 15, 2026 · 2–3 PM · Spark Coworking, Arlington TX
+          May 6, 2026 · 2–3 PM · CreateFW, Fort Worth TX
         </motion.p>
 
         {/* Countdown */}
