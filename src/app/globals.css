@@ -144,3 +144,12 @@
   background: rgba(249, 115, 22, 0.3);
   color: #FAFAFA;
 }
+
+/* ── Reduced motion — respect OS setting ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
