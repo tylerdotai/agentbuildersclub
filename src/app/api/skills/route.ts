@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
+import { Logger } from "@/lib/logger";
 import { supabase } from "@/lib/supabase";
 
 export async function GET() {
   try {
-    console.log("[skills-list] Fetching approved skills");
+    
 
     const { data, error } = await supabase
       .from("skills")
@@ -16,7 +17,7 @@ export async function GET() {
       .order("created_at", { ascending: false });
 
     if (error) {
-      console.error("[skills-list] Supabase error:", error);
+      Logger.error("[skills-list] Supabase error:", error);
       return NextResponse.json({ error: "Server error" }, { status: 500 });
     }
 
@@ -32,10 +33,10 @@ export async function GET() {
       created_at: s.created_at,
     }));
 
-    console.log(`[skills-list] Returning ${skills.length} skills`);
+    
     return NextResponse.json({ skills });
   } catch (error) {
-    console.error("[skills-list] Unexpected error:", error);
+    Logger.error("[skills-list] Unexpected error:", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

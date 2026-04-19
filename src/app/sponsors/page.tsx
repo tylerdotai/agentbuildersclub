@@ -68,6 +68,21 @@ const tiers = [
   },
 ];
 
+const partners = [
+  {
+    name: "KiloClaw",
+    image: "/kilocode-logo.png",
+    url: "https://kilocode.pxf.io/OYnK0N",
+    tagline: "AI Coding Agent",
+  },
+  {
+    name: "FTW DAO",
+    image: "/ftwdao-logo.png",
+    url: "https://fwtx.city",
+    tagline: "Web3 Funding & Community",
+  },
+];
+
 const venuePartners = [
   {
     name: "Spark Coworking",
@@ -212,6 +227,39 @@ export default function SponsorsPage() {
                   ))}
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Partners }---*/}
+        <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
+          <div className="mx-auto max-w-5xl">
+            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-dim mb-10">
+              Partners
+            </motion.p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {partners.map((partner, i) => (
+                <motion.a
+                  key={partner.name}
+                  href={partner.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  {...stagger(i + 1)}
+                  className="group relative overflow-hidden border border-claw-border aspect-video hover:border-claw-orange transition-colors"
+                >
+                  <div className="absolute inset-0 z-10" />
+                  <Image
+                    src={partner.image}
+                    alt={partner.name}
+                    fill
+                    className="object-cover group-hover:opacity-80 transition-opacity"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-claw-void/90 border-t border-claw-border px-4 py-3 flex items-center justify-between">
+                    <span className="font-mono text-sm text-claw-text">{partner.name}</span>
+                    <span className="font-mono text-xs text-claw-dim">{partner.tagline}</span>
+                  </div>
+                </motion.a>
+              ))}
             </div>
           </div>
         </section>

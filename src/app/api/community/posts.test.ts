@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { Logger } from "@/lib/logger";
 
 /**
  * Inline route handler for /api/community/posts — tests real behavior
@@ -59,7 +60,7 @@ function makePostsHandler(supabase: any) {
         { status: 201 }
       );
     } catch (err) {
-      console.error('Posts error:', err);
+      Logger.error('Posts error:', err);
       return Response.json({ error: 'Internal server error' }, { status: 500 });
     }
   };

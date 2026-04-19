@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Logger } from "@/lib/logger";
 import { supabase } from "@/lib/supabase";
 
 export const runtime = "nodejs";
@@ -40,7 +41,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "seeking_skills must be a non-empty array" }, { status: 400 });
     }
 
-    console.log(`[agents-match] project="${project_description}" seeking=${JSON.stringify(seeking_skills)} radius=${radius_miles}`);
+    
 
     // Fetch all active/idle agents (not offline)
     const { data, error } = await supabase
@@ -49,7 +50,7 @@ export async function POST(req: NextRequest) {
       .neq("availability", "offline");
 
     if (error) {
-      console.error("[agents-match] Supabase error:", error);
+      Logger.error("[agents-match] Supabase error:", error.message);
       return NextResponse.json({ error: "Server error" }, { status: 500 });
     }
 
@@ -89,11 +90,11 @@ export async function POST(req: NextRequest) {
       !matchedSkillSet.has(s.toLowerCase().split("-")[0])
     );
 
-    console.log(`[agents-match] ${matches.length} matches, ${community_gaps.length} gaps`);
+    
 
     return NextResponse.json({ matches, community_gaps });
   } catch (err) {
-    console.error("[agents-match] Unexpected error:", err);
+    Logger.error("[agents-match] Unexpected error:", String(err));
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

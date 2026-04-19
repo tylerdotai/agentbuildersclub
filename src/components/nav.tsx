@@ -29,7 +29,7 @@ export function Nav() {
       <nav className="fixed inset-x-0 top-0 z-50 border-b border-claw-border/50 bg-claw-void/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8 md:py-4">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3">
             <div className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-claw-border bg-claw-surface">
               <Image
                 src="/clawplex-logo.png"
@@ -42,8 +42,7 @@ export function Nav() {
             <span className="font-display text-xl tracking-wider text-claw-text">
               CLAWPLEX
             </span>
-
-          </a>
+          </Link>
 
           {/* Desktop */}
           <div className="hidden md:flex items-center gap-1">
@@ -76,8 +75,8 @@ export function Nav() {
                           className="block px-4 py-3 font-mono text-xs uppercase tracking-widest text-claw-muted hover:text-claw-text hover:bg-claw-surface-2 transition-colors border-b border-claw-border last:border-0"
                         >
                           {link.label}
-                        </a>
-                      ))}
+                      </a>
+                    ))}
                     </div>
                   </motion.div>
                 )}

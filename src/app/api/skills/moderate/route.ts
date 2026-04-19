@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
+import { Logger } from "@/lib/logger";
 import { supabase } from "@/lib/supabase";
 
 const ADMIN_API_KEY = process.env.CLAWPLEX_ADMIN_API_KEY;
 
 function isAdminRequest(request: Request): boolean {
   if (!ADMIN_API_KEY) {
-    console.warn("[skills-moderate] CLAWPLEX_ADMIN_API_KEY not set — allowing all requests (dev mode)");
+    Logger.warn("[skills-moderate] CLAWPLEX_ADMIN_API_KEY not set — allowing all requests (dev mode)");
     return true;
   }
   const provided = request.headers.get("x-admin-api-key");
@@ -37,7 +38,7 @@ function validatePayload(body: unknown): { valid: true; data: ModeratePayload } 
 export async function PATCH(request: Request) {
   try {
     if (!isAdminRequest(request)) {
-      console.log("[skills-moderate] Unauthorized attempt");
+      
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -66,7 +67,7 @@ export async function PATCH(request: Request) {
         break;
     }
 
-    console.log(`[skills-moderate] Applying action "${action}" to skill ${id}`);
+    
 
     const { error: updateError } = await supabase
       .from("skills")
@@ -74,7 +75,7 @@ export async function PATCH(request: Request) {
       .eq("id", id);
 
     if (updateError) {
-      console.error("[skills-moderate] Update error:", updateError);
+      Logger.error("[skills-moderate] Update error:", updateError);
       return NextResponse.json({ error: "Server error" }, { status: 500 });
     }
 
@@ -89,10 +90,10 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ error: "Skill not found" }, { status: 404 });
     }
 
-    console.log(`[skills-moderate] Skill ${id} updated with action "${action}"`);
+    
     return NextResponse.json({ ok: true, id, action });
   } catch (error) {
-    console.error("[skills-moderate] Unexpected error:", error);
+    Logger.error("[skills-moderate] Unexpected error:", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

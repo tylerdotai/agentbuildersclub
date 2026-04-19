@@ -17,15 +17,15 @@ export type SelectResult<T> = {
 };
 
 function createQueryBuilder<T>(data: T | T[] | null, error: Error | null = null, count?: number): any {
-  let currentData = data;
-  let currentError = error;
+  const currentData = data;
+  const currentError = error;
   let eqField = '';
   let eqValue: any = '';
   let inField = '';
   let inValues: any[] = [];
   let orderField = '';
   let orderAscending = false;
-  let limitValue = 0;
+  let limitValue: 0;
 
   const builder: any = new Proxy({}, {
     get(_target, prop) {
@@ -46,9 +46,9 @@ function createQueryBuilder<T>(data: T | T[] | null, error: Error | null = null,
             result = (result as any[]).filter(item => item[eqField] === eqValue);
           }
           if (Array.isArray(result) && orderField) {
-            result = [...result].sort((a: any, b: any) => {
-              const aVal = a[orderField];
-              const bVal = b[orderField];
+            result = [...result].sort((a, b) => {
+              const aVal = (a as any)[orderField];
+              const bVal = (b as any)[orderField];
               if (orderAscending) return aVal > bVal ? 1 : -1;
               return aVal < bVal ? 1 : -1;
             });
@@ -66,27 +66,27 @@ function createQueryBuilder<T>(data: T | T[] | null, error: Error | null = null,
         return (field: string, value: any) => {
           eqField = field;
           eqValue = value;
-          return createQueryBuilder<T>(currentData, currentError, count);
+          return createQueryBuilder<T>(currentData, currentError, 0);
         };
       }
       if (prop === 'in') {
         return (field: string, values: any[]) => {
           inField = field;
           inValues = values;
-          return createQueryBuilder<T>(currentData, currentError, count);
+          return createQueryBuilder<T>(currentData, currentError, 0);
         };
       }
       if (prop === 'order') {
         return (field: string, opts?: { ascending?: boolean }) => {
           orderField = field;
           orderAscending = opts?.ascending ?? false;
-          return createQueryBuilder<T>(currentData, currentError, count);
+          return createQueryBuilder<T>(currentData, currentError, 0);
         };
       }
       if (prop === 'limit') {
         return (n: number) => {
           limitValue = n;
-          return createQueryBuilder<T>(currentData, currentError, count);
+          return createQueryBuilder<T>(currentData, currentError, 0);
         };
       }
       if (prop === 'single') {

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Logger } from "@/lib/logger";
 import { supabase } from "@/lib/supabase";
 
 export const runtime = "nodejs";
@@ -14,7 +15,7 @@ export async function GET(
       return NextResponse.json({ error: "Skill ID is required" }, { status: 400 });
     }
 
-    console.log(`[skills-export] Fetching skill id=${id}`);
+    
 
     const { data, error } = await supabase
       .from("skills")
@@ -24,7 +25,7 @@ export async function GET(
       .single();
 
     if (error || !data) {
-      console.error("[skills-export] Skill not found or not approved:", id);
+      Logger.error("[skills-export] Skill not found or not approved:", id);
       return NextResponse.json({ error: "Skill not found" }, { status: 404 });
     }
 
@@ -58,7 +59,7 @@ export async function GET(
       },
     };
 
-    console.log(`[skills-export] Exporting "${skill.name}" as ${filename}`);
+    
 
     return new NextResponse(JSON.stringify(clawpack, null, 2), {
       status: 200,
@@ -68,7 +69,7 @@ export async function GET(
       },
     });
   } catch (err) {
-    console.error("[skills-export] Unexpected error:", err);
+    Logger.error("[skills-export] Unexpected error:", err);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

@@ -1,7 +1,67 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Logger } from "@/lib/logger";
 import { supabase } from "@/lib/supabase";
 
 export const runtime = "nodejs";
+
+/** Agent sub-object from the Supabase posts × agents join */
+interface PostAgent {
+  id: string;
+  name: string;
+  website: string;
+  owner: string;
+  muted: boolean;
+}
+
+/** Post row from Supabase joined with its agent */
+interface PostRow {
+  id: string;
+  agent_id: string;
+  content: string;
+  image_url: string | null;
+  parent_id: string | null;
+  created_at: string;
+  agents: PostAgent | null;
+}
+
+/** Post summary used for stats aggregation (no join needed) */
+interface PostSummary {
+  agent_id: string;
+  created_at: string;
+  content: string;
+}
+
+/** Parent post row from Supabase join */
+interface ParentPostRow {
+  id: string;
+  agent_id: string;
+  agents: { id: string; name: string; website: string } | null;
+}
+
+/** Upvote row */
+interface UpvoteRow {
+  post_id: string;
+}
+
+/** Feed item returned to the client */
+interface FeedItem {
+  id: string;
+  agent_id: string;
+  agent_name: string;
+  agent_website: string;
+  owner: string;
+  content: string;
+  image_url: string | null;
+  parent_id: string | null;
+  created_at: string;
+  upvote_count: number;
+  user_upvoted: boolean;
+  agent_post_count?: number;
+  agent_last_active?: string;
+  agent_capability_tag?: string;
+  parent_agent_name?: string;
+  parent_agent_website?: string;
+}
 
 export async function GET(req: NextRequest) {
   try {
@@ -30,10 +90,13 @@ export async function GET(req: NextRequest) {
 
     if (error) throw error;
 
+    // Cast joined result so TypeScript knows `agents` is a single object, not an array
+    const rows = (posts ?? []) as unknown as PostRow[];
+
     // Filter out muted agents and format
-    let feed: any[] = posts
-      ?.filter((p: any) => !p.agents?.muted)
-      .map((p: any) => ({
+    let feed: FeedItem[] = rows
+      .filter((p: PostRow) => !p.agents?.muted)
+      .map((p: PostRow): FeedItem => ({
         id: p.id,
         agent_id: p.agent_id,
         agent_name: p.agents?.name ?? "Unknown",
@@ -48,10 +111,10 @@ export async function GET(req: NextRequest) {
       })) ?? [];
 
     // Get per-agent stats: post count, last active, capability tag (first 2 words of latest post)
-    const agentIds = [...new Set(feed.map((p: any) => p.agent_id))];
+    const agentIds = [...new Set(feed.map((p) => p.agent_id))];
     const agentStatsMap: Record<
       string,
-      { post_count: number; last_active: string; capability_tag: string }
+      { post_count: number; last_active: string | null; capability_tag: string }
     > = {};
 
     if (agentIds.length > 0) {
@@ -63,11 +126,11 @@ export async function GET(req: NextRequest) {
 
       for (const agentId of agentIds) {
         const agentPosts = (postCounts ?? []).filter(
-          (p: any) => p.agent_id === agentId
+          (p: PostSummary) => p.agent_id === agentId
         );
         // Sort by created_at desc for this agent
         agentPosts.sort(
-          (a: any, b: any) =>
+          (a, b) =>
             new Date(b.created_at).getTime() -
             new Date(a.created_at).getTime()
         );
@@ -87,7 +150,7 @@ export async function GET(req: NextRequest) {
     }
 
     // Attach agent stats to each feed item
-    feed = feed.map((p: any) => ({
+    feed = feed.map((p): FeedItem => ({
       ...p,
       agent_post_count: agentStatsMap[p.agent_id]?.post_count ?? 0,
       agent_last_active: agentStatsMap[p.agent_id]?.last_active ?? p.created_at,
@@ -98,7 +161,7 @@ export async function GET(req: NextRequest) {
     // Enrich posts that have parent_id with parent post info
     const postsWithParents = feed.filter((p) => p.parent_id);
     if (postsWithParents.length > 0) {
-      const parentIds = postsWithParents.map((p) => p.parent_id);
+      const parentIds = postsWithParents.map((p) => p.parent_id as string);
       const { data: parentPosts } = await supabase
         .from("posts")
         .select(`
@@ -112,8 +175,9 @@ export async function GET(req: NextRequest) {
         `)
         .in("id", parentIds);
 
-      const parentMap = new Map(
-        (parentPosts ?? []).map((pp: any) => [
+      const parentRows = (parentPosts ?? []) as unknown as ParentPostRow[];
+      const parentMap = new Map<string, { parent_agent_name: string; parent_agent_website: string }>(
+        parentRows.map((pp: ParentPostRow) => [
           pp.id,
           {
             parent_agent_name: pp.agents?.name ?? "Unknown",
@@ -122,9 +186,9 @@ export async function GET(req: NextRequest) {
         ])
       );
 
-      feed = feed.map((p) => {
+      feed = feed.map((p): FeedItem => {
         if (p.parent_id && parentMap.has(p.parent_id)) {
-          return { ...p, ...parentMap.get(p.parent_id) };
+          return { ...p, ...parentMap.get(p.parent_id)! };
         }
         return p;
       });
@@ -144,8 +208,8 @@ export async function GET(req: NextRequest) {
           .select("post_id")
           .eq("agent_id", agent.id);
 
-        const upvotedIds = new Set(upvotes?.map((u: any) => u.post_id) ?? []);
-        feed.forEach((item: any) => {
+        const upvotedIds = new Set(upvotes?.map((u: UpvoteRow) => u.post_id) ?? []);
+        feed.forEach((item: FeedItem) => {
           if (upvotedIds.has(item.id)) {
             item.user_upvoted = true;
           }
@@ -155,7 +219,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(feed);
   } catch (err) {
-    console.error("Feed error:", err);
+    Logger.error("Feed error:", err);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

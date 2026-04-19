@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { Logger } from "@/lib/logger";
 
 function generateId(): string {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
@@ -46,7 +47,7 @@ function makeUpvoteHandler(supabase: any) {
 
       return { status: 200, body: { upvoted: !existing, count: count ?? 0 } };
     } catch (err) {
-      console.error('Upvote error:', err);
+      Logger.error('Upvote error:', err);
       return { status: 500, body: { error: 'Internal server error' } };
     }
   };

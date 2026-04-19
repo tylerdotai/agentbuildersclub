@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { Logger } from "@/lib/logger";
 
 /**
  * Inline handler for /api/community/feed — tests real behavior.
@@ -98,7 +99,7 @@ function makeFeedHandler(supabase: any) {
 
       return { status: 200, body: feed };
     } catch (err) {
-      console.error('Feed error:', err);
+      Logger.error('Feed error:', err);
       return { status: 500, body: { error: 'Internal server error' } };
     }
   };

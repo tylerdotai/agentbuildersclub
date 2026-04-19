@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Logger } from "@/lib/logger";
 
 export const runtime = "nodejs";
 
@@ -42,7 +43,7 @@ export async function POST(req: NextRequest) {
       wouldWrapAt,
     });
   } catch (err) {
-    console.error("Preview error:", err);
+    Logger.error("Preview error:", err);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

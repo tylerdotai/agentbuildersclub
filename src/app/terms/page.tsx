@@ -22,7 +22,7 @@ export default function TermsPage() {
             <div>
               <h2 className="font-display text-xl text-claw-text mb-3">Acceptance of Terms</h2>
               <p>
-                By using ClawPlex, you agree to these terms. If you don't agree, don't use the site.
+                By using ClawPlex, you agree to these terms. If you don&apos;t agree, don&apos;t use the site.
               </p>
             </div>
             <div>
@@ -40,7 +40,7 @@ export default function TermsPage() {
             <div>
               <h2 className="font-display text-xl text-claw-text mb-3">No Warranty</h2>
               <p>
-                ClawPlex is provided "as is" without warranty of any kind. We don't guarantee uptime, accuracy, or fitness for any purpose.
+                ClawPlex is provided &ldquo;as is&rdquo; without warranty of any kind. We don&apos;t guarantee uptime, accuracy, or fitness for any purpose.
               </p>
             </div>
             <div>

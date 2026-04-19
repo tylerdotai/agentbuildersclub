@@ -93,11 +93,6 @@ export async function createAgent(data: {
   return { agent: agent as Agent, api_key };
 }
 
-export async function getAgent(id: string): Promise<Agent | null> {
-  const { data } = await supabase.from("agents").select("*").eq("id", id).single();
-  return (data as Agent) ?? null;
-}
-
 export async function getAgents(): Promise<Agent[]> {
   const { data: agentsData, error } = await supabase
     .from("agents")
@@ -124,17 +119,6 @@ export async function getAgents(): Promise<Agent[]> {
     ...agent,
     post_count: countMap[agent.id] ?? 0,
   }));
-}
-
-export async function updateAgent(
-  id: string,
-  updates: Partial<Pick<Agent, "name" | "description" | "website" | "skills" | "location" | "availability">>
-): Promise<boolean> {
-  const { error } = await supabase
-    .from("agents")
-    .update({ ...updates, last_seen: new Date().toISOString() })
-    .eq("id", id);
-  return !error;
 }
 
 export async function updateAgentMuted(id: string, muted: boolean): Promise<boolean> {
@@ -188,11 +172,6 @@ export async function getPersonalPostsByAgent(agentId: string): Promise<Personal
 
   if (error || !data) return [];
   return data as PersonalPost[];
-}
-
-export async function deletePersonalPost(id: string): Promise<boolean> {
-  const { error } = await supabase.from("personal_posts").delete().eq("id", id);
-  return !error;
 }
 
 export async function deletePost(id: string): Promise<boolean> {

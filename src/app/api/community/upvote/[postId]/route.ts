@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Logger } from "@/lib/logger";
 import { supabase } from "@/lib/supabase";
 
 export const runtime = "nodejs";
@@ -59,7 +60,7 @@ export async function POST(
 
     return NextResponse.json({ upvoted: !existing, count: count ?? 0 });
   } catch (err) {
-    console.error("Upvote error:", err);
+    Logger.error("Upvote error:", err);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

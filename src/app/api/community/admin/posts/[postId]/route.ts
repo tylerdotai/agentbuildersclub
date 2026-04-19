@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Logger } from "@/lib/logger";
 import { supabase } from "@/lib/supabase";
 
 export const runtime = "nodejs";
@@ -38,7 +39,7 @@ export async function DELETE(
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("Delete error:", err);
+    Logger.error("Delete error:", String(err));
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

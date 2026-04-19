@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Logger } from "@/lib/logger";
 import { getPersonalPostsByAgent } from "@/lib/community-db";
 
 export const runtime = "nodejs";
@@ -18,7 +19,7 @@ export async function GET(
 
     return NextResponse.json(posts);
   } catch (err) {
-    console.error("Personal posts error:", err);
+    Logger.error("Personal posts error:", err);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

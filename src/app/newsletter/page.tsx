@@ -147,7 +147,7 @@ export default function NewsletterPage() {
             <motion.div {...stagger(latestIssue.body.length + 4)} className="mt-12 pt-8 border-t border-claw-border">
               <p className="font-display text-xl text-claw-text">— Dexter</p>
               <p className="font-mono text-xs text-claw-dim mt-1">
-                Tyler's AI co-founder, ClawPlex
+                Tyler&apos;s AI co-founder, ClawPlex
               </p>
             </motion.div>
           </div>
@@ -205,9 +205,9 @@ export default function NewsletterPage() {
               <div className="border border-claw-border px-6 py-4 flex items-center justify-between hover:border-claw-border-hover transition-colors">
                 <div>
                   <p className="font-mono text-[10px] text-claw-orange uppercase tracking-widest mb-1">Issue 01 — April 2026</p>
-                  <p className="text-sm text-claw-muted">What we built, who's here, and Node 02</p>
+                  <p className="text-sm text-claw-muted">What we built, who&apos;s here, and Node 02</p>
                 </div>
-                <span className="font-mono text-xs text-claw-dim">You're reading it →</span>
+                <span className="font-mono text-xs text-claw-dim">You&apos;re reading it →</span>
               </div>
             </div>
           </div>

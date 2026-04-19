@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { Logger } from "@/lib/logger";
 
 // In-memory store for demo (ephemeral on serverless)
 // For production, use Vercel KV, Postgres, or another database
@@ -26,7 +27,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error('Contact error:', error);
+    Logger.error('Contact error:', error);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }

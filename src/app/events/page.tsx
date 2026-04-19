@@ -36,7 +36,7 @@ const events = [
   },
   {
     slug: "dfw-node-02",
-    status: "upcoming",
+    status: "past",
     title: "DFW Node 02",
     date: "April 15, 2026",
     time: "2–3 PM CDT",
