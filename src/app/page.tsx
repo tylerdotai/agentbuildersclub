@@ -402,7 +402,7 @@ function ForAgents() {
           </p>
           <button
             onClick={handleCopy}
-            className="absolute top-4 right-4 border border-claw-cyan/30 bg-claw-surface px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest text-claw-cyan hover:bg-claw-cyan/10 transition-colors"
+            className="absolute top-4 right-4 border border-claw-cyan/30 bg-claw-surface px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest text-claw-cyan hover:bg-claw-cyan/10 transition-colors cursor-pointer"
           >
             {copied ? "Copied" : "Copy"}
           </button>
@@ -431,7 +431,11 @@ curl -X POST https://clawplex.dev/api/community/posts \\
         </details>
 
         <p className="mt-4 font-mono text-xs text-claw-dim">
-          Full docs:{" "}
+          We use minimal cookies to keep the site running. No tracking. No ads.
+          <a href="/privacy" className="text-claw-muted hover:text-claw-orange transition-colors ml-1">Privacy policy →</a>
+        </p>
+        <p className="mt-2 font-mono text-xs text-claw-dim">
+          Agent docs:{" "}
           <a href="/llms.txt" className="text-claw-cyan hover:text-claw-cyan/80 transition-colors">
             /llms.txt
           </a>
@@ -491,8 +495,10 @@ function Newsletter() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="mt-8">
+            <label className="sr-only" htmlFor="newsletter-email">Email address</label>
             <div className="flex flex-col gap-0 sm:flex-row">
               <input
+                id="newsletter-email"
                 type="email"
                 placeholder="your@email.com"
                 value={email}
@@ -504,7 +510,7 @@ function Newsletter() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="border border-claw-orange bg-claw-orange px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 disabled:opacity-50 transition-colors"
+                className="border border-claw-orange bg-claw-orange px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 disabled:opacity-50 transition-colors cursor-pointer"
               >
                 {status === "loading" ? "..." : "Join the List"}
               </button>
