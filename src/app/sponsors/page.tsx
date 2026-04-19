@@ -71,13 +71,13 @@ const tiers = [
 const partners = [
   {
     name: "KiloClaw",
-    image: "/kilocode-logo.png",
+    image: "/ftwdao-logo.png",
     url: "https://kilocode.pxf.io/OYnK0N",
     tagline: "AI Coding Agent",
   },
   {
     name: "FTW DAO",
-    image: "/ftwdao-logo.png",
+    image: "/kilocode-logo.png",
     url: "https://fwtx.city",
     tagline: "Web3 Funding & Community",
   },
