@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { homepageSchema } from "@/components/agent-readiness/json-ld-schemas";
 
 /* ── Scroll animation preset ─────────────────────────────────────────────── */
 const ease = [0.25, 0.1, 0.25, 1] as const;
@@ -527,19 +528,42 @@ function Newsletter() {
 
 /* ── Page ──────────────────────────────────────────────────────────────────── */
 export default function Home() {
+  const orgSchema = homepageSchema();
+
   return (
-    <div className="min-h-screen">
-      <Nav />
-      <main>
-        <HeroBanner />
-        <WhatIsClawPlex />
-        <EventSection />
-        <ThreeWays />
-        <CommunitySpotlight />
-        <ForAgents />
-        <Newsletter />
-      </main>
-      <Footer />
-    </div>
+    <>
+      {/* JSON-LD: Organization schema for AI agents and crawlers */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+      />
+      <div className="min-h-screen">
+        <Nav />
+        <main id="main-content">
+          <header>
+            <HeroBanner />
+          </header>
+          <article>
+            <WhatIsClawPlex />
+          </article>
+          <article>
+            <EventSection />
+          </article>
+          <article>
+            <ThreeWays />
+          </article>
+          <article>
+            <CommunitySpotlight />
+          </article>
+          <article>
+            <ForAgents />
+          </article>
+          <article>
+            <Newsletter />
+          </article>
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 }

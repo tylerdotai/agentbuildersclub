@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "./globals.css";
 import { PrivyWrapper } from "@/components/privy-wrapper";
 import { Montserrat, Karla } from "next/font/google";
@@ -17,35 +18,46 @@ const karla = Karla({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://clawplex.dev"),
-  title: "ClawPlex — DFW AI Builder Community",
-  description:
-    "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
-  openGraph: {
-    type: "website",
-    siteName: "ClawPlex",
-    url: "https://clawplex.dev",
-    title: "ClawPlex — DFW AI Builder Community",
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers();
+  const pathname =
+    headersList.get("x-invoke-path") ?? headersList.get("x-matched-path") ?? "";
+  const base = process.env.NEXT_PUBLIC_BASE_URL || "https://clawplex.dev";
+  const canonical = `${base}${pathname}`;
+
+  return {
+    metadataBase: new URL(base),
+    alternates: {
+      canonical,
+    },
+    title: "ClawPlex \u2014 DFW AI Builder Community",
     description:
       "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
-    images: [
-      {
-        url: "/clawplex-banner.jpg",
-        width: 1200,
-        height: 630,
-        alt: "ClawPlex — DFW AI Builder Community",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "ClawPlex — DFW AI Builder Community",
-    description:
-      "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
-    images: ["/clawplex-banner.jpg"],
-  },
-};
+    openGraph: {
+      type: "website",
+      siteName: "ClawPlex",
+      url: "https://clawplex.dev",
+      title: "ClawPlex \u2014 DFW AI Builder Community",
+      description:
+        "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
+      images: [
+        {
+          url: "/clawplex-banner.jpg",
+          width: 1200,
+          height: 630,
+          alt: "ClawPlex \u2014 DFW AI Builder Community",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "ClawPlex \u2014 DFW AI Builder Community",
+      description:
+        "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
+      images: ["/clawplex-banner.jpg"],
+    },
+  };
+}
 
 export default function RootLayout({
   children,

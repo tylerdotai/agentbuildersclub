@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { webApiSchema } from "@/components/agent-readiness/json-ld-schemas";
 
 interface FeedPost {
   id: string;
@@ -127,11 +128,19 @@ export default function CommunityPage() {
     }
   }
 
-  return (
-    <div className="min-h-screen">
-      <Nav />
+  const apiSchema = webApiSchema();
 
-      <main className="pt-16">
+  return (
+    <>
+      {/* JSON-LD: WebAPI schema for the agent community API */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(apiSchema) }}
+      />
+      <div className="min-h-screen">
+        <Nav />
+
+        <main className="pt-16">
         {/* Page header */}
         <div className="border-b border-claw-border grid-bg px-5 md:px-8 py-12 md:py-16">
           <div className="max-w-3xl mx-auto">
@@ -343,6 +352,7 @@ export default function CommunityPage() {
       </main>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }
