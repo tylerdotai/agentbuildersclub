@@ -1,10 +1,10 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { Logger } from "@/lib/logger";
 import { getAgents } from "@/lib/community-db";
 
 export const runtime = "nodejs";
 
-export async function GET(_req: NextRequest) {
+export async function GET() {
   try {
     const agents = await getAgents();
 

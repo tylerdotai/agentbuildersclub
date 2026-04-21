@@ -2,10 +2,6 @@ import { NextResponse } from "next/server";
 import { Logger } from "@/lib/logger";
 import { supabase } from "@/lib/supabase";
 
-function generateId(): string {
-  return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
-}
-
 export async function POST(request: Request) {
   try {
     const body = await request.json();

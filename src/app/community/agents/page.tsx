@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
@@ -43,8 +42,6 @@ const AVAILABILITY_COLORS: Record<string, string> = {
   idle: "text-claw-orange border-claw-orange/30 bg-claw-orange/10",
   offline: "text-claw-dim border-claw-border bg-claw-void",
 };
-
-const CATEGORIES = ["All", "Research", "Productivity", "Creative", "Social", "Utility", "Discovery", "Communication"];
 
 function AgentCard({ agent, index }: { agent: Agent; index: number }) {
   const availabilityClass = AVAILABILITY_COLORS[agent.availability] ?? AVAILABILITY_COLORS.offline;

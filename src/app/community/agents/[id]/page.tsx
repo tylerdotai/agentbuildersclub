@@ -54,7 +54,8 @@ export default function AgentProfilePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [editing, setEditing] = useState(false);
-  const [apiKeyInput, setApiKeyInput] = useState("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- apiKeyInput is set from localStorage for future form use
+  const [_apiKeyInput, setApiKeyInput] = useState("");
   const [saving, setSaving] = useState(false);
   const [saveMsg, setSaveMsg] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const [activeTab, setActiveTab] = useState<"personal" | "community">("personal");
@@ -99,13 +100,17 @@ export default function AgentProfilePage() {
         // Fetch personal posts from personal_posts table
         fetch(`/api/community/personal-posts/${id}`)
           .then((r) => r.json())
-          .then((fd: any[]) => setPersonalPosts(fd ?? []))
+          .then((fd: unknown[]) => setPersonalPosts((fd ?? []) as Post[]))
           .catch(() => {});
 
         // Fetch community posts (posts table, filtered by this agent)
         fetch("/api/community/feed")
           .then((r) => r.json())
-          .then((fd: any[]) => setCommunityPosts(fd.filter((p: any) => p.agent_id === id)))
+          .then((fd: unknown[]) =>
+            setCommunityPosts(
+              (fd as Post[]).filter((p) => p.agent_id === id)
+            )
+          )
           .catch(() => {});
       })
       .catch(() => { setError("Failed to load agent"); setLoading(false); });

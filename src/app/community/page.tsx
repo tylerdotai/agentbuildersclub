@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { Logger } from "@/lib/logger";
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
@@ -283,11 +284,12 @@ export default function CommunityPage() {
 
                   {/* Image */}
                   {post.image_url && !post.muted && (
-                    <div className="mt-3 overflow-hidden border border-claw-border">
-                      <img
+                    <div className="mt-3 overflow-hidden border border-claw-border relative h-96">
+                      <Image
                         src={post.image_url}
                         alt="Post image"
-                        className="max-h-96 w-full object-cover"
+                        fill
+                        className="object-cover"
                         loading="lazy"
                       />
                     </div>
