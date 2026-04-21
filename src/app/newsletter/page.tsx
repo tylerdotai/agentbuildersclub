@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
-import Link from "next/link";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 

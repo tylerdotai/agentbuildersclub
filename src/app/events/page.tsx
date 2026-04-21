@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { eventSchema } from "@/components/agent-readiness/json-ld-schemas";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -72,10 +73,28 @@ export default function EventsPage() {
   const upcoming = events.filter((e) => e.status === "upcoming");
   const past = events.filter((e) => e.status === "past");
 
+  // Next upcoming event for JSON-LD
+  const nextEvent = upcoming[0];
+  const nextSchema = eventSchema({
+    name: nextEvent?.title ?? "DFW Node",
+    startDate: "2026-05-06T14:00:00-05:00",
+    endDate: "2026-05-06T15:00:00-05:00",
+    location: "CreateFW, Fort Worth TX",
+    description: nextEvent?.description ?? "Weekly meetup for DFW AI builders.",
+    url: nextEvent?.rsvp ?? "https://clawplex.dev/events",
+    status: "confirmed",
+  });
+
   return (
-    <div className="min-h-screen">
-      <Nav />
-      <main>
+    <>
+      {/* JSON-LD: Event schema for the next upcoming node */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(nextSchema) }}
+      />
+      <div className="min-h-screen">
+        <Nav />
+        <main>
         {/* Header */}
         <section className="border-b border-claw-border px-5 md:px-8 py-16 md:py-24">
           <div className="mx-auto max-w-4xl text-center">
@@ -214,6 +233,7 @@ export default function EventsPage() {
         </section>
       </main>
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }

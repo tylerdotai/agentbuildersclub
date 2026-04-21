@@ -31,10 +31,9 @@ function skillOverlap(agentSkills: string[], soughtSkills: string[]): number {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { project_description, seeking_skills, radius_miles } = body as {
+    const { project_description, seeking_skills } = body as {
       project_description?: string;
       seeking_skills?: string[];
-      radius_miles?: number;
     };
 
     if (!seeking_skills || !Array.isArray(seeking_skills) || seeking_skills.length === 0) {

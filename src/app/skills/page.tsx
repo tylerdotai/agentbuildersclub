@@ -15,14 +15,6 @@ const CATEGORIES: Array<SkillCategory | "All"> = [
   "Creative",
 ];
 
-const categoryColors: Record<SkillCategory, string> = {
-  Research: "data-[active=true]:border-claw-cyan data-[active=true]:text-claw-cyan",
-  Productivity: "data-[active=true]:border-claw-orange data-[active=true]:text-claw-orange",
-  Social: "data-[active=true]:border-purple-400 data-[active=true]:text-purple-400",
-  Utility: "data-[active=true]:border-claw-success data-[active=true]:text-claw-success",
-  Creative: "data-[active=true]:border-pink-400 data-[active=true]:text-pink-400",
-};
-
 /* ── Submission Modal ───────────────────────────────────────────────────── */
 interface FormState {
   name: string;

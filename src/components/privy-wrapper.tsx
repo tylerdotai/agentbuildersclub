@@ -22,10 +22,12 @@ export function PrivyWrapper({ children }: { children: React.ReactNode }) {
           loginMethods: ["email", "wallet"],
         }}
       >
+        <Analytics />
+        <SpeedInsights />
         {children}
       </PrivyProvider>
     );
   }
 
-  return <>{children}</>;
+  return <><Analytics /><SpeedInsights />{children}</>;
 }
