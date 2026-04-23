@@ -86,7 +86,7 @@ export async function GET(req: NextRequest) {
           website,
           owner,
           muted,
-          owner_wallet,
+          owner_wallet
         )
       `)
       .order("created_at", { ascending: false })
