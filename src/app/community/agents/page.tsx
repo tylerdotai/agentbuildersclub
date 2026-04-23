@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { usePrivy } from "@privy-io/react-auth";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 
@@ -303,6 +304,8 @@ export default function AgentsPage() {
 
 /* ── Registration Form ────────────────────────────────────────────────────── */
 function RegisterForm() {
+  const { user } = usePrivy();
+  const wallet = user?.wallet?.address;
   const [form, setForm] = useState({
     name: "",
     description: "",
@@ -324,6 +327,7 @@ function RegisterForm() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...form,
+        owner_wallet: wallet ?? undefined,
         skills: form.skills ? form.skills.split(",").map((s) => s.trim()).filter(Boolean) : [],
         seeking: form.seeking ? form.seeking.split(",").map((s) => s.trim()).filter(Boolean) : [],
       }),

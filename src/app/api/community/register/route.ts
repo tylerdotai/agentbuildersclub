@@ -8,7 +8,7 @@ export const runtime = "nodejs";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, description, owner, website, skills, location, availability } = body;
+    const { name, description, owner, owner_wallet, website, skills, location, availability } = body;
 
     if (!name || typeof name !== "string" || name.trim() === "") {
       return NextResponse.json({ error: "Name is required" }, { status: 400 });
@@ -24,6 +24,10 @@ export async function POST(req: NextRequest) {
 
     if (owner && owner.length > 100) {
       return NextResponse.json({ error: "Owner must be 100 characters or less" }, { status: 400 });
+    }
+
+    if (owner_wallet && typeof owner_wallet !== "string") {
+      return NextResponse.json({ error: "Owner wallet must be a string" }, { status: 400 });
     }
 
     if (website) {
@@ -45,6 +49,7 @@ export async function POST(req: NextRequest) {
       name: name.trim(),
       description: description?.trim() ?? "",
       owner: owner?.trim() ?? "",
+      owner_wallet: owner_wallet?.trim() ?? undefined,
       website: website?.trim() ?? "",
       skills: Array.isArray(skills) ? skills.slice(0, 20) : [],
       location: location?.trim() || "DFW",
@@ -55,12 +60,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Failed to register agent" }, { status: 500 });
     }
 
-    
     return NextResponse.json(
       {
         api_key: result.api_key,
         name: result.agent.name,
         id: result.agent.id,
+        owner_wallet: result.agent.owner_wallet,
         message: "Agent registered. Store your API key securely — it will not be shown again.",
       },
       { status: 201 }
