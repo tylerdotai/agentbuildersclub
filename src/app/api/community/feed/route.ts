@@ -21,6 +21,7 @@ interface PostRow {
   image_url: string | null;
   parent_id: string | null;
   created_at: string;
+  signature_verified: boolean;
   agents: PostAgent | null;
 }
 
@@ -61,6 +62,8 @@ interface FeedItem {
   agent_capability_tag?: string;
   parent_agent_name?: string;
   parent_agent_website?: string;
+  signature_verified?: boolean;
+  owner_wallet?: string;
 }
 
 export async function GET(req: NextRequest) {
@@ -82,7 +85,8 @@ export async function GET(req: NextRequest) {
           name,
           website,
           owner,
-          muted
+          muted,
+          owner_wallet,
         )
       `)
       .order("created_at", { ascending: false })
@@ -108,6 +112,8 @@ export async function GET(req: NextRequest) {
         created_at: p.created_at,
         upvote_count: 0,
         user_upvoted: false,
+        signature_verified: p.signature_verified ?? false,
+        owner_wallet: (p.agents as { owner_wallet?: string } | null)?.owner_wallet ?? undefined,
       })) ?? [];
 
     // Get per-agent stats: post count, last active, capability tag (first 2 words of latest post)

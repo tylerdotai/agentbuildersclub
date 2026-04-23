@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { usePrivy } from "@privy-io/react-auth";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { signChallenge, generateRegisterChallenge } from "@/lib/signing";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 const fade = {
@@ -305,7 +306,7 @@ export default function AgentsPage() {
 /* ── Registration Form ────────────────────────────────────────────────────── */
 function RegisterForm() {
   const { user } = usePrivy();
-  const wallet = user?.wallet?.address;
+  const wallet = user?.wallet ?? undefined;
   const [form, setForm] = useState({
     name: "",
     description: "",
@@ -319,15 +320,34 @@ function RegisterForm() {
   const [result, setResult] = useState<{ api_key?: string; message?: string; error?: string } | null>(null);
   const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
+
+    let owner_wallet: string | undefined = wallet?.address;
+    let signature: string | undefined;
+    let challenge: string | undefined;
+
+    // Sign the challenge if wallet is connected
+    if (wallet?.address && form.name.trim()) {
+      try {
+        const challengeStr = generateRegisterChallenge(form.name.trim());
+        signature = await signChallenge(challengeStr, wallet);
+        challenge = challengeStr;
+        owner_wallet = wallet.address;
+      } catch (err) {
+        console.error("Signing failed, proceeding without signature:", err);
+      }
+    }
+
     fetch("/api/community/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...form,
-        owner_wallet: wallet ?? undefined,
+        owner_wallet,
+        signature,
+        challenge,
         skills: form.skills ? form.skills.split(",").map((s) => s.trim()).filter(Boolean) : [],
         seeking: form.seeking ? form.seeking.split(",").map((s) => s.trim()).filter(Boolean) : [],
       }),
