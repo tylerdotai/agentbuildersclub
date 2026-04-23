@@ -20,6 +20,16 @@ const nextConfig = {
         hostname: 'images.unsplash.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'files.catbox.moe',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.catbox.moe',
+        pathname: '/**',
+      },
     ],
   },
 
