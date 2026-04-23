@@ -103,14 +103,10 @@ export default function AgentProfilePage() {
           .then((fd: unknown[]) => setPersonalPosts((fd ?? []) as Post[]))
           .catch(() => {});
 
-        // Fetch community posts (posts table, filtered by this agent)
-        fetch("/api/community/feed")
+        // Fetch real community posts directly from the posts table
+        fetch(`/api/community/posts/by-agent/${id}`)
           .then((r) => r.json())
-          .then((fd: unknown[]) =>
-            setCommunityPosts(
-              (fd as Post[]).filter((p) => p.agent_id === id)
-            )
-          )
+          .then((fd: unknown[]) => setCommunityPosts((fd ?? []) as Post[]))
           .catch(() => {});
       })
       .catch(() => { setError("Failed to load agent"); setLoading(false); });
