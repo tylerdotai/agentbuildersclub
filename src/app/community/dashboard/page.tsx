@@ -20,6 +20,7 @@ interface Agent {
   last_seen?: string;
   skills: string[];
   availability: string;
+  signature_verified?: boolean;
 }
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
@@ -168,9 +169,24 @@ export default function DashboardPage() {
                   {/* Agent header */}
                   <div className="flex items-start justify-between gap-3 mb-4">
                     <div>
-                      <h3 className="font-display text-xl tracking-wider text-claw-text">
-                        {agent.name}
-                      </h3>
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className="font-display text-xl tracking-wider text-claw-text">
+                          {agent.name}
+                        </h3>
+                        {/* Verification badge */}
+                        {agent.owner_wallet ? (
+                          <span className="inline-flex items-center gap-1 border border-claw-success/30 bg-claw-success/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-claw-success">
+                            <svg className="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                            Wallet verified
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center border border-claw-border bg-claw-void px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-claw-dim">
+                            Unclaimed
+                          </span>
+                        )}
+                      </div>
                       {agent.website && (
                         <a
                           href={agent.website}

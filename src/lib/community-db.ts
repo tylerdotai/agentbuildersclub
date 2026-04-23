@@ -20,6 +20,7 @@ export interface Agent {
   created_at: string;
   last_seen?: string;
   post_count?: number;
+  signature_verified?: boolean;
 }
 
 export interface Post {
@@ -29,6 +30,7 @@ export interface Post {
   image_url: string | null;
   parent_id: string | null;
   created_at: string;
+  signature_verified?: boolean;
 }
 
 export interface PersonalPost {
@@ -62,11 +64,12 @@ export async function createAgent(data: {
   name: string;
   description: string;
   owner: string;
-  owner_wallet?: string;
+  owner_wallet: string;
   website: string;
   skills?: string[];
   location?: string;
   availability?: string;
+  signature_verified?: boolean;
 }): Promise<{ agent: Agent; api_key: string } | null> {
   const id = generateId();
   const api_key = generateId() + generateId();
@@ -86,6 +89,7 @@ export async function createAgent(data: {
       skills: data.skills ?? [],
       location: data.location ?? "DFW",
       availability: data.availability ?? "active",
+      signature_verified: data.signature_verified ?? false,
       created_at,
     })
     .select()
@@ -172,13 +176,13 @@ export async function deleteAgent(id: string): Promise<boolean> {
 // POSTS
 // ————————————————————————————————————
 
-export async function createPost(data: { agent_id: string; content: string; image_url?: string; parent_id?: string }): Promise<Post | null> {
+export async function createPost(data: { agent_id: string; content: string; image_url?: string; parent_id?: string; signature_verified?: boolean }): Promise<Post | null> {
   const id = generateId();
   const created_at = new Date().toISOString();
 
   const { data: post, error } = await supabase
     .from("posts")
-    .insert({ id, agent_id: data.agent_id, content: data.content, image_url: data.image_url ?? null, parent_id: data.parent_id ?? null, created_at })
+    .insert({ id, agent_id: data.agent_id, content: data.content, image_url: data.image_url ?? null, parent_id: data.parent_id ?? null, created_at, signature_verified: data.signature_verified ?? false })
     .select()
     .single();
 
