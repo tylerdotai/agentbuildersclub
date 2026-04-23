@@ -32,14 +32,6 @@ interface Agent {
 
 interface Post {
   id: string;
-  content: string;
-  agent_id: string;
-  agent_name: string;
-  created_at: string;
-}
-
-interface PersonalPost {
-  id: string;
   agent_id: string;
   content: string;
   created_at: string;
@@ -49,8 +41,7 @@ export default function AgentProfilePage() {
   const params = useParams();
   const id = params.id as string;
   const [agent, setAgent] = useState<Agent | null>(null);
-  const [personalPosts, setPersonalPosts] = useState<PersonalPost[]>([]);
-  const [communityPosts, setCommunityPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [editing, setEditing] = useState(false);
@@ -58,7 +49,6 @@ export default function AgentProfilePage() {
   const [_apiKeyInput, setApiKeyInput] = useState("");
   const [saving, setSaving] = useState(false);
   const [saveMsg, setSaveMsg] = useState<{ type: "success" | "error"; text: string } | null>(null);
-  const [activeTab, setActiveTab] = useState<"personal" | "community">("personal");
   const [isOwnProfile, setIsOwnProfile] = useState(false);
 
   const [form, setForm] = useState({
@@ -97,16 +87,10 @@ export default function AgentProfilePage() {
           setEditing(true);
         }
 
-        // Fetch personal posts from personal_posts table
-        fetch(`/api/community/personal-posts/${id}`)
-          .then((r) => r.json())
-          .then((fd: unknown[]) => setPersonalPosts((fd ?? []) as Post[]))
-          .catch(() => {});
-
-        // Fetch real community posts directly from the posts table
+        // Fetch canonical posts for this agent
         fetch(`/api/community/posts/by-agent/${id}`)
           .then((r) => r.json())
-          .then((fd: unknown[]) => setCommunityPosts((fd ?? []) as Post[]))
+          .then((fd: unknown[]) => setPosts((fd ?? []) as Post[]))
           .catch(() => {});
       })
       .catch(() => { setError("Failed to load agent"); setLoading(false); });
@@ -304,59 +288,30 @@ export default function AgentProfilePage() {
           </section>
         )}
 
-        {/* Posts — two tabs */}
+        {/* Posts */}
         <section className="px-5 md:px-8 py-16">
           <div className="mx-auto max-w-4xl">
-            {/* Tab bar */}
-            <div className="flex gap-0 border-b border-claw-border mb-8">
-              {(["personal", "community"] as const).map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`px-6 py-3 font-mono text-xs uppercase tracking-widest transition-colors border-b-2 -mb-px ${
-                    activeTab === tab
-                      ? "border-claw-orange text-claw-orange"
-                      : "border-transparent text-claw-dim hover:text-claw-text"
-                  }`}
-                >
-                  {tab === "personal" ? "Posts" : "In Community"}
-                  <span className="ml-2 text-claw-dim">
-                    {tab === "personal" ? personalPosts.length : communityPosts.length}
-                  </span>
-                </button>
-              ))}
+            <div className="mb-8 flex items-center justify-between border-b border-claw-border pb-4">
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-2">Posts</p>
+                <h2 className="font-display text-2xl tracking-wider text-claw-text">{agent.name.toUpperCase()} POSTS</h2>
+              </div>
+              <span className="font-mono text-xs uppercase tracking-widest text-claw-dim">{posts.length} total</span>
             </div>
 
-            {/* Tab content */}
-            {activeTab === "personal" && personalPosts.length === 0 && (
+            {posts.length === 0 && (
               <div className="border border-claw-border bg-claw-surface p-8 text-center">
                 <p className="font-mono text-sm text-claw-dim">No posts yet.</p>
               </div>
             )}
-            {activeTab === "personal" && personalPosts.length > 0 && (
+
+            {posts.length > 0 && (
               <div className="space-y-4">
-                {personalPosts.map((post) => (
+                {posts.map((post) => (
                   <div key={post.id} className="border border-claw-border bg-claw-surface p-6">
                     <p className="text-claw-text leading-relaxed mb-3">{post.content}</p>
                     <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim">
                       {agent.name} · {new Date(post.created_at).toLocaleDateString()}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
-            {activeTab === "community" && communityPosts.length === 0 && (
-              <div className="border border-claw-border bg-claw-surface p-8 text-center">
-                <p className="font-mono text-sm text-claw-dim">Not posted to community yet.</p>
-              </div>
-            )}
-            {activeTab === "community" && communityPosts.length > 0 && (
-              <div className="space-y-4">
-                {communityPosts.map((post) => (
-                  <div key={post.id} className="border border-claw-border bg-claw-surface p-6">
-                    <p className="text-claw-text leading-relaxed mb-3">{post.content}</p>
-                    <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                      {post.agent_name} · {new Date(post.created_at).toLocaleDateString()}
                     </p>
                   </div>
                 ))}

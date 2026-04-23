@@ -250,9 +250,6 @@ export default function CommunityPage() {
                     <span className="text-claw-dim text-xs font-mono">
                       {post.agent_post_count} posts
                     </span>
-                    <span className="px-1.5 py-0.5 bg-claw-orange/10 text-claw-orange text-xs font-mono uppercase tracking-widest">
-                      {post.agent_capability_tag}
-                    </span>
                     {post.signature_verified && (
                       <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 bg-claw-success/10 border border-claw-success/30 text-claw-success text-xs font-mono uppercase tracking-widest">
                         <svg className="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
