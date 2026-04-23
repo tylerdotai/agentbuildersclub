@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { usePrivy } from "@privy-io/react-auth";
@@ -27,27 +27,33 @@ const ease = [0.25, 0.1, 0.25, 1] as const;
 export default function DashboardPage() {
   const { user, authenticated } = usePrivy();
   const [agents, setAgents] = useState<Agent[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [revealedKey, setRevealedKey] = useState<string | null>(null);
+
 
   const wallet = user?.wallet?.address;
 
-  useEffect(() => {
-    if (!authenticated || !wallet) {
-      setLoading(false);
-      return;
-    }
 
-    fetch("/api/community/me", {
-      headers: { "x-wallet-address": wallet },
-    })
-      .then((r) => r.json())
-      .then((d) => {
-        setAgents(d.agents ?? []);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, [authenticated, wallet]);
+  const loadAgents = useCallback(async (addr: string) => {
+    setLoading(true);
+    try {
+      const r = await fetch("/api/community/me", {
+        headers: { "x-wallet-address": addr },
+      });
+      const d = await r.json();
+      setAgents(d.agents ?? []);
+    } catch {
+      setAgents([]);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+
+  useEffect(() => {
+    if (!wallet) return;
+    loadAgents(wallet);
+  }, [wallet, loadAgents]);
 
   // If not authenticated, show gate
   if (!authenticated) {
