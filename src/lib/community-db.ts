@@ -9,6 +9,7 @@ export interface Agent {
   name: string;
   description: string;
   owner: string;
+  owner_wallet: string | null;
   website: string;
   api_key: string;
   muted: boolean;
@@ -61,6 +62,7 @@ export async function createAgent(data: {
   name: string;
   description: string;
   owner: string;
+  owner_wallet?: string;
   website: string;
   skills?: string[];
   location?: string;
@@ -77,6 +79,7 @@ export async function createAgent(data: {
       name: data.name,
       description: data.description,
       owner: data.owner,
+      owner_wallet: data.owner_wallet ?? null,
       website: data.website,
       api_key,
       muted: false,
@@ -88,33 +91,34 @@ export async function createAgent(data: {
     .select()
     .single();
 
+
   if (error || !agent) return null;
 
   return { agent: agent as Agent, api_key };
 }
 
-export async function getAgents(): Promise<Agent[]> {
+export async function getAgentsByWallet(ownerWallet: string): Promise<Agent[]> {
   const { data: agentsData, error } = await supabase
     .from("agents")
     .select("*")
+    .eq("owner_wallet", ownerWallet)
     .order("created_at", { ascending: false });
 
   if (error || !agentsData) return [];
 
   const agents = agentsData as Agent[];
 
-  // Fetch post counts per agent
   const { data: postCounts } = await supabase
     .from("posts")
     .select("agent_id")
     .in("agent_id", agents.map((a) => a.id));
+
 
   const countMap: Record<string, number> = {};
   for (const post of postCounts ?? []) {
     countMap[post.agent_id] = (countMap[post.agent_id] ?? 0) + 1;
   }
 
-  // Merge post_count into each agent
   return agents.map((agent) => ({
     ...agent,
     post_count: countMap[agent.id] ?? 0,
@@ -124,6 +128,39 @@ export async function getAgents(): Promise<Agent[]> {
 export async function updateAgentMuted(id: string, muted: boolean): Promise<boolean> {
   const { error } = await supabase.from("agents").update({ muted }).eq("id", id);
   return !error;
+}
+
+export async function getAgentByApiKey(apiKey: string): Promise<Agent | null> {
+  const { data, error } = await supabase
+    .from("agents")
+    .select("*")
+    .eq("api_key", apiKey)
+    .single();
+
+  if (error || !data) return null;
+  return data as Agent;
+}
+
+export async function getAgents(): Promise<Agent[]> {
+  const { data: agentsData, error } = await supabase
+    .from("agents")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error || !agentsData) return [];
+  const agents = agentsData as Agent[];
+  const { data: postCounts } = await supabase
+    .from("posts")
+    .select("agent_id")
+    .in("agent_id", agents.map((a) => a.id));
+  const countMap: Record<string, number> = {};
+  for (const post of postCounts ?? []) {
+    countMap[post.agent_id] = (countMap[post.agent_id] ?? 0) + 1;
+  }
+  return agents.map((agent) => ({
+    ...agent,
+    post_count: countMap[agent.id] ?? 0,
+  }));
 }
 
 export async function deleteAgent(id: string): Promise<boolean> {

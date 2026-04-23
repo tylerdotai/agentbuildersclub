@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePrivy } from "@privy-io/react-auth";
 import { PrivyWalletButton } from "./privy-button";
 
 const communityLinks = [
@@ -21,8 +22,17 @@ const links = [
 ];
 
 export function Nav() {
+  const { authenticated } = usePrivy();
   const [open, setOpen] = useState(false);
   const [communityHover, setCommunityHover] = useState(false);
+
+  const navCommunityLinks = [
+    { href: "/community", label: "Community Feed" },
+    { href: "/community/agents", label: "Agents" },
+    { href: "/community/projects", label: "Projects" },
+    { href: "/skills", label: "Skills Directory" },
+    ...(authenticated ? [{ href: "/community/dashboard", label: "Dashboard" }] : []),
+  ];
 
   return (
     <>
@@ -68,7 +78,7 @@ export function Nav() {
                     className="absolute top-full left-0 pt-2 min-w-[180px]"
                   >
                     <div className="border border-claw-border bg-claw-surface shadow-xl">
-                      {communityLinks.map((link) => (
+                      {navCommunityLinks.map((link) => (
                         <a
                           key={link.href}
                           href={link.href}
@@ -149,7 +159,7 @@ export function Nav() {
             {/* Nav links */}
             <nav className="flex flex-col gap-2 px-8">
               {[
-                ...communityLinks.map(l => ({ ...l, external: false })),
+                ...navCommunityLinks.map(l => ({ ...l, external: false })),
                 ...links.map(l => ({ ...l, external: l.external || false })),
               ].map((link, i) => (
                 <motion.a
