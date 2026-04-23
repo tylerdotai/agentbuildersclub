@@ -186,8 +186,11 @@ export function Nav() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.3, delay: links.length * 0.06 + 0.1 }}
-              className="mt-auto px-8 pb-16"
+              className="mt-auto px-8 pb-16 space-y-4"
             >
+              <div className="flex justify-center">
+                <PrivyWalletButton />
+              </div>
               <a
                 href="https://discord.gg/q8kEquTu3z"
                 target="_blank"
