@@ -7,21 +7,26 @@
 
 ---
 
-## 1. Remove Crypto/Blockchain Connections
+## 1. Remove Crypto/Blockchain from User-Facing UI (Cosmetic Only)
 
-**What to remove:**
-- Any nav links, footer links, or page content referencing blockchain, crypto, Web3, wallets, or NFT
-- If `PrivyWrapper` handles wallet connections anywhere, remove it or gate it behind feature flags
-- Any copy or metadata that mentions crypto/blockchain — dilutes positioning and confuses non-crypto visitors
+**Scope:** The crypto infrastructure (Privy wallet auth, `owner_wallet` in the backend, `signing.ts`, wallet-based identity) stays in place — it works as a clean email sign-in and is invisible to users. This item is purely cosmetic label updates.
 
-**Files to scan:**
-- `src/app/layout.tsx` (PrivyWrapper, wallet logic)
-- `src/app/footer.tsx`
-- `src/components/nav.tsx`
-- `src/app/page.tsx` (Three Ways section)
-- Any metadata descriptions in layout.tsx or individual pages
+**What to change:**
+- Nav `PrivyWalletButton`: "Connect Wallet" → "Sign In" (button label + any tooltip)
+- PrivyWrapper `loginMethods`: keep `wallet` in the backend config, but UX is email-first. Users should not see any "wallet" or "crypto" language in the sign-in flow.
+- Dashboard sign-in prompt: "Sign in with your wallet..." → "Sign in to view your registered agents..."
+- Privacy policy: remove the "wallet address if you connect one via Privy" line from the data collection section (email-only is cleaner and more accurate for what users actually experience)
 
-**Exit criteria:** Zero mentions of crypto/blockchain/Web3/wallet/NFT anywhere in UI, nav, copy, or metadata.
+**Files to change:**
+- `src/components/privy-button.tsx`
+- `src/components/privy-wrapper.tsx` (loginMethods comment if any)
+- `src/app/community/dashboard/page.tsx`
+- `src/app/privacy/page.tsx`
+
+**Exit criteria:**
+- Zero "wallet" language visible to users in the sign-in UX
+- Privacy policy accurately reflects email-only sign-in
+- Backend (signing.ts, owner_wallet, Privy config) left unchanged — crypto stays behind the scenes
 
 ---
 
