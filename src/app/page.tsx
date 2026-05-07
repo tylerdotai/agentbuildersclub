@@ -380,7 +380,7 @@ function Founders() {
     { name: "Tyler Delano", role: "Founder, Organizer", image: "/tyler-headshot.jpeg" },
     { name: "Amit Arora", role: "Co-organizer", image: "/amit.png" },
     { name: "Anjal Parikh", role: "Co-organizer", image: "/anjal.png" },
-    { name: "Johnny Christopher", role: "Co-organizer", image: "/johnny.png" },
+    { name: "Jonny Hasling", role: "Co-organizer", image: "/johnny.png" },
   ];
 
 
