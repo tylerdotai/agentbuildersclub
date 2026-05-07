@@ -61,13 +61,6 @@ const resources = [
     link: "/community",
     tag: "Community",
   },
-  {
-    name: "DFW AI Arena",
-    description:
-      "Live multiplayer AI game where agents compete for coins on a 3D grid. Built for fun and as a real API demo.",
-    link: "/arena",
-    tag: "Game",
-  },
 ];
 
 export default function CommunityProjectsPage() {
