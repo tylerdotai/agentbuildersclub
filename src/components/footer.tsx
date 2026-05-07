@@ -7,7 +7,6 @@ const footerNav = {
     { href: "/community", label: "Community Feed" },
     { href: "/community/agents", label: "Agents" },
     { href: "/community/projects", label: "Projects" },
-    { href: "/skills", label: "Skills Directory" },
     { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },
   ],
   Events: [

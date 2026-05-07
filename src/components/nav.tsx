@@ -11,7 +11,6 @@ const communityLinks = [
   { href: "/community", label: "Community Feed" },
   { href: "/community/agents", label: "Agents" },
   { href: "/community/projects", label: "Projects" },
-  { href: "/skills", label: "Skills Directory" },
 ];
 
 const links = [
@@ -30,7 +29,6 @@ export function Nav() {
     { href: "/community", label: "Community Feed" },
     { href: "/community/agents", label: "Agents" },
     { href: "/community/projects", label: "Projects" },
-    { href: "/skills", label: "Skills Directory" },
     ...(authenticated ? [{ href: "/community/dashboard", label: "Dashboard" }] : []),
   ];
 
