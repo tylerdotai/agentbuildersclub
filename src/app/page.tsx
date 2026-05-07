@@ -1,10 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import useEmblaCarousel from "embla-carousel-react";
 import { homepageSchema } from "@/components/agent-readiness/json-ld-schemas";
 
 /* ── Scroll animation preset ─────────────────────────────────────────────── */
@@ -59,48 +60,87 @@ function Countdown({ target }: { target: Date }) {
   );
 }
 
-/* ── HeroBanner — Headline overlaid on banner image ─────────────────────── */
+/* ── Hero Banner — Photo Carousel ─────────────────────────────────────── */
 function HeroBanner() {
+  const photos = [
+    { src: "/clawcon-1.webp", alt: "ClawCon DFW — Choctaw Stadium district" },
+    { src: "/clawcon-2.webp", alt: "ClawCon DFW — Live demos" },
+    { src: "/clawcon-3.webp", alt: "ClawCon DFW — Networking" },
+    { src: "/clawcon-4.webp", alt: "ClawCon DFW — Builders" },
+    { src: "/clawcon-5.webp", alt: "ClawCon DFW — Event" },
+    { src: "/node-03-meetup.png", alt: "Node 03 — Fort Worth, May 6" },
+  ];
+
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", onSelect);
+    return () => { emblaApi.off("select", onSelect); };
+  }, [emblaApi]);
+
   return (
-    <div
-      className="relative"
-      style={{ height: "75vh", minHeight: "500px" }}
-    >
-      {/* Banner image */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: "url('/clawplex-banner.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center top",
-        }}
-      />
-      {/* Light gradient — image visible at top, dark at bottom for text readability */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: "linear-gradient(to bottom, rgba(12,12,14,0.3) 0%, rgba(12,12,14,0.1) 30%, rgba(12,12,14,0.75) 100%)",
-        }}
-      />
-      {/* Headline — centered on image */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-5 text-center">
-        <h1 className="font-display text-5xl md:text-7xl tracking-wider text-claw-text leading-tight max-w-4xl">
-          Built by builders, for builders.
-        </h1>
+    <div className="relative" style={{ height: "75vh", minHeight: "500px" }}>
+      {/* Carousel */}
+      <div ref={emblaRef} className="absolute inset-0 overflow-hidden">
+        <div className="flex h-full">
+          {photos.map((photo, i) => (
+            <div key={i} className="flex-[0_0_100%] min-w-0 relative">
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                className="object-cover object-center"
+                priority={i === 0}
+                sizes="100vw"
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Scroll indicator — subtle bounce at bottom */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-claw-dim">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="w-5 h-5 flex items-center justify-center"
+      {/* Dark gradient overlay */}
+      <div
+        className="absolute inset-0 z-[1]"
+        style={{
+          background: "linear-gradient(to bottom, rgba(12,12,14,0.2) 0%, rgba(12,12,14,0.05) 30%, rgba(12,12,14,0.85) 100%)",
+        }}
+      />
+
+      {/* Event pill + headline */}
+      <div className="relative z-10 flex flex-col items-center justify-end h-full px-5 pb-16 text-center">
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-4 border border-claw-orange px-3 py-1"
         >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-claw-dim">
-            <path d="M8 3L8 13M8 13L4 9M8 13L12 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </motion.div>
+          Next: June 3, 2026 · 2 PM · CreateFW, Fort Worth TX
+        </motion.p>
+        <motion.h1
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="font-display text-4xl md:text-6xl tracking-wider text-claw-text leading-tight max-w-4xl"
+        >
+          Built by builders, for builders.
+        </motion.h1>
+      </div>
+
+
+      {/* Carousel dots */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+        {photos.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => emblaApi?.scrollTo(i)}
+            className={`w-2 h-2 rounded-full transition-all ${
+              i === selectedIndex ? "bg-claw-orange w-4" : "bg-claw-dim/40"
+            }`}
+          />
+        ))}
       </div>
     </div>
   );
