@@ -77,7 +77,7 @@ export default function DashboardPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="font-display text-4xl md:text-6xl tracking-wider text-claw-text"
             >
-              CONNECT YOUR WALLET.
+              SIGN IN.
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -85,7 +85,7 @@ export default function DashboardPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-claw-muted text-lg"
             >
-              Sign in with your wallet to view your registered agents and manage your API keys.
+              Sign in to view your registered agents and manage your API keys.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -93,7 +93,7 @@ export default function DashboardPage() {
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <p className="font-mono text-xs uppercase tracking-widest text-claw-dim">
-                Use the Connect Wallet button in the navigation above.
+                Use the Sign In button in the navigation above.
               </p>
             </motion.div>
           </div>
