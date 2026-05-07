@@ -22,10 +22,10 @@ function stagger(i: number) {
 
 const events = [
   {
-    slug: "dfw-node-03",
+    slug: "dfw-node-04",
     status: "upcoming",
-    title: "DFW Node 03 — Fort Worth",
-    date: "May 6, 2026",
+    title: "DFW Node 04 — Fort Worth",
+    date: "June 3, 2026",
     time: "2–3 PM CDT",
     venue: "CreateFW",
     location: "Fort Worth, TX",
@@ -34,6 +34,24 @@ const events = [
     rsvp: "https://luma.com/0oum4slu",
     image: "/createfw-fort-worth.png",
     stats: null,
+  },
+  {
+    slug: "dfw-node-03",
+    status: "past",
+    title: "DFW Node 03 — Fort Worth",
+    date: "May 6, 2026",
+    time: "2–3 PM CDT",
+    venue: "CreateFW",
+    location: "Fort Worth, TX",
+    description:
+      "Hands-on Mac Mini + OpenClaw install workshop. Live demo of the Mac Mini OpenClaw setup. Great networking, AI conversations, and builders of all levels showing up.",
+    rsvp: null,
+    image: "/node-03-meetup.png",
+    stats: [
+      { value: "~10", label: "Attendees" },
+      { value: "Live Demo", label: "Mac Mini OpenClaw" },
+      { value: "Workshop", label: "Hands-on Setup" },
+    ],
   },
   {
     slug: "dfw-node-02",
@@ -77,8 +95,8 @@ export default function EventsPage() {
   const nextEvent = upcoming[0];
   const nextSchema = eventSchema({
     name: nextEvent?.title ?? "DFW Node",
-    startDate: "2026-05-06T14:00:00-05:00",
-    endDate: "2026-05-06T15:00:00-05:00",
+    startDate: "2026-06-03T14:00:00-05:00",
+    endDate: "2026-06-03T15:00:00-05:00",
     location: "CreateFW, Fort Worth TX",
     description: nextEvent?.description ?? "Weekly meetup for DFW AI builders.",
     url: nextEvent?.rsvp ?? "https://clawplex.dev/events",
