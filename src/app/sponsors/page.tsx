@@ -70,16 +70,16 @@ const tiers = [
 
 const partners = [
   {
-    name: "Jonesy Cookie",
-    image: "/kilocode-logo.png",
-    url: "https://jonesycookie.com",
-    tagline: "Local Fort Worth Baker",
-  },
-  {
     name: "KiloCode",
     image: "/kilocode-logo.png",
     url: "https://kilocode.pxf.io/OYnK0N",
     tagline: "AI Coding Agent",
+  },
+  {
+    name: "FTW DAO",
+    image: "/ftwdao-logo.png",
+    url: "https://fwtx.city",
+    tagline: "Community Partner",
   },
 ];
 
@@ -214,7 +214,7 @@ export default function SponsorsPage() {
                 <div className="space-y-6">
                   {[
                     { value: "100+", label: "Builders per event (growing)" },
-                    { value: "3", label: "Nodes completed" },
+                    { value: "4x", label: "Events per month across DFW" },
                     { value: "DFW", label: "Dallas-Fort Worth metro" },
                     { value: "0", label: "Vendor pitches — builders only" },
                   ].map((stat) => (
