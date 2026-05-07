@@ -31,6 +31,25 @@ export function homepageSchema() {
       "OpenClaw",
       "agentic AI",
     ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Fort Worth",
+      "addressRegion": "TX",
+      "addressCountry": "US",
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 32.7555,
+      "longitude": -97.3308,
+    },
+    "priceRange": "$",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Wednesday"],
+      "opens": "14:00",
+      "closes": "15:00",
+      "description": "Weekly Wednesday meetups, 2–3 PM CST",
+    },
   };
 }
 
