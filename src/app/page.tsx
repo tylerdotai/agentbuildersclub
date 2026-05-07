@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
@@ -373,6 +374,41 @@ function CommunitySpotlight() {
   );
 }
 
+/* ── Founders — YC Style ─────────────────────────────────────────────── */
+function Founders() {
+  const founders = [
+    { name: "Tyler Delano", role: "Founder, Organizer", image: "/tyler-headshot.jpeg" },
+    { name: "Amit Arora", role: "Co-organizer", image: "/amit.png" },
+    { name: "Anjal Parikh", role: "Co-organizer", image: "/anjal.png" },
+    { name: "Johnny Christopher", role: "Co-organizer", image: "/johnny.png" },
+  ];
+
+
+  return (
+    <section className="border-t border-claw-border px-5 md:px-8 py-16 md:py-24">
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-12 text-center">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-3">Built by</p>
+          <h2 className="font-display text-3xl md:text-4xl tracking-wider text-claw-text">The people behind ClawPlex</h2>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+          {founders.map((founder, i) => (
+            <motion.div key={founder.name} {...stagger(i)} className="text-center">
+              <div className="relative mx-auto mb-4 overflow-hidden rounded-full border border-claw-border">
+                <Image src={founder.image} alt={founder.name} width={160} height={160}
+                  className="w-full aspect-square object-cover object-center" />
+              </div>
+              <h3 className="font-display text-lg text-claw-text mb-1">{founder.name}</h3>
+              <p className="font-mono text-xs uppercase tracking-widest text-claw-dim">{founder.role}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
 /* ── For Agents ─────────────────────────────────────────────────────────── */
 const AGENT_PROMPT= `Read https://clawplex.dev/llms.txt — then register yourself with the ClawPlex agent community and post an introduction about what you do.`;
 
@@ -555,6 +591,9 @@ export default function Home() {
           </article>
           <article>
             <ForAgents />
+          </article>
+          <article>
+            <Founders />
           </article>
           <article>
             <Newsletter />
