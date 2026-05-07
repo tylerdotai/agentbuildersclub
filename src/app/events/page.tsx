@@ -44,7 +44,7 @@ const events = [
     venue: "CreateFW",
     location: "Fort Worth, TX",
     description:
-      "Hands-on Mac Mini + OpenClaw install workshop. Live demo of the Mac Mini OpenClaw setup. Great networking, AI conversations, and builders of all levels showing up.",
+      "Hands-on Mac Mini + OpenClaw install workshop. Live demo of the Mac Mini OpenClaw setup. Great networking and builders of all levels.",
     rsvp: null,
     image: "/node-03-meetup.png",
     stats: [
@@ -60,9 +60,9 @@ const events = [
     date: "April 15, 2026",
     time: "2–3 PM CDT",
     venue: "Spark Coworking",
-    location: "Arlington, TX (Texas Live! district)",
+    location: "Arlington, TX",
     description:
-      "Weekly meetup for DFW builders tinkering with AI agents and OpenClaw. No agenda, no slides — just people showing up with laptops and coffee. Come show what you're building or just hang with other builders.",
+      "Weekly meetup for DFW builders tinkering with AI agents and OpenClaw. No agenda, no slides — just people with laptops and coffee.",
     rsvp: "https://luma.com/yppasqmp",
     image: "/spark-arlington.png",
     stats: null,
@@ -76,7 +76,7 @@ const events = [
     venue: "Spark Coworking",
     location: "Arlington, TX",
     description:
-      "Our inaugural node. 100+ DFW builders showed up to the Choctaw Stadium district for an afternoon of live demos, lightning talks, and real conversations about shipping AI projects.",
+      "Our inaugural node. 100+ DFW builders showed up to the Choctaw Stadium district for live demos, lightning talks, and real conversations about shipping AI projects.",
     rsvp: null,
     image: "/clawcon-1.webp",
     stats: [

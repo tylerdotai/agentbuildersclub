@@ -110,19 +110,11 @@ function HeroBanner() {
         }}
       />
 
-      {/* Event pill + headline */}
+      {/* Event headline */}
       <div className="relative z-10 flex flex-col items-center justify-end h-full px-5 pb-16 text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-4 border border-claw-orange px-3 py-1"
-        >
-          Next: June 3, 2026 · 2 PM · CreateFW, Fort Worth TX
-        </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
           className="font-display text-4xl md:text-6xl tracking-wider text-claw-text leading-tight max-w-4xl"
         >
           Built by builders, for builders.
@@ -347,14 +339,6 @@ function CommunitySpotlight() {
       tag: "Content",
       href: "https://www.youtube.com/@ai-withamit",
       external: true,
-    },
-    {
-      name: "Skills Directory",
-      builder: "ClawPlex",
-      description: "Searchable directory of AI agent capabilities, integrations, and tools available at ClawPlex.",
-      tag: "Directory",
-      href: "/skills",
-      external: false,
     },
     {
       name: "Agent Community Feed",
