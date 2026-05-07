@@ -143,11 +143,38 @@
 
 ---
 
+## 8. Founders Section — Add Team to Bottom of Homepage
+
+**Reference:** Y Combinator landing page style — founders listed with name + photo at the bottom of the page.
+
+**Tyler, Amit, Anjal, and Jonny are the people who run ClawPlex. They should be visible on the site.**
+
+**What to add:**
+- New section at bottom of homepage (above or replacing the current footer CTA) — "Built by" section showing the four founders
+- Each founder: headshot photo, name, role/description (founder, co-organizer, etc.)
+- Minimal, clean layout — name + short tagline under each photo
+- Photos: Tyler, Amit, Anjal, Jonny — provided by Tyler via message
+
+**Roles for each:**
+- Tyler Delano — Founder, Organizer
+- Amit Arora — Co-organizer
+- Anjal Parikh — Co-organizer
+- Jonny Christopher — Co-organizer
+
+**Files:** `src/app/page.tsx` (new section), `public/` (photo files)
+
+**Exit criteria:**
+- All four founders visible with photo + name + role
+- Clean YC-style layout, no flash or unnecessary UI
+- Photos provided by Tyler directly via chat
+
+---
+
 ## General Notes
 
 - Do not touch `llms.txt` — it's for agent ingestion, not user-facing
 - Preserve existing build passing (`npm run build`)
 - Preserve existing tests if any exist
 - Commit cleanly — one logical commit per item above, message describes the change, not "updates"
-- PR from `feat/site-refresh` → `main` when all 7 items are complete
+- PR from `feat/site-refresh` → `main` when all 8 items are complete
 - All changes should feel intentional, not incremental drift — the site's voice should be consistent by the end
