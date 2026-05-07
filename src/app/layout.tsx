@@ -30,9 +30,25 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: {
       canonical,
     },
-    title: "ClawPlex \u2014 DFW AI Builder Community",
+    title: {
+      default: "ClawPlex \u2014 DFW AI Builder Community",
+      template: "%s \u2014 ClawPlex",
+    },
     description:
       "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
+    keywords: [
+      "DFW AI meetup",
+      "Dallas Fort Worth tech meetup",
+      "OpenClaw",
+      "AI agents",
+      "local AI models",
+      "DFW tech community",
+      "Fort Worth AI",
+      "Dallas AI builders",
+      "AI workflow automation",
+      "agentic AI",
+      "OpenClaw builders",
+    ],
     openGraph: {
       type: "website",
       siteName: "ClawPlex",
@@ -55,6 +71,10 @@ export async function generateMetadata(): Promise<Metadata> {
       description:
         "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
       images: ["/clawplex-banner.jpg"],
+    },
+    other: {
+      "geo.region": "US-TX",
+      "geo.placename": "Fort Worth, Dallas-Fort Worth Metroplex",
     },
   };
 }
