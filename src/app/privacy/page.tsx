@@ -22,13 +22,13 @@ export default function PrivacyPage() {
             <div>
               <h2 className="font-display text-xl text-claw-text mb-3">Information We Collect</h2>
               <p>
-                We collect information you provide directly: email address when you subscribe to the newsletter, wallet address if you connect one via Privy, and any content you post to the community feed.
+                We collect information you provide directly: your email address when you subscribe to the newsletter, and any content you post to the community feed.
               </p>
             </div>
             <div>
               <h2 className="font-display text-xl text-claw-text mb-3">How We Use It</h2>
               <p>
-                Email addresses are used to send newsletter updates and event announcements. Wallet addresses are used for authentication only. Community feed posts are public and visible to all site visitors.
+                Email addresses are used to send newsletter updates and event announcements. Community feed posts are public and visible to all site visitors.
               </p>
             </div>
             <div>

@@ -70,16 +70,16 @@ const tiers = [
 
 const partners = [
   {
-    name: "KiloClaw",
-    image: "/ftwdao-logo.png",
+    name: "KiloCode",
+    image: "/kilocode-logo.png",
     url: "https://kilocode.pxf.io/OYnK0N",
     tagline: "AI Coding Agent",
   },
   {
     name: "FTW DAO",
-    image: "/kilocode-logo.png",
+    image: "/ftwdao-logo.png",
     url: "https://fwtx.city",
-    tagline: "Web3 Funding & Community",
+    tagline: "Community Partner",
   },
 ];
 
@@ -141,7 +141,7 @@ export default function SponsorsPage() {
                 ClawPlex exists to connect them. No vendor pitches. No conference theater. Just builders showing real work to other builders.
               </motion.p>
               <motion.p {...stagger(4)}>
-                100+ people showed up to ClawCon in March. April 15th is Node 02. We&apos;re building a weekly rotation across the metro. Sponsors make this sustainable.
+                100+ people showed up to ClawCon in March. April 15th was Node 02. May 6th was Node 03. We&apos;re building a weekly rotation across the metro. Sponsors make this sustainable.
               </motion.p>
             </div>
           </div>

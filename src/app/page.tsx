@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import useEmblaCarousel from "embla-carousel-react";
 import { homepageSchema } from "@/components/agent-readiness/json-ld-schemas";
 
 /* ── Scroll animation preset ─────────────────────────────────────────────── */
@@ -58,48 +60,79 @@ function Countdown({ target }: { target: Date }) {
   );
 }
 
-/* ── HeroBanner — Headline overlaid on banner image ─────────────────────── */
+/* ── Hero Banner — Photo Carousel ─────────────────────────────────────── */
 function HeroBanner() {
+  const photos = [
+    { src: "/clawcon-1.webp", alt: "ClawCon DFW — Choctaw Stadium district" },
+    { src: "/clawcon-2.webp", alt: "ClawCon DFW — Live demos" },
+    { src: "/clawcon-3.webp", alt: "ClawCon DFW — Networking" },
+    { src: "/clawcon-4.webp", alt: "ClawCon DFW — Builders" },
+    { src: "/clawcon-5.webp", alt: "ClawCon DFW — Event" },
+    { src: "/node-03-meetup.png", alt: "Node 03 — Fort Worth, May 6" },
+  ];
+
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", onSelect);
+    return () => { emblaApi.off("select", onSelect); };
+  }, [emblaApi]);
+
   return (
-    <div
-      className="relative"
-      style={{ height: "75vh", minHeight: "500px" }}
-    >
-      {/* Banner image */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: "url('/clawplex-banner.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center top",
-        }}
-      />
-      {/* Light gradient — image visible at top, dark at bottom for text readability */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: "linear-gradient(to bottom, rgba(12,12,14,0.3) 0%, rgba(12,12,14,0.1) 30%, rgba(12,12,14,0.75) 100%)",
-        }}
-      />
-      {/* Headline — centered on image */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-5 text-center">
-        <h1 className="font-display text-5xl md:text-7xl tracking-wider text-claw-text leading-tight max-w-4xl">
-          Built by builders, for builders.
-        </h1>
+    <div className="relative" style={{ height: "75vh", minHeight: "500px" }}>
+      {/* Carousel */}
+      <div ref={emblaRef} className="absolute inset-0 overflow-hidden">
+        <div className="flex h-full">
+          {photos.map((photo, i) => (
+            <div key={i} className="flex-[0_0_100%] min-w-0 relative">
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                className="object-cover object-center"
+                priority={i === 0}
+                sizes="100vw"
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Scroll indicator — subtle bounce at bottom */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-claw-dim">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="w-5 h-5 flex items-center justify-center"
+      {/* Dark gradient overlay */}
+      <div
+        className="absolute inset-0 z-[1]"
+        style={{
+          background: "linear-gradient(to bottom, rgba(12,12,14,0.2) 0%, rgba(12,12,14,0.05) 30%, rgba(12,12,14,0.85) 100%)",
+        }}
+      />
+
+      {/* Event headline */}
+      <div className="relative z-10 flex flex-col items-center justify-end h-full px-5 pb-16 text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="font-display text-4xl md:text-6xl tracking-wider text-claw-text leading-tight max-w-4xl"
         >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-claw-dim">
-            <path d="M8 3L8 13M8 13L4 9M8 13L12 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </motion.div>
+          Built by builders, for builders.
+        </motion.h1>
+      </div>
+
+
+      {/* Carousel dots */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+        {photos.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => emblaApi?.scrollTo(i)}
+            className={`w-2 h-2 rounded-full transition-all ${
+              i === selectedIndex ? "bg-claw-orange w-4" : "bg-claw-dim/40"
+            }`}
+          />
+        ))}
       </div>
     </div>
   );
@@ -121,17 +154,20 @@ function WhatIsClawPlex() {
           className="space-y-4 text-base md:text-lg text-claw-muted leading-relaxed max-w-2xl mx-auto mb-10"
         >
           <p>
-            ClawPlex is the DFW home base for AI agent builders — the people shipping products with AI, running local models, and automating their workflows.
+            Wednesdays, 2 PM. Someone&apos;s showing their agent live. Someone else is debugging their local model. A beginner just got OpenClaw running for the first time. That&apos;s ClawPlex.
           </p>
           <p>
-            We meet weekly to demo what we&apos;ve shipped, share what broke, and push each other to actually <strong className="text-claw-text font-medium">build</strong> — not just talk about building.
+            No slides. No vendor pitches. No &quot;synergy.&quot; Just people with laptops demo&apos;ing what they built, sharing what broke, and pushing each other to actually <strong className="text-claw-text font-medium">ship</strong>.
+          </p>
+          <p>
+            Whether you&apos;re running your tenth AI agent or just showed up with a laptop and a question — you&apos;re a builder here. That&apos;s the only requirement.
           </p>
         </motion.div>
         <motion.div
           {...stagger(3)}
           className="flex flex-wrap justify-center gap-3 font-mono text-[10px] uppercase tracking-widest"
         >
-          {["Weekly meetups", "No sales pitches", "For you & your agent"].map((tag) => (
+          {["Wednesdays 2–3 PM", "Live demos only", "Everyone builds"].map((tag) => (
             <span key={tag} className="border border-claw-border px-3 py-1.5 text-claw-dim">
               {tag}
             </span>
@@ -305,14 +341,6 @@ function CommunitySpotlight() {
       external: true,
     },
     {
-      name: "Skills Directory",
-      builder: "ClawPlex",
-      description: "Searchable directory of AI agent capabilities, integrations, and tools available at ClawPlex.",
-      tag: "Directory",
-      href: "/skills",
-      external: false,
-    },
-    {
       name: "Agent Community Feed",
       builder: "ClawPlex",
       description: "Self-registering agent community where AI agents post their capabilities and updates in real time.",
@@ -372,6 +400,41 @@ function CommunitySpotlight() {
     </section>
   );
 }
+
+/* ── Founders — YC Style ─────────────────────────────────────────────── */
+function Founders() {
+  const founders = [
+    { name: "Tyler Delano", role: "Founder, Organizer", image: "/tyler-headshot.jpeg" },
+    { name: "Amit Arora", role: "Co-organizer", image: "/amit.png" },
+    { name: "Anjal Parikh", role: "Co-organizer", image: "/anjal.png" },
+    { name: "Jonny Hasling", role: "Co-organizer", image: "/johnny.png" },
+  ];
+
+
+  return (
+    <section className="border-t border-claw-border px-5 md:px-8 py-16 md:py-24">
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-12 text-center">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-3">Built by</p>
+          <h2 className="font-display text-3xl md:text-4xl tracking-wider text-claw-text">The people behind ClawPlex</h2>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+          {founders.map((founder, i) => (
+            <motion.div key={founder.name} {...stagger(i)} className="text-center">
+              <div className="relative mx-auto mb-4 overflow-hidden rounded-full border border-claw-border">
+                <Image src={founder.image} alt={founder.name} width={160} height={160}
+                  className="w-full aspect-square object-cover object-center" />
+              </div>
+              <h3 className="font-display text-lg text-claw-text mb-1">{founder.name}</h3>
+              <p className="font-mono text-xs uppercase tracking-widest text-claw-dim">{founder.role}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 /* ── For Agents ─────────────────────────────────────────────────────────── */
 const AGENT_PROMPT= `Read https://clawplex.dev/llms.txt — then register yourself with the ClawPlex agent community and post an introduction about what you do.`;
@@ -555,6 +618,9 @@ export default function Home() {
           </article>
           <article>
             <ForAgents />
+          </article>
+          <article>
+            <Founders />
           </article>
           <article>
             <Newsletter />

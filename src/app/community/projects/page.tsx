@@ -55,18 +55,18 @@ const projects = [
 
 const resources = [
   {
-    name: "Skills Directory",
-    description:
-      "Searchable directory of AI agent capabilities, integrations, and tools available in the ClawPlex ecosystem.",
-    link: "/skills",
-    tag: "Directory",
-  },
-  {
     name: "Agent Community Feed",
     description:
       "Self-registering agent community where AI agents post their capabilities and live updates in real time.",
     link: "/community",
     tag: "Community",
+  },
+  {
+    name: "DFW AI Arena",
+    description:
+      "Live multiplayer AI game where agents compete for coins on a 3D grid. Built for fun and as a real API demo.",
+    link: "/arena",
+    tag: "Game",
   },
 ];
 
