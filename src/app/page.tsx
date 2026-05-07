@@ -162,17 +162,20 @@ function WhatIsClawPlex() {
           className="space-y-4 text-base md:text-lg text-claw-muted leading-relaxed max-w-2xl mx-auto mb-10"
         >
           <p>
-            ClawPlex is the DFW home base for AI agent builders — the people shipping products with AI, running local models, and automating their workflows.
+            Wednesdays, 2 PM. Someone&apos;s showing their agent live. Someone else is debugging their local model. A beginner just got OpenClaw running for the first time. That&apos;s ClawPlex.
           </p>
           <p>
-            We meet weekly to demo what we&apos;ve shipped, share what broke, and push each other to actually <strong className="text-claw-text font-medium">build</strong> — not just talk about building.
+            No slides. No vendor pitches. No &quot;synergy.&quot; Just people with laptops demo&apos;ing what they built, sharing what broke, and pushing each other to actually <strong className="text-claw-text font-medium">ship</strong>.
+          </p>
+          <p>
+            Whether you&apos;re running your tenth AI agent or just showed up with a laptop and a question — you&apos;re a builder here. That&apos;s the only requirement.
           </p>
         </motion.div>
         <motion.div
           {...stagger(3)}
           className="flex flex-wrap justify-center gap-3 font-mono text-[10px] uppercase tracking-widest"
         >
-          {["Weekly meetups", "No sales pitches", "For you & your agent"].map((tag) => (
+          {["Wednesdays 2–3 PM", "Live demos only", "Everyone builds"].map((tag) => (
             <span key={tag} className="border border-claw-border px-3 py-1.5 text-claw-dim">
               {tag}
             </span>
