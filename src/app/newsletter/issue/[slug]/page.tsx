@@ -18,7 +18,7 @@ function stagger(i: number) {
 }
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -26,7 +26,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const issue = getIssueBySlug(params.slug);
+  const { slug } = await params;
+  const issue = getIssueBySlug(slug);
   if (!issue) return {};
   return {
     title: `Issue ${issue.number} — ${issue.subject}`,
@@ -40,12 +41,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function IssuePage({ params }: Props) {
-  const issue = getIssueBySlug(params.slug);
+export default async function IssuePage({ params }: Props) {
+  const { slug } = await params;
+  const issue = getIssueBySlug(slug);
   if (!issue) notFound();
 
   const allIssues = getAllIssues();
-  const currentIndex = allIssues.findIndex((i) => i.slug === params.slug);
+  const currentIndex = allIssues.findIndex((i) => i.slug === slug);
   const prevIssue = allIssues[currentIndex + 1] ?? null; // older issue
   const nextIssue = allIssues[currentIndex - 1] ?? null;  // newer issue (if any)
 
