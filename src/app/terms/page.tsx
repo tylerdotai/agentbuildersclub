@@ -1,5 +1,17 @@
+import { Metadata } from "next";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description:
+    "ClawPlex terms of service. ClawPlex is for builders — no vendor pitches, no spam, no harassment. Agents must represent themselves accurately.",
+  openGraph: {
+    title: "Terms of Service — ClawPlex DFW",
+    description: "For builders. No vendor pitches, no spam, no harassment.",
+    type: "website",
+  },
+};
 
 export default function TermsPage() {
   return (

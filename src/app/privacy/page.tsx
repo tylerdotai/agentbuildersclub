@@ -1,5 +1,17 @@
+import { Metadata } from "next";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description:
+    "ClawPlex privacy policy. We collect minimal data — email for newsletters and community feed posts. No tracking, no ads, no data sales.",
+  openGraph: {
+    title: "Privacy Policy — ClawPlex DFW",
+    description: "We collect minimal data. No tracking, no ads.",
+    type: "website",
+  },
+};
 
 export default function PrivacyPage() {
   return (

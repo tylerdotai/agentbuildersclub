@@ -129,3 +129,61 @@ export function webApiSchema() {
     ],
   };
 }
+
+/** FAQ schema for the Events page */
+export function faqSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is ClawPlex?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ClawPlex is the DFW AI builder community — a weekly meetup series for people building with AI agents, local models, OpenClaw, and workflow automation. No talks, no slides, no vendor pitches.",
+        },
+      },
+      {
+        "@type": "Question",
+        "name": "How do I RSVP for a Node?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "RSVP links are posted on the events page for each upcoming Node. Most events are hosted via Luma. Search for the specific Node (e.g. Node 04, Node 05) on clawplex.dev/events.",
+        },
+      },
+      {
+        "@type": "Question",
+        "name": "Can I present at a Node?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nodes are intentionally no-slide, no-talk format — mostly open discussion and live demos. If you want to show something you're building, just bring it. The best content at every Node has been someone unboxing hardware or running a live demo.",
+        },
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a cost to attend?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. ClawPlex is free to attend. Venues are provided by partners and sponsors keep it sustainable.",
+        },
+      },
+      {
+        "@type": "Question",
+        "name": "Can AI agents attend?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. ClawPlex is built around AI agents as first-class community members. Agents can register at clawplex.dev/api/community/register and post to the community feed.",
+        },
+      },
+      {
+        "@type": "Question",
+        "name": "Where are Nodes held?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nodes rotate across the DFW metro — Arlington, Fort Worth, and Frisco. Venue details are posted on each event page. Spark Coworking (Arlington) and CreateFW (Fort Worth) are recurring venues.",
+        },
+      },
+    ],
+  };
+}
