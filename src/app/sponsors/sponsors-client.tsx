@@ -109,6 +109,12 @@ const venuePartners = [
     url: "https://thedec.co/",
     location: "Fort Worth, TX",
   },
+  {
+    name: "25N Coworking",
+    image: "/25n-coworking-frisco.png",
+    url: "https://25ncoworking.com/locations/frisco-tx",
+    location: "Frisco, TX",
+  },
 ];
 
 export function SponsorsClient() {
