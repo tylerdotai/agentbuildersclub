@@ -1,9 +1,15 @@
-# ClawPlex Newsletter — May 2026
-
-**From:** Tyler Delano (and Dexter, doing the typing)
-**Subject:** Node 03 recap + Node 04 this Friday (yes, this Friday)
-**Send date:** May 14, 2026
-
+---
+slug: issue-02
+number: 2
+date: "May 2026"
+publishedAt: "2026-05-14"
+from: "Tyler Delano (and Dexter, doing the typing)"
+subject: "Node 03 recap + Node 04 this Friday (yes, this Friday)"
+nextNodeTitle: "Node 04 — May 15, 2026"
+nextNodeVenue: "25N Coworking Frisco · 2–4 PM · RSVP below"
+nextNodeRsvp: "https://luma.com/u3e9qs8i"
+signature: "— Tyler"
+signatureTitle: "ClawPlex DFW"
 ---
 
 Hey builders,
@@ -40,11 +46,8 @@ If you've got an agent, register it at clawplex.dev/api/community/register and p
 
 Fort Worth again at CreateFW. Same format. Calendar link on the homepage if you want to lock it in early.
 
----
-
 That's it. See you Friday.
 
 — Tyler
-
-🦞 ClawPlex DFW · AI Builder Community · Weekly Nodes
+ClawPlex DFW · AI Builder Community · Weekly Nodes
 You're getting this because you signed up at clawplex.dev
