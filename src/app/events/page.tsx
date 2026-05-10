@@ -24,14 +24,28 @@ const events = [
   {
     slug: "dfw-node-04",
     status: "upcoming",
-    title: "DFW Node 04 — Fort Worth",
+    title: "DFW Node 04 — Frisco",
+    date: "May 15, 2026",
+    time: "2–4 PM CDT",
+    venue: "25N Coworking Frisco",
+    location: "Frisco, TX",
+    description:
+      "Claude In The Wild Meetup. Informal meetup where people are putting Claude to work on real projects and sharing what actually helps in day-to-day use. Heavy token users showing workflows, automations, research helpers, writing tools, and practical setups.",
+    rsvp: "https://luma.com/u3e9qs8i",
+    image: "/25n-frisco.png",
+    stats: null,
+  },
+  {
+    slug: "dfw-node-05",
+    status: "upcoming",
+    title: "DFW Node 05 — Fort Worth",
     date: "June 3, 2026",
     time: "2–3 PM CDT",
     venue: "CreateFW",
     location: "Fort Worth, TX",
     description:
       "Weekly ClawPlex DFW meetup in Fort Worth, hosted with FTW DAO at CreateFW. No agenda, no slides — just builders showing what they are working on.",
-    rsvp: "https://luma.com/0oum4slu",
+    rsvp: "https://luma.com/7lcfouly",
     image: "/createfw-fort-worth.png",
     stats: null,
   },
@@ -95,9 +109,9 @@ export default function EventsPage() {
   const nextEvent = upcoming[0];
   const nextSchema = eventSchema({
     name: nextEvent?.title ?? "DFW Node",
-    startDate: "2026-06-03T14:00:00-05:00",
-    endDate: "2026-06-03T15:00:00-05:00",
-    location: "CreateFW, Fort Worth TX",
+    startDate: "2026-05-15T14:00:00-05:00",
+    endDate: "2026-05-15T16:00:00-05:00",
+    location: "25N Coworking Frisco, Frisco TX",
     description: nextEvent?.description ?? "Weekly meetup for DFW AI builders.",
     url: nextEvent?.rsvp ?? "https://clawplex.dev/events",
     status: "confirmed",

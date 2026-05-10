@@ -180,7 +180,7 @@ function WhatIsClawPlex() {
 
 /* ── Event Section — Countdown + RSVP ──────────────────────────────────── */
 function EventSection() {
-  const eventDate = new Date("2026-06-03T14:00:00-05:00");
+  const eventDate = new Date("2026-05-15T14:00:00-05:00");
 
   return (
     <section className="border-t border-claw-border px-5 md:px-8 py-16 md:py-24">
@@ -195,13 +195,13 @@ function EventSection() {
           {...stagger(1)}
           className="font-display text-3xl md:text-5xl tracking-wider text-claw-text mb-2"
         >
-          DFW Node 04 — Fort Worth
+          DFW Node 04 — Frisco
         </motion.h2>
         <motion.p
           {...stagger(2)}
           className="font-mono text-sm text-claw-dim uppercase tracking-widest mb-10"
         >
-          June 3, 2026 · 2–3 PM · CreateFW, Fort Worth TX
+          May 15, 2026 · 2–4 PM · 25N Coworking, Frisco TX
         </motion.p>
 
         {/* Countdown */}
