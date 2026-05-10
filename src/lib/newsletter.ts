@@ -5,7 +5,7 @@ export interface NewsletterIssue {
   slug: string;
   number: number;
   date: string;             // display: "May 2026"
-  publishedAt: string;       // ISO: "2026-05-14"
+  publishedAt: string;     // ISO: "2026-05-14"
   from: string;
   subject: string;
   body: string[];           // array of paragraphs
@@ -45,6 +45,14 @@ function contentToBody(content: string): string[] {
   return bodyLines.filter(Boolean);
 }
 
+function sanitizeSlug(s: string): string {
+  return s.replace(/[^a-z0-9-]/gi, "");
+}
+
+function sanitizeUrl(s: string): string {
+  return s.startsWith("https://") ? s : "#";
+}
+
 export function getAllIssues(): NewsletterIssue[] {
   if (!existsSync(NEWSLETTER_DIR)) return [];
   const files = readdirSync(NEWSLETTER_DIR).filter((f) => f.endsWith(".md"));
@@ -52,7 +60,7 @@ export function getAllIssues(): NewsletterIssue[] {
     const raw = readFileSync(join(NEWSLETTER_DIR, file), "utf8");
     const { data, content } = parseFrontmatter(raw);
     return {
-      slug: data.slug ?? file.replace(".md", "").replace("draft-", "issue-"),
+      slug: sanitizeSlug(data.slug ?? file.replace(".md", "").replace("draft-", "issue-")),
       number: parseInt(data.number ?? "0", 10),
       date: data.date ?? "",
       publishedAt: data.publishedAt ?? "",
@@ -63,7 +71,7 @@ export function getAllIssues(): NewsletterIssue[] {
         ? {
             title: data.nextNodeTitle ?? "",
             venue: data.nextNodeVenue ?? "",
-            rsvpUrl: data.nextNodeRsvp ?? "",
+            rsvpUrl: sanitizeUrl(data.nextNodeRsvp ?? ""),
           }
         : null,
       signature: data.signature ?? "",
@@ -79,9 +87,9 @@ export function getLatestIssue(): NewsletterIssue | null {
 }
 
 export function getIssueBySlug(slug: string): NewsletterIssue | null {
-  return getAllIssues().find((i) => i.slug === slug) ?? null;
+  return getAllIssues().find((i) => sanitizeSlug(i.slug) === sanitizeSlug(slug)) ?? null;
 }
 
 export function getAllSlugs(): string[] {
-  return getAllIssues().map((i) => i.slug);
+  return getAllIssues().map((i) => sanitizeSlug(i.slug));
 }
