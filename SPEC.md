@@ -2,7 +2,7 @@
 
 **Goal:** Funnel every page to drive event RSVPs and attract AI builders, entrepreneurs, business owners, founders, and beginners to ClawPlex meetups.
 
-**Primary conversion:** RSVP for next event (June 3, 2026 · CreateFW · Fort Worth)
+**Primary conversion:** RSVP for next event (May 15, 2026 · 25N Coworking · Frisco)
 **Secondary conversion:** Join Discord (ongoing engagement pipeline)
 
 ---
@@ -37,7 +37,7 @@
 **Change:**
 - Hero section should open with the next event date, venue, and RSVP CTA — above the fold on desktop
 - Add meetup photo from May 6 (already added to `/node-03-meetup.png`)
-- Add social proof badge: "2 meetups done · Next: June 3 · CreateFW, Fort Worth"
+- Add social proof badge: "4 meetups done · Next: May 15 · 25N Coworking, Frisco"
 - Headline should feel like an invitation, not a manifesto: something that speaks to showing up and building with others
 - Keep the "Built by builders" line but move it below the fold — it's supporting copy now, not the hook
 
@@ -87,7 +87,7 @@
 
 **Exit criteria:**
 - Node 03 (May 6) shows meetup photo + attendee count + what happened
-- Node 04 (June 3) has prominent RSVP CTA with concrete "what to expect"
+- Node 04 (May 15) has prominent RSVP CTA with concrete "what to expect"
 - Page reads like a record of real activity, not a schedule board
 
 ---
