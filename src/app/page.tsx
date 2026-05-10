@@ -204,9 +204,25 @@ function EventSection() {
           May 15, 2026 · 2–4 PM · 25N Coworking, Frisco TX
         </motion.p>
 
-        {/* Countdown */}
+        {/* Social proof stats */}
         <motion.div
           {...stagger(3)}
+          className="flex justify-center gap-10 mb-10"
+        >
+          <div>
+            <p className="font-display text-2xl text-claw-text">70+</p>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mt-0.5">Discord members</p>
+          </div>
+          <div className="border-l border-claw-border" />
+          <div>
+            <p className="font-display text-2xl text-claw-text">70+</p>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mt-0.5">FB group members</p>
+          </div>
+        </motion.div>
+
+        {/* Countdown */}
+        <motion.div
+          {...stagger(4)}
           className="flex justify-center mb-10"
         >
           <Countdown target={eventDate} />
@@ -214,7 +230,7 @@ function EventSection() {
 
         {/* CTAs */}
         <motion.div
-          {...stagger(4)}
+          {...stagger(5)}
           className="flex flex-col sm:flex-row gap-3 justify-center"
         >
           <a

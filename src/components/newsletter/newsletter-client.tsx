@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { SubscribeFormClient } from "@/components/newsletter/subscribe-form-client";
+import type { ParagraphBlock } from "@/lib/newsletter";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -15,13 +16,38 @@ function stagger(i: number) {
   };
 }
 
+function renderParagraph(segments: ParagraphBlock["segments"]) {
+  return segments.map((seg, j) => {
+    switch (seg.type) {
+      case "bold":
+        return <strong key={j} className="font-bold text-claw-text">{seg.content}</strong>;
+      case "code":
+        return <code key={j} className="font-mono text-sm text-claw-text bg-claw-surface px-1.5 py-0.5">{seg.content}</code>;
+      case "link":
+        return (
+          <a
+            key={j}
+            href={seg.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-claw-orange hover:underline"
+          >
+            {seg.content}
+          </a>
+        );
+      default:
+        return <span key={j}>{seg.content}</span>;
+    }
+  });
+}
+
 interface IssueSummary {
   slug: string;
   number: number;
   date: string;
   from: string;
   subject: string;
-  body: string[];
+  body: ParagraphBlock[];
   nextNode: { title: string; venue: string; rsvpUrl: string } | null;
   signature: string;
   signatureTitle: string;
@@ -59,21 +85,13 @@ export function NewsletterClient({ latest, pastIssues }: NewsletterClientProps) 
           </motion.h2>
 
           <div className="space-y-5">
-            {latest.body.map((paragraph, i) => (
+            {latest.body.map((block, i) => (
               <motion.p
                 key={i}
                 {...stagger(i + 3)}
                 className="text-base text-claw-muted leading-relaxed"
               >
-                {paragraph.startsWith("/") ? (
-                  <>
-                    {paragraph.split("/")[0]}
-                    <code className="font-mono text-sm text-claw-text bg-claw-surface px-1.5 py-0.5">/{paragraph.split("/")[1]}</code>
-                    {paragraph.split("/").slice(2).join("/")}
-                  </>
-                ) : (
-                  paragraph
-                )}
+                {renderParagraph(block.segments)}
               </motion.p>
             ))}
           </div>

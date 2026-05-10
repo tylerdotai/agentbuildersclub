@@ -94,6 +94,13 @@ export default function RootLayout({
         className={`${montserrat.variable} ${karla.variable} bg-black text-white font-sans antialiased`}
         style={{ fontFamily: "var(--font-sans), system-ui, sans-serif" }}
       >
+        {/* Skip to main content — a11y */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-claw-orange focus:text-claw-void focus:font-mono focus:text-sm focus:uppercase focus:tracking-widest"
+        >
+          Skip to main content
+        </a>
         <PrivyWrapper>{children}</PrivyWrapper>
         <Analytics />
         <SpeedInsights />

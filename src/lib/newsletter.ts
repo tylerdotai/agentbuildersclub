@@ -1,6 +1,17 @@
 import { readdirSync, readFileSync, existsSync } from "fs";
 import { join } from "path";
 
+export type TextSegment =
+  | { type: "text"; content: string }
+  | { type: "bold"; content: string }
+  | { type: "code"; content: string }
+  | { type: "link"; content: string; href: string };
+
+export interface ParagraphBlock {
+  type: "paragraph";
+  segments: TextSegment[];
+}
+
 export interface NewsletterIssue {
   slug: string;
   number: number;
@@ -8,7 +19,7 @@ export interface NewsletterIssue {
   publishedAt: string;     // ISO: "2026-05-14"
   from: string;
   subject: string;
-  body: string[];           // array of paragraphs
+  body: ParagraphBlock[];
   nextNode: {
     title: string;
     venue: string;
@@ -36,13 +47,46 @@ function parseFrontmatter(raw: string): { data: Record<string, string>; content:
   return { data, content };
 }
 
-function contentToBody(content: string): string[] {
+function parseInline(text: string): TextSegment[] {
+  const segments: TextSegment[] = [];
+  // Regex to match markdown inline: **bold**, [text](url), `code`, and plain text
+  const regex = /(\*\*[^*]+\*\*)|(`[^`]+`)|(\[([^\]]+)\]\((https?:\/\/[^\)]+)\))|(.+?)(?=\*\*|`|\[|$)/g;
+  let match;
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match[1]) {
+      // **bold**
+      segments.push({ type: "bold", content: match[1].replace(/\*\*/g, "") });
+    } else if (match[2]) {
+      // `code`
+      segments.push({ type: "code", content: match[2].replace(/`/g, "") });
+    } else if (match[3]) {
+      // [text](url)
+      segments.push({ type: "link", content: match[4], href: match[5] });
+    } else if (match[6]) {
+      // plain text
+      segments.push({ type: "text", content: match[6] });
+    }
+  }
+
+  return segments;
+}
+
+function parseBody(content: string): ParagraphBlock[] {
   const lines = content.split("\n").map((l) => l.trim());
   const cutoff = lines.findIndex(
     (l) => l.startsWith("ClawPlex DFW") || l.startsWith("You're getting this")
   );
   const bodyLines = cutoff >= 0 ? lines.slice(0, cutoff) : lines;
-  return bodyLines.filter(Boolean);
+  const blocks: ParagraphBlock[] = [];
+  for (const line of bodyLines) {
+    if (!line) continue;
+    blocks.push({
+      type: "paragraph",
+      segments: parseInline(line),
+    });
+  }
+  return blocks;
 }
 
 function sanitizeSlug(s: string): string {
@@ -66,7 +110,7 @@ export function getAllIssues(): NewsletterIssue[] {
       publishedAt: data.publishedAt ?? "",
       from: data.from ?? "",
       subject: data.subject ?? "",
-      body: contentToBody(content),
+      body: parseBody(content),
       nextNode: data.nextNodeTitle
         ? {
             title: data.nextNodeTitle ?? "",
