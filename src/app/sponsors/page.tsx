@@ -70,7 +70,7 @@ const tiers = [
 
 const partners = [
   {
-    name: "KiloCode",
+    name: "KiloClaw",
     image: "/kilocode-logo.png",
     url: "https://kilocode.pxf.io/OYnK0N",
     tagline: "AI Coding Agent",
