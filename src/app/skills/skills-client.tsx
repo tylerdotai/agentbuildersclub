@@ -311,11 +311,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
 }
 
 /* ── Skills Client ─────────────────────────────────────────────────────────── */
-interface SkillsClientProps {
-  // Currently no server props needed for skills page
-}
-
-export function SkillsClient(_props: SkillsClientProps) {
+export function SkillsClient() {
   const [skills, setSkills] = useState<Skill[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -466,5 +462,3 @@ export function SkillsClient(_props: SkillsClientProps) {
     </div>
   );
 }
-
-export type { SkillsClientProps };

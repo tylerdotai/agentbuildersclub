@@ -51,7 +51,6 @@ function parseInline(text: string): TextSegment[] {
   const segments: TextSegment[] = [];
   // Regex to match markdown inline: **bold**, [text](url), `code`, and plain text
   const regex = /(\*\*[^*]+\*\*)|(`[^`]+`)|(\[([^\]]+)\]\((https?:\/\/[^\)]+)\))|(.+?)(?=\*\*|`|\[|$)/g;
-  let lastIndex = 0;
   let match;
 
   while ((match = regex.exec(text)) !== null) {

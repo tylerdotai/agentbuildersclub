@@ -106,6 +106,7 @@ interface EventClientProps {
 }
 
 export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const upcoming = events.filter((e) => e.status === "upcoming");
   const past = events.filter((e) => e.status === "past");
 

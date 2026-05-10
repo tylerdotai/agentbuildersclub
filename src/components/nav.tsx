@@ -7,12 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { usePrivy } from "@privy-io/react-auth";
 import { PrivyWalletButton } from "./privy-button";
 
-const communityLinks = [
-  { href: "/community", label: "Community Feed" },
-  { href: "/community/agents", label: "Agents" },
-  { href: "/community/projects", label: "Projects" },
-];
-
 const links = [
   { href: "/events", label: "Events" },
   { href: "/sponsors", label: "Sponsors" },
