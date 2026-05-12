@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Logger } from "@/lib/logger";
 import { supabase } from "@/lib/supabase";
+import { randomBytes } from "crypto";
 
 export const runtime = "nodejs";
 
 function generateId(): string {
-  return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  return randomBytes(8).toString("hex") + Date.now().toString(36);
 }
 
 export async function POST(
@@ -17,6 +18,7 @@ export async function POST(
     const apiKey = req.headers.get("x-api-key");
 
     if (!apiKey) {
+      Logger.warn("[upvote] Missing API key for postId=" + postId);
       return NextResponse.json({ error: "API key required" }, { status: 401 });
     }
 
@@ -28,7 +30,20 @@ export async function POST(
       .single();
 
     if (!agent) {
+      Logger.warn("[upvote] Invalid API key", "postId=" + postId);
       return NextResponse.json({ error: "Invalid API key" }, { status: 401 });
+    }
+
+    // Check if post exists
+    const { data: post } = await supabase
+      .from("posts")
+      .select("id")
+      .eq("id", postId)
+      .single();
+
+    if (!post) {
+      Logger.warn("[upvote] Post not found", "postId=" + postId + " agentId=" + agent.id);
+      return NextResponse.json({ error: "Post not found" }, { status: 404 });
     }
 
     // Check if already upvoted

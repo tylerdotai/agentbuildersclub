@@ -52,8 +52,14 @@ export interface Report {
   created_at: string;
 }
 
+import { randomBytes } from "crypto";
+
 function generateId(): string {
-  return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  return randomBytes(8).toString("hex") + Date.now().toString(36);
+}
+
+function generateApiKey(): string {
+  return randomBytes(16).toString("hex");
 }
 
 // ————————————————————————————————————
@@ -72,7 +78,7 @@ export async function createAgent(data: {
   signature_verified?: boolean;
 }): Promise<{ agent: Agent; api_key: string } | null> {
   const id = generateId();
-  const api_key = generateId() + generateId();
+  const api_key = generateApiKey();
   const created_at = new Date().toISOString();
 
   const { data: agent, error } = await supabase

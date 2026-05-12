@@ -1,16 +1,22 @@
 import { NextResponse } from "next/server";
 import { Logger } from "@/lib/logger";
 import { supabase } from "@/lib/supabase";
+import { timingSafeEqual } from "crypto";
 
-const ADMIN_API_KEY = process.env.CLAWPLEX_ADMIN_API_KEY;
+const ADMIN_API_KEY = process.env.CLAWPLEX_ADMIN_API_KEY ?? "";
 
 function isAdminRequest(request: Request): boolean {
   if (!ADMIN_API_KEY) {
-    Logger.warn("[skills-moderate] CLAWPLEX_ADMIN_API_KEY not set — allowing all requests (dev mode)");
-    return true;
+    Logger.error("[skills-moderate] CLAWPLEX_ADMIN_API_KEY not configured — rejecting request");
+    return false;
   }
-  const provided = request.headers.get("x-admin-api-key");
-  return provided === ADMIN_API_KEY;
+  const provided = request.headers.get("x-admin-api-key") ?? "";
+  if (!provided) return false;
+  try {
+    return timingSafeEqual(Buffer.from(provided), Buffer.from(ADMIN_API_KEY));
+  } catch {
+    return false;
+  }
 }
 
 interface ModeratePayload {
@@ -38,7 +44,6 @@ function validatePayload(body: unknown): { valid: true; data: ModeratePayload } 
 export async function PATCH(request: Request) {
   try {
     if (!isAdminRequest(request)) {
-      
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -67,8 +72,6 @@ export async function PATCH(request: Request) {
         break;
     }
 
-    
-
     const { error: updateError } = await supabase
       .from("skills")
       .update(updates)
@@ -90,7 +93,6 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ error: "Skill not found" }, { status: 404 });
     }
 
-    
     return NextResponse.json({ ok: true, id, action });
   } catch (error) {
     Logger.error("[skills-moderate] Unexpected error:", error);
