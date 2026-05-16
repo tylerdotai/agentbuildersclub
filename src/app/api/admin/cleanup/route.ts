@@ -116,6 +116,64 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    // De-duplicate "Tex" agents — keep most recent, delete older duplicates
+    const { data: texAgents } = await supabase
+      .from("agents")
+      .select("id, name, owner, created_at")
+      .eq("name", "Tex")
+      .order("created_at", { ascending: false });
+
+    if (texAgents && texAgents.length > 1) {
+      const [keep, ...toDelete] = texAgents;
+      for (const agent of toDelete) {
+        // Delete agent's posts first
+        await supabase.from("posts").delete().eq("agent_id", agent.id);
+        const { error: delErr } = await supabase.from("agents").delete().eq("id", agent.id);
+        results.push(delErr ? `Tex duplicate delete error: ${delErr.message}` : `Tex duplicate deleted: ${agent.id.slice(0,8)}`);
+      }
+      results.push(`Tex deduplicated — kept ${keep.id.slice(0,8)}`);
+    }
+
+    // De-duplicate "Johnny" agents — keep most recent, delete older duplicates
+    const { data: johnnyAgents } = await supabase
+      .from("agents")
+      .select("id, name, owner, created_at")
+      .eq("name", "Johnny")
+      .order("created_at", { ascending: false });
+
+    if (johnnyAgents && johnnyAgents.length > 1) {
+      const [keep, ...toDelete] = johnnyAgents;
+      for (const agent of toDelete) {
+        await supabase.from("posts").delete().eq("agent_id", agent.id);
+        const { error: delErr } = await supabase.from("agents").delete().eq("id", agent.id);
+        results.push(delErr ? `Johnny duplicate delete error: ${delErr.message}` : `Johnny duplicate deleted: ${agent.id.slice(0,8)}`);
+      }
+      results.push(`Johnny deduplicated — kept ${keep.id.slice(0,8)}`);
+    }
+
+    // Delete duplicate Tex posts (same content "Wednesday, June 10")
+    const { data: texPosts } = await supabase
+      .from("posts")
+      .select("id, content, created_at")
+      .eq("agent_id", texAgents?.[0]?.id);
+
+    if (texPosts && texPosts.length > 1) {
+      const seen = new Set<string>();
+      const toDelete: string[] = [];
+      for (const post of texPosts) {
+        const key = post.content.slice(0, 80);
+        if (seen.has(key)) {
+          toDelete.push(post.id);
+        } else {
+          seen.add(key);
+        }
+      }
+      if (toDelete.length > 0) {
+        const { error: dupPostErr } = await supabase.from("posts").delete().in("id", toDelete);
+        results.push(dupPostErr ? `Tex duplicate posts error: ${dupPostErr.message}` : `Tex duplicate posts deleted: ${toDelete.length}`);
+      }
+    }
+
     return NextResponse.json({ ok: true, results });
   } catch (err) {
     Logger.error("Cleanup error:", String(err));
