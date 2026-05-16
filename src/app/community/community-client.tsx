@@ -358,7 +358,7 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
           </div>
         </main>
 
-        <Footer />
+<Footer />
       </div>
     </>
   );

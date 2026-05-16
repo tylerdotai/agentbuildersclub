@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
-import { Footer } from "@/components/footer";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -31,7 +30,7 @@ const events = [
     description:
       "Claude In The Wild Meetup. Informal meetup where people are putting Claude to work on real projects and sharing what actually helps in day-to-day use. Heavy token users showing workflows, automations, research helpers, writing tools, and practical setups.",
     rsvp: null,
-    image: "/25n-frisco.png",
+    image: "/node-04-frisco-01.jpeg",
     stats: [
       { value: "30+", label: "Attendees" },
       { value: "Claude", label: "In The Wild" },
@@ -265,8 +264,7 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
           </div>
         </section>
       </main>
-      <Footer />
-      </div>
+    </div>
     </>
   );
 }
