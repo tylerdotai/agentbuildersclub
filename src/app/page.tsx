@@ -69,6 +69,9 @@ function HeroBanner() {
     { src: "/clawcon-4.webp", alt: "ClawCon DFW — Builders" },
     { src: "/clawcon-5.webp", alt: "ClawCon DFW — Event" },
     { src: "/node-03-meetup.png", alt: "Node 03 — Fort Worth, May 6" },
+    { src: "/node-04-frisco-01.jpeg", alt: "Node 04 — 25N Coworking, Frisco" },
+    { src: "/node-04-frisco-02.jpeg", alt: "Node 04 — 25N Coworking, Frisco" },
+    { src: "/node-04-frisco-03.jpeg", alt: "Node 04 — 25N Coworking, Frisco" },
   ];
 
 
