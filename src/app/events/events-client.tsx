@@ -22,7 +22,7 @@ function stagger(i: number) {
 const events = [
   {
     slug: "dfw-node-04",
-    status: "upcoming",
+    status: "past",
     title: "DFW Node 04 — Frisco",
     date: "May 15, 2026",
     time: "2–4 PM CDT",
@@ -30,9 +30,13 @@ const events = [
     location: "Frisco, TX",
     description:
       "Claude In The Wild Meetup. Informal meetup where people are putting Claude to work on real projects and sharing what actually helps in day-to-day use. Heavy token users showing workflows, automations, research helpers, writing tools, and practical setups.",
-    rsvp: "https://luma.com/u3e9qs8i",
+    rsvp: null,
     image: "/25n-frisco.png",
-    stats: null,
+    stats: [
+      { value: "30+", label: "Attendees" },
+      { value: "Claude", label: "In The Wild" },
+      { value: "25N Coworking", label: "Frisco Host" },
+    ],
   },
   {
     slug: "dfw-node-05",

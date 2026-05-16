@@ -18,13 +18,13 @@ export const metadata: Metadata = {
 
 export default function EventsPage() {
   const nextEventSchema = eventSchema({
-    name: "DFW Node 04 — Frisco",
-    startDate: "2026-05-15T14:00:00-05:00",
-    endDate: "2026-05-15T16:00:00-05:00",
-    location: "25N Coworking Frisco, Frisco TX",
+    name: "DFW Node 05 — Fort Worth",
+    startDate: "2026-06-03T14:00:00-05:00",
+    endDate: "2026-06-03T15:00:00-05:00",
+    location: "CreateFW, Fort Worth TX",
     description:
-      "Claude In The Wild Meetup. Informal meetup where people are putting Claude to work on real projects and sharing what actually helps in day-to-day use.",
-    url: "https://luma.com/u3e9qs8i",
+      "Weekly ClawPlex DFW meetup in Fort Worth, hosted with FTW DAO at CreateFW. No agenda, no slides — just builders showing what they are working on.",
+    url: "https://luma.com/7lcfouly",
     status: "confirmed",
   });
 
