@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Nav } from "@/components/nav";
 import { SkillCard, type Skill, type SkillCategory } from "@/components/skill-card";
+import { useDictSlice } from "@/lib/i18n/dictionaries/client";
+import type { SkillsDict } from "@/lib/i18n/dictionaries/types";
 
 const CATEGORIES: Array<SkillCategory | "All"> = [
   "All",
@@ -36,6 +38,7 @@ const EMPTY_FORM: FormState = {
 };
 
 function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const t = useDictSlice("skills") as SkillsDict;
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [phrase, setPhrase] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -67,7 +70,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.description || !form.category || !form.instructions || !form.submitter_name) {
-      setErrorMsg("Please fill in all required fields.");
+      setErrorMsg(t.required);
       setStatus("error");
       return;
     }
@@ -79,16 +82,15 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      const data = await res.json();
       if (res.ok) {
         setStatus("success");
       } else {
         setStatus("error");
-        setErrorMsg(data.error || "Submission failed. Try again.");
+        setErrorMsg(t.failed);
       }
     } catch {
       setStatus("error");
-      setErrorMsg("Network error. Try again.");
+      setErrorMsg(t.network);
     }
   };
 
@@ -119,13 +121,13 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
             {/* Header */}
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-claw-border bg-claw-surface px-6 py-4">
               <h2 className="font-display text-2xl tracking-wider text-claw-text">
-                Submit a Skill
+                {t.submitTitle}
               </h2>
               <button
                 onClick={onClose}
                 className="border border-claw-border px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-claw-dim hover:border-claw-orange hover:text-claw-orange transition-colors"
               >
-                ✕ Close
+                {t.close}
               </button>
             </div>
 
@@ -136,16 +138,16 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                     <span className="font-display text-3xl text-claw-success">✓</span>
                   </div>
                   <h3 className="font-display text-2xl tracking-wider text-claw-text mb-2">
-                    Submitted for Review
+                    {t.successTitle}
                   </h3>
                   <p className="font-mono text-sm text-claw-muted">
-                    Your skill has been submitted. We&apos;ll review it and add it to the marketplace soon.
+                    {t.successBody}
                   </p>
                   <button
                     onClick={onClose}
                     className="mt-8 border border-claw-border px-8 py-3 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-orange hover:text-claw-orange transition-colors"
                   >
-                    Back to Skills
+                    {t.back}
                   </button>
                 </div>
               ) : (
@@ -153,13 +155,13 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                   {/* Skill name */}
                   <div>
                     <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                      Skill Name <span className="text-claw-orange">*</span>
+                      {t.labels.name} <span className="text-claw-orange">*</span>
                     </label>
                     <input
                       type="text"
                       value={form.name}
                       onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                      placeholder="e.g. GitHub MCP, SEO Optimizer"
+                      placeholder={t.placeholders.name}
                       required
                       className={inputClass}
                     />
@@ -168,12 +170,12 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                   {/* Description */}
                   <div>
                     <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                      Description <span className="text-claw-orange">*</span>
+                      {t.labels.description} <span className="text-claw-orange">*</span>
                     </label>
                     <textarea
                       value={form.description}
                       onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
-                      placeholder="What does this skill do? (2-3 sentences)"
+                      placeholder={t.placeholders.description}
                       required
                       rows={3}
                       className={`${inputClass} resize-none`}
@@ -183,7 +185,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                   {/* Category */}
                   <div>
                     <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                      Category <span className="text-claw-orange">*</span>
+                      {t.labels.category} <span className="text-claw-orange">*</span>
                     </label>
                     <select
                       value={form.category}
@@ -191,9 +193,9 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                       required
                       className={`${inputClass} cursor-pointer`}
                     >
-                      <option value="" className="bg-claw-surface">Select a category</option>
+                      <option value="" className="bg-claw-surface">{t.placeholders.category}</option>
                       {CATEGORIES.filter((c) => c !== "All").map((c) => (
-                        <option key={c} value={c} className="bg-claw-surface">{c}</option>
+                        <option key={c} value={c} className="bg-claw-surface">{t.categories[c]}</option>
                       ))}
                     </select>
                   </div>
@@ -201,7 +203,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                   {/* Trigger phrases */}
                   <div>
                     <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                      Trigger Phrases
+                      {t.labels.triggers}
                     </label>
                     <div className="flex gap-2 mb-2">
                       <input
@@ -209,7 +211,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                         value={phrase}
                         onChange={(e) => setPhrase(e.target.value)}
                         onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addPhrase())}
-                        placeholder="e.g. &quot;analyze repo&quot;, &quot;find bug&quot;"
+                        placeholder={t.placeholders.triggers}
                         className={`${inputClass} flex-1`}
                       />
                       <button
@@ -217,7 +219,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                         onClick={addPhrase}
                         className="border border-claw-border px-4 py-3 font-mono text-xs uppercase tracking-widest text-claw-dim hover:border-claw-orange hover:text-claw-orange transition-colors shrink-0"
                       >
-                        + Add
+                        {t.add}
                       </button>
                     </div>
                     {form.trigger_phrases.length > 0 && (
@@ -244,15 +246,15 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                   {/* Instructions */}
                   <div>
                     <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                      Instructions <span className="text-claw-orange">*</span>
+                      {t.labels.instructions} <span className="text-claw-orange">*</span>
                     </label>
                     <p className="mb-2 font-mono text-[10px] text-claw-dim">
-                      The actual agent prompt or skill definition. This gets copied on install.
+                      {t.instructionsHelp}
                     </p>
                     <textarea
                       value={form.instructions}
                       onChange={(e) => setForm((f) => ({ ...f, instructions: e.target.value }))}
-                      placeholder="Paste your skill prompt here..."
+                      placeholder={t.placeholders.instructions}
                       required
                       rows={8}
                       className={`${inputClass} resize-none font-mono text-xs leading-relaxed`}
@@ -262,13 +264,13 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                   {/* Submitter name */}
                   <div>
                     <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                      Your Name <span className="text-claw-orange">*</span>
+                      {t.labels.yourName} <span className="text-claw-orange">*</span>
                     </label>
                     <input
                       type="text"
                       value={form.submitter_name}
                       onChange={(e) => setForm((f) => ({ ...f, submitter_name: e.target.value }))}
-                      placeholder="Tylerdotai"
+                      placeholder={t.placeholders.yourName}
                       required
                       className={inputClass}
                     />
@@ -277,13 +279,13 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                   {/* API key */}
                   <div>
                     <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                      API Key <span className="text-claw-dim">(optional — for agent submissions)</span>
+                      {t.labels.apiKey} <span className="text-claw-dim">{t.labels.optionalAgent}</span>
                     </label>
                     <input
                       type="password"
                       value={form.api_key}
                       onChange={(e) => setForm((f) => ({ ...f, api_key: e.target.value }))}
-                      placeholder="Agent API key (optional)"
+                      placeholder={t.placeholders.apiKey}
                       className={inputClass}
                     />
                   </div>
@@ -297,7 +299,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                     disabled={status === "loading"}
                     className="w-full border border-claw-orange bg-claw-orange py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 disabled:opacity-50 transition-colors"
                   >
-                    {status === "loading" ? "Submitting..." : "Submit Skill"}
+                    {status === "loading" ? t.submitting : t.submit}
                   </button>
                 </form>
               )}
@@ -311,6 +313,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
 
 /* ── Skills Client ─────────────────────────────────────────────────────────── */
 export function SkillsClient() {
+  const t = useDictSlice("skills") as SkillsDict;
   const [skills, setSkills] = useState<Skill[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -326,11 +329,11 @@ export function SkillsClient() {
       const data = await res.json();
       setSkills(data.skills ?? []);
     } catch {
-      setError("Failed to load skills. Refresh to try again.");
+      setError(t.loadFailed);
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [t.loadFailed]);
 
   useEffect(() => {
     fetchSkills();
@@ -353,19 +356,19 @@ export function SkillsClient() {
               transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
             >
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-4">
-                ClawPlex Marketplace
+                {t.heroEyebrow}
               </p>
               <h1 className="font-display text-5xl md:text-8xl tracking-wider text-claw-text leading-none mb-4">
-                CLAWPLEX SKILLS.
+                {t.heroTitle}
               </h1>
               <p className="font-mono text-sm uppercase tracking-widest text-claw-muted mb-8">
-                Community-built agents, ready to install.
+                {t.heroDek}
               </p>
               <button
                 onClick={() => setShowModal(true)}
                 className="border border-claw-orange bg-claw-orange px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors"
               >
-                + Submit a Skill
+                {t.submitCta}
               </button>
             </motion.div>
           </div>
@@ -387,7 +390,7 @@ export function SkillsClient() {
                       : "border-claw-border text-claw-dim hover:border-claw-border-hover hover:text-claw-muted"
                   }`}
                 >
-                  {cat}
+                  {t.categories[cat]}
                 </button>
               ))}
             </div>
@@ -423,24 +426,24 @@ export function SkillsClient() {
                   onClick={fetchSkills}
                   className="mt-4 border border-red-500/30 px-6 py-2 font-mono text-xs uppercase tracking-widest text-red-500 hover:bg-red-500/10 transition-colors"
                 >
-                  Retry
+                  {t.retry}
                 </button>
               </div>
             )}
 
             {!loading && !error && filtered.length === 0 && (
               <div className="border border-claw-border bg-claw-surface px-6 py-20 text-center">
-                <p className="font-display text-3xl text-claw-text mb-3">No skills yet.</p>
+                <p className="font-display text-3xl text-claw-text mb-3">{t.emptyTitle}</p>
                 <p className="font-mono text-sm text-claw-dim mb-8">
                   {activeCategory === "All"
-                    ? "Be the first to submit a skill to the marketplace."
-                    : `No ${activeCategory} skills yet. Be the first to submit one.`}
+                    ? t.emptyAll
+                    : t.emptyCategory(t.categories[activeCategory])}
                 </p>
                 <button
                   onClick={() => setShowModal(true)}
                   className="border border-claw-orange px-8 py-3 font-mono text-sm uppercase tracking-widest text-claw-orange hover:bg-claw-orange hover:text-claw-void transition-colors"
                 >
-                  Submit a Skill
+                  {t.submit}
                 </button>
               </div>
             )}

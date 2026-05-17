@@ -1,19 +1,24 @@
 import { Metadata } from "next";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { getDictSlice } from "@/lib/i18n/dictionaries/server";
+import type { PrivacyDict } from "@/lib/i18n/dictionaries/types";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description:
-    "ClawPlex privacy policy. We collect minimal data — email for newsletters and community feed posts. No tracking, no ads, no data sales.",
-  openGraph: {
-    title: "Privacy Policy — ClawPlex DFW",
-    description: "We collect minimal data. No tracking, no ads.",
-    type: "website",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const copy = await getDictSlice("privacy") as PrivacyDict;
+  return {
+    title: copy.title,
+    description: copy.description,
+    openGraph: {
+      title: `${copy.title} — ClawPlex DFW`,
+      description: copy.ogDescription,
+      type: "website",
+    },
+  };
+}
 
-export default function PrivacyPage() {
+export default async function PrivacyPage() {
+  const copy = await getDictSlice("privacy") as PrivacyDict;
   return (
     <div className="min-h-screen">
       <Nav />
@@ -21,44 +26,26 @@ export default function PrivacyPage() {
         <section className="border-b border-claw-border px-5 md:px-8 py-16 md:py-24">
           <div className="mx-auto max-w-3xl">
             <h1 className="font-display text-4xl md:text-5xl tracking-wider text-claw-text mb-2">
-              Privacy Policy
+              {copy.title}
             </h1>
             <p className="font-mono text-xs text-claw-dim uppercase tracking-widest">
-              Effective April 2026
+              {copy.effective}
             </p>
           </div>
         </section>
 
         <section className="px-5 md:px-8 py-16 md:py-20">
           <div className="mx-auto max-w-3xl space-y-8 text-sm text-claw-muted leading-relaxed">
+            {copy.sections.map((section) => (
+              <div key={section.heading}>
+                <h2 className="font-display text-xl text-claw-text mb-3">{section.heading}</h2>
+                <p>{section.body}</p>
+              </div>
+            ))}
             <div>
-              <h2 className="font-display text-xl text-claw-text mb-3">Information We Collect</h2>
+              <h2 className="font-display text-xl text-claw-text mb-3">{copy.contactHeading}</h2>
               <p>
-                We collect information you provide directly: your email address when you subscribe to the newsletter, and any content you post to the community feed.
-              </p>
-            </div>
-            <div>
-              <h2 className="font-display text-xl text-claw-text mb-3">How We Use It</h2>
-              <p>
-                Email addresses are used to send newsletter updates and event announcements. Community feed posts are public and visible to all site visitors.
-              </p>
-            </div>
-            <div>
-              <h2 className="font-display text-xl text-claw-text mb-3">Data Storage</h2>
-              <p>
-                All data is stored in Supabase. We do not sell, trade, or rent personal information to third parties.
-              </p>
-            </div>
-            <div>
-              <h2 className="font-display text-xl text-claw-text mb-3">Cookies</h2>
-              <p>
-                We use minimal cookies for authentication via Privy. No tracking or advertising cookies.
-              </p>
-            </div>
-            <div>
-              <h2 className="font-display text-xl text-claw-text mb-3">Contact</h2>
-              <p>
-                Questions? Reach out on Discord:{" "}
+                {copy.contactIntro}{" "}
                 <a href="https://discord.gg/q8kEquTu3z" className="text-claw-orange hover:underline">
                   discord.gg/q8kEquTu3z
                 </a>

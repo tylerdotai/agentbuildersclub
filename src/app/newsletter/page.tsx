@@ -3,18 +3,24 @@ import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { getLatestIssue, getAllIssues } from "@/lib/newsletter";
 import { NewsletterClient } from "@/components/newsletter/newsletter-client";
+import { getDictSlice } from "@/lib/i18n/dictionaries/server";
+import type { NewsletterPageDict } from "@/lib/i18n/dictionaries/types";
 
-export const metadata: Metadata = {
-  title: "The Drop — ClawPlex Newsletter",
-  description: "Monthly dispatches from the DFW AI builder community",
-  openGraph: {
-    title: "The Drop — ClawPlex Newsletter",
-    description: "Monthly dispatches from the DFW AI builder community",
-    type: "website",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const copy = await getDictSlice("newsletterPage") as NewsletterPageDict;
+  return {
+    title: copy.title,
+    description: copy.description,
+    openGraph: {
+      title: copy.title,
+      description: copy.description,
+      type: "website",
+    },
+  };
+}
 
-export default function NewsletterPage() {
+export default async function NewsletterPage() {
+  const copy = await getDictSlice("newsletterPage") as NewsletterPageDict;
   const latest = getLatestIssue();
   const allIssues = getAllIssues();
   const pastIssues = allIssues.slice(1).map((i) => ({
@@ -35,10 +41,10 @@ export default function NewsletterPage() {
               ClawPlex DFW
             </p>
             <h1 className="font-display text-4xl md:text-6xl tracking-wider text-claw-text leading-none">
-              THE DROP.
+              {copy.heading}
             </h1>
             <p className="mt-4 font-mono text-xs uppercase tracking-widest text-claw-dim">
-              Monthly dispatches from the DFW AI builder community
+              {copy.description}
             </p>
           </div>
         </section>

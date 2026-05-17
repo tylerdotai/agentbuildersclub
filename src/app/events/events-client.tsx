@@ -2,8 +2,21 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
+import {
+  defaultLocale,
+  getLocaleFromPathname,
+  withLocale,
+} from "@/lib/i18n/config";
+import { useDictSlice } from "@/lib/i18n/dictionaries/client";
+import type { EventsDict } from "@/lib/i18n/dictionaries/types";
+
+interface EventClientProps {
+  eventSchemaJson: string;
+  faqSchemaJson: string;
+}
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -18,100 +31,11 @@ function stagger(i: number) {
   return { ...fade, transition: { duration: 0.7, ease, delay: i * 0.08 } };
 }
 
-const events = [
-  {
-    slug: "dfw-node-04",
-    status: "past",
-    title: "DFW Node 04 — Frisco",
-    date: "May 15, 2026",
-    time: "2–4 PM CDT",
-    venue: "25N Coworking Frisco",
-    location: "Frisco, TX",
-    description:
-      "Claude In The Wild Meetup. Informal meetup where people are putting Claude to work on real projects and sharing what actually helps in day-to-day use. Heavy token users showing workflows, automations, research helpers, writing tools, and practical setups.",
-    rsvp: null,
-    image: "/node-04-frisco-01.jpeg",
-    stats: [
-      { value: "30+", label: "Attendees" },
-      { value: "Claude", label: "In The Wild" },
-      { value: "25N Coworking", label: "Frisco Host" },
-    ],
-  },
-  {
-    slug: "dfw-node-05",
-    status: "upcoming",
-    title: "DFW Node 05 — Fort Worth",
-    date: "June 3, 2026",
-    time: "2–3 PM CDT",
-    venue: "CreateFW",
-    location: "Fort Worth, TX",
-    description:
-      "Weekly ClawPlex DFW meetup in Fort Worth, hosted with FTW DAO at CreateFW. No agenda, no slides — just builders showing what they are working on.",
-    rsvp: "https://luma.com/7lcfouly",
-    image: "/createfw-fort-worth.png",
-    stats: null,
-  },
-  {
-    slug: "dfw-node-03",
-    status: "past",
-    title: "DFW Node 03 — Fort Worth",
-    date: "May 6, 2026",
-    time: "2–3 PM CDT",
-    venue: "CreateFW",
-    location: "Fort Worth, TX",
-    description:
-      "Hands-on Mac Mini + OpenClaw install workshop. Live demo of the Mac Mini OpenClaw setup. Great networking and builders of all levels.",
-    rsvp: null,
-    image: "/node-03-meetup.png",
-    stats: [
-      { value: "~10", label: "Attendees" },
-      { value: "Live Demo", label: "Mac Mini OpenClaw" },
-      { value: "Workshop", label: "Hands-on Setup" },
-    ],
-  },
-  {
-    slug: "dfw-node-02",
-    status: "past",
-    title: "DFW Node 02",
-    date: "April 15, 2026",
-    time: "2–3 PM CDT",
-    venue: "Spark Coworking",
-    location: "Arlington, TX",
-    description:
-      "Weekly meetup for DFW builders tinkering with AI agents and OpenClaw. No agenda, no slides — just people with laptops and coffee.",
-    rsvp: "https://luma.com/yppasqmp",
-    image: "/spark-arlington.png",
-    stats: null,
-  },
-  {
-    slug: "clawcon-dfw",
-    status: "past",
-    title: "ClawCon DFW",
-    date: "March 24, 2026",
-    time: "2–5 PM CDT",
-    venue: "Spark Coworking",
-    location: "Arlington, TX",
-    description:
-      "Our inaugural node. 100+ DFW builders showed up to the Choctaw Stadium district for live demos, lightning talks, and real conversations about shipping AI projects.",
-    rsvp: null,
-    image: "/clawcon-1.webp",
-    stats: [
-      { value: "100+", label: "Attendees" },
-      { value: "4", label: "Live Demos" },
-      { value: "1", label: "Node Launched" },
-    ],
-  },
-];
-
-interface EventClientProps {
-  eventSchemaJson: string;
-  faqSchemaJson: string;
-}
-
 export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProps) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const upcoming = events.filter((e) => e.status === "upcoming");
-  const past = events.filter((e) => e.status === "past");
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname) ?? defaultLocale;
+  const copy = useDictSlice("events") as EventsDict;
+  const past = copy.events;
 
   return (
     <>
@@ -140,11 +64,10 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
               {...stagger(1)}
               className="font-display text-4xl md:text-6xl tracking-wider text-claw-text leading-none"
             >
-              NODES &amp; EVENTS.
+              {copy.heading}
             </motion.h1>
             <motion.p {...stagger(2)} className="mt-4 text-base text-claw-muted max-w-xl mx-auto">
-              Weekly meetups for DFW AI builders. No talks. No slides. Just people
-              with laptops and coffee, being honest about what they&apos;re building.
+              {copy.intro}
             </motion.p>
           </div>
         </section>
@@ -156,7 +79,7 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
               {...stagger(0)}
               className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-10 text-center"
             >
-              Upcoming
+              {copy.upcoming}
             </motion.p>
             <motion.div
               {...stagger(1)}
@@ -172,7 +95,7 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
                 allowFullScreen
                 aria-hidden="false"
                 tabIndex={0}
-                title="ClawPlex Events Calendar"
+                title={copy.calendarTitle}
               />
             </motion.div>
           </div>
@@ -186,7 +109,7 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
                 {...stagger(0)}
                 className="font-mono text-xs uppercase tracking-[0.2em] text-claw-dim mb-10 text-center"
               >
-                Past Events
+                {copy.pastEvents}
               </motion.p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 {past.map((event, i) => (
@@ -199,7 +122,7 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
                         className="object-cover opacity-70"
                       />
                       <div className="absolute top-4 left-4 border border-claw-border bg-claw-void/90 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                        Past
+                        {copy.past}
                       </div>
                     </div>
                     <h2 className="font-display text-4xl md:text-5xl tracking-wider text-claw-text mb-2">
@@ -236,21 +159,20 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
         <section className="px-5 md:px-8 py-20 md:py-28">
           <div className="mx-auto max-w-2xl text-center">
             <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-widest text-claw-dim mb-4">
-              See you at the next node
+              {copy.ctaEyebrow}
             </motion.p>
             <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-5xl tracking-wider text-claw-text mb-6">
-              GET THE DROP.
+              {copy.ctaHeading}
             </motion.h2>
             <motion.p {...stagger(2)} className="text-base text-claw-muted mb-8">
-              Venue announcements, event reminders, and DFW AI community news —
-              straight to your inbox.
+              {copy.ctaText}
             </motion.p>
             <motion.div {...stagger(3)} className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
-                href="/newsletter"
+                href={withLocale("/newsletter", locale)}
                 className="border border-claw-orange bg-claw-orange px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors text-center"
               >
-                Join Newsletter
+                {copy.newsletter}
               </Link>
               <a
                 href="https://discord.gg/q8kEquTu3z"
@@ -258,7 +180,7 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
                 rel="noopener noreferrer"
                 className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-orange hover:text-claw-orange transition-colors text-center"
               >
-                Join Discord
+                {copy.discord}
               </a>
             </motion.div>
           </div>

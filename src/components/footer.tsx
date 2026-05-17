@@ -2,28 +2,28 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  defaultLocale,
+  getLocaleFromPathname,
+  localeCookieName,
+  localeNames,
+  locales,
+  type Locale,
+  withLocale,
+} from "@/lib/i18n/config";
+import { useDictSlice } from "@/lib/i18n/dictionaries/client";
+import type { FooterDict } from "@/lib/i18n/dictionaries/types";
 
-const footerNav = {
-  Community: [
-    { href: "/community", label: "Community feed" },
-    { href: "/community/agents", label: "Agents" },
-    { href: "/community/projects", label: "Projects" },
-    { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },
-  ],
-  Events: [
-    { href: "/events", label: "Events" },
-    { href: "/newsletter", label: "Newsletter" },
-    { href: "https://luma.com/clawplex", label: "Calendar", external: true },
-  ],
-  About: [
-    { href: "/sponsors", label: "Sponsors" },
-    { href: "https://github.com/tylerdotai/clawplex", label: "GitHub", external: true },
-    { href: "https://x.com/ClawPlexDFW", label: "Twitter / X", external: true },
-    { href: "https://linkedin.com/company/clawplex", label: "LinkedIn", external: true },
-  ],
-};
+function rememberLocale(locale: Locale) {
+  document.cookie = `${localeCookieName}=${locale}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
+}
 
 export function Footer() {
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname) ?? defaultLocale;
+  const copy = useDictSlice("footer") as FooterDict;
+
   return (
     <footer className="border-t border-claw-border bg-claw-void">
       {/* Main footer */}
@@ -32,9 +32,9 @@ export function Footer() {
           {/* Brand column */}
           <div className="md:col-span-2">
             <Link
-              href="/"
+              href={withLocale("/", locale)}
               className="inline-flex items-center gap-2.5"
-              aria-label="ClawPlex home"
+              aria-label={copy.home}
             >
               <Image
                 src="/clawplex-logo.png"
@@ -48,15 +48,15 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.22em] text-claw-orange">
-              DFW AI Builder Community
+              {copy.eyebrow}
             </p>
             <p className="mt-4 text-[14px] sm:text-[15px] text-claw-muted leading-[1.6] max-w-sm">
-              Weekly meetups for builders shipping real AI products. No vendor pitches. No conference theater. Just people with laptops.
+              {copy.description}
             </p>
           </div>
 
           {/* Nav columns */}
-          {Object.entries(footerNav).map(([category, items]) => (
+          {Object.entries(copy.nav).map(([category, items]) => (
             <div key={category}>
               <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-claw-orange mb-5">
                 {category}
@@ -65,7 +65,7 @@ export function Footer() {
                 {items.map((item) => (
                   <li key={item.href}>
                     <a
-                      href={item.href}
+                      href={item.external ? item.href : withLocale(item.href, locale)}
                       {...(item.external
                         ? { target: "_blank", rel: "noopener noreferrer" }
                         : {})}
@@ -85,23 +85,41 @@ export function Footer() {
       <div className="border-t border-claw-border">
         <div className="mx-auto max-w-7xl px-5 md:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-[13px] text-claw-dim text-center md:text-left">
-            © {new Date().getFullYear()} ClawPlex DFW · Built by builders, for builders.
+            © {new Date().getFullYear()} ClawPlex DFW · {copy.copyright}
           </p>
           <div className="flex items-center gap-5 text-[13px]">
             <a
-              href="/privacy"
+              href={withLocale("/privacy", locale)}
               className="text-claw-dim hover:text-claw-text transition-colors"
             >
-              Privacy
+              {copy.privacy}
             </a>
             <a
-              href="/terms"
+              href={withLocale("/terms", locale)}
               className="text-claw-dim hover:text-claw-text transition-colors"
             >
-              Terms
+              {copy.terms}
             </a>
+            <span className="flex items-center gap-2" aria-label={copy.language}>
+              {locales.map((language) => (
+                <Link
+                  key={language}
+                  href={withLocale(pathname, language)}
+                  onClick={() => rememberLocale(language)}
+                  hrefLang={language}
+                  aria-current={language === locale ? "true" : undefined}
+                  className={`transition-colors ${
+                    language === locale
+                      ? "text-claw-orange"
+                      : "text-claw-dim hover:text-claw-text"
+                  }`}
+                >
+                  {localeNames[language]}
+                </Link>
+              ))}
+            </span>
             <span className="text-claw-dim hidden sm:inline">
-              Built on{" "}
+              {copy.builtOn}{" "}
               <a
                 href="https://openclaw.ai"
                 target="_blank"

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useDictSlice } from "@/lib/i18n/dictionaries/client";
+import type { SkillCardDict } from "@/lib/i18n/dictionaries/types";
 
 export type SkillCategory = "Research" | "Productivity" | "Social" | "Utility" | "Creative";
 
@@ -36,6 +38,7 @@ const categoryDotColors: Record<SkillCategory, string> = {
 /* ── Skill Detail Modal ───────────────────────────────────────────────────── */
 function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
   const [copied, setCopied] = useState(false);
+  const t = useDictSlice("skillCard") as SkillCardDict;
 
   function handleInstall() {
     navigator.clipboard.writeText(skill.instructions).then(() => {
@@ -72,7 +75,7 @@ function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
             <div className={`mt-1.5 h-2 w-2 rounded-full shrink-0 ${dotClass}`} />
             <div>
               <span className={`mb-1.5 inline-block border px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest ${badgeClass}`}>
-                {skill.category}
+                {t.categories[skill.category]}
               </span>
               <h2 className="font-display text-2xl md:text-3xl tracking-wider text-claw-text leading-tight">
                 {skill.name}
@@ -81,6 +84,7 @@ function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
           </div>
           <button
             onClick={onClose}
+            aria-label={t.close}
             className="shrink-0 border border-claw-border px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-claw-dim hover:border-claw-orange hover:text-claw-orange transition-colors"
           >
             ✕
@@ -90,14 +94,14 @@ function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
         <div className="p-6 space-y-6">
           {/* Description */}
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-2">Description</p>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-2">{t.description}</p>
             <p className="text-sm text-claw-muted leading-relaxed">{skill.description}</p>
           </div>
 
           {/* Trigger phrases */}
           {skill.trigger_phrases.length > 0 && (
             <div>
-              <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-2">Trigger Phrases</p>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-2">{t.triggers}</p>
               <div className="flex flex-wrap gap-2">
                 {skill.trigger_phrases.map((phrase) => (
                   <span
@@ -113,7 +117,7 @@ function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
 
           {/* Instructions */}
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-2">Agent Instructions</p>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-2">{t.instructions}</p>
             <div className="border border-claw-border bg-claw-void p-4">
               <pre className="font-mono text-xs text-claw-muted leading-relaxed whitespace-pre-wrap">
                 {skill.instructions}
@@ -125,10 +129,10 @@ function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
           <div className="flex items-center justify-between border-t border-claw-border pt-5">
             <div className="flex flex-col gap-1">
               <span className="font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                Submitted by {skill.submitter_name}
+                {t.submittedBy(skill.submitter_name)}
               </span>
               <span className="font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                {skill.install_count.toLocaleString()} installs
+                {t.installs(skill.install_count)}
               </span>
             </div>
             <button
@@ -139,7 +143,7 @@ function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
                   : "border-claw-orange text-claw-orange hover:bg-claw-orange hover:text-claw-void"
               }`}
             >
-              {copied ? "✓ Copied to Clipboard" : "Install Skill"}
+              {copied ? t.copiedClipboard : t.installSkill}
             </button>
           </div>
         </div>
@@ -157,6 +161,7 @@ interface SkillCardProps {
 export function SkillCard({ skill, index = 0 }: SkillCardProps) {
   const [selected, setSelected] = useState(false);
   const [copied, setCopied] = useState(false);
+  const t = useDictSlice("skillCard") as SkillCardDict;
 
   function buildSkillMd(s: Skill): string {
     const frontmatter = [
@@ -192,7 +197,7 @@ export function SkillCard({ skill, index = 0 }: SkillCardProps) {
       >
         {/* Category badge */}
         <span className={`self-start mb-3 border px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest ${badgeClass}`}>
-          {skill.category}
+          {t.categories[skill.category]}
         </span>
 
         {/* Name */}
@@ -218,7 +223,7 @@ export function SkillCard({ skill, index = 0 }: SkillCardProps) {
             ))}
             {skill.trigger_phrases.length > 3 && (
               <span className="font-mono text-[10px] text-claw-dim px-1">
-                +{skill.trigger_phrases.length - 3} more
+                {t.more(skill.trigger_phrases.length - 3)}
               </span>
             )}
           </div>
@@ -227,7 +232,7 @@ export function SkillCard({ skill, index = 0 }: SkillCardProps) {
         {/* Footer */}
         <div className="flex items-center justify-between mt-auto pt-4 border-t border-claw-border">
           <span className="font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-            {skill.install_count.toLocaleString()} installs
+            {t.installs(skill.install_count)}
           </span>
           <button
             onClick={handleInstall}
@@ -237,7 +242,7 @@ export function SkillCard({ skill, index = 0 }: SkillCardProps) {
                 : "border-claw-orange text-claw-orange hover:bg-claw-orange hover:text-claw-void"
             }`}
           >
-            {copied ? "Copied!" : "Install"}
+            {copied ? t.copied : t.install}
           </button>
         </div>
       </motion.div>
