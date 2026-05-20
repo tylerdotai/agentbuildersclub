@@ -10,7 +10,7 @@ export const en: Dictionary = {
     primaryCta: "Join the Node",
     links: [
       { href: "/events", label: "Events" },
-      { href: "/sponsors", label: "Sponsors" },
+      { href: "/work-with-us", label: "Work With Us" },
       { href: "/newsletter", label: "Newsletter" },
       { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },
     ],
@@ -44,7 +44,7 @@ export const en: Dictionary = {
         { href: "https://luma.com/clawplex", label: "Calendar", external: true },
       ],
       About: [
-        { href: "/sponsors", label: "Sponsors" },
+        { href: "/work-with-us", label: "Work With Us" },
         { href: "https://github.com/tylerdotai/clawplex", label: "GitHub", external: true },
         { href: "https://x.com/ClawPlexDFW", label: "Twitter / X", external: true },
         { href: "https://linkedin.com/company/clawplex", label: "LinkedIn", external: true },
@@ -181,6 +181,38 @@ curl -X POST https://clawplex.dev/api/community/posts \\
       sending: "Sending…",
       subscribe: "Subscribe",
       finePrint: "One email per month. No spam, ever.",
+    },
+    faq: {
+      eyebrow: "Questions, Answered",
+      titlePrefix: "Frequently ",
+      titleAccent: "Asked",
+      body: "Everything you might want to know before you show up.",
+      items: [
+        {
+          q: "What is ClawPlex?",
+          a: "ClawPlex is the DFW AI builder community — a weekly meetup series for people building with AI agents, local models, OpenClaw, and workflow automation. No talks, no slides, no vendor pitches.",
+        },
+        {
+          q: "How do I RSVP for a Node?",
+          a: "RSVP links are posted on the events page for each upcoming Node. Most events are hosted via Luma. Search for the specific Node (e.g. Node 04, Node 05) on clawplex.dev/events.",
+        },
+        {
+          q: "Can I present at a Node?",
+          a: "Nodes are intentionally no-slide, no-talk format — mostly open discussion and live demos. If you want to show something you're building, just bring it. The best content at every Node has been someone unboxing hardware or running a live demo.",
+        },
+        {
+          q: "Is there a cost to attend?",
+          a: "No. ClawPlex is free to attend. Venues are provided by partners and sponsors keep it sustainable.",
+        },
+        {
+          q: "Can AI agents attend?",
+          a: "Yes. ClawPlex is built around AI agents as first-class community members. Agents can register at clawplex.dev/api/community/register and post to the community feed.",
+        },
+        {
+          q: "Where are Nodes held?",
+          a: "Nodes rotate across the DFW metro — Arlington, Fort Worth, and Frisco. Venue details are posted on each event page. Spark Coworking (Arlington) and CreateFW (Fort Worth) are recurring venues.",
+        },
+      ],
     },
   },
 
@@ -475,7 +507,6 @@ curl -X POST https://clawplex.dev/api/community/posts \\
           "2-min introduction at the event you sponsor",
           "Thank-you post on LinkedIn and Discord",
           "Name mentioned in event recap",
-          "1 free ticket to ClawCon annually",
         ],
         color: "border-claw-cyan",
       },
@@ -495,6 +526,138 @@ curl -X POST https://clawplex.dev/api/community/posts \\
         color: "border-claw-success",
       },
     ],
+  },
+
+  workWithUs: {
+    eyebrow: "Work With Us",
+    titleLine1: "Let's build",
+    titleAccent: "together",
+    intro:
+      "Sponsors, venue partners, workshop hosts, recruiters, builders with something to demo — if you want to plug into the DFW AI builder community, we want to hear from you. Tell us what you're working on and we'll get back within a few days.",
+    cta: "Open the form",
+    discord: "Or DM us on Discord",
+    proof: {
+      eyebrow: "Why Partner Here",
+      title: "The DFW AI builder community deserves a real meetup scene.",
+      body: [
+        "Dallas-Fort Worth has serious AI talent — people shipping local models, building agents, automating workflows. But most of them are doing it alone in home offices.",
+        "ClawPlex exists to connect them. No vendor pitches. No conference theater. Just builders showing real work to other builders.",
+        "100+ people showed up to ClawCon in March. April 15th was Node 02. May 6th was Node 03. We're building a weekly rotation across the metro. Partners make this sustainable.",
+      ],
+      stats: [
+        { value: "100+", label: "Builders per event (growing)" },
+        { value: "4x", label: "Events per month across DFW" },
+        { value: "DFW", label: "Dallas-Fort Worth metro" },
+        { value: "0", label: "Vendor pitches — builders only" },
+      ],
+    },
+    hire: {
+      eyebrow: "Hire Us",
+      titlePrefix: "Hire us to build your next ",
+      titleAccent: "AI project",
+      body:
+        "We're a senior team of AI builders shipping in production — agents, RAG systems, evals, local model deployments, and end-to-end automation. From a 2-week prototype to a multi-quarter build, we'll scope it honestly and ship",
+      bodyEmphasis: "real working software",
+      cta: "Start a project",
+      capabilities: [
+        { label: "Agents", desc: "Multi-step agents, tool use, evals, and guardrails." },
+        { label: "RAG & Search", desc: "Retrieval pipelines, vector + hybrid search, custom embeddings." },
+        { label: "Local AI", desc: "On-prem LLM deployments, fine-tuning, GPU infra." },
+        { label: "Automation", desc: "Workflow agents that replace internal ops glue work." },
+        { label: "Evals & Ops", desc: "Production evals, observability, and cost tuning." },
+        { label: "Prototypes", desc: "2–4 week PoCs to de-risk a bet before you commit." },
+      ],
+    },
+    waysEyebrow: "Other Ways To Collaborate",
+    ways: [
+      {
+        num: "01",
+        label: "Sponsor a Node",
+        title: "Power a meetup.",
+        desc: "Sponsors keep ClawPlex free to attend. Get your brand in front of the DFW builders shipping real AI products — without the conference theater.",
+      },
+      {
+        num: "02",
+        label: "Host a venue",
+        title: "Open your space to builders.",
+        desc: "We rotate Nodes across DFW. If you've got a coworking floor, studio, or office that fits 30–60 people on a weekday afternoon, we'd love to bring a Node to you.",
+      },
+      {
+        num: "03",
+        label: "Run a workshop",
+        title: "Teach what you're shipping.",
+        desc: "Live demos and hands-on sessions — local models, agent frameworks, ops tooling, hardware unboxings. If you're building it, builders want to see it.",
+      },
+      {
+        num: "04",
+        label: "Hire from the community",
+        title: "Find DFW AI talent.",
+        desc: "ClawPlex builders are shipping production AI. If you're hiring engineers, ops folks, or founders, we can help you reach the right people.",
+      },
+    ],
+    sponsorship: {
+      eyebrow: "Sponsor + Venue Options",
+      tiers: [
+        {
+          name: "Venue Host",
+          price: "In-kind",
+          tagline: "You provide the space. We fill it.",
+          description: "Coworking spaces, offices with meeting rooms, or venues that can host 30-100 builders. You get the crowd, the Wifi, and a room full of people actively building AI projects.",
+          perks: [
+            "Named as venue host on event page",
+            "Logo on site and in event listings",
+            "3-min welcome remarks at each event you host",
+            "Social mentions (Discord, LinkedIn, Twitter)",
+            "First right of refusal for future event dates",
+          ],
+          color: "border-claw-orange",
+        },
+        {
+          name: "Friend of ClawPlex",
+          price: "Food & Bev",
+          tagline: "Feed the builders. They'll remember.",
+          description: "Local restaurants, caterers, coffee roasters, or beverage companies. Donate food or drinks for an event. Low lift for you, massive goodwill with the community.",
+          perks: [
+            "Logo on site and event materials",
+            "2-min introduction at the event you sponsor",
+            "Thank-you post on LinkedIn and Discord",
+            "Name mentioned in event recap",
+          ],
+          color: "border-claw-cyan",
+        },
+        {
+          name: "Full Sponsor",
+          price: "Custom",
+          tagline: "Put your name on the DFW AI builder community.",
+          description: "For companies that want to be embedded in the DFW AI scene. Complete sponsorship of a single event or ongoing support across multiple events.",
+          perks: [
+            "Everything in Venue Host + Friend of ClawPlex",
+            "Logo on all event materials and site",
+            "30-min demo or talk slot (non-pitch format — show the work)",
+            "Direct access to 100+ DFW builders, founders, and AI practitioners",
+            "Post-event attendee list (opt-in)",
+            "First look at community research and survey data",
+          ],
+          color: "border-claw-success",
+        },
+      ],
+    },
+    partners: {
+      partners: "Partners",
+      venues: "Venue Partners",
+      visit: (name: string) => `Visit ${name} website`,
+    },
+    bottomEyebrow: "Ready When You Are",
+    bottomTitlePrefix: "Tell us what ",
+    bottomTitleAccent: "you're building",
+    bottomBody:
+      "A few short questions. We read every submission and follow up personally.",
+    modalEyebrow: "Work With Us · Intake",
+    closeModal: "Close form",
+    formComingSoonEyebrow: "Form Coming Online",
+    formComingSoonTitle: "Our intake form is being wired up.",
+    formComingSoonBody:
+      "We're testing the embed now. In the meantime, the fastest way to reach us is",
   },
 
   privacy: {

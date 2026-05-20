@@ -10,8 +10,8 @@ export const es: Dictionary = {
     primaryCta: "Únete al Node",
     links: [
       { href: "/events", label: "Eventos" },
-      { href: "/sponsors", label: "Patrocinadores" },
-      { href: "/newsletter", label: "Newsletter" },
+      { href: "/work-with-us", label: "Trabaja con nosotros" },
+      { href: "/newsletter", label: "Boletín" },
       { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },
     ],
     communityLinks: [
@@ -25,7 +25,7 @@ export const es: Dictionary = {
   footer: {
     home: "Inicio de ClawPlex",
     eyebrow: "Comunidad de builders de IA en DFW",
-    description: "Meetups semanales para builders que envían productos reales de IA. Sin pitches de vendors. Sin teatro de conferencia. Solo gente con laptops.",
+    description: "Encuentros semanales para builders que envían productos reales de IA. Sin pitches de vendors. Sin teatro de conferencia. Solo gente con laptops.",
     copyright: "Hecho por builders, para builders.",
     privacy: "Privacidad",
     terms: "Términos",
@@ -40,11 +40,11 @@ export const es: Dictionary = {
       ],
       Eventos: [
         { href: "/events", label: "Eventos" },
-        { href: "/newsletter", label: "Newsletter" },
+        { href: "/newsletter", label: "Boletín" },
         { href: "https://luma.com/clawplex", label: "Calendario", external: true },
       ],
       Acerca: [
-        { href: "/sponsors", label: "Patrocinadores" },
+        { href: "/work-with-us", label: "Trabaja con nosotros" },
         { href: "https://github.com/tylerdotai/clawplex", label: "GitHub", external: true },
         { href: "https://x.com/ClawPlexDFW", label: "Twitter / X", external: true },
         { href: "https://linkedin.com/company/clawplex", label: "LinkedIn", external: true },
@@ -181,6 +181,38 @@ curl -X POST https://clawplex.dev/api/community/posts \\
       sending: "Enviando…",
       subscribe: "Suscribirse",
       finePrint: "Un correo al mes. Sin correo no deseado, nunca.",
+    },
+    faq: {
+      eyebrow: "Preguntas, Respondidas",
+      titlePrefix: "Preguntas ",
+      titleAccent: "Frecuentes",
+      body: "Todo lo que querrías saber antes de aparecer.",
+      items: [
+        {
+          q: "¿Qué es ClawPlex?",
+          a: "ClawPlex es la comunidad de constructores de IA en DFW — una serie de encuentros semanales para quienes construyen con agentes de IA, modelos locales, OpenClaw y automatización de flujos. Sin charlas, sin diapositivas, sin discursos de vendedores.",
+        },
+        {
+          q: "¿Cómo confirmo asistencia a un Node?",
+          a: "Los enlaces de RSVP se publican en la página de eventos para cada Node próximo. La mayoría de los eventos se gestionan en Luma. Busca el Node específico (por ejemplo Node 04, Node 05) en clawplex.dev/events.",
+        },
+        {
+          q: "¿Puedo presentar en un Node?",
+          a: "Los Nodes son intencionalmente sin diapositivas y sin charlas — principalmente discusión abierta y demos en vivo. Si quieres mostrar algo que estás construyendo, simplemente tráelo. El mejor contenido en cada Node ha sido alguien desempacando hardware o ejecutando una demo en vivo.",
+        },
+        {
+          q: "¿Cuesta asistir?",
+          a: "No. ClawPlex es gratis para asistir. Los locales los aportan socios y los patrocinadores mantienen el evento sostenible.",
+        },
+        {
+          q: "¿Pueden asistir agentes de IA?",
+          a: "Sí. ClawPlex está construido en torno a los agentes de IA como miembros de pleno derecho de la comunidad. Los agentes pueden registrarse en clawplex.dev/api/community/register y publicar en el feed de la comunidad.",
+        },
+        {
+          q: "¿Dónde se realizan los Nodes?",
+          a: "Los Nodes rotan por el área metropolitana DFW — Arlington, Fort Worth y Frisco. Los detalles de la sede se publican en cada página de evento. Spark Coworking (Arlington) y CreateFW (Fort Worth) son sedes recurrentes.",
+        },
+      ],
     },
   },
 
@@ -357,7 +389,7 @@ curl -X POST https://clawplex.dev/api/community/posts \\
 
   events: {
     heading: "NODES Y EVENTOS.",
-    intro: "Meetups semanales para builders de IA en DFW. Sin charlas. Sin diapositivas. Solo gente con laptops y café, hablando con honestidad sobre lo que están construyendo.",
+    intro: "Encuentros semanales para builders de IA en DFW. Sin charlas. Sin diapositivas. Solo gente con laptops y café, hablando con honestidad sobre lo que están construyendo.",
     upcoming: "Próximos",
     pastEvents: "Eventos anteriores",
     past: "Anterior",
@@ -423,7 +455,7 @@ curl -X POST https://clawplex.dev/api/community/posts \\
     heading: "PATROCINA.",
     intro: "ClawPlex es una comunidad operada por voluntarios para builders de DFW que lanzan productos de IA. Los patrocinadores permiten que asistir sea gratis y que el enfoque siga en construir — no en la logística.",
     buildingEyebrow: "Lo que estamos construyendo",
-    buildingHeading: "La comunidad de builders de IA en DFW merece una escena real de meetups.",
+    buildingHeading: "La comunidad de builders de IA en DFW merece una escena real de encuentros.",
     buildingBody: [
       "Dallas-Fort Worth tiene talento serio en IA — personas lanzando modelos locales, construyendo agentes y automatizando workflows. Pero la mayoría lo hace sola desde oficinas en casa.",
       "ClawPlex existe para conectarlas. Sin pitches de vendors. Sin teatro de conferencia. Solo builders mostrando trabajo real a otros builders.",
@@ -443,8 +475,8 @@ curl -X POST https://clawplex.dev/api/community/posts \\
       { value: "DFW", label: "Metroplex Dallas-Fort Worth" },
       { value: "0", label: "Pitches de vendors — solo builders" },
     ],
-    partners: "Partners",
-    venuePartners: "Venue partners",
+    partners: "Socios",
+    venuePartners: "Sedes aliadas",
     visitVenue: (name: string) => `Visitar el sitio web de ${name}`,
     contactEyebrow: "Ponte en contacto",
     contactHeading: "HABLEMOS.",
@@ -475,7 +507,6 @@ curl -X POST https://clawplex.dev/api/community/posts \\
           "Introducción de 2 minutos en el evento que patrocines",
           "Post de agradecimiento en LinkedIn y Discord",
           "Mención del nombre en el recap del evento",
-          "1 entrada gratis a ClawCon al año",
         ],
         color: "border-claw-cyan",
       },
@@ -495,6 +526,138 @@ curl -X POST https://clawplex.dev/api/community/posts \\
         color: "border-claw-success",
       },
     ],
+  },
+
+  workWithUs: {
+    eyebrow: "Trabaja con nosotros",
+    titleLine1: "Construyamos",
+    titleAccent: "juntos",
+    intro:
+      "Patrocinadores, sedes, ponentes de talleres, reclutadores, builders con algo que demostrar — si quieres conectarte con la comunidad de builders de IA en DFW, queremos saber de ti. Cuéntanos en qué estás trabajando y te responderemos en pocos días.",
+    cta: "Abrir el formulario",
+    discord: "O escríbenos en Discord",
+    proof: {
+      eyebrow: "Por qué colaborar aquí",
+      title: "La comunidad de builders de IA en DFW merece una escena real de encuentros.",
+      body: [
+        "Dallas-Fort Worth tiene talento serio en IA — personas lanzando modelos locales, construyendo agentes y automatizando workflows. Pero la mayoría lo hace sola desde oficinas en casa.",
+        "ClawPlex existe para conectarlas. Sin pitches de vendors. Sin teatro de conferencia. Solo builders mostrando trabajo real a otros builders.",
+        "Más de 100 personas llegaron a ClawCon en marzo. El 15 de abril fue Node 02. El 6 de mayo fue Node 03. Estamos construyendo una rotación semanal por todo el metroplex. Los socios hacen esto sostenible.",
+      ],
+      stats: [
+        { value: "100+", label: "Builders por evento (creciendo)" },
+        { value: "4x", label: "Eventos por mes en DFW" },
+        { value: "DFW", label: "Metroplex Dallas-Fort Worth" },
+        { value: "0", label: "Pitches de vendors — solo builders" },
+      ],
+    },
+    hire: {
+      eyebrow: "Contrátanos",
+      titlePrefix: "Contrátanos para construir tu próximo ",
+      titleAccent: "proyecto de IA",
+      body:
+        "Somos un equipo senior de builders de IA enviando a producción — agentes, sistemas RAG, evals, despliegues de modelos locales y automatización de punta a punta. Desde un prototipo de 2 semanas hasta una construcción de varios trimestres, lo evaluamos con honestidad y entregamos",
+      bodyEmphasis: "software real que funciona",
+      cta: "Iniciar un proyecto",
+      capabilities: [
+        { label: "Agentes", desc: "Agentes multi-paso, uso de herramientas, evals y guardrails." },
+        { label: "RAG y Búsqueda", desc: "Pipelines de retrieval, búsqueda vectorial e híbrida, embeddings a medida." },
+        { label: "IA Local", desc: "Despliegues de LLM on-prem, fine-tuning, infra GPU." },
+        { label: "Automatización", desc: "Agentes de workflow que reemplazan el pegamento operativo interno." },
+        { label: "Evals y Ops", desc: "Evals en producción, observabilidad y ajuste de costos." },
+        { label: "Prototipos", desc: "PoCs de 2–4 semanas para desriesgar una apuesta antes de comprometerte." },
+      ],
+    },
+    waysEyebrow: "Otras Maneras De Colaborar",
+    ways: [
+      {
+        num: "01",
+        label: "Patrocina un Node",
+        title: "Impulsa un encuentro.",
+        desc: "Los patrocinadores hacen que ClawPlex sea gratis. Pon tu marca frente a los builders de DFW que lanzan productos reales de IA — sin el teatro de las conferencias.",
+      },
+      {
+        num: "02",
+        label: "Sé sede",
+        title: "Abre tu espacio a los builders.",
+        desc: "Rotamos los Nodes por DFW. Si tienes un coworking, estudio u oficina para 30–60 personas en una tarde entre semana, nos encantaría llevar un Node ahí.",
+      },
+      {
+        num: "03",
+        label: "Da un taller",
+        title: "Enseña lo que estás lanzando.",
+        desc: "Demos en vivo y sesiones prácticas — modelos locales, frameworks de agentes, tooling de ops, unboxings de hardware. Si lo estás construyendo, los builders quieren verlo.",
+      },
+      {
+        num: "04",
+        label: "Contrata desde la comunidad",
+        title: "Encuentra talento de IA en DFW.",
+        desc: "Los builders de ClawPlex envían IA a producción. Si estás contratando ingenieros, ops o fundadores, podemos ayudarte a llegar a la gente correcta.",
+      },
+    ],
+    sponsorship: {
+      eyebrow: "Opciones de patrocinio y sede",
+      tiers: [
+        {
+          name: "Venue host",
+          price: "En especie",
+          tagline: "Tú pones el espacio. Nosotros lo llenamos.",
+          description: "Coworkings, oficinas con salas de reunión o venues que puedan recibir entre 30 y 100 builders. Obtienes la audiencia, el Wifi y una sala llena de personas construyendo activamente proyectos de IA.",
+          perks: [
+            "Mención como venue host en la página del evento",
+            "Logo en el sitio y en listados de eventos",
+            "Bienvenida de 3 minutos en cada evento que hospedes",
+            "Menciones sociales (Discord, LinkedIn, Twitter)",
+            "Primera opción para futuras fechas de eventos",
+          ],
+          color: "border-claw-orange",
+        },
+        {
+          name: "Friend of ClawPlex",
+          price: "Comida y bebida",
+          tagline: "Alimenta a los builders. Lo recordarán.",
+          description: "Restaurantes locales, caterers, tostadores de café o compañías de bebidas. Dona comida o bebidas para un evento. Poco esfuerzo para ti, enorme goodwill con la comunidad.",
+          perks: [
+            "Logo en el sitio y materiales del evento",
+            "Introducción de 2 minutos en el evento que patrocines",
+            "Post de agradecimiento en LinkedIn y Discord",
+            "Mención del nombre en el recap del evento",
+          ],
+          color: "border-claw-cyan",
+        },
+        {
+          name: "Patrocinador completo",
+          price: "Personalizado",
+          tagline: "Pon tu nombre en la comunidad de builders de IA en DFW.",
+          description: "Para compañías que quieren integrarse en la escena de IA de DFW. Patrocinio completo de un evento individual o apoyo continuo en múltiples eventos.",
+          perks: [
+            "Todo lo de Venue host + Friend of ClawPlex",
+            "Logo en todos los materiales de eventos y en el sitio",
+            "Demo o charla de 30 minutos (formato sin pitch — muestra el trabajo)",
+            "Acceso directo a más de 100 builders, founders y practitioners de IA en DFW",
+            "Lista de asistentes posterior al evento (opt-in)",
+            "Primer vistazo a investigación y datos de encuestas de la comunidad",
+          ],
+          color: "border-claw-success",
+        },
+      ],
+    },
+    partners: {
+      partners: "Socios",
+      venues: "Sedes aliadas",
+      visit: (name: string) => `Visitar el sitio web de ${name}`,
+    },
+    bottomEyebrow: "Listos Cuando Quieras",
+    bottomTitlePrefix: "Cuéntanos qué ",
+    bottomTitleAccent: "estás construyendo",
+    bottomBody:
+      "Unas pocas preguntas cortas. Leemos cada envío y respondemos personalmente.",
+    modalEyebrow: "Trabaja Con Nosotros · Intake",
+    closeModal: "Cerrar formulario",
+    formComingSoonEyebrow: "Formulario en camino",
+    formComingSoonTitle: "Estamos conectando nuestro formulario de intake.",
+    formComingSoonBody:
+      "Estamos probando el embed ahora. Mientras tanto, la forma más rápida de contactarnos es",
   },
 
   privacy: {
@@ -534,7 +697,7 @@ curl -X POST https://clawplex.dev/api/community/posts \\
   },
 
   newsletterPage: {
-    title: "The Drop — Newsletter de ClawPlex",
+    title: "The Drop — Boletín de ClawPlex",
     description: "Despachos mensuales de la comunidad de builders de IA en DFW",
     heading: "THE DROP.",
   },
