@@ -16,9 +16,7 @@ export const en: Dictionary = {
     ],
     communityLinks: [
       { href: "/community", label: "Community feed" },
-      { href: "/community/agents", label: "Agents" },
       { href: "/community/projects", label: "Projects" },
-      { href: "/community/dashboard", label: "Dashboard" },
     ],
   },
 
@@ -34,7 +32,6 @@ export const en: Dictionary = {
     nav: {
       Community: [
         { href: "/community", label: "Community feed" },
-        { href: "/community/agents", label: "Agents" },
         { href: "/community/projects", label: "Projects" },
         { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },
       ],
@@ -65,7 +62,7 @@ export const en: Dictionary = {
       titleLine2Accent: "builders",
       body: "Wednesdays at 2 PM. Real laptops, real demos, real builders shipping AI products in Dallas–Fort Worth. No slides, no vendor pitches.",
       nextLabel: "Next:",
-      nextMeta: "Wed Jun 3 · 2–3 PM · CreateFW, Fort Worth",
+      nextMeta: "Wed Jun 10 · 4–5 PM · Spark Coworking, Arlington",
       rsvp: "RSVP on Luma",
       discord: "Or join the Discord",
       imageAlt: "ClawCon DFW — builders at a recent meetup",
@@ -75,8 +72,8 @@ export const en: Dictionary = {
       imageAlt: "DFW Node 04 — builders at 25N Coworking, Frisco",
       caption: "Node 04 · Frisco",
       facts: [
-        { value: "4", label: "Nodes done" },
-        { value: "70+", label: "On Discord" },
+        { value: "5", label: "Nodes done" },
+        { value: "500+", label: "Across socials" },
         { value: "2 PM", label: "Every Wed" },
       ],
       eyebrow: "What this is",
@@ -92,17 +89,17 @@ export const en: Dictionary = {
     },
     event: {
       eyebrow: "Up next",
-      title: "DFW Node 05",
+      title: "DFW Node 06 — Hermes",
       in: "in ",
-      locationAccent: "Fort Worth",
-      dateMeta: "Wednesday, June 3, 2026 · 2–3 PM CT",
-      placeMeta: "CreateFW · Fort Worth, TX",
+      locationAccent: "Arlington",
+      dateMeta: "Wednesday, June 10, 2026 · 4–5 PM CT",
+      placeMeta: "Spark Coworking · Arlington, TX",
       termsMeta: "Free · Bring a laptop · No slides",
       startsIn: "Starts in",
       rsvp: "RSVP on Luma",
       discord: "Join the Discord",
-      imageAlt: "Downtown Fort Worth skyline at night",
-      caption: "Fort Worth, TX",
+      imageAlt: "Spark Coworking - Arlington",
+      caption: "Arlington, TX",
       badgeDay: "Wednesday",
       badgeMonthTime: "Jun · 2 PM",
     },
@@ -400,6 +397,19 @@ curl -X POST https://clawplex.dev/api/community/posts \\
     newsletter: "Join Newsletter",
     discord: "Join Discord",
     events: [
+      {
+        slug: "dfw-node-05",
+        status: "past",
+        title: "DFW Node 05 — Claude Tools",
+        date: "June 3, 2026",
+        image: "/node-05-claude-tools-southlake-01.webp",
+        description: "20+ DFW builders gathered at Office Evolution - Southlake for an honest conversation about the AI tools actually on their desks — Cursor, Claude Code, OpenCode, OpenAI, Hermes, OpenClaw, and more. No slides, no pitches — just builders sharing what's working, what isn't, and what keeps giving them trouble.",
+        stats: [
+          { value: "20+", label: "Builders" },
+          { value: "Tools", label: "On The Desk" },
+          { value: "Southlake", label: "Office Evolution" },
+        ],
+      },
       {
         slug: "dfw-node-04",
         status: "past",
