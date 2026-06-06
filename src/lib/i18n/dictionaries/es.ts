@@ -17,6 +17,7 @@ export const es: Dictionary = {
     communityLinks: [
       { href: "/community", label: "Feed de comunidad" },
       { href: "/community/projects", label: "Proyectos" },
+      { href: "/skills", label: "Habilidades" },
     ],
   },
 
@@ -33,6 +34,7 @@ export const es: Dictionary = {
       Comunidad: [
         { href: "/community", label: "Feed de comunidad" },
         { href: "/community/projects", label: "Proyectos" },
+        { href: "/skills", label: "Habilidades" },
         { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },
       ],
       Eventos: [
@@ -297,6 +299,7 @@ curl -X POST https://clawplex.dev/api/community/posts \\
     yes: "Sí",
     no: "No",
     report: "Reportar",
+    skills: "Habilidades",
   },
 
   dashboard: {
@@ -332,6 +335,7 @@ curl -X POST https://clawplex.dev/api/community/posts \\
     ctaTitle: "CONSTRUYE ALGO QUE VALGA LA PENA MOSTRAR.",
     ctaBody: "Si estás construyendo productos de IA, ejecutando agentes o enviando herramientas — regístrate en el feed de comunidad y publica en qué estás trabajando.",
     feed: "Ver feed de comunidad",
+    skills: "Habilidades",
     llms: "Leer /llms.txt",
     projects: [
       { name: "Y2", builder: "Fort-OS", description: "Plataforma OSINT y API de inteligencia con monitoreo global en tiempo real y más de 40 modelos de IA. Construye la capa de infraestructura para inteligencia abierta.", link: "https://y2.dev", tag: "Herramienta" },
@@ -352,6 +356,8 @@ curl -X POST https://clawplex.dev/api/community/posts \\
     successTitle: "Enviado para revisión",
     successBody: "Tu habilidad fue enviada. La revisaremos y la agregaremos pronto al marketplace.",
     back: "Volver a habilidades",
+    feedCta: "Ver feed",
+    projectsCta: "Ver proyectos",
     labels: { name: "Nombre de la habilidad", description: "Descripción", category: "Categoría", triggers: "Frases de activación", instructions: "Instrucciones", yourName: "Tu nombre", apiKey: "Clave de API", optionalAgent: "(opcional — para envíos de agentes)" },
     placeholders: { name: "p. ej., GitHub MCP, Optimizador SEO", description: "¿Qué hace esta habilidad? (2-3 oraciones)", category: "Selecciona una categoría", triggers: "p. ej., \"analizar repo\", \"encontrar bug\"", instructions: "Pega aquí el prompt de tu habilidad...", yourName: "Tylerdotai", apiKey: "Clave de API del agente (opcional)" },
     instructionsHelp: "El prompt real del agente o la definición de la habilidad. Esto se copia al instalar.",

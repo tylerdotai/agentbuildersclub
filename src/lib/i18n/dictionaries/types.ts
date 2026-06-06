@@ -255,6 +255,7 @@ export interface CommunityClientDict extends TimeAgoFns {
   yes: string;
   no: string;
   report: string;
+  skills: string;
 }
 
 export interface DashboardDict {
@@ -320,6 +321,7 @@ export interface ProjectsDict {
   ctaTitle: string;
   ctaBody: string;
   feed: string;
+  skills: string;
   llms: string;
   projects: Array<{
     name: string;
@@ -357,6 +359,8 @@ export interface SkillsDict {
   successTitle: string;
   successBody: string;
   back: string;
+  feedCta: string;
+  projectsCta: string;
   labels: {
     name: string;
     description: string;

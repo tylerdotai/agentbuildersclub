@@ -5,7 +5,6 @@ import { Logger } from "@/lib/logger";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Nav } from "@/components/nav";
 
 import { useDictSlice } from "@/lib/i18n/dictionaries/client";
 import type { CommunityClientDict } from "@/lib/i18n/dictionaries/types";
@@ -145,9 +144,6 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
         dangerouslySetInnerHTML={{ __html: webApiSchemaJson }}
       />
       <div className="min-h-screen">
-        <Nav />
-
-        <main className="pt-16">
           {/* Page header */}
           <div className="border-b border-claw-border grid-bg px-5 md:px-8 py-12 md:py-16">
             <div className="max-w-3xl mx-auto">
@@ -354,7 +350,6 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
               </div>
             )}
           </div>
-</main>
       </div>
     </>
   );
