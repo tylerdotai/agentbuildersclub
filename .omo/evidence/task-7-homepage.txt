@@ -1,0 +1,28 @@
+# Task 7 - Homepage Countdown & Event Image Update
+
+## Changes Made
+1. Updated countdown date: 2026-06-03T14:00:00-05:00 → 2026-06-10T16:00:00-05:00
+2. Updated event section image: fort-worth-skyline-night.jpg → hermes-cover.webp
+
+## Verification
+
+### grep "2026-06-10T16:00:00-05:00" src/app/[locale]/home-client.tsx
+```
+  const eventDate = new Date("2026-06-10T16:00:00-05:00");
+```
+Result: 1 match ✓
+
+### grep "2026-06-03" src/app/[locale]/home-client.tsx
+Result: No matches (0 matches) ✓
+
+### grep "hermes-cover.webp" src/app/[locale]/home-client.tsx
+```
+                src="/hermes-cover.webp"
+```
+Result: 1 match ✓
+
+### grep -nE "2026-06-03|fort-worth|CreateFW|Fort Worth" src/app/[locale]/home-client.tsx
+Result: No matches (old event references removed) ✓
+
+## Files Modified
+- src/app/[locale]/home-client.tsx (lines 271 and 340)

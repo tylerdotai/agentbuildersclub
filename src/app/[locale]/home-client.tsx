@@ -118,9 +118,9 @@ function HeroBanner({ copy }: { copy: HomeDict["hero"] }) {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: heroEase }}
-          className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-orange mb-6 flex items-center gap-2"
+          className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-6 flex items-center gap-2"
         >
-          <span className="inline-block h-px w-6 bg-claw-orange/60" />
+          <span className="inline-block h-px w-6 bg-claw-blue/60" />
           {copy.eyebrow}
         </motion.p>
 
@@ -152,8 +152,8 @@ function HeroBanner({ copy }: { copy: HomeDict["hero"] }) {
           className="mt-8 flex items-center gap-3 text-sm text-claw-dim"
         >
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-claw-orange opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-claw-orange" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-claw-red opacity-60" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-claw-red" />
           </span>
           <span>
             <span className="text-claw-muted">{copy.nextLabel}</span> {copy.nextMeta}
@@ -171,7 +171,7 @@ function HeroBanner({ copy }: { copy: HomeDict["hero"] }) {
             href="https://luma.com/clawplex"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-claw-orange px-6 py-3.5 text-sm sm:text-base font-medium text-claw-void hover:bg-[#ff8a3d] transition-colors"
+            className="inline-flex items-center gap-2 rounded-full bg-claw-blue px-6 py-3.5 text-sm sm:text-base font-medium text-claw-void hover:bg-claw-blue-light transition-colors"
           >
             {copy.rsvp}
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -222,7 +222,7 @@ function HeroBanner({ copy }: { copy: HomeDict["hero"] }) {
         />
         <div className="absolute bottom-4 right-4 sm:bottom-5 sm:right-6 z-10">
           <span className="inline-flex items-center gap-2 rounded-full bg-claw-void/70 backdrop-blur-sm px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-claw-muted">
-            <span className="h-1.5 w-1.5 rounded-full bg-claw-orange" />
+            <span className="h-1.5 w-1.5 rounded-full bg-claw-red" />
             {heroCaptions[heroIdx]}
           </span>
         </div>
@@ -249,7 +249,7 @@ function WhatIsClawPlex({ copy }: { copy: HomeDict["what"] }) {
               <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-claw-void/70 to-transparent" />
               <div className="absolute bottom-4 left-4">
                 <span className="inline-flex items-center gap-2 rounded-full bg-claw-void/75 backdrop-blur-sm px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-claw-muted">
-                  <span className="h-1.5 w-1.5 rounded-full bg-claw-orange" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-claw-red" />
                   {copy.caption}
                 </span>
               </div>
@@ -264,7 +264,7 @@ function WhatIsClawPlex({ copy }: { copy: HomeDict["what"] }) {
             </dl>
           </motion.div>
           <div className="lg:col-span-7">
-            <motion.p {...stagger(1)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-orange mb-5">
+            <motion.p {...stagger(1)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-5">
               {copy.eyebrow}
             </motion.p>
             <motion.h2 {...stagger(2)} className="font-display text-4xl sm:text-5xl lg:text-[56px] leading-[1.02] tracking-tight text-claw-text">
@@ -308,10 +308,10 @@ function EventSection({ copy, countdownLabels }: { copy: HomeDict["event"]; coun
       <div className="mx-auto max-w-6xl">
         <div className="grid lg:grid-cols-12 gap-y-12 lg:gap-x-14 items-center">
           <div className="lg:col-span-5 lg:order-1">
-            <motion.p {...stagger(0)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-orange mb-5 flex items-center gap-3">
+            <motion.p {...stagger(0)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-5 flex items-center gap-3">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-claw-orange opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-claw-orange" />
+<span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-claw-red opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-claw-red" />
               </span>
               {copy.eyebrow}
             </motion.p>
@@ -349,7 +349,7 @@ function EventSection({ copy, countdownLabels }: { copy: HomeDict["event"]; coun
               <Countdown target={eventDate} labels={countdownLabels} />
             </motion.div>
             <motion.div {...stagger(4)} className="mt-9 flex flex-wrap items-center gap-4">
-              <a href="https://luma.com/clawplex" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-claw-orange px-6 py-3.5 text-sm sm:text-base font-medium text-claw-void hover:bg-[#ff8a3d] transition-colors">
+              <a href="https://luma.com/clawplex" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-claw-blue px-6 py-3.5 text-sm sm:text-base font-medium text-claw-void hover:bg-claw-blue-light transition-colors">
                 {copy.rsvp}
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                   <path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -379,7 +379,7 @@ function EventSection({ copy, countdownLabels }: { copy: HomeDict["event"]; coun
               <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-br from-claw-void/40 via-transparent to-claw-void/30" />
               <div className="absolute bottom-4 right-4">
                 <span className="inline-flex items-center gap-2 rounded-full bg-claw-void/75 backdrop-blur-sm px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-claw-muted">
-                  <span className="h-1.5 w-1.5 rounded-full bg-claw-orange" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-claw-red" />
                   {copy.caption}
                 </span>
               </div>
@@ -391,7 +391,7 @@ function EventSection({ copy, countdownLabels }: { copy: HomeDict["event"]; coun
               transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: 0.15 }}
               className="absolute -top-4 -left-2 sm:-top-5 sm:-left-4 z-10"
             >
-              <div className="relative rounded-lg bg-claw-orange text-claw-void px-5 py-4 sm:px-6 sm:py-5 shadow-2xl shadow-black/40">
+              <div className="relative rounded-lg bg-claw-red text-claw-void px-5 py-4 sm:px-6 sm:py-5 shadow-2xl shadow-black/40">
                 <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-claw-void/70">{copy.badgeDay}</p>
                 <p className="mt-1 font-display text-[44px] sm:text-[56px] leading-none tabular-nums">03</p>
                 <p className="mt-1 font-mono text-xs uppercase tracking-[0.22em] text-claw-void/80">{copy.badgeMonthTime}</p>
@@ -410,7 +410,7 @@ function ThreeWays({ copy }: { copy: HomeDict["ways"] }) {
     <section className="border-t border-claw-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
       <div className="mx-auto max-w-5xl">
         <motion.div {...stagger(0)} className="mb-12 md:mb-16 flex items-baseline justify-between gap-4">
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-orange">{copy.eyebrow}</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue">{copy.eyebrow}</p>
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-claw-dim tabular-nums">01&thinsp;–&thinsp;03</p>
         </motion.div>
         <div className="border-t border-claw-border">
@@ -425,12 +425,12 @@ function ThreeWays({ copy }: { copy: HomeDict["ways"] }) {
             >
               <div className="grid grid-cols-12 gap-x-6 md:gap-x-8 gap-y-3 items-start py-8 md:py-10 lg:py-12">
                 <div className="col-span-12 md:col-span-3 lg:col-span-2">
-                  <span className="font-display text-5xl sm:text-6xl md:text-[64px] lg:text-[76px] leading-none text-claw-dim/70 group-hover:text-claw-orange transition-colors tabular-nums">
+                  <span className="font-display text-5xl sm:text-6xl md:text-[64px] lg:text-[76px] leading-none text-claw-dim/70 group-hover:text-claw-blue transition-colors tabular-nums">
                     {way.num}
                   </span>
                 </div>
                 <div className="col-span-12 md:col-span-6 lg:col-span-7">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-claw-orange mb-3">{way.label}</p>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-claw-blue mb-3">{way.label}</p>
                   <h3 className="font-display text-2xl sm:text-3xl lg:text-[34px] leading-[1.15] tracking-tight text-claw-text group-hover:text-claw-text mb-3">
                     {way.title}
                   </h3>
@@ -439,7 +439,7 @@ function ThreeWays({ copy }: { copy: HomeDict["ways"] }) {
                 <div className="col-span-12 md:col-span-3 md:text-right md:pt-2">
                   <span className="inline-flex items-center gap-1.5 text-sm text-claw-muted group-hover:text-claw-text transition-colors">
                     {way.cta}
-                    <span className="text-claw-orange transition-transform group-hover:translate-x-1">→</span>
+                    <span className="text-claw-blue transition-transform group-hover:translate-x-1">→</span>
                   </span>
                 </div>
               </div>
@@ -458,7 +458,7 @@ function CommunitySpotlight({ copy, locale }: { copy: HomeDict["spotlight"]; loc
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
-            <motion.p {...stagger(0)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-orange mb-4">
+            <motion.p {...stagger(0)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-4">
               {copy.eyebrow}
             </motion.p>
             <motion.h2 {...stagger(1)} className="font-display text-4xl sm:text-5xl lg:text-[60px] leading-[1.02] tracking-tight text-claw-text">
@@ -471,7 +471,7 @@ function CommunitySpotlight({ copy, locale }: { copy: HomeDict["spotlight"]; loc
             className="self-start md:self-end inline-flex items-center gap-1.5 text-sm text-claw-muted hover:text-claw-text transition-colors group shrink-0"
           >
             {copy.allProjects}
-            <span className="text-claw-orange transition-transform group-hover:translate-x-1">→</span>
+            <span className="text-claw-blue transition-transform group-hover:translate-x-1">→</span>
           </motion.a>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-6 gap-px bg-claw-border rounded-lg overflow-hidden border border-claw-border">
@@ -486,16 +486,16 @@ function CommunitySpotlight({ copy, locale }: { copy: HomeDict["spotlight"]; loc
                 {...stagger(i + 3)}
                 className={`group flex flex-col bg-claw-surface hover:bg-claw-surface-2 transition-colors p-7 md:p-8 ${span}`}
               >
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-claw-orange">{item.tag}</span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-claw-blue">{item.tag}</span>
                 <h3 className="mt-5 font-display text-2xl sm:text-[26px] lg:text-[28px] tracking-tight text-claw-text leading-[1.15]">
                   {item.name}
                 </h3>
                 <p className="mt-3 text-[14px] sm:text-[15px] text-claw-muted leading-[1.6] flex-1">{item.description}</p>
                 <div className="mt-6 pt-4 border-t border-claw-border flex items-center justify-between gap-3 text-[13px]">
-                  <span className="text-claw-orange">{copy.by} {item.builder}</span>
+                  <span className="text-claw-blue">{copy.by} {item.builder}</span>
                   <span className="inline-flex items-center gap-1 text-claw-muted group-hover:text-claw-text transition-colors">
                     {item.external ? copy.visit : copy.explore}
-                    <span className="text-claw-orange transition-transform group-hover:translate-x-1">→</span>
+                    <span className="text-claw-blue transition-transform group-hover:translate-x-1">→</span>
                   </span>
                 </div>
               </motion.a>
@@ -513,7 +513,7 @@ function Founders({ copy }: { copy: HomeDict["founders"] }) {
     <section className="border-t border-claw-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
       <div className="mx-auto max-w-5xl">
         <div className="mb-14 md:mb-20 text-center">
-          <motion.p {...stagger(0)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-orange mb-4">
+          <motion.p {...stagger(0)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-4">
             {copy.eyebrow}
           </motion.p>
           <motion.h2 {...stagger(1)} className="font-display text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] tracking-tight text-claw-text">
@@ -525,7 +525,7 @@ function Founders({ copy }: { copy: HomeDict["founders"] }) {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.25 }}
             aria-hidden="true"
-            className="mx-auto mt-8 h-px w-16 bg-gradient-to-r from-transparent via-claw-orange to-transparent origin-center"
+            className="mx-auto mt-8 h-px w-16 bg-gradient-to-r from-transparent via-claw-blue to-transparent origin-center"
           />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6 lg:gap-10 lg:items-start">
@@ -545,14 +545,14 @@ function Founders({ copy }: { copy: HomeDict["founders"] }) {
                 />
               </div>
               <h3 className="mt-5 font-display text-xl sm:text-[22px] lg:text-2xl tracking-tight text-claw-text leading-tight">{founder.name}</h3>
-              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.2em] text-claw-orange">{founder.role}</p>
+              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.2em] text-claw-blue">{founder.role}</p>
               <div className="mt-3 flex items-center gap-3">
-                <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" aria-label={copy.ariaLinkedIn(founder.name)} className="text-claw-muted hover:text-claw-orange transition-colors">
+                <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" aria-label={copy.ariaLinkedIn(founder.name)} className="text-claw-muted hover:text-claw-blue transition-colors">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                   </svg>
                 </a>
-                <a href={founder.x} target="_blank" rel="noopener noreferrer" aria-label={copy.ariaX(founder.name)} className="text-claw-muted hover:text-claw-orange transition-colors">
+                <a href={founder.x} target="_blank" rel="noopener noreferrer" aria-label={copy.ariaX(founder.name)} className="text-claw-muted hover:text-claw-blue transition-colors">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
                   </svg>
@@ -579,7 +579,7 @@ function ForAgents({ copy, locale }: { copy: HomeDict["agents"]; locale: Locale 
   return (
     <section className="border-t border-claw-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
       <div className="mx-auto max-w-3xl">
-        <motion.p {...stagger(0)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-orange mb-5 text-center">
+        <motion.p {...stagger(0)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-5 text-center">
           {copy.eyebrow}
         </motion.p>
         <motion.h2 {...stagger(1)} className="font-display text-3xl sm:text-4xl lg:text-[44px] leading-[1.1] tracking-tight text-claw-text text-center max-w-2xl mx-auto">
@@ -603,7 +603,7 @@ function ForAgents({ copy, locale }: { copy: HomeDict["agents"]; locale: Locale 
                 onClick={handleCopy}
                 aria-live="polite"
                 className={`shrink-0 inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition-colors cursor-pointer ${
-                  copied ? "bg-claw-surface-2 text-claw-text" : "bg-claw-orange text-claw-void hover:bg-[#ff8a3d]"
+                  copied ? "bg-claw-surface-2 text-claw-text" : "bg-claw-blue text-claw-void hover:bg-claw-blue-light"
                 }`}
               >
                 {copied ? (
@@ -656,7 +656,7 @@ function FAQ({ copy }: { copy: HomeDict["faq"] }) {
     <section className="border-t border-claw-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
       <div className="mx-auto max-w-3xl">
         <div className="mb-12 md:mb-16 text-center">
-          <motion.p {...stagger(0)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-orange mb-4">
+          <motion.p {...stagger(0)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-4">
             {copy.eyebrow}
           </motion.p>
           <motion.h2 {...stagger(1)} className="font-display text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] tracking-tight text-claw-text">
@@ -682,7 +682,7 @@ function FAQ({ copy }: { copy: HomeDict["faq"] }) {
                   viewBox="0 0 14 14"
                   fill="none"
                   aria-hidden="true"
-                  className="text-claw-orange shrink-0 transition-transform duration-300 group-open/faq:rotate-45"
+                  className="text-claw-blue shrink-0 transition-transform duration-300 group-open/faq:rotate-45"
                 >
                   <path d="M7 2.5v9M2.5 7h9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
                 </svg>
@@ -733,14 +733,14 @@ function Newsletter({ copy }: { copy: HomeDict["newsletter"] }) {
   return (
     <section className="border-t border-claw-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
       <motion.div {...fade} className="mx-auto max-w-2xl text-center">
-        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-orange mb-4">{copy.eyebrow}</p>
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-4">{copy.eyebrow}</p>
         <h2 className="font-display text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] tracking-tight text-claw-text">
           {copy.titlePrefix}<span className="underline-accent">{copy.titleAccent}</span>.
         </h2>
         <p className="mt-5 text-base sm:text-lg text-claw-muted">{copy.body}</p>
         {status === "success" ? (
           <div role="status" className="mt-10 mx-auto max-w-md inline-flex items-center justify-center gap-3 rounded-full border border-claw-border bg-claw-surface px-6 py-3.5 text-[15px] text-claw-text">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" className="text-claw-orange shrink-0">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" className="text-claw-blue shrink-0">
               <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.4" />
               <path d="M5 8.5l2 2 4-4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -758,12 +758,12 @@ function Newsletter({ copy }: { copy: HomeDict["newsletter"] }) {
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={status === "loading"}
                 required
-                className="flex-1 rounded-full border border-claw-border bg-claw-surface px-5 py-3 text-[15px] text-claw-text placeholder:text-claw-dim focus:border-claw-orange/60 focus:outline-none disabled:opacity-50 transition-colors"
+                className="flex-1 rounded-full border border-claw-border bg-claw-surface px-5 py-3 text-[15px] text-claw-text placeholder:text-claw-dim focus:border-claw-blue/60 focus:outline-none disabled:opacity-50 transition-colors"
               />
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="rounded-full bg-claw-orange px-6 py-3 text-[15px] font-medium text-claw-void hover:bg-[#ff8a3d] disabled:opacity-60 transition-colors cursor-pointer"
+                className="rounded-full bg-claw-blue px-6 py-3 text-[15px] font-medium text-claw-void hover:bg-claw-blue-light disabled:opacity-60 transition-colors cursor-pointer"
               >
                 {status === "loading" ? copy.sending : copy.subscribe}
               </button>

@@ -1,0 +1,42 @@
+# Task 6 Evidence: events/page.tsx → Hermes (Node 06)
+
+## Verification Commands
+
+### 1. Luma URL (Hermes)
+$ grep "di2osni7" src/app/events/page.tsx
+✓ 1 match: line 36
+
+### 2. Venue (Spark Coworking)
+$ grep "Spark Coworking" src/app/events/page.tsx
+✓ 3 matches: line 31 (location), line 34 (es desc), line 35 (en desc)
+
+### 3. Start Date
+$ grep "2026-06-10T16:00:00-05:00" src/app/events/page.tsx
+✓ 1 match: line 29
+
+### 4. Hermes
+$ grep "Hermes" src/app/events/page.tsx
+✓ 3 matches: line 28 (name), line 34 (es desc), line 35 (en desc)
+
+### 5. CreateFW removed
+$ grep "CreateFW" src/app/events/page.tsx
+✓ 0 matches (old venue removed)
+
+## New eventSchema values
+
+```typescript
+const nextEventSchema = eventSchema({
+  name: "DFW Node 06 — Hermes",
+  startDate: "2026-06-10T16:00:00-05:00",
+  endDate: "2026-06-10T17:30:00-05:00",
+  location: "Spark Coworking, Arlington TX",
+  description:
+    locale === "es"
+      ? "Meetup semanal de ClawPlex DFW en Arlington, organizado en Spark Coworking. Tema: Hermes Agent — el agente autónomo de código abierto de Nous Research que se vuelve más inteligente con el uso. Sin agenda, sin diapositivas — solo constructores explorando agentes de IA auto-mejorables."
+      : "Weekly ClawPlex DFW meetup in Arlington, hosted at Spark Coworking. Topic: Hermes Agent — the open-source, self-improving AI agent from Nous Research. No agenda, no slides — just builders exploring self-improving agents in person.",
+  url: "https://luma.com/di2osni7",
+  status: "confirmed",
+});
+```
+
+All checks passed. Task complete.

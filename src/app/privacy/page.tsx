@@ -46,7 +46,7 @@ export default async function PrivacyPage() {
               <h2 className="font-display text-xl text-claw-text mb-3">{copy.contactHeading}</h2>
               <p>
                 {copy.contactIntro}{" "}
-                <a href="https://discord.gg/q8kEquTu3z" className="text-claw-orange hover:underline">
+                <a href="https://discord.gg/q8kEquTu3z" className="text-claw-blue hover:underline">
                   discord.gg/q8kEquTu3z
                 </a>
               </p>

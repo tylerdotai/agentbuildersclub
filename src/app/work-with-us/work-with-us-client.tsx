@@ -96,9 +96,9 @@ export function WorkWithUsClient() {
         <div className="mx-auto max-w-5xl">
           <motion.p
             {...stagger(0)}
-            className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-orange mb-5 flex items-center gap-2"
+            className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-5 flex items-center gap-2"
           >
-            <span className="inline-block h-px w-6 bg-claw-orange/60" />
+            <span className="inline-block h-px w-6 bg-claw-blue/60" />
             {copy.eyebrow}
           </motion.p>
           <motion.h1
@@ -119,7 +119,7 @@ export function WorkWithUsClient() {
             <button
               type="button"
               onClick={() => setModalOpen(true)}
-              className="inline-flex items-center gap-2 rounded-full bg-claw-orange px-6 py-3.5 text-sm sm:text-base font-medium text-claw-void hover:bg-[#ff8a3d] transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-full bg-claw-blue px-6 py-3.5 text-sm sm:text-base font-medium text-claw-void hover:bg-claw-blue-light transition-colors cursor-pointer"
             >
               {copy.cta}
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -152,9 +152,9 @@ export function WorkWithUsClient() {
             <div className="lg:col-span-5">
               <motion.p
                 {...stagger(0)}
-                className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-orange mb-5 flex items-center gap-2"
+                className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-5 flex items-center gap-2"
               >
-                <span className="inline-block h-px w-6 bg-claw-orange/60" />
+                <span className="inline-block h-px w-6 bg-claw-blue/60" />
                 {copy.proof.eyebrow}
               </motion.p>
               <motion.h2
@@ -178,7 +178,7 @@ export function WorkWithUsClient() {
               >
                 {copy.proof.stats.map((stat) => (
                   <div key={stat.label} className="bg-claw-surface px-4 py-5">
-                    <dt className="font-display text-3xl text-claw-orange leading-none">
+                    <dt className="font-display text-3xl text-claw-blue leading-none">
                       {stat.value}
                     </dt>
                     <dd className="mt-2 font-mono text-[10px] uppercase tracking-[0.16em] text-claw-muted leading-snug">
@@ -199,9 +199,9 @@ export function WorkWithUsClient() {
             <div className="lg:col-span-5">
               <motion.p
                 {...stagger(0)}
-                className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-orange mb-5 flex items-center gap-2"
+                className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-5 flex items-center gap-2"
               >
-                <span className="inline-block h-px w-6 bg-claw-orange/60" />
+                <span className="inline-block h-px w-6 bg-claw-blue/60" />
                 {copy.hire.eyebrow}
               </motion.p>
               <motion.h2
@@ -215,7 +215,7 @@ export function WorkWithUsClient() {
                 <button
                   type="button"
                   onClick={() => setModalOpen(true)}
-                  className="inline-flex items-center gap-2 rounded-full bg-claw-orange px-6 py-3.5 text-sm sm:text-base font-medium text-claw-void hover:bg-[#ff8a3d] transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-2 rounded-full bg-claw-blue px-6 py-3.5 text-sm sm:text-base font-medium text-claw-void hover:bg-claw-blue-light transition-colors cursor-pointer"
                 >
                   {copy.hire.cta}
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -244,7 +244,7 @@ export function WorkWithUsClient() {
               >
                 {copy.hire.capabilities.map((cap) => (
                   <div key={cap.label} className="bg-claw-surface px-4 py-5">
-                    <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-claw-orange">
+                    <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-claw-blue">
                       {cap.label}
                     </dt>
                     <dd className="mt-2 text-[14px] text-claw-text leading-snug">{cap.desc}</dd>
@@ -263,7 +263,7 @@ export function WorkWithUsClient() {
             {...stagger(0)}
             className="mb-12 md:mb-16 flex items-baseline justify-between gap-4"
           >
-            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-orange">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue">
               {copy.waysEyebrow}
             </p>
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-claw-dim tabular-nums">
@@ -284,7 +284,7 @@ export function WorkWithUsClient() {
                     </span>
                   </div>
                   <div className="col-span-12 md:col-span-9 lg:col-span-10">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-claw-orange mb-3">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-claw-blue mb-3">
                       {way.label}
                     </p>
                     <h3 className="font-display text-2xl sm:text-3xl lg:text-[34px] leading-[1.15] tracking-tight text-claw-text mb-3">
@@ -304,7 +304,7 @@ export function WorkWithUsClient() {
       {/* Sponsor tiers */}
       <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
         <div className="mx-auto max-w-6xl">
-          <motion.p {...stagger(0)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-orange mb-10">
+          <motion.p {...stagger(0)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-10">
             {copy.sponsorship.eyebrow}
           </motion.p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px overflow-hidden rounded-lg border border-claw-border bg-claw-border">
@@ -320,7 +320,7 @@ export function WorkWithUsClient() {
                 <h3 className="font-display text-2xl sm:text-3xl tracking-tight text-claw-text mb-2">
                   {tier.name}
                 </h3>
-                <p className="font-mono text-[11px] text-claw-orange uppercase tracking-[0.18em] mb-6">
+                <p className="font-mono text-[11px] text-claw-blue uppercase tracking-[0.18em] mb-6">
                   {tier.price}
                 </p>
                 <p className="text-[15px] text-claw-muted leading-[1.6] mb-7 flex-1">
@@ -329,7 +329,7 @@ export function WorkWithUsClient() {
                 <ul className="space-y-3">
                   {tier.perks.map((perk) => (
                     <li key={perk} className="flex items-start gap-3 text-[14px] text-claw-muted leading-snug">
-                      <span className="text-claw-orange mt-0.5 shrink-0">→</span>
+                      <span className="text-claw-blue mt-0.5 shrink-0">→</span>
                       {perk}
                     </li>
                   ))}
@@ -355,7 +355,7 @@ export function WorkWithUsClient() {
                   target="_blank"
                   rel="noopener noreferrer"
                   {...stagger(i + 1)}
-                  className="group relative overflow-hidden rounded-lg border border-claw-border aspect-video hover:border-claw-orange transition-colors"
+                  className="group relative overflow-hidden rounded-lg border border-claw-border aspect-video hover:border-claw-blue transition-colors"
                   aria-label={copy.partners.visit(partner.name)}
                 >
                   <Image
@@ -385,7 +385,7 @@ export function WorkWithUsClient() {
                   target="_blank"
                   rel="noopener noreferrer"
                   {...stagger(i + 1)}
-                  className="group relative overflow-hidden rounded-lg border border-claw-border aspect-video hover:border-claw-orange transition-colors"
+                  className="group relative overflow-hidden rounded-lg border border-claw-border aspect-video hover:border-claw-blue transition-colors"
                   aria-label={copy.partners.visit(venue.name)}
                 >
                   <Image
@@ -408,7 +408,7 @@ export function WorkWithUsClient() {
       {/* Bottom CTA */}
       <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
         <motion.div {...fade} className="mx-auto max-w-2xl text-center">
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-orange mb-4">
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-4">
             {copy.bottomEyebrow}
           </p>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] tracking-tight text-claw-text">
@@ -421,7 +421,7 @@ export function WorkWithUsClient() {
           <button
             type="button"
             onClick={() => setModalOpen(true)}
-            className="mt-9 inline-flex items-center gap-2 rounded-full bg-claw-orange px-6 py-3.5 text-sm sm:text-base font-medium text-claw-void hover:bg-[#ff8a3d] transition-colors cursor-pointer"
+            className="mt-9 inline-flex items-center gap-2 rounded-full bg-claw-blue px-6 py-3.5 text-sm sm:text-base font-medium text-claw-void hover:bg-claw-blue-light transition-colors cursor-pointer"
           >
             {copy.cta}
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -462,7 +462,7 @@ export function WorkWithUsClient() {
               <div className="flex items-center justify-between border-b border-claw-border px-5 py-3 sm:px-6">
                 <p
                   id="work-with-us-modal-title"
-                  className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-orange"
+                  className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue"
                 >
                   {copy.modalEyebrow}
                 </p>
@@ -494,7 +494,7 @@ export function WorkWithUsClient() {
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
                     <div className="max-w-sm">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-claw-orange">
+                      <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-claw-blue">
                         {copy.formComingSoonEyebrow}
                       </p>
                       <p className="mt-4 font-display text-2xl sm:text-3xl tracking-tight text-claw-text leading-tight">
@@ -506,7 +506,7 @@ export function WorkWithUsClient() {
                           href="https://discord.gg/q8kEquTu3z"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-claw-orange hover:text-[#ff8a3d] transition-colors"
+                          className="text-claw-blue hover:text-claw-blue-light transition-colors"
                         >
                           Discord
                         </a>

@@ -1,0 +1,4 @@
+
+> clawplex@0.1.0 typecheck /home/tyler/clawplex
+> tsc --noEmit --skipLibCheck
+

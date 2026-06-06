@@ -56,7 +56,7 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
           <div className="mx-auto max-w-4xl text-center">
             <motion.p
               {...stagger(0)}
-              className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-4"
+              className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-4"
             >
               ClawPlex DFW
             </motion.p>
@@ -77,7 +77,7 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
           <div className="mx-auto max-w-5xl">
             <motion.p
               {...stagger(0)}
-              className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-10 text-center"
+              className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-10 text-center"
             >
               {copy.upcoming}
             </motion.p>
@@ -138,7 +138,7 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
                       <div className="flex gap-8 border-t border-claw-border pt-6">
                         {event.stats.map((stat) => (
                           <div key={stat.label}>
-                            <p className="font-display text-3xl text-claw-orange">
+                            <p className="font-display text-3xl text-claw-blue">
                               {stat.value}
                             </p>
                             <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mt-1">
@@ -170,7 +170,7 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
             <motion.div {...stagger(3)} className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href={withLocale("/newsletter", locale)}
-                className="border border-claw-orange bg-claw-orange px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors text-center"
+                className="border border-claw-blue bg-claw-blue px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-blue/90 transition-colors text-center"
               >
                 {copy.newsletter}
               </Link>
@@ -178,7 +178,7 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
                 href="https://discord.gg/q8kEquTu3z"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-orange hover:text-claw-orange transition-colors text-center"
+                className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors text-center"
               >
                 {copy.discord}
               </a>
