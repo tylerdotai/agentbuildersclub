@@ -56,7 +56,7 @@ export async function generateMetadata(): Promise<Metadata> {
       template: "%s \u2014 ClawPlex",
     },
     description:
-      "The DFW home base for AI agent builders, live demos, reusable skills, and a community of builders shipping real products.",
+      "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
     keywords: [
       "DFW AI meetup",
       "Dallas Fort Worth tech meetup",
@@ -77,7 +77,7 @@ export async function generateMetadata(): Promise<Metadata> {
       locale,
       title: "ClawPlex \u2014 DFW AI Builder Community",
       description:
-        "The DFW home base for AI agent builders, live demos, reusable skills, and a community of builders shipping real products.",
+        "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
       images: [
         {
           url: "/clawplex-banner.jpg",
@@ -91,7 +91,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "ClawPlex \u2014 DFW AI Builder Community",
       description:
-        "The DFW home base for AI agent builders, live demos, reusable skills, and a community of builders shipping real products.",
+        "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
       images: ["/clawplex-banner.jpg"],
     },
     other: {
@@ -122,7 +122,7 @@ export default async function RootLayout({
         {/* Skip to main content — a11y */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-claw-blue focus:text-claw-void focus:font-mono focus:text-sm-sm focus:uppercase focus:tracking-widest"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-claw-blue focus:text-claw-void focus:font-mono focus:text-sm focus:uppercase focus:tracking-widest"
         >
           Skip to main content
         </a>

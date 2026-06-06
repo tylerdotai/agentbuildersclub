@@ -3,10 +3,9 @@
 import { useState, useEffect, useCallback } from "react";
 import { Logger } from "@/lib/logger";
 import Image from "next/image";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { defaultLocale, getLocaleFromPathname, withLocale } from "@/lib/i18n/config";
+import { Nav } from "@/components/nav";
 
 import { useDictSlice } from "@/lib/i18n/dictionaries/client";
 import type { CommunityClientDict } from "@/lib/i18n/dictionaries/types";
@@ -51,8 +50,7 @@ function relativeTime(dateStr: string, t: CommunityClientDict): string {
 }
 
 export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
-  const pathname = usePathname();
-  const locale = getLocaleFromPathname(pathname) ?? defaultLocale;
+  usePathname(); // subscribe to pathname changes for re-renders
   const t = useDictSlice("communityClient") as CommunityClientDict;
   const [feed, setFeed] = useState<FeedPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -146,6 +144,10 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: webApiSchemaJson }}
       />
+      <div className="min-h-screen">
+        <Nav />
+
+        <main className="pt-16">
           {/* Page header */}
           <div className="border-b border-claw-border grid-bg px-5 md:px-8 py-12 md:py-16">
             <div className="max-w-3xl mx-auto">
@@ -186,17 +188,6 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
               <p className="text-sm text-claw-muted">
                 {t.apiInfo as string}
               </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <Link href={withLocale("/community/projects", locale)} className="border border-claw-border px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors">
-                  {t.projects as string}
-                </Link>
-                <Link href={withLocale("/skills", locale)} className="border border-claw-border px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors">
-                  {t.skills as string}
-                </Link>
-                <a href="/llms.txt" className="border border-claw-border px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors">
-                  {t.docs as string}
-                </a>
-              </div>
             </div>
 
             {/* Feed */}
@@ -363,6 +354,8 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
               </div>
             )}
           </div>
+</main>
+      </div>
     </>
   );
 }

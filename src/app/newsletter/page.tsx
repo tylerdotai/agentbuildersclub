@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
-import { SubscribeFormClient } from "@/components/newsletter/subscribe-form-client";
+import { getLatestIssue, getAllIssues } from "@/lib/newsletter";
+import { NewsletterClient } from "@/components/newsletter/newsletter-client";
 import { getDictSlice } from "@/lib/i18n/dictionaries/server";
 import type { NewsletterPageDict } from "@/lib/i18n/dictionaries/types";
 
@@ -20,6 +21,14 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function NewsletterPage() {
   const copy = await getDictSlice("newsletterPage") as NewsletterPageDict;
+  const latest = getLatestIssue();
+  const allIssues = getAllIssues();
+  const pastIssues = allIssues.slice(1).map((i) => ({
+    slug: i.slug,
+    number: i.number,
+    date: i.date,
+    subject: i.subject,
+  }));
 
   return (
     <div className="min-h-screen">
@@ -40,11 +49,22 @@ export default async function NewsletterPage() {
           </div>
         </section>
 
-        <section className="px-5 md:px-8 py-16 md:py-24">
-          <div className="mx-auto max-w-md">
-            <SubscribeFormClient />
-          </div>
-        </section>
+        {latest && (
+          <NewsletterClient
+            latest={{
+              slug: latest.slug,
+              number: latest.number,
+              date: latest.date,
+              from: latest.from,
+              subject: latest.subject,
+              body: latest.body,
+              nextNode: latest.nextNode,
+              signature: latest.signature,
+              signatureTitle: latest.signatureTitle,
+            }}
+            pastIssues={pastIssues}
+          />
+        )}
       </main>
       <Footer />
     </div>

@@ -14,7 +14,7 @@ export function homepageSchema() {
     "url": "https://clawplex.dev",
     "logo": "https://clawplex.dev/clawplex-banner.jpg",
     "description":
-      "The DFW home base for AI agent builders, live demos, reusable skills, and a community of builders shipping real products.",
+      "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
     "sameAs": [
       "https://discord.gg/q8kEquTu3z",
       "https://linkedin.com/company/clawplex",
@@ -43,6 +43,13 @@ export function homepageSchema() {
       "longitude": -97.3308,
     },
     "priceRange": "$",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Wednesday"],
+      "opens": "14:00",
+      "closes": "15:00",
+      "description": "Weekly Wednesday meetups, 2–3 PM CST",
+    },
   };
 }
 
@@ -134,7 +141,7 @@ export function faqSchema() {
         "name": "What is ClawPlex?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "ClawPlex is the DFW AI builder community for people building with AI agents, local models, OpenClaw, and workflow automation. No talks, no slides, no vendor pitches.",
+          "text": "ClawPlex is the DFW AI builder community — a weekly meetup series for people building with AI agents, local models, OpenClaw, and workflow automation. No talks, no slides, no vendor pitches.",
         },
       },
       {
@@ -142,7 +149,7 @@ export function faqSchema() {
         "name": "How do I RSVP for a Node?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "RSVP links are posted on the events page through the live Luma calendar. Use that calendar as the source of truth for the next Node.",
+          "text": "RSVP links are posted on the events page for each upcoming Node. Most events are hosted via Luma. Search for the specific Node (e.g. Node 04, Node 05) on clawplex.dev/events.",
         },
       },
       {
@@ -158,7 +165,7 @@ export function faqSchema() {
         "name": "Is there a cost to attend?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. ClawPlex is free to attend. Venues are provided by partners and community support keeps it sustainable.",
+          "text": "No. ClawPlex is free to attend. Venues are provided by partners and sponsors keep it sustainable.",
         },
       },
       {
