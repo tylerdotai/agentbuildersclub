@@ -68,13 +68,13 @@ Change the ClawPlex site colorway from black + orange + white to **black, royal 
 - Asset hand-off checklist (logo, OG banner, favicon) for designer
 
 ### Definition of Done
-- [ ] `pnpm run lint` passes with 0 errors
-- [ ] `pnpm run typecheck` passes with 0 errors
-- [ ] `pnpm exec vitest run` passes (no new tests added, existing must pass)
-- [ ] `pnpm run build` succeeds
-- [ ] `grep -r "claw-orange\|claw-cyan" src/` returns 0 matches
-- [ ] `grep -r "#ff8a3d\|#fb7312\|#ff6b00\|#ef4444" src/` returns 0 matches
-- [ ] Playwright screenshots of home, community, events, skills, sponsors show blue primary + red punctuation; no orange visible
+^- [x] `pnpm run lint` passes with 0 errors
+^- [x] `pnpm run typecheck` passes with 0 errors
+^- [x] `pnpm exec vitest run` passes (no new tests added, existing must pass)
+^- [x] `pnpm run build` succeeds
+^- [x] `grep -r "claw-orange\|claw-cyan" src/` returns 0 matches
+^- [x] `grep -r "#ff8a3d\|#fb7312\|#ff6b00\|#ef4444" src/` returns 0 matches
+^- [x] Playwright screenshots of home, community, events, skills, sponsors show blue primary + red punctuation; no orange visible
 
 ### Must Have
 - New `--color-claw-blue: #1E40AF` (royal blue) — primary accent
