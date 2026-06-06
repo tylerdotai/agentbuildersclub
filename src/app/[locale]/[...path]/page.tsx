@@ -78,9 +78,7 @@ export default async function LocaleCatchAll({ params }: PageProps) {
   
   // Handle dynamic routes
   if (pagePath.startsWith("/newsletter/") && pagePath !== "/newsletter/") {
-    const slug = pagePath.slice("/newsletter/".length);
-    const mod = await import("@/app/newsletter/[slug]/page");
-    return <mod.default params={Promise.resolve({ slug })} />;
+    redirect(`/${locale}/newsletter`);
   }
   
   notFound();

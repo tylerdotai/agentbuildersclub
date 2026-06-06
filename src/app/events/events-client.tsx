@@ -1,10 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Nav } from "@/components/nav";
 import {
   defaultLocale,
   getLocaleFromPathname,
@@ -14,7 +12,6 @@ import { useDictSlice } from "@/lib/i18n/dictionaries/client";
 import type { EventsDict } from "@/lib/i18n/dictionaries/types";
 
 interface EventClientProps {
-  eventSchemaJson: string;
   faqSchemaJson: string;
 }
 
@@ -31,26 +28,17 @@ function stagger(i: number) {
   return { ...fade, transition: { duration: 0.7, ease, delay: i * 0.08 } };
 }
 
-export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProps) {
+export function EventsClient({ faqSchemaJson }: EventClientProps) {
   const pathname = usePathname();
   const locale = getLocaleFromPathname(pathname) ?? defaultLocale;
   const copy = useDictSlice("events") as EventsDict;
-  const past = copy.events;
 
   return (
     <>
-      {/* JSON-LD: Event + FAQ schemas */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: eventSchemaJson }}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: faqSchemaJson }}
       />
-      <div className="min-h-screen">
-        <Nav />
-        <main>
         {/* Header */}
         <section className="border-b border-claw-border px-5 md:px-8 py-16 md:py-24">
           <div className="mx-auto max-w-4xl text-center">
@@ -101,60 +89,6 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
           </div>
         </section>
 
-        {/* Past */}
-        {past.length > 0 && (
-          <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
-            <div className="mx-auto max-w-5xl">
-              <motion.p
-                {...stagger(0)}
-                className="font-mono text-xs uppercase tracking-[0.2em] text-claw-dim mb-10 text-center"
-              >
-                {copy.pastEvents}
-              </motion.p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                {past.map((event, i) => (
-                  <motion.div key={event.slug} {...stagger(i + 1)}>
-                    <div className="relative overflow-hidden border border-claw-border aspect-video mb-8">
-                      <Image
-                        src={event.image}
-                        alt={event.title}
-                        fill
-                        className="object-cover opacity-70"
-                      />
-                      <div className="absolute top-4 left-4 border border-claw-border bg-claw-void/90 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                        {copy.past}
-                      </div>
-                    </div>
-                    <h2 className="font-display text-4xl md:text-5xl tracking-wider text-claw-text mb-2">
-                      {event.title}.
-                    </h2>
-                    <p className="font-mono text-sm text-claw-dim uppercase tracking-widest mb-4">
-                      {event.date}
-                    </p>
-                    <p className="text-base text-claw-muted leading-relaxed mb-6">
-                      {event.description}
-                    </p>
-                    {event.stats && (
-                      <div className="flex gap-8 border-t border-claw-border pt-6">
-                        {event.stats.map((stat) => (
-                          <div key={stat.label}>
-                            <p className="font-display text-3xl text-claw-blue">
-                              {stat.value}
-                            </p>
-                            <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mt-1">
-                              {stat.label}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
         {/* CTA */}
         <section className="px-5 md:px-8 py-20 md:py-28">
           <div className="mx-auto max-w-2xl text-center">
@@ -185,8 +119,6 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
             </motion.div>
           </div>
         </section>
-      </main>
-    </div>
     </>
   );
 }

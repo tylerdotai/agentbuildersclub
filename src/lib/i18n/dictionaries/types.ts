@@ -243,6 +243,9 @@ export interface CommunityClientDict extends TimeAgoFns {
   forAgents: string;
   apiInfo: string;
   directory: string;
+  projects: string;
+  skills: string;
+  docs: string;
   loading: string;
   emptyTitle: string;
   emptyBody: string;
@@ -320,6 +323,7 @@ export interface ProjectsDict {
   ctaTitle: string;
   ctaBody: string;
   feed: string;
+  skills: string;
   llms: string;
   projects: Array<{
     name: string;
@@ -385,6 +389,8 @@ export interface SkillsDict {
   heroTitle: string;
   heroDek: string;
   submitCta: string;
+  feedCta: string;
+  projectsCta: string;
   retry: string;
   emptyTitle: string;
   emptyAll: string;

@@ -139,6 +139,12 @@ export default function CommunityProjectsPage() {
               >
                 {t.feed}
               </Link>
+              <Link
+                href={withLocale("/skills", locale)}
+                className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors text-center"
+              >
+                {t.skills}
+              </Link>
               <a
                 href="/llms.txt"
                 target="_blank"

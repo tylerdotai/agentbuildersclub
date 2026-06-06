@@ -40,50 +40,6 @@ function stagger(i: number) {
   return { ...fade, transition: { duration: 0.7, ease, delay: i * 0.08 } };
 }
 
-/* ── Countdown ───────────────────────────────────────────────────────────── */
-function Countdown({ target, labels }: { target: Date; labels: HomeDict["countdown"] }) {
-  const [days, setDays] = useState(0);
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-
-  useEffect(() => {
-    function update() {
-      const diff = target.getTime() - Date.now();
-      if (diff <= 0) {
-        setDays(0); setHours(0); setMinutes(0);
-        return;
-      }
-      setDays(Math.floor(diff / 86400000));
-      setHours(Math.floor((diff % 86400000) / 3600000));
-      setMinutes(Math.floor((diff % 3600000) / 60000));
-    }
-    update();
-    const id = setInterval(update, 60000);
-    return () => clearInterval(id);
-  }, [target]);
-
-  const items = [
-    { val: days, label: labels[0].label },
-    { val: hours, label: labels[1].label },
-    { val: minutes, label: labels[2].label },
-  ];
-
-  return (
-    <div className="inline-flex items-stretch overflow-hidden rounded-xl border border-claw-border bg-claw-surface">
-      {items.map(({ val, label }, i) => (
-        <div key={label} className={`px-5 py-3.5 sm:px-6 sm:py-4 text-center ${i > 0 ? "border-l border-claw-border" : ""}`}>
-          <div className="font-display text-2xl sm:text-3xl text-claw-text leading-none tabular-nums">
-            {String(val).padStart(2, "0")}
-          </div>
-          <div className="mt-1.5 text-[10px] uppercase tracking-[0.18em] text-claw-dim">
-            {label}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 /* ── Hero — Editorial split (text left / photo right) ─────────────────── */
 function HeroBanner({ copy }: { copy: HomeDict["hero"] }) {
   const heroEase = [0.25, 0.1, 0.25, 1] as const;
@@ -96,9 +52,9 @@ function HeroBanner({ copy }: { copy: HomeDict["hero"] }) {
   ];
   const heroCaptions = [
     "ClawCon DFW",
-    "Node 03 · Meetup",
-    "Node 04 · Frisco",
-    "Node 05 · Claude Tools",
+    "Builder room",
+    "Live demos",
+    "Tools on the table",
   ];
 
   const [heroIdx, setHeroIdx] = useState(0);
@@ -299,10 +255,7 @@ function WhatIsClawPlex({ copy }: { copy: HomeDict["what"] }) {
   );
 }
 
-/* ── Event Section — Next Node ─────────────────────────────────────────── */
-function EventSection({ copy, countdownLabels }: { copy: HomeDict["event"]; countdownLabels: HomeDict["countdown"] }) {
-  const eventDate = new Date("2026-06-10T16:00:00-05:00");
-
+function EventSection({ copy }: { copy: HomeDict["event"] }) {
   return (
     <section className="relative border-t border-claw-border px-5 md:px-8 py-20 md:py-28 lg:py-32 overflow-hidden">
       <div className="mx-auto max-w-6xl">
@@ -344,9 +297,11 @@ function EventSection({ copy, countdownLabels }: { copy: HomeDict["event"]; coun
                 <span>{copy.termsMeta}</span>
               </div>
             </motion.dl>
-            <motion.div {...stagger(3)} className="mt-8">
-              <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-claw-dim">{copy.startsIn}</p>
-              <Countdown target={eventDate} labels={countdownLabels} />
+            <motion.div {...stagger(3)} className="mt-8 rounded-xl border border-claw-border bg-claw-surface px-5 py-4">
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-claw-blue">{copy.startsIn}</p>
+              <p className="mt-2 text-[15px] text-claw-muted leading-relaxed">
+                <a href="https://luma.com/clawplex" target="_blank" rel="noopener noreferrer" className="text-claw-text hover:text-claw-blue transition-colors">luma.com/clawplex</a>
+              </p>
             </motion.div>
             <motion.div {...stagger(4)} className="mt-9 flex flex-wrap items-center gap-4">
               <a href="https://luma.com/clawplex" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-claw-blue px-6 py-3.5 text-sm sm:text-base font-medium text-claw-void hover:bg-claw-blue-light transition-colors">
@@ -370,7 +325,7 @@ function EventSection({ copy, countdownLabels }: { copy: HomeDict["event"]; coun
           >
             <div className="relative aspect-[5/6] sm:aspect-[4/3] lg:aspect-[5/6] overflow-hidden rounded-lg">
               <Image
-                src="/hermes-cover.webp"
+                src="/clawplex-banner.jpg"
                 alt={copy.imageAlt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 58vw"
@@ -393,7 +348,7 @@ function EventSection({ copy, countdownLabels }: { copy: HomeDict["event"]; coun
             >
               <div className="relative rounded-lg bg-claw-red text-claw-void px-5 py-4 sm:px-6 sm:py-5 shadow-2xl shadow-black/40">
                 <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-claw-void/70">{copy.badgeDay}</p>
-                <p className="mt-1 font-display text-[44px] sm:text-[56px] leading-none tabular-nums">03</p>
+                <p className="mt-1 font-display text-[44px] sm:text-[56px] leading-none">↗</p>
                 <p className="mt-1 font-mono text-xs uppercase tracking-[0.22em] text-claw-void/80">{copy.badgeMonthTime}</p>
               </div>
             </motion.div>
@@ -809,7 +764,7 @@ export function HomeClient({ locale }: HomeClientProps) {
             <WhatIsClawPlex copy={copy.what} />
           </article>
           <article>
-            <EventSection copy={copy.event} countdownLabels={copy.countdown} />
+            <EventSection copy={copy.event} />
           </article>
           <article>
             <ThreeWays copy={copy.ways} />

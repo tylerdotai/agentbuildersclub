@@ -15,8 +15,8 @@ export interface ParagraphBlock {
 export interface NewsletterIssue {
   slug: string;
   number: number;
-  date: string;             // display: "May 2026"
-  publishedAt: string;     // ISO: "2026-05-14"
+  date: string;
+  publishedAt: string;
   from: string;
   subject: string;
   body: ParagraphBlock[];
