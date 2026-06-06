@@ -2,10 +2,13 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { Nav } from "@/components/nav";
 import { SkillCard, type Skill, type SkillCategory } from "@/components/skill-card";
 import { useDictSlice } from "@/lib/i18n/dictionaries/client";
 import type { SkillsDict } from "@/lib/i18n/dictionaries/types";
+import { withLocale, getLocaleFromPathname, defaultLocale } from "@/lib/i18n/config";
+import { usePathname } from "next/navigation";
 
 const CATEGORIES: Array<SkillCategory | "All"> = [
   "All",
@@ -314,6 +317,8 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
 /* ── Skills Client ─────────────────────────────────────────────────────────── */
 export function SkillsClient() {
   const t = useDictSlice("skills") as SkillsDict;
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname ?? "") ?? defaultLocale;
   const [skills, setSkills] = useState<Skill[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -364,12 +369,26 @@ export function SkillsClient() {
               <p className="font-mono text-sm uppercase tracking-widest text-claw-muted mb-8">
                 {t.heroDek}
               </p>
-              <button
-                onClick={() => setShowModal(true)}
-                className="border border-claw-blue bg-claw-blue px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-blue/90 transition-colors"
-              >
-                {t.submitCta}
-              </button>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button
+                  onClick={() => setShowModal(true)}
+                  className="border border-claw-blue bg-claw-blue px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-blue/90 transition-colors"
+                >
+                  {t.submitCta}
+                </button>
+                <Link
+                  href={withLocale("/community", locale)}
+                  className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors text-center"
+                >
+                  {t.feedCta}
+                </Link>
+                <Link
+                  href={withLocale("/community/projects", locale)}
+                  className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors text-center"
+                >
+                  {t.projectsCta}
+                </Link>
+              </div>
             </motion.div>
           </div>
         </section>

@@ -151,7 +151,6 @@ export async function POST(req: NextRequest) {
       results.push(`Johnny deduplicated — kept ${keep.id.slice(0,8)}`);
     }
 
-    // Delete duplicate Tex posts (same content "Wednesday, June 10")
     const { data: texPosts } = await supabase
       .from("posts")
       .select("id, content, created_at")

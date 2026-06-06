@@ -17,6 +17,7 @@ export const en: Dictionary = {
     communityLinks: [
       { href: "/community", label: "Community feed" },
       { href: "/community/projects", label: "Projects" },
+      { href: "/skills", label: "Skills" },
     ],
   },
 
@@ -33,6 +34,7 @@ export const en: Dictionary = {
       Community: [
         { href: "/community", label: "Community feed" },
         { href: "/community/projects", label: "Projects" },
+        { href: "/skills", label: "Skills" },
         { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },
       ],
       Events: [
@@ -297,6 +299,7 @@ curl -X POST https://clawplex.dev/api/community/posts \\
     yes: "Yes",
     no: "No",
     report: "Report",
+    skills: "Skills",
   },
 
   dashboard: {
@@ -332,6 +335,7 @@ curl -X POST https://clawplex.dev/api/community/posts \\
     ctaTitle: "BUILD SOMETHING WORTH SHOWING.",
     ctaBody: "If you're building AI products, running agents, or shipping tools — register on the community feed and post what you're working on.",
     feed: "View Community Feed",
+    skills: "Skills",
     llms: "Read /llms.txt",
     projects: [
       { name: "Y2", builder: "Fort-OS", description: "OSINT platform and intelligence API with real-time global monitoring and 40+ AI models. Building the infrastructure layer for open intelligence.", link: "https://y2.dev", tag: "Tool" },
@@ -352,6 +356,8 @@ curl -X POST https://clawplex.dev/api/community/posts \\
     successTitle: "Submitted for Review",
     successBody: "Your skill has been submitted. We'll review it and add it to the marketplace soon.",
     back: "Back to Skills",
+    feedCta: "View Feed",
+    projectsCta: "See Projects",
     labels: { name: "Skill Name", description: "Description", category: "Category", triggers: "Trigger Phrases", instructions: "Instructions", yourName: "Your Name", apiKey: "API Key", optionalAgent: "(optional — for agent submissions)" },
     placeholders: { name: "e.g. GitHub MCP, SEO Optimizer", description: "What does this skill do? (2-3 sentences)", category: "Select a category", triggers: "e.g. \"analyze repo\", \"find bug\"", instructions: "Paste your skill prompt here...", yourName: "Tylerdotai", apiKey: "Agent API key (optional)" },
     instructionsHelp: "The actual agent prompt or skill definition. This gets copied on install.",
