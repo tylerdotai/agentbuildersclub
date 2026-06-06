@@ -8,7 +8,7 @@
       "plan_name": "colorway-swap",
       "status": "active",
       "started_at": "2026-06-06T06:59:59.427Z",
-      "updated_at": "2026-06-06T07:05:27.190Z",
+      "updated_at": "2026-06-06T07:12:41.553Z",
       "session_ids": [
         "opencode:ses_16471c5ffffewrDoz5FyQ0WDtd"
       ],
@@ -34,12 +34,27 @@
           "task_key": "todo:2",
           "task_label": "2",
           "task_title": "**Nav + Footer + Layout: rename `claw-orange` → `claw-blue`; replace 2 hover-orange sites**",
-          "session_id": "opencode:ses_164406ddaffeW62HBITIPZ3zIg",
+          "session_id": "opencode:ses_1643c52e3ffecmFbAPiEU96W4K",
           "agent": "Sisyphus-Junior",
-          "category": "visual-engineering",
-          "updated_at": "2026-06-06T07:05:27.191Z",
+          "category": "unspecified-high",
           "started_at": "2026-06-06T07:05:27.191Z",
-          "status": "running"
+          "ended_at": "2026-06-06T07:11:23.656Z",
+          "elapsed_ms": 356465,
+          "status": "completed",
+          "updated_at": "2026-06-06T07:11:23.656Z"
+        },
+        "todo:9": {
+          "task_key": "todo:9",
+          "task_label": "9",
+          "task_title": "**Design docs** ⚠️ OUTSTANDING — subagent failed (skills not found: writing)",
+          "session_id": "opencode:ses_1643a03d4ffeNbVUs4RGNTLI9G",
+          "agent": "Sisyphus-Junior",
+          "category": "unspecified-low",
+          "updated_at": "2026-06-06T07:12:41.553Z",
+          "started_at": "2026-06-06T07:12:31.532Z",
+          "status": "completed",
+          "ended_at": "2026-06-06T07:12:41.553Z",
+          "elapsed_ms": 10021
         }
       }
     }
@@ -47,7 +62,7 @@
   "active_plan": "/home/tyler/clawplex/.omo/plans/colorway-swap.md",
   "started_at": "2026-06-06T06:59:59.427Z",
   "status": "active",
-  "updated_at": "2026-06-06T07:05:27.190Z",
+  "updated_at": "2026-06-06T07:12:41.553Z",
   "session_ids": [
     "opencode:ses_16471c5ffffewrDoz5FyQ0WDtd"
   ],
@@ -73,12 +88,27 @@
       "task_key": "todo:2",
       "task_label": "2",
       "task_title": "**Nav + Footer + Layout: rename `claw-orange` → `claw-blue`; replace 2 hover-orange sites**",
-      "session_id": "opencode:ses_164406ddaffeW62HBITIPZ3zIg",
+      "session_id": "opencode:ses_1643c52e3ffecmFbAPiEU96W4K",
       "agent": "Sisyphus-Junior",
-      "category": "visual-engineering",
-      "updated_at": "2026-06-06T07:05:27.191Z",
+      "category": "unspecified-high",
       "started_at": "2026-06-06T07:05:27.191Z",
-      "status": "running"
+      "ended_at": "2026-06-06T07:11:23.656Z",
+      "elapsed_ms": 356465,
+      "status": "completed",
+      "updated_at": "2026-06-06T07:11:23.656Z"
+    },
+    "todo:9": {
+      "task_key": "todo:9",
+      "task_label": "9",
+      "task_title": "**Design docs** ⚠️ OUTSTANDING — subagent failed (skills not found: writing)",
+      "session_id": "opencode:ses_1643a03d4ffeNbVUs4RGNTLI9G",
+      "agent": "Sisyphus-Junior",
+      "category": "unspecified-low",
+      "updated_at": "2026-06-06T07:12:41.553Z",
+      "started_at": "2026-06-06T07:12:31.532Z",
+      "status": "completed",
+      "ended_at": "2026-06-06T07:12:41.553Z",
+      "elapsed_ms": 10021
     }
   },
   "agent": "atlas"
