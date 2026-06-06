@@ -505,7 +505,7 @@ curl -X POST https://clawplex.dev/api/community/posts \\
           "Social mentions (Discord, LinkedIn, Twitter)",
           "First right of refusal for future event dates",
         ],
-        color: "border-claw-orange",
+        color: "border-claw-blue",
       },
       {
         name: "Friend of ClawPlex",
@@ -518,7 +518,7 @@ curl -X POST https://clawplex.dev/api/community/posts \\
           "Thank-you post on LinkedIn and Discord",
           "Name mentioned in event recap",
         ],
-        color: "border-claw-cyan",
+        color: "border-claw-blue-light",
       },
       {
         name: "Full Sponsor",
@@ -620,7 +620,7 @@ curl -X POST https://clawplex.dev/api/community/posts \\
             "Social mentions (Discord, LinkedIn, Twitter)",
             "First right of refusal for future event dates",
           ],
-          color: "border-claw-orange",
+          color: "border-claw-blue",
         },
         {
           name: "Friend of ClawPlex",
@@ -633,7 +633,7 @@ curl -X POST https://clawplex.dev/api/community/posts \\
             "Thank-you post on LinkedIn and Discord",
             "Name mentioned in event recap",
           ],
-          color: "border-claw-cyan",
+          color: "border-claw-blue-light",
         },
         {
           name: "Full Sponsor",

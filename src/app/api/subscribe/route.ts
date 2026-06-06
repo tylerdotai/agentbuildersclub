@@ -26,7 +26,7 @@ async function sendConfirmationEmail(email: string) {
         subject: "You're on the list — ClawPlex DFW",
         html: `
           <div style="font-family: monospace; max-width: 500px; margin: 0 auto; padding: 20px;">
-            <h2 style="color: #ff6b00;">You're in.</h2>
+            <h2 style="color: #1E40AF;">You're in.</h2>
             <p style="color: #ccc; line-height: 1.6;">
               You've subscribed to the ClawPlex DFW newsletter. We'll drop updates on upcoming meetups, events, and the DFW AI builder scene.
             </p>
