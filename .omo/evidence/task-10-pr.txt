@@ -1,0 +1,32 @@
+TASK-10 Evidence
+===============
+Date: 2026-06-04
+
+COMMIT
+------
+Branch: feat/june-event-recap-and-hermes
+Commit: 6ddb0ee
+Message: feat(events): add Node 05 Claude Tools recap, update next event to Node 06 Hermes
+Files: 14 files changed, 48 insertions(+), 22 deletions(-)
+Assets: 8 Node 05 photos + 1 Hermes cover WebP
+
+PUSH
+----
+Status: SUCCESS
+Remote: origin/feat/june-event-recap-and-hermes
+
+PR
+--
+Number: 46
+URL: https://github.com/tylerdotai/clawplex/pull/46
+Title: feat(events): add Node 05 Claude Tools recap + Node 06 Hermes announcement
+Status: OPEN
+
+LUMA LINKS
+----------
+Node 05: https://luma.com/7lcfouly
+Hermes (Node 06): https://luma.com/di2osni7
+
+VERIFICATION COMMANDS
+---------------------
+gh pr list --head feat/june-event-recap-and-hermes

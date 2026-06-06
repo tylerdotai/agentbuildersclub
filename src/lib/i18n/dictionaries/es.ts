@@ -505,7 +505,7 @@ curl -X POST https://clawplex.dev/api/community/posts \\
           "Menciones sociales (Discord, LinkedIn, Twitter)",
           "Primera opción para futuras fechas de eventos",
         ],
-        color: "border-claw-orange",
+        color: "border-claw-blue",
       },
       {
         name: "Friend of ClawPlex",
@@ -518,7 +518,7 @@ curl -X POST https://clawplex.dev/api/community/posts \\
           "Post de agradecimiento en LinkedIn y Discord",
           "Mención del nombre en el recap del evento",
         ],
-        color: "border-claw-cyan",
+        color: "border-claw-blue-light",
       },
       {
         name: "Patrocinador completo",
@@ -620,7 +620,7 @@ curl -X POST https://clawplex.dev/api/community/posts \\
             "Menciones sociales (Discord, LinkedIn, Twitter)",
             "Primera opción para futuras fechas de eventos",
           ],
-          color: "border-claw-orange",
+          color: "border-claw-blue",
         },
         {
           name: "Friend of ClawPlex",
@@ -633,7 +633,7 @@ curl -X POST https://clawplex.dev/api/community/posts \\
             "Post de agradecimiento en LinkedIn y Discord",
             "Mención del nombre en el recap del evento",
           ],
-          color: "border-claw-cyan",
+          color: "border-claw-blue-light",
         },
         {
           name: "Patrocinador completo",

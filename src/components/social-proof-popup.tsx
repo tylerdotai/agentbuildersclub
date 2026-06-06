@@ -166,14 +166,14 @@ export function SocialProofPopup() {
                 aria-hidden="true"
                 className="relative flex h-1.5 w-1.5 shrink-0"
               >
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-claw-orange opacity-60 motion-reduce:hidden" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-claw-orange" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-claw-red opacity-60 motion-reduce:hidden" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-claw-red" />
               </span>
               <span className="flex flex-col leading-tight min-w-0">
                 <span className="text-[10.5px] sm:text-[11.5px] text-claw-text truncate">
                   <span className="font-semibold">{current.name}</span>{" "}
                   <span className="text-claw-muted">{eventCopy.action}</span>{" "}
-                  <span className="text-claw-orange">{eventTitle}</span>
+                  <span className="text-claw-blue">{eventTitle}</span>
                 </span>
                 <span className="text-[9.5px] sm:text-[10px] font-mono uppercase tracking-[0.16em] text-claw-dim">
                   {eventCopy.ago}

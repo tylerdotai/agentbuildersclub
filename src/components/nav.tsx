@@ -156,7 +156,7 @@ export function Nav() {
               href={primaryCtaHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-2 lg:ml-3 inline-flex items-center gap-1.5 rounded-full bg-claw-orange px-5 py-2 text-sm font-medium text-claw-void hover:bg-[#ff8a3d] transition-colors"
+              className="ml-2 lg:ml-3 inline-flex items-center gap-1.5 rounded-full bg-claw-blue px-5 py-2 text-sm font-medium text-claw-void hover:bg-claw-blue-light transition-colors"
             >
               {copy.primaryCta}
               <svg
@@ -187,7 +187,7 @@ export function Nav() {
                   aria-current={language === locale ? "true" : undefined}
                   className={`rounded-full px-2.5 py-1 text-xs transition-colors ${
                     language === locale
-                      ? "bg-claw-orange text-claw-void"
+                      ? "bg-claw-blue text-claw-void"
                       : "text-claw-muted hover:text-claw-text"
                   }`}
                 >
@@ -254,7 +254,7 @@ export function Nav() {
                     {...(link.external
                       ? { target: "_blank", rel: "noopener noreferrer" }
                       : {})}
-                    className="font-display text-4xl text-claw-text hover:text-claw-orange transition-colors py-3 border-b border-claw-border last:border-0"
+                    className="font-display text-4xl text-claw-text hover:text-claw-blue transition-colors py-3 border-b border-claw-border last:border-0"
                   >
                     {link.label}
                   </motion.a>
@@ -276,7 +276,7 @@ export function Nav() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setOpen(false)}
-                  className="block w-full rounded-full bg-claw-orange py-4 text-center text-base font-medium text-claw-void hover:bg-[#ff8a3d] transition-colors"
+                  className="block w-full rounded-full bg-claw-blue py-4 text-center text-base font-medium text-claw-void hover:bg-claw-blue-light transition-colors"
                 >
                   {copy.primaryCta}
                 </a>
@@ -294,7 +294,7 @@ export function Nav() {
                       aria-current={language === locale ? "true" : undefined}
                       className={`rounded-full border px-4 py-2 text-sm transition-colors ${
                         language === locale
-                          ? "border-claw-orange bg-claw-orange text-claw-void"
+                          ? "border-claw-blue bg-claw-blue text-claw-void"
                           : "border-claw-border text-claw-muted hover:text-claw-text"
                       }`}
                     >

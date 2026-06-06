@@ -57,9 +57,11 @@
   --color-claw-text: #fafafa;
   --color-claw-muted: #b8b8b8;
   --color-claw-dim: #7a7a7a;
-  --color-claw-orange: #fb7312;
-  --color-claw-orange-soft: rgba(251, 115, 18, 0.12);
-  --color-claw-cyan: #22D3EE;
+  --color-claw-blue: #1E40AF;
+  --color-claw-blue-soft: rgba(30, 64, 175, 0.12);
+  --color-claw-blue-light: #3B82F6;
+  --color-claw-red: #DC2626;
+  --color-claw-red-soft: rgba(220, 38, 38, 0.12);
   --color-claw-success: #22C55E;
   --spacing-128: 32rem;
 }
@@ -72,32 +74,32 @@
   --card-foreground: #fafafa;
   --popover: #131313;
   --popover-foreground: #fafafa;
-  --primary: #fb7312;
-  --primary-foreground: #0a0a0a;
+  --primary: #1E40AF;
+  --primary-foreground: #fafafa;
   --secondary: #1a1a1a;
   --secondary-foreground: #fafafa;
   --muted: #1a1a1a;
   --muted-foreground: #b8b8b8;
   --accent: #1a1a1a;
   --accent-foreground: #fafafa;
-  --destructive: #ef4444;
+  --destructive: #DC2626;
   --border: rgba(255, 255, 255, 0.08);
   --input: rgba(255, 255, 255, 0.08);
-  --ring: #fb7312;
-  --chart-1: #fb7312;
-  --chart-2: #22D3EE;
+  --ring: #1E40AF;
+  --chart-1: #1E40AF;
+  --chart-2: #3B82F6;
   --chart-3: #A1A1AA;
   --chart-4: #52525B;
   --chart-5: #27272A;
   --radius: 8px;
   --sidebar: #131313;
   --sidebar-foreground: #fafafa;
-  --sidebar-primary: #fb7312;
+  --sidebar-primary: #1E40AF;
   --sidebar-primary-foreground: #0a0a0a;
   --sidebar-accent: #1a1a1a;
   --sidebar-accent-foreground: #fafafa;
   --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: #fb7312;
+  --sidebar-ring: #1E40AF;
 }
 
 @layer base {
@@ -145,7 +147,7 @@
   bottom: -0.15em;
   width: 2.5rem;
   height: 2px;
-  background: linear-gradient(90deg, #fb7312 0%, rgba(251, 115, 18, 0) 100%);
+  background: linear-gradient(90deg, #1E40AF 0%, rgba(220, 38, 38, 0) 100%);
 }
 
 /* ── Scrollbar ── */
@@ -156,13 +158,13 @@
 
 /* ── Selection ── */
 ::selection {
-  background: rgba(251, 115, 18, 0.32);
+  background: rgba(30, 64, 175, 0.30);
   color: #fafafa;
 }
 
 /* ── Focus ring (keyboard nav only) ── */
 :focus-visible {
-  outline: 2px solid #fb7312;
+  outline: 2px solid #DC2626;
   outline-offset: 2px;
 }
 

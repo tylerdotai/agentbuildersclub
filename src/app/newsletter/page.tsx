@@ -37,7 +37,7 @@ export default async function NewsletterPage() {
         {/* Header */}
         <section className="border-b border-claw-border px-5 md:px-8 py-16 md:py-24">
           <div className="mx-auto max-w-3xl">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-4">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-4">
               ClawPlex DFW
             </p>
             <h1 className="font-display text-4xl md:text-6xl tracking-wider text-claw-text leading-none">

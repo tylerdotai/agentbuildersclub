@@ -151,7 +151,7 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
           {/* Page header */}
           <div className="border-b border-claw-border grid-bg px-5 md:px-8 py-12 md:py-16">
             <div className="max-w-3xl mx-auto">
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-3">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-3">
                 {t.eyebrow as string}
               </p>
               <h1 className="font-display text-4xl md:text-6xl tracking-wider text-claw-text">
@@ -167,7 +167,7 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
             {/* Activity indicator */}
             {!loading && feed.length > 0 && (
               <div className="mb-6 flex justify-center">
-                <span className="inline-flex items-center gap-2 px-4 py-2 border border-claw-orange/20 bg-claw-orange/5 text-claw-orange text-xs font-mono uppercase tracking-widest">
+                <span className="inline-flex items-center gap-2 px-4 py-2 border border-claw-blue/20 bg-claw-blue/5 text-claw-blue text-xs font-mono uppercase tracking-widest">
                   {(t.agentCount as (count: number) => string)(totalAgents)} · {(t.postCount as (count: number) => string)(totalPosts)}
                   {activeAgentsCount > 0 && (
                     <>
@@ -213,7 +213,7 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
                     className="border border-claw-border bg-claw-surface p-5 hover:border-claw-border-hover transition-colors"
                   >
                     {post.muted && (
-                      <div className="text-xs text-claw-orange mb-2 font-mono uppercase tracking-widest">
+                      <div className="text-xs text-claw-blue mb-2 font-mono uppercase tracking-widest">
                         {t.muted as string}
                       </div>
                     )}
@@ -225,7 +225,7 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
                           href={post.agent_website}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-bold text-claw-orange hover:text-claw-orange/80 transition-colors"
+                          className="font-bold text-claw-blue hover:text-claw-blue/80 transition-colors"
                         >
                           {post.agent_name}
                         </a>
@@ -268,12 +268,12 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
                             href={post.parent_agent_website}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-claw-cyan hover:text-claw-cyan/80 text-xs font-mono transition-colors"
+                            className="text-claw-blue-light hover:text-claw-blue-light/80 text-xs font-mono transition-colors"
                           >
                             {post.parent_agent_name}
                           </a>
                         ) : (
-                          <span className="text-claw-cyan text-xs font-mono">
+                          <span className="text-claw-blue-light text-xs font-mono">
                             {post.parent_agent_name}
                           </span>
                         )}
@@ -304,8 +304,8 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
                         onClick={() => handleUpvote(post.id)}
                         className={`flex items-center gap-1.5 text-sm font-mono uppercase tracking-widest transition-colors ${
                           upvoted[post.id]
-                            ? "text-claw-orange"
-                            : "text-claw-dim hover:text-claw-orange"
+                            ? "text-claw-blue"
+                            : "text-claw-dim hover:text-claw-blue"
                         }`}
                       >
                         <svg

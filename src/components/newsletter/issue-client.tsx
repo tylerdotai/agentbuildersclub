@@ -32,7 +32,7 @@ function renderParagraph(segments: ParagraphBlock["segments"]) {
             href={seg.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-claw-orange hover:underline"
+            className="text-claw-blue hover:underline"
           >
             {seg.content}
           </a>
@@ -73,13 +73,13 @@ export function IssueClient({ issue, prevIssue, nextIssue }: IssueClientProps) {
       {/* Header */}
       <section className="border-b border-claw-border px-5 md:px-8 py-16 md:py-24">
         <div className="mx-auto max-w-3xl">
-          <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-4">
-            <Link href={withLocale("/newsletter", locale)} className="hover:text-claw-orange/70 transition-colors">
+          <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-4">
+            <Link href={withLocale("/newsletter", locale)} className="hover:text-claw-blue/70 transition-colors">
               {copy.back}
             </Link>
           </motion.p>
           <motion.div {...stagger(1)} className="mb-8">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-claw-orange border border-claw-orange/30 bg-claw-orange/5 px-3 py-1">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-claw-blue border border-claw-blue/30 bg-claw-blue/5 px-3 py-1">
               {copy.issue} {localizedIssue.number} — {localizedIssue.date}
             </span>
           </motion.div>
@@ -117,9 +117,9 @@ export function IssueClient({ issue, prevIssue, nextIssue }: IssueClientProps) {
           {localizedIssue.nextNode && (
             <motion.div
               {...stagger(localizedIssue.body.length + 5)}
-              className="mt-12 border border-claw-orange/30 bg-claw-orange/5 px-6 py-6"
+              className="mt-12 border border-claw-blue/30 bg-claw-blue/5 px-6 py-6"
             >
-              <p className="font-mono text-[10px] uppercase tracking-widest text-claw-orange mb-2">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-claw-blue mb-2">
                 {copy.nextNode}
               </p>
               <p className="font-display text-xl text-claw-text mb-1">
@@ -132,7 +132,7 @@ export function IssueClient({ issue, prevIssue, nextIssue }: IssueClientProps) {
                 href={localizedIssue.nextNode.rsvpUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-xs uppercase tracking-widest text-claw-orange hover:underline"
+                className="font-mono text-xs uppercase tracking-widest text-claw-blue hover:underline"
               >
                 {copy.rsvp}
               </a>
@@ -155,7 +155,7 @@ export function IssueClient({ issue, prevIssue, nextIssue }: IssueClientProps) {
             {localizedPrevIssue ? (
               <Link
                 href={withLocale(`/newsletter/${localizedPrevIssue.slug}`, locale)}
-                className="border border-claw-border px-6 py-4 hover:border-claw-orange transition-colors"
+                className="border border-claw-border px-6 py-4 hover:border-claw-blue transition-colors"
               >
                 <p className="font-mono text-[10px] text-claw-dim uppercase tracking-widest mb-1">{copy.older}</p>
                 <p className="text-sm text-claw-muted">{copy.issue} {localizedPrevIssue.number} — {localizedPrevIssue.date}</p>
@@ -166,7 +166,7 @@ export function IssueClient({ issue, prevIssue, nextIssue }: IssueClientProps) {
             {localizedNextIssue ? (
               <Link
                 href={withLocale(`/newsletter/${localizedNextIssue.slug}`, locale)}
-                className="border border-claw-border px-6 py-4 hover:border-claw-orange transition-colors text-right"
+                className="border border-claw-border px-6 py-4 hover:border-claw-blue transition-colors text-right"
               >
                 <p className="font-mono text-[10px] text-claw-dim uppercase tracking-widest mb-1">{copy.newer}</p>
                 <p className="text-sm text-claw-muted">{copy.issue} {localizedNextIssue.number} — {localizedNextIssue.date}</p>

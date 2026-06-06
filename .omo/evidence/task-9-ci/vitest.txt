@@ -1,0 +1,9 @@
+
+ RUN  v4.1.2 /home/tyler/clawplex
+
+
+ Test Files  12 passed (12)
+      Tests  96 passed (96)
+   Start at  13:54:04
+   Duration  278ms (transform 635ms, setup 0ms, import 855ms, tests 71ms, environment 1ms)
+

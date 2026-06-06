@@ -1,0 +1,49 @@
+# Task 4: Update en.ts dictionary - Evidence
+# Generated: 2026-06-04
+
+## Changes Made
+
+### 1. Added DFW Node 05 at top of events.events[] array
+- slug: "dfw-node-05"
+- status: "past"
+- title: "DFW Node 05 — Claude Tools"
+- date: "June 3, 2026"
+- image: "/node-05-claude-tools-southlake-01.webp"
+- 60 DFW builders at Office Evolution - Southlake
+- Stats: 60 Builders, Tools On The Desk, Southlake/Office Evolution
+
+### 2. Updated home.event.* for Hermes (Node 06)
+- home.event.title: "DFW Node 06 — Hermes"
+- home.event.locationAccent: "Arlington"
+- home.event.dateMeta: "Wednesday, June 10, 2026 · 4–5 PM CT"
+- home.hero.nextMeta: "Wed Jun 10 · 4–5 PM · Spark Coworking, Arlington"
+
+### 3. Bumped home.what.facts[0].value from "4" to "5"
+- Now shows "5" Nodes done
+
+## Verification Results
+
+### grep -c "dfw-node-05" (expected: 1)
+1
+
+### grep "DFW Node 05" | head -1
+        title: "DFW Node 05 — Claude Tools",
+
+### grep "DFW Node 06"
+      title: "DFW Node 06 — Hermes",
+
+### grep "Arlington"
+      nextMeta: "Wed Jun 10 · 4–5 PM · Spark Coworking, Arlington",
+      locationAccent: "Arlington",
+
+### grep "June 10, 2026"
+      dateMeta: "Wednesday, June 10, 2026 · 4–5 PM CT",
+
+### grep '"5"' (Nodes done stat)
+        { value: "5", label: "Nodes done" },
+
+## Prior Events (unchanged)
+- ClawCon DFW: March 24, 2026
+- DFW Node 02: April 15, 2026
+- DFW Node 03: May 6, 2026
+- DFW Node 04: May 15, 2026

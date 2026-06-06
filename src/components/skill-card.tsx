@@ -20,16 +20,16 @@ export interface Skill {
 }
 
 const categoryColors: Record<SkillCategory, string> = {
-  Research: "text-claw-cyan border-claw-cyan/30 bg-claw-cyan/10",
-  Productivity: "text-claw-orange border-claw-orange/30 bg-claw-orange/10",
+  Research: "text-claw-blue-light border-claw-blue-light/30 bg-claw-blue-light/10",
+  Productivity: "text-claw-blue border-claw-blue/30 bg-claw-blue/10",
   Social: "text-purple-400 border-purple-400/30 bg-purple-400/10",
   Utility: "text-claw-success border-claw-success/30 bg-claw-success/10",
   Creative: "text-pink-400 border-pink-400/30 bg-pink-400/10",
 };
 
 const categoryDotColors: Record<SkillCategory, string> = {
-  Research: "bg-claw-cyan",
-  Productivity: "bg-claw-orange",
+  Research: "bg-claw-blue-light",
+  Productivity: "bg-claw-blue",
   Social: "bg-purple-400",
   Utility: "bg-claw-success",
   Creative: "bg-pink-400",
@@ -85,7 +85,7 @@ function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
           <button
             onClick={onClose}
             aria-label={t.close}
-            className="shrink-0 border border-claw-border px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-claw-dim hover:border-claw-orange hover:text-claw-orange transition-colors"
+            className="shrink-0 border border-claw-border px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-claw-dim hover:border-claw-blue hover:text-claw-blue transition-colors"
           >
             ✕
           </button>
@@ -140,7 +140,7 @@ function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
               className={`border px-6 py-3 font-mono text-sm uppercase tracking-widest transition-all ${
                 copied
                   ? "border-claw-success text-claw-success bg-claw-success/10"
-                  : "border-claw-orange text-claw-orange hover:bg-claw-orange hover:text-claw-void"
+                  : "border-claw-blue text-claw-blue hover:bg-claw-blue hover:text-claw-void"
               }`}
             >
               {copied ? t.copiedClipboard : t.installSkill}
@@ -193,7 +193,7 @@ export function SkillCard({ skill, index = 0 }: SkillCardProps) {
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, delay: index * 0.07, ease: [0.25, 0.1, 0.25, 1] }}
         onClick={() => setSelected(true)}
-        className="group border border-claw-border bg-claw-surface p-6 hover:border-claw-orange/50 transition-all duration-300 flex flex-col cursor-pointer"
+        className="group border border-claw-border bg-claw-surface p-6 hover:border-claw-blue/50 transition-all duration-300 flex flex-col cursor-pointer"
       >
         {/* Category badge */}
         <span className={`self-start mb-3 border px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest ${badgeClass}`}>
@@ -201,7 +201,7 @@ export function SkillCard({ skill, index = 0 }: SkillCardProps) {
         </span>
 
         {/* Name */}
-        <h3 className="font-display text-xl tracking-wider text-claw-text mb-2 group-hover:text-claw-orange transition-colors">
+        <h3 className="font-display text-xl tracking-wider text-claw-text mb-2 group-hover:text-claw-blue transition-colors">
           {skill.name}
         </h3>
 
@@ -239,7 +239,7 @@ export function SkillCard({ skill, index = 0 }: SkillCardProps) {
             className={`border px-4 py-2 font-mono text-xs uppercase tracking-widest transition-all ${
               copied
                 ? "border-claw-success text-claw-success bg-claw-success/10"
-                : "border-claw-orange text-claw-orange hover:bg-claw-orange hover:text-claw-void"
+                : "border-claw-blue text-claw-blue hover:bg-claw-blue hover:text-claw-void"
             }`}
           >
             {copied ? t.copied : t.install}

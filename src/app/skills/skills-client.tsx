@@ -95,7 +95,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
   };
 
   const inputClass =
-    "w-full border border-claw-border bg-claw-void px-4 py-3 font-mono text-sm text-claw-text placeholder:text-claw-dim focus:border-claw-orange focus:outline-none transition-colors";
+    "w-full border border-claw-border bg-claw-void px-4 py-3 font-mono text-sm text-claw-text placeholder:text-claw-dim focus:border-claw-blue focus:outline-none transition-colors";
 
   return (
     <AnimatePresence>
@@ -125,7 +125,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
               </h2>
               <button
                 onClick={onClose}
-                className="border border-claw-border px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-claw-dim hover:border-claw-orange hover:text-claw-orange transition-colors"
+                className="border border-claw-border px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-claw-dim hover:border-claw-blue hover:text-claw-blue transition-colors"
               >
                 {t.close}
               </button>
@@ -145,7 +145,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                   </p>
                   <button
                     onClick={onClose}
-                    className="mt-8 border border-claw-border px-8 py-3 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-orange hover:text-claw-orange transition-colors"
+                    className="mt-8 border border-claw-border px-8 py-3 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors"
                   >
                     {t.back}
                   </button>
@@ -155,7 +155,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                   {/* Skill name */}
                   <div>
                     <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                      {t.labels.name} <span className="text-claw-orange">*</span>
+                      {t.labels.name} <span className="text-claw-blue">*</span>
                     </label>
                     <input
                       type="text"
@@ -170,7 +170,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                   {/* Description */}
                   <div>
                     <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                      {t.labels.description} <span className="text-claw-orange">*</span>
+                      {t.labels.description} <span className="text-claw-blue">*</span>
                     </label>
                     <textarea
                       value={form.description}
@@ -185,7 +185,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                   {/* Category */}
                   <div>
                     <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                      {t.labels.category} <span className="text-claw-orange">*</span>
+                      {t.labels.category} <span className="text-claw-blue">*</span>
                     </label>
                     <select
                       value={form.category}
@@ -217,7 +217,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                       <button
                         type="button"
                         onClick={addPhrase}
-                        className="border border-claw-border px-4 py-3 font-mono text-xs uppercase tracking-widest text-claw-dim hover:border-claw-orange hover:text-claw-orange transition-colors shrink-0"
+                        className="border border-claw-border px-4 py-3 font-mono text-xs uppercase tracking-widest text-claw-dim hover:border-claw-blue hover:text-claw-blue transition-colors shrink-0"
                       >
                         {t.add}
                       </button>
@@ -233,7 +233,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                             <button
                               type="button"
                               onClick={() => removePhrase(p)}
-                              className="text-claw-dim hover:text-claw-orange transition-colors"
+                              className="text-claw-dim hover:text-claw-blue transition-colors"
                             >
                               ✕
                             </button>
@@ -246,7 +246,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                   {/* Instructions */}
                   <div>
                     <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                      {t.labels.instructions} <span className="text-claw-orange">*</span>
+                      {t.labels.instructions} <span className="text-claw-blue">*</span>
                     </label>
                     <p className="mb-2 font-mono text-[10px] text-claw-dim">
                       {t.instructionsHelp}
@@ -264,7 +264,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                   {/* Submitter name */}
                   <div>
                     <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                      {t.labels.yourName} <span className="text-claw-orange">*</span>
+                      {t.labels.yourName} <span className="text-claw-blue">*</span>
                     </label>
                     <input
                       type="text"
@@ -297,7 +297,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="w-full border border-claw-orange bg-claw-orange py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 disabled:opacity-50 transition-colors"
+                    className="w-full border border-claw-blue bg-claw-blue py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-blue/90 disabled:opacity-50 transition-colors"
                   >
                     {status === "loading" ? t.submitting : t.submit}
                   </button>
@@ -355,7 +355,7 @@ export function SkillsClient() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
             >
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-4">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-4">
                 {t.heroEyebrow}
               </p>
               <h1 className="font-display text-5xl md:text-8xl tracking-wider text-claw-text leading-none mb-4">
@@ -366,7 +366,7 @@ export function SkillsClient() {
               </p>
               <button
                 onClick={() => setShowModal(true)}
-                className="border border-claw-orange bg-claw-orange px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors"
+                className="border border-claw-blue bg-claw-blue px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-blue/90 transition-colors"
               >
                 {t.submitCta}
               </button>
@@ -386,7 +386,7 @@ export function SkillsClient() {
                   data-active={activeCategory === cat}
                   className={`border px-4 py-2 font-mono text-xs uppercase tracking-widest transition-all ${
                     activeCategory === cat
-                      ? "border-claw-orange bg-claw-orange/10 text-claw-orange"
+                      ? "border-claw-blue bg-claw-blue/10 text-claw-blue"
                       : "border-claw-border text-claw-dim hover:border-claw-border-hover hover:text-claw-muted"
                   }`}
                 >
@@ -441,7 +441,7 @@ export function SkillsClient() {
                 </p>
                 <button
                   onClick={() => setShowModal(true)}
-                  className="border border-claw-orange px-8 py-3 font-mono text-sm uppercase tracking-widest text-claw-orange hover:bg-claw-orange hover:text-claw-void transition-colors"
+                  className="border border-claw-blue px-8 py-3 font-mono text-sm uppercase tracking-widest text-claw-blue hover:bg-claw-blue hover:text-claw-void transition-colors"
                 >
                   {t.submit}
                 </button>

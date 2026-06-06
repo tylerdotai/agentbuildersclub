@@ -76,7 +76,7 @@ export function SponsorsClient() {
           <div className="mx-auto max-w-5xl">
             <motion.p
               {...stagger(0)}
-              className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-4"
+              className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-4"
             >
               ClawPlex DFW
             </motion.p>
@@ -95,7 +95,7 @@ export function SponsorsClient() {
         {/* What we're building */}
         <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
           <div className="mx-auto max-w-5xl">
-            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-6">
+            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-6">
               {copy.buildingEyebrow}
             </motion.p>
             <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-5xl tracking-wider text-claw-text mb-8">
@@ -114,7 +114,7 @@ export function SponsorsClient() {
         {/* Tiers */}
         <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
           <div className="mx-auto max-w-5xl">
-            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-10">
+            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-10">
               {copy.tiersEyebrow}
             </motion.p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-claw-border">
@@ -130,7 +130,7 @@ export function SponsorsClient() {
                   <h3 className="font-display text-2xl md:text-3xl tracking-wider text-claw-text mb-2">
                     {tier.name}
                   </h3>
-                  <p className="font-mono text-xs text-claw-orange uppercase tracking-widest mb-6">
+                  <p className="font-mono text-xs text-claw-blue uppercase tracking-widest mb-6">
                     {tier.price}
                   </p>
                   <p className="text-sm text-claw-muted leading-relaxed mb-8 flex-1">
@@ -139,7 +139,7 @@ export function SponsorsClient() {
                   <ul className="space-y-3 mb-8">
                     {tier.perks.map((perk) => (
                       <li key={perk} className="flex items-start gap-3 text-sm text-claw-muted">
-                        <span className="text-claw-orange mt-0.5 shrink-0">→</span>
+                        <span className="text-claw-blue mt-0.5 shrink-0">→</span>
                         {perk}
                       </li>
                     ))}
@@ -156,7 +156,7 @@ export function SponsorsClient() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
               {/* Left: copy */}
               <div>
-                <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-6">
+                <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-6">
                   {copy.sponsorWhoEyebrow}
                 </motion.p>
                 <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-4xl tracking-wider text-claw-text mb-6">
@@ -175,13 +175,13 @@ export function SponsorsClient() {
 
               {/* Right: stats */}
               <div>
-                <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-6">
+                <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-6">
                   {copy.offerEyebrow}
                 </motion.p>
                 <div className="space-y-6">
                   {copy.stats.map((stat) => (
                     <div key={stat.label} className="border-t border-claw-border pt-4">
-                      <p className="font-display text-3xl text-claw-orange">{stat.value}</p>
+                      <p className="font-display text-3xl text-claw-blue">{stat.value}</p>
                       <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mt-1">
                         {stat.label}
                       </p>
@@ -207,7 +207,7 @@ export function SponsorsClient() {
                   target="_blank"
                   rel="noopener noreferrer"
                   {...stagger(i + 1)}
-                  className="group relative overflow-hidden border border-claw-border aspect-video hover:border-claw-orange transition-colors"
+                  className="group relative overflow-hidden border border-claw-border aspect-video hover:border-claw-blue transition-colors"
                 >
                   <div className="absolute inset-0 z-10" />
                   <Image
@@ -238,7 +238,7 @@ export function SponsorsClient() {
                   key={venue.name}
                   {...stagger(i + 1)}
                 >
-                  <div className="group relative overflow-hidden border border-claw-border aspect-video hover:border-claw-orange transition-colors">
+                  <div className="group relative overflow-hidden border border-claw-border aspect-video hover:border-claw-blue transition-colors">
                     <a
                       href={venue.url}
                       target="_blank"
@@ -266,7 +266,7 @@ export function SponsorsClient() {
         {/* Contact */}
         <section className="px-5 md:px-8 py-20 md:py-28">
           <div className="mx-auto max-w-5xl">
-            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-4">
+            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-4">
               {copy.contactEyebrow}
             </motion.p>
             <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-5xl tracking-wider text-claw-text mb-6">
@@ -280,13 +280,13 @@ export function SponsorsClient() {
                 href="https://discord.gg/q8kEquTu3z"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-claw-orange bg-claw-orange px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors"
+                className="border border-claw-blue bg-claw-blue px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-blue/90 transition-colors"
               >
                 Discord
               </a>
               <Link
                 href={withLocale("/", locale)}
-                className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-orange hover:text-claw-orange transition-colors"
+                className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors"
               >
                 {copy.backHome}
               </Link>
