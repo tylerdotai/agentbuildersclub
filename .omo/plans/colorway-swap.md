@@ -206,7 +206,7 @@ Max Concurrent: 6 (Wave 2)
 - [x] 6. **Community section + skill-card** ✅ fc9cc3f
 - [x] 7. **i18n dictionaries** ✅ 8d576d2
 - [x] 8. **Email template** ✅ 8d576d2
-- [ ] 9. **Design docs** ⚠️ OUTSTANDING — subagent failed (skills not found: writing)
+- [x] 9. **Design docs** ✅ 00bd226
 
   **What to do**:
   - In `@theme inline` block (lines 7-65):
@@ -348,7 +348,7 @@ Max Concurrent: 6 (Wave 2)
   - Files: `src/app/globals.css`
   - Pre-commit: `pnpm run lint && pnpm run typecheck`
 
-- [ ] 2. **Nav + Footer + Layout: rename `claw-orange` → `claw-blue`; replace 2 hover-orange sites**
+- [x] 2. **Nav + Footer + Layout** ✅ dd9b6a5
 
   **What to do**:
   - In `src/components/nav.tsx`:
@@ -449,7 +449,7 @@ Max Concurrent: 6 (Wave 2)
   - Files: `src/components/nav.tsx`, `src/components/footer.tsx`, `src/app/layout.tsx`
   - Pre-commit: `pnpm run lint && pnpm run typecheck`
 
-- [ ] 3. **Homepage client (`home-client.tsx`): rename `claw-orange` → `claw-blue`; replace 4 hover sites; red live indicators**
+- [x] 3. **Homepage client** ✅ d570e70
 
   **What to do**:
   - In `src/app/[locale]/home-client.tsx`:
@@ -558,7 +558,7 @@ Max Concurrent: 6 (Wave 2)
   - Files: `src/app/[locale]/home-client.tsx`
   - Pre-commit: `pnpm run lint && pnpm run typecheck`
 
-- [ ] 4. **Secondary pages: work-with-us, events, sponsors, not-found, privacy, terms**
+- [x] 4. **Secondary pages** ✅ d570e70
 
   **What to do**:
   - In `src/app/work-with-us/work-with-us-client.tsx`:
@@ -680,7 +680,7 @@ Max Concurrent: 6 (Wave 2)
   - Files: `src/app/work-with-us/work-with-us-client.tsx`, `src/app/events/events-client.tsx`, `src/app/sponsors/sponsors-client.tsx`, `src/app/not-found.tsx`, `src/app/privacy/page.tsx`, `src/app/terms/page.tsx`
   - Pre-commit: `pnpm run lint && pnpm run typecheck`
 
-- [ ] 5. **Newsletter + Subscribe: 3 component files**
+- [x] 5. **Newsletter + Subscribe** ✅ a485996
 
   **What to do**:
   - In `src/components/newsletter/issue-client.tsx`:
@@ -783,7 +783,7 @@ Max Concurrent: 6 (Wave 2)
   - Files: `src/components/newsletter/issue-client.tsx`, `src/components/newsletter/newsletter-client.tsx`, `src/components/newsletter/subscribe-form-client.tsx`
   - Pre-commit: `pnpm run lint && pnpm run typecheck`
 
-- [ ] 6. **Community section: community-client, projects, skills, skill-card — also handles `claw-cyan` → `claw-blue-light`**
+- [x] 6. **Community section + skill-card** ✅ fc9cc3f
 
   **What to do**:
   - In `src/app/community/community-client.tsx`:
@@ -908,7 +908,7 @@ Max Concurrent: 6 (Wave 2)
   - Files: `src/app/community/community-client.tsx`, `src/app/community/projects/page.tsx`, `src/app/skills/skills-client.tsx`, `src/components/skill-card.tsx`
   - Pre-commit: `pnpm run lint && pnpm run typecheck`
 
-- [ ] 7. **i18n dictionaries: update embedded CSS class names in en.ts and es.ts**
+- [x] 7. **i18n dictionaries** ✅ 8d576d2
 
   **What to do**:
   - In `src/lib/i18n/dictionaries/en.ts`:
@@ -993,7 +993,7 @@ Max Concurrent: 6 (Wave 2)
   - Files: `src/lib/i18n/dictionaries/en.ts`, `src/lib/i18n/dictionaries/es.ts`
   - Pre-commit: `pnpm run lint && pnpm run typecheck && pnpm exec vitest run`
 
-- [ ] 8. **Email template: update `#ff6b00` heading to `#1E40AF` (primary blue)**
+- [x] 8. **Email template** ✅ 8d576d2
 
   **What to do**:
   - In `src/app/api/subscribe/route.ts`:
@@ -1212,15 +1212,15 @@ grep -r "#ff8a3d\|#fb7312\|#ff6b00\|#ef4444" src/  # Expected: 0 matches
 ```
 
 ### Final Checklist
-- [ ] All "Must Have" tokens defined in `src/app/globals.css`
-- [ ] All "Must NOT Have" tokens/changes absent from codebase
-- [ ] All 14+ component files use new token names
-- [ ] i18n dictionaries (`en.ts`, `es.ts`) class strings updated
-- [ ] Email template uses blue heading
-- [ ] Design docs reflect new colorway
-- [ ] `pnpm run lint && pnpm run typecheck && pnpm exec vitest run && pnpm run build` all pass
-- [ ] Playwright screenshots confirm visual change (home, community, events, skills, sponsors)
-- [ ] Brand asset hand-off list noted in plan for designer action
+^- [x] All "Must Have" tokens defined in `src/app/globals.css`
+^- [x] All "Must NOT Have" tokens/changes absent from codebase
+^- [x] All 14+ component files use new token names
+^- [x] i18n dictionaries (`en.ts`, `es.ts`) class strings updated
+^- [x] Email template uses blue heading
+^- [x] Design docs reflect new colorway
+^- [x] `pnpm run lint && pnpm run typecheck && pnpm exec vitest run && pnpm run build` all pass
+^- [x] Playwright screenshots confirm visual change (home, community, events, skills, sponsors)
+^- [x] Brand asset hand-off list noted in plan for designer action
 
 ---
 
