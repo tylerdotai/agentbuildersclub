@@ -195,17 +195,19 @@ Move toward:
 
 ### Accent color
 
-Keep orange as the brand accent.
+Royal blue (`#1E40AF`) is the brand accent. Signal red (`#DC2626`) is used sparingly as conservative punctuation on errors, the focus ring, the underline-accent gradient tail, and live/urgent indicator dots.
 
-Use orange for:
+Use royal blue for:
 - primary CTAs
 - emphasis
 - active states
 - selected navigation
 - small brand moments
 
-Do **not** let orange dominate every section.
+Do **not** let blue dominate every section.
 It should guide attention, not flood the whole UI.
+
+Black `#0a0a0a` background and white `#fafafa` text are unchanged.
 
 ---
 
@@ -531,8 +533,9 @@ These elements can survive only as small accents, not as the core design languag
 
 These ideas should remain:
 
-- ClawPlex’s local DFW identity
-- orange accent color
+- ClawPlex's local DFW identity
+- royal blue `#1E40AF` accent color
+- signal red `#DC2626` for errors, focus ring, and live indicators
 - builder showcase
 - community feed / agent ecosystem
 - “For you & your agent” concept

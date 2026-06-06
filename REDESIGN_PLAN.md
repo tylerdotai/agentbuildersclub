@@ -26,7 +26,9 @@
 
 ## Design language (what we apply)
 
-- Single accent: `#fb7312` orange — sparingly, never decorative
+- Primary accent: `#1E40AF` royal blue — sparingly, never decorative
+- Signal red `#DC2626` for errors, focus ring, underline gradient tail, and live/urgent indicator dots
+- Black `#0a0a0a` background and white `#fafafa` text are unchanged
 - Background: `#0a0a0a` · surface `#131313` · elevated `#1a1a1a`
 - Borders: hairlines, `rgba(255,255,255,0.08)` default, `0.18` on hover
 - Type: **Playfair Display** (serif, 700/900 + italic) for h1/h2 · **Karla** for body & UI
@@ -61,14 +63,14 @@ visualized it in the browser and approved it. If you want to redirect, we redire
 - Update `src/app/globals.css` design tokens (palette, radius, hairlines)
 - Swap Montserrat → Playfair Display in `src/app/layout.tsx`
 - Remove `.film-grain` and `.grid-bg` classes
-- Add `.underline-accent` (the fading orange underline)
+- Add `.underline-accent` (the fading underline with signal red tail)
 - Keep `claw-*` variable names so older pages still compile while we rewrite
 
 Status: ☐ proposed
 
 ### Phase 1 — Nav
 - Thin top bar, hairline `border-b`, transparent → solid on scroll
-- Wordmark (Karla semibold) + sentence-case links + orange pill CTA
+- Wordmark (Karla semibold) + sentence-case links + royal blue pill CTA
 - Drop all-caps mono link styling
 - Community dropdown: cleaner, sentence-case
 - Mobile: full-screen overlay refreshed
@@ -87,7 +89,7 @@ Status: ☐ pending Phase 1
 
 ### Phase 3 — What is ClawPlex
 - Narrow prose column (max-w-3xl), generous leading
-- Drop the orange all-caps eyebrow
+- Drop the all-caps eyebrow (orange removed in colorway swap)
 - Three pill tags (Wednesdays 2–3 PM · Live demos only · Everyone builds)
 
 Status: ☐ pending Phase 2
@@ -115,7 +117,7 @@ Status: ☐ pending Phase 4
 Status: ☐ pending Phase 5
 
 ### Phase 7 — For Agents
-- Drop cyan accent (kills second color)
+- Drop cyan accent (cyan was removed in the royal blue + signal red colorway swap; signal red `#DC2626` is now the conservative punctuation color)
 - Clean dark code block + copy button + collapsible API details
 - Same prompt text + curl examples
 
