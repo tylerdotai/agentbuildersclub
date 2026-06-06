@@ -35,7 +35,7 @@ export default function CommunityProjectsPage() {
           <div className="mx-auto max-w-5xl">
             <motion.p
               {...stagger(0)}
-              className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-4"
+              className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-4"
             >
               {t.eyebrow}
             </motion.p>
@@ -65,12 +65,12 @@ export default function CommunityProjectsPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   {...stagger(i)}
-                  className="border-claw-border border-b border-r p-8 hover:border-claw-orange/40 transition-colors group"
+                  className="border-claw-border border-b border-r p-8 hover:border-claw-blue/40 transition-colors group"
                 >
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-claw-orange mb-3">
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-claw-blue mb-3">
                     {project.tag}
                   </p>
-                  <h3 className="font-display text-2xl tracking-wider text-claw-text mb-1 group-hover:text-claw-orange transition-colors">
+                  <h3 className="font-display text-2xl tracking-wider text-claw-text mb-1 group-hover:text-claw-blue transition-colors">
                     {project.name}
                   </h3>
                   <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-4">
@@ -79,7 +79,7 @@ export default function CommunityProjectsPage() {
                   <p className="text-sm text-claw-muted leading-relaxed">
                     {project.description}
                   </p>
-                  <p className="mt-4 font-mono text-xs uppercase tracking-widest text-claw-orange group-hover:underline">
+                  <p className="mt-4 font-mono text-xs uppercase tracking-widest text-claw-blue group-hover:underline">
                     {t.viewProject}
                   </p>
                 </motion.a>
@@ -100,18 +100,18 @@ export default function CommunityProjectsPage() {
                   key={resource.name}
                   href={withLocale(resource.link, locale)}
                   {...stagger(i + 1)}
-                  className="border-claw-border border-b border-r p-8 hover:border-claw-orange/40 transition-colors group"
+                  className="border-claw-border border-b border-r p-8 hover:border-claw-blue/40 transition-colors group"
                 >
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-claw-cyan mb-3">
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-claw-blue-light mb-3">
                     {resource.tag}
                   </p>
-                  <h3 className="font-display text-xl tracking-wider text-claw-text mb-2 group-hover:text-claw-orange transition-colors">
+                  <h3 className="font-display text-xl tracking-wider text-claw-text mb-2 group-hover:text-claw-blue transition-colors">
                     {resource.name}
                   </h3>
                   <p className="text-sm text-claw-muted leading-relaxed">
                     {resource.description}
                   </p>
-                  <p className="mt-4 font-mono text-xs uppercase tracking-widest text-claw-orange group-hover:underline">
+                  <p className="mt-4 font-mono text-xs uppercase tracking-widest text-claw-blue group-hover:underline">
                     {t.explore}
                   </p>
                 </motion.a>
@@ -123,7 +123,7 @@ export default function CommunityProjectsPage() {
         {/* CTA */}
         <section className="px-5 md:px-8 py-16 md:py-24">
           <div className="mx-auto max-w-5xl text-center">
-            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-orange mb-4">
+            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-4">
               {t.ctaEyebrow}
             </motion.p>
             <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-5xl tracking-wider text-claw-text mb-4">
@@ -135,7 +135,7 @@ export default function CommunityProjectsPage() {
             <motion.div {...stagger(3)} className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href={withLocale("/community", locale)}
-                className="border border-claw-orange bg-claw-orange px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 transition-colors text-center"
+                className="border border-claw-blue bg-claw-blue px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-blue/90 transition-colors text-center"
               >
                 {t.feed}
               </Link>
@@ -143,7 +143,7 @@ export default function CommunityProjectsPage() {
                 href="/llms.txt"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-orange hover:text-claw-orange transition-colors text-center"
+                className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors text-center"
               >
                 {t.llms}
               </a>
