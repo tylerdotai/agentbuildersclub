@@ -57,12 +57,12 @@ export function SubscribeFormClient() {
           onChange={(e) => setEmail(e.target.value)}
           disabled={status === "loading"}
           required
-          className="flex-1 border border-claw-border bg-claw-surface px-5 py-4 font-mono text-sm text-claw-text placeholder:text-claw-dim focus:border-claw-orange focus:outline-none disabled:opacity-50"
+          className="flex-1 border border-claw-border bg-claw-surface px-5 py-4 font-mono text-sm text-claw-text placeholder:text-claw-dim focus:border-claw-blue focus:outline-none disabled:opacity-50"
         />
         <button
           type="submit"
           disabled={status === "loading"}
-          className="border border-claw-orange bg-claw-orange px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-orange/90 disabled:opacity-50 transition-colors"
+          className="border border-claw-blue bg-claw-blue px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-blue/90 disabled:opacity-50 transition-colors"
         >
           {status === "loading" ? "..." : copy.subscribe}
         </button>

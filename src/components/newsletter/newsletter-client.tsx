@@ -33,7 +33,7 @@ function renderParagraph(segments: ParagraphBlock["segments"]) {
             href={seg.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-claw-orange hover:underline"
+            className="text-claw-blue hover:underline"
           >
             {seg.content}
           </a>
@@ -81,7 +81,7 @@ export function NewsletterClient({ latest, pastIssues }: NewsletterClientProps) 
       <section className="border-b border-claw-border px-5 md:px-8 py-16 md:py-20">
         <div className="mx-auto max-w-3xl">
           <motion.div {...stagger(0)} className="mb-8">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-claw-orange border border-claw-orange/30 bg-claw-orange/5 px-3 py-1">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-claw-blue border border-claw-blue/30 bg-claw-blue/5 px-3 py-1">
               {copy.issue} {localizedLatest.number} — {localizedLatest.date}
             </span>
           </motion.div>
@@ -108,9 +108,9 @@ export function NewsletterClient({ latest, pastIssues }: NewsletterClientProps) 
           {localizedLatest.nextNode && (
             <motion.div
               {...stagger(localizedLatest.body.length + 3)}
-              className="mt-12 border border-claw-orange/30 bg-claw-orange/5 px-6 py-6"
+              className="mt-12 border border-claw-blue/30 bg-claw-blue/5 px-6 py-6"
             >
-              <p className="font-mono text-[10px] uppercase tracking-widest text-claw-orange mb-2">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-claw-blue mb-2">
                 {copy.nextNode}
               </p>
               <p className="font-display text-xl text-claw-text mb-1">
@@ -123,7 +123,7 @@ export function NewsletterClient({ latest, pastIssues }: NewsletterClientProps) 
                 href={localizedLatest.nextNode.rsvpUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-xs uppercase tracking-widest text-claw-orange hover:underline"
+                className="font-mono text-xs uppercase tracking-widest text-claw-blue hover:underline"
               >
                 {copy.rsvp}
               </a>
@@ -140,7 +140,7 @@ export function NewsletterClient({ latest, pastIssues }: NewsletterClientProps) 
           <motion.div {...stagger(localizedLatest.body.length + 5)} className="mt-6">
             <Link
               href={withLocale(`/newsletter/${localizedLatest.slug}`, locale)}
-              className="font-mono text-xs text-claw-dim hover:text-claw-orange transition-colors"
+              className="font-mono text-xs text-claw-dim hover:text-claw-blue transition-colors"
             >
               {copy.readFull}
             </Link>
@@ -166,7 +166,7 @@ export function NewsletterClient({ latest, pastIssues }: NewsletterClientProps) 
                     className="border border-claw-border px-6 py-4 flex items-center justify-between hover:border-claw-border-hover transition-colors"
                   >
                     <div>
-                      <p className="font-mono text-[10px] text-claw-orange uppercase tracking-widest mb-1">
+                      <p className="font-mono text-[10px] text-claw-blue uppercase tracking-widest mb-1">
                         {copy.issue} {issue.number} — {issue.date}
                       </p>
                       <p className="text-sm text-claw-muted">{issue.subject}</p>
