@@ -47,7 +47,7 @@ export function Footer() {
                 ClawPlex
               </span>
             </Link>
-            <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.22em] text-claw-orange">
+            <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.22em] text-claw-blue">
               {copy.eyebrow}
             </p>
             <p className="mt-4 text-[14px] sm:text-[15px] text-claw-muted leading-[1.6] max-w-sm">
@@ -58,7 +58,7 @@ export function Footer() {
           {/* Nav columns */}
           {Object.entries(copy.nav).map(([category, items]) => (
             <div key={category}>
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-claw-orange mb-5">
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-claw-blue mb-5">
                 {category}
               </p>
               <ul className="space-y-3">
@@ -110,7 +110,7 @@ export function Footer() {
                   aria-current={language === locale ? "true" : undefined}
                   className={`transition-colors ${
                     language === locale
-                      ? "text-claw-orange"
+                      ? "text-claw-blue"
                       : "text-claw-dim hover:text-claw-text"
                   }`}
                 >
