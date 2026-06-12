@@ -301,7 +301,7 @@ function WhatIsClawPlex({ copy }: { copy: HomeDict["what"] }) {
 
 /* ── Event Section — Next Node ─────────────────────────────────────────── */
 function EventSection({ copy, countdownLabels }: { copy: HomeDict["event"]; countdownLabels: HomeDict["countdown"] }) {
-  const eventDate = new Date("2026-06-10T16:00:00-05:00");
+  const eventDate = new Date("2026-07-15T17:00:00-05:00");
 
   return (
     <section className="relative border-t border-claw-border px-5 md:px-8 py-20 md:py-28 lg:py-32 overflow-hidden">
@@ -349,7 +349,7 @@ function EventSection({ copy, countdownLabels }: { copy: HomeDict["event"]; coun
               <Countdown target={eventDate} labels={countdownLabels} />
             </motion.div>
             <motion.div {...stagger(4)} className="mt-9 flex flex-wrap items-center gap-4">
-              <a href="https://luma.com/clawplex" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-claw-blue px-6 py-3.5 text-sm sm:text-base font-medium text-claw-void hover:bg-claw-blue-light transition-colors">
+              <a href="https://luma.com/evimcn31" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-claw-blue px-6 py-3.5 text-sm sm:text-base font-medium text-claw-void hover:bg-claw-blue-light transition-colors">
                 {copy.rsvp}
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                   <path d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -370,7 +370,7 @@ function EventSection({ copy, countdownLabels }: { copy: HomeDict["event"]; coun
           >
             <div className="relative aspect-[5/6] sm:aspect-[4/3] lg:aspect-[5/6] overflow-hidden rounded-lg">
               <Image
-                src="/hermes-cover.webp"
+                src="/fwtx-dao-poster.webp"
                 alt={copy.imageAlt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 58vw"
@@ -393,7 +393,7 @@ function EventSection({ copy, countdownLabels }: { copy: HomeDict["event"]; coun
             >
               <div className="relative rounded-lg bg-claw-red text-claw-void px-5 py-4 sm:px-6 sm:py-5 shadow-2xl shadow-black/40">
                 <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-claw-void/70">{copy.badgeDay}</p>
-                <p className="mt-1 font-display text-[44px] sm:text-[56px] leading-none tabular-nums">03</p>
+                <p className="mt-1 font-display text-[44px] sm:text-[56px] leading-none tabular-nums">15</p>
                 <p className="mt-1 font-mono text-xs uppercase tracking-[0.22em] text-claw-void/80">{copy.badgeMonthTime}</p>
               </div>
             </motion.div>
