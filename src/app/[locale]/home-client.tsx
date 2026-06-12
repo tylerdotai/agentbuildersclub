@@ -93,12 +93,14 @@ function HeroBanner({ copy }: { copy: HomeDict["hero"] }) {
     "/node-03-meetup.png",
     "/node-04-frisco-01.jpeg",
     "/node-05-claude-tools-southlake-01.webp",
+    "/node-06-hermes-arlington-03.webp",
   ];
   const heroCaptions = [
     "ClawCon DFW",
     "Node 03 · Meetup",
     "Node 04 · Frisco",
     "Node 05 · Claude Tools",
+    "Node 06 · Hermes",
   ];
 
   const [heroIdx, setHeroIdx] = useState(0);
