@@ -3,7 +3,6 @@ import "./globals.css";
 import { Playfair_Display, Karla } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { SocialProofPopup } from "@/components/social-proof-popup";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -109,7 +108,6 @@ export default function RootLayout({
           Skip to main content
         </a>
         {children}
-        <SocialProofPopup />
         <Analytics />
         <SpeedInsights />
       </body>
