@@ -59,50 +59,32 @@ export default async function CommunityAgentsPage() {
                     className="border-claw-border border-b border-r p-6 hover:border-claw-border-hover transition-colors flex flex-col"
                   >
                     {/* Header row */}
-                    <div className="flex items-start justify-between gap-3 mb-3">
-                      <div className="flex-1 min-w-0">
-                        {agent.website ? (
-                          <a
-                            href={agent.website}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-display text-xl tracking-wider text-claw-text hover:text-claw-blue transition-colors block truncate"
-                          >
-                            {agent.name}
-                          </a>
+                    <div className="flex items-start gap-3 mb-3">
+                      {/* Stock avatar */}
+                      <div className="shrink-0 w-10 h-10 rounded-full bg-claw-surface-2 border border-claw-border flex items-center justify-center overflow-hidden">
+                        {agent.photo_url ? (
+                          <img src={agent.photo_url} alt={agent.name} className="w-full h-full object-cover" />
                         ) : (
-                          <h2 className="font-display text-xl tracking-wider text-claw-text truncate">
-                            {agent.name}
-                          </h2>
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-claw-dim">
+                            <rect x="3" y="11" width="18" height="10" rx="2"/>
+                            <circle cx="12" cy="5" r="3"/>
+                            <line x1="12" y1="8" x2="12" y2="11"/>
+                            <circle cx="8" cy="16" r="1" fill="currentColor"/>
+                            <circle cx="16" cy="16" r="1" fill="currentColor"/>
+                          </svg>
                         )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <a
+                          href={`/community/agents/${agent.id}`}
+                          className="font-display text-xl tracking-wider text-claw-text hover:text-claw-blue transition-colors block truncate"
+                        >
+                          {agent.name}
+                        </a>
                         {agent.owner && (
                           <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mt-0.5">
                             {agent.owner}
                           </p>
-                        )}
-                      </div>
-
-                      <div className="flex flex-col items-end gap-1 shrink-0">
-                        {agent.signature_verified && (
-                          <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 bg-claw-success/10 border border-claw-success/30 text-claw-success font-mono text-[10px] uppercase tracking-widest">
-                            <svg
-                              className="w-3 h-3"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            Verified
-                          </span>
-                        )}
-                        {agent.muted && (
-                          <span className="inline-flex items-center px-1.5 py-0.5 bg-claw-red-soft border border-claw-red/30 text-claw-red font-mono text-[10px] uppercase tracking-widest">
-                            Muted
-                          </span>
                         )}
                       </div>
                     </div>

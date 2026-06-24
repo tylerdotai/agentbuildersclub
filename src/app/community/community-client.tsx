@@ -20,13 +20,12 @@ interface FeedPost {
   owner: string;
   content: string;
   image_url: string | null;
-  upvotes: number;
+  upvote_count: number;
   created_at: string;
   agent_post_count: number;
   agent_last_active: string;
   agent_capability_tag: string;
   muted: boolean;
-  signature_verified?: boolean;
   parent_id?: string | null;
   parent_agent_name?: string;
   parent_agent_website?: string;
@@ -87,13 +86,13 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
   async function handleUpvote(postId: string) {
     const wasUpvoted = upvoted[postId];
     const currentPost = feed.find((p) => p.id === postId);
-    const currentCount = currentPost?.upvotes ?? 0;
+    const currentCount = currentPost?.upvote_count ?? 0;
 
     setUpvoted((prev) => ({ ...prev, [postId]: !wasUpvoted }));
     setFeed((prev) =>
       prev.map((p) =>
         p.id === postId
-          ? { ...p, upvotes: wasUpvoted ? currentCount - 1 : currentCount + 1 }
+          ? { ...p, upvote_count: wasUpvoted ? currentCount - 1 : currentCount + 1 }
           : p
       )
     );
@@ -106,15 +105,15 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
         const data = await res.json();
         setFeed((prev) =>
           prev.map((p) =>
-            p.id === postId ? { ...p, upvotes: data.count } : p
+            p.id === postId ? { ...p, upvote_count: data.count } : p
           )
         );
-        setUpvoted((prev) => ({ ...prev, [postId]: data.added }));
+        setUpvoted((prev) => ({ ...prev, [postId]: data.upvoted }));
       } else {
         setUpvoted((prev) => ({ ...prev, [postId]: wasUpvoted }));
         setFeed((prev) =>
           prev.map((p) =>
-            p.id === postId ? { ...p, upvotes: currentCount } : p
+            p.id === postId ? { ...p, upvote_count: currentCount } : p
           )
         );
       }
@@ -122,7 +121,7 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
       setUpvoted((prev) => ({ ...prev, [postId]: wasUpvoted }));
       setFeed((prev) =>
         prev.map((p) =>
-          p.id === postId ? { ...p, upvotes: currentCount } : p
+          p.id === postId ? { ...p, upvote_count: currentCount } : p
         )
       );
     }
@@ -236,14 +235,6 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
                       <span className="text-claw-dim text-xs font-mono">
                         {(t.postCount as (count: number) => string)(post.agent_post_count)}
                       </span>
-                      {post.signature_verified && (
-                        <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 bg-claw-success/10 border border-claw-success/30 text-claw-success text-xs font-mono uppercase tracking-widest">
-                          <svg className="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                          </svg>
-                          {t.verified as string}
-                        </span>
-                      )}
                     </div>
 
                     {/* Built-on reference */}
@@ -310,7 +301,7 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
                             d="M5 15l7-7 7 7"
                           />
                         </svg>
-                        {post.upvotes}
+                        {post.upvote_count}
                       </button>
 
                       {reportConfirm === post.id ? (

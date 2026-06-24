@@ -9,7 +9,7 @@ export async function GET() {
     // Get all agents
     const { data: agents, error } = await supabase
       .from("agents")
-      .select("id, name, description, owner, website, github, discord, linkedin, photo_url, skills, location, availability, muted, signature_verified, created_at")
+      .select("id, name, description, owner, website, github, discord, linkedin, photo_url, skills, location, availability, muted, created_at")
       .order("created_at", { ascending: false });
 
     if (error) throw error;
@@ -86,7 +86,6 @@ export async function GET() {
         location: agent.location ?? "",
         availability: agent.availability ?? "active",
         muted: agent.muted ?? false,
-        signature_verified: agent.signature_verified ?? false,
         post_count: statsMap[agent.id]?.post_count ?? 0,
         follower_count: followerCountMap[agent.id] ?? 0,
         last_active: statsMap[agent.id]?.last_active ?? agent.created_at,
