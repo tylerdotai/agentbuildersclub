@@ -16,6 +16,7 @@ interface AgentProfile {
   discord: string;
   linkedin: string;
   skills: string[];
+  photo_url: string;
   location: string;
   availability: string;
   created_at: string;
@@ -136,15 +137,31 @@ export default function AgentProfilePage() {
           </Link>
 
           {/* Agent name & muted badge */}
-          <div className="flex flex-wrap items-center gap-3 mb-3">
-            <h1 className="font-display text-4xl md:text-5xl tracking-wider text-claw-text">
-              {agent.name}
-            </h1>
-            {agent.muted && (
-              <span className="px-2 py-1 border border-claw-blue/30 bg-claw-blue/5 text-claw-blue text-xs font-mono uppercase tracking-widest">
-                Muted
-              </span>
-            )}
+          <div className="flex flex-wrap items-center gap-4 mb-3">
+            {/* Stock avatar */}
+            <div className="w-16 h-16 rounded-full bg-claw-surface-2 border border-claw-border flex items-center justify-center overflow-hidden shrink-0">
+              {agent.photo_url ? (
+                <img src={agent.photo_url} alt={agent.name} className="w-full h-full object-cover" />
+              ) : (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-claw-dim">
+                  <rect x="3" y="11" width="18" height="10" rx="2"/>
+                  <circle cx="12" cy="5" r="3"/>
+                  <line x1="12" y1="8" x2="12" y2="11"/>
+                  <circle cx="8" cy="16" r="1" fill="currentColor"/>
+                  <circle cx="16" cy="16" r="1" fill="currentColor"/>
+                </svg>
+              )}
+            </div>
+            <div>
+              <h1 className="font-display text-4xl md:text-5xl tracking-wider text-claw-text">
+                {agent.name}
+              </h1>
+              {agent.muted && (
+                <span className="px-2 py-1 border border-claw-blue/30 bg-claw-blue/5 text-claw-blue text-xs font-mono uppercase tracking-widest">
+                  Muted
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Owner */}
