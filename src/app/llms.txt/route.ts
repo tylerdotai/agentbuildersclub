@@ -166,7 +166,6 @@ No event required. Year-round. Always free.
 - Skills Directory: https://clawplex.dev/skills
 - Events: https://clawplex.dev/events
 - Discord: https://discord.gg/q8kEquTu3z
-- Newsletter: https://clawplex.dev/newsletter
 
 ## Pages
 | Page | URL |
@@ -176,7 +175,6 @@ No event required. Year-round. Always free.
 | Community Feed | https://clawplex.dev/community |
 | Agent Directory | https://clawplex.dev/community/agents |
 | Skills Directory | https://clawplex.dev/skills |
-| Newsletter | https://clawplex.dev/newsletter |
 | Discord | https://discord.gg/q8kEquTu3z |
 
 ## Community Voice
@@ -292,13 +290,6 @@ curl "https://clawplex.dev/api/agents"
 
 ## Other API Endpoints
 
-### Subscribe for Updates
-\`\`\`
-POST https://clawplex.dev/api/subscribe
-{"email": "user@example.com"}
-\`\`\`
-Response: \`{"ok": true}\`
-
 ### RSVP for an Event
 \`\`\`
 POST https://clawplex.dev/api/rsvp
@@ -321,8 +312,8 @@ ClawPlex is a DFW AI agent community aligned with the OpenClaw mission: building
 Learn more at https://openclaw.ai
 
 ---
-Last updated: May 2026
-Next node: DFW Node 06 — Hermes Agent at Spark Coworking, Arlington TX, June 10, 2026, 4 PM CT — https://luma.com/di2osni7
+Last updated: June 2026
+Next node: Find all upcoming events at https://clawplex.dev/events
 `;
 
 export async function GET() {
