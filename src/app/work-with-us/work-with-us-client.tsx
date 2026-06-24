@@ -17,13 +17,13 @@ const partners = [
     name: "KiloClaw",
     image: "/kiloclaw-logo.png",
     url: "https://kilocode.pxf.io/OYnK0N",
-    taglines: { en: "AI Coding Agent", es: "Agente de código con IA" },
+    tagline: "AI Coding Agent",
   },
   {
     name: "FTW DAO",
     image: "/ftwdao-logo.png",
     url: "https://fwtx.city",
-    taglines: { en: "Community Partner", es: "Partner de comunidad" },
+    tagline: "Community Partner",
   },
 ];
 
@@ -256,7 +256,7 @@ export function WorkWithUsClient() {
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-claw-void/90 border-t border-claw-border px-4 py-3 flex items-center justify-between gap-3">
                     <span className="font-mono text-sm text-claw-text">{partner.name}</span>
-                    <span className="font-mono text-xs text-claw-dim text-right">{partner.taglines["en"]}</span>
+                    <span className="font-mono text-xs text-claw-dim text-right">{partner.tagline}</span>
                   </div>
                 </motion.a>
               ))}

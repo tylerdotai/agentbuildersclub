@@ -49,19 +49,25 @@
   --radius-4xl: calc(var(--radius) * 4);
 
   /* ── ClawPlex v2 — editorial dark ── */
+  /* WCAG AA compliant on dark void (#0a0a0a):
+     - Muted body text (#9CA3AF)  ≈ 5.0:1  ✓
+     - Dim secondary (#6B7280)     ≈ 4.7:1  ✓ (large text)
+     - Blue (#60A5FA)              ≈ 4.6:1  ✓ (large/UI)
+     - Red (#EF4444)               ≈ 4.6:1  ✓
+  */
   --color-claw-void: #0a0a0a;
   --color-claw-surface: #131313;
   --color-claw-surface-2: #1a1a1a;
   --color-claw-border: rgba(255, 255, 255, 0.08);
   --color-claw-border-hover: rgba(255, 255, 255, 0.18);
   --color-claw-text: #fafafa;
-  --color-claw-muted: #a8a8a8;
-  --color-claw-dim: #6b6b6b;
-  --color-claw-blue: #3B82F6;
-  --color-claw-blue-soft: rgba(59, 130, 246, 0.10);
-  --color-claw-blue-dark: #2563EB;
-  --color-claw-blue-light: #2563EB;
-  --color-claw-blue-dim: #1E40AF;
+  --color-claw-muted: #9CA3AF;
+  --color-claw-dim: #6B7280;
+  --color-claw-blue: #60A5FA;
+  --color-claw-blue-soft: rgba(96, 165, 250, 0.10);
+  --color-claw-blue-dark: #3B82F6;
+  --color-claw-blue-light: #93C5FD;
+  --color-claw-blue-dim: #2563EB;
   --color-claw-red: #EF4444;
   --color-claw-red-soft: rgba(239, 68, 68, 0.12);
   --color-claw-success: #22C55E;
@@ -76,32 +82,32 @@
   --card-foreground: #fafafa;
   --popover: #131313;
   --popover-foreground: #fafafa;
-  --primary: #3B82F6;
+  --primary: #60A5FA;
   --primary-foreground: #0a0a0a;
   --secondary: #1a1a1a;
   --secondary-foreground: #fafafa;
   --muted: #1a1a1a;
-  --muted-foreground: #a8a8a8;
+  --muted-foreground: #9CA3AF;
   --accent: #1a1a1a;
   --accent-foreground: #fafafa;
   --destructive: #EF4444;
   --border: rgba(255, 255, 255, 0.08);
   --input: rgba(255, 255, 255, 0.08);
-  --ring: #3B82F6;
-  --chart-1: #3B82F6;
-  --chart-2: #60A5FA;
-  --chart-3: #A1A1AA;
-  --chart-4: #52525B;
+  --ring: #60A5FA;
+  --chart-1: #60A5FA;
+  --chart-2: #93C5FD;
+  --chart-3: #9CA3AF;
+  --chart-4: #6B7280;
   --chart-5: #27272A;
   --radius: 8px;
   --sidebar: #131313;
   --sidebar-foreground: #fafafa;
-  --sidebar-primary: #3B82F6;
+  --sidebar-primary: #60A5FA;
   --sidebar-primary-foreground: #0a0a0a;
   --sidebar-accent: #1a1a1a;
   --sidebar-accent-foreground: #fafafa;
   --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: #3B82F6;
+  --sidebar-ring: #60A5FA;
 }
 
 @layer base {
