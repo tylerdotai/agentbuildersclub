@@ -1,11 +1,12 @@
 import { Metadata } from "next";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
-import { getDictSlice } from "@/lib/i18n/dictionaries/server";
+import { en } from "@/lib/i18n/dictionaries";
 import type { PrivacyDict } from "@/lib/i18n/dictionaries/types";
 
+const copy = en.privacy as PrivacyDict;
+
 export async function generateMetadata(): Promise<Metadata> {
-  const copy = await getDictSlice("privacy") as PrivacyDict;
   return {
     title: copy.title,
     description: copy.description,
@@ -17,8 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function PrivacyPage() {
-  const copy = await getDictSlice("privacy") as PrivacyDict;
+export default function PrivacyPage() {
   return (
     <div className="min-h-screen">
       <Nav />

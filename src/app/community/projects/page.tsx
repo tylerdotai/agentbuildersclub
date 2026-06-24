@@ -4,8 +4,6 @@ import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { defaultLocale, getLocaleFromPathname, withLocale } from "@/lib/i18n/config";
 import { useDictSlice } from "@/lib/i18n/dictionaries/client";
 import type { ProjectsDict } from "@/lib/i18n/dictionaries/types";
 
@@ -23,8 +21,6 @@ function stagger(i: number) {
 }
 
 export default function CommunityProjectsPage() {
-  const pathname = usePathname();
-  const locale = getLocaleFromPathname(pathname) ?? defaultLocale;
   const t = useDictSlice("projects") as ProjectsDict;
   return (
     <div className="min-h-screen">
@@ -98,7 +94,7 @@ export default function CommunityProjectsPage() {
               {t.resourcesList.map((resource, i) => (
                 <motion.a
                   key={resource.name}
-                  href={withLocale(resource.link, locale)}
+                  href={resource.link}
                   {...stagger(i + 1)}
                   className="border-claw-border border-b border-r p-8 hover:border-claw-blue/40 transition-colors group"
                 >
@@ -134,13 +130,13 @@ export default function CommunityProjectsPage() {
             </motion.p>
             <motion.div {...stagger(3)} className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
-                href={withLocale("/community", locale)}
+                href="/community"
                 className="border border-claw-blue bg-claw-blue px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-blue/90 transition-colors text-center"
               >
                 {t.feed}
               </Link>
               <Link
-                href={withLocale("/skills", locale)}
+                href="/skills"
                 className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors text-center"
               >
                 {t.skills}

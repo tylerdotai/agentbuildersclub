@@ -176,25 +176,7 @@ export function Nav() {
               </svg>
             </a>
 
-            <div className="ml-2 flex items-center rounded-full border border-claw-border bg-claw-surface/80 p-1" aria-label={copy.language}>
-              <span className="px-2 text-claw-dim" aria-hidden="true">◎</span>
-              {locales.map((language) => (
-                <Link
-                  key={language}
-                  href={withLocale(pathname, language)}
-                  onClick={() => rememberLocale(language)}
-                  hrefLang={language}
-                  aria-current={language === locale ? "true" : undefined}
-                  className={`rounded-full px-2.5 py-1 text-xs transition-colors ${
-                    language === locale
-                      ? "bg-claw-blue text-claw-void"
-                      : "text-claw-muted hover:text-claw-text"
-                  }`}
-                >
-                  {localeNames[language]}
-                </Link>
-              ))}
-            </div>
+            <span className="font-mono text-[11px] uppercase tracking-widest text-claw-dim">EN</span>
           </div>
 
           {/* Mobile hamburger */}
@@ -281,27 +263,7 @@ export function Nav() {
                   {copy.primaryCta}
                 </a>
 
-                <div className="mt-6 flex items-center justify-center gap-2" aria-label={copy.language}>
-                  {locales.map((language) => (
-                    <Link
-                      key={language}
-                      href={withLocale(pathname, language)}
-                      onClick={() => {
-                        rememberLocale(language);
-                        setOpen(false);
-                      }}
-                      hrefLang={language}
-                      aria-current={language === locale ? "true" : undefined}
-                      className={`rounded-full border px-4 py-2 text-sm transition-colors ${
-                        language === locale
-                          ? "border-claw-blue bg-claw-blue text-claw-void"
-                          : "border-claw-border text-claw-muted hover:text-claw-text"
-                      }`}
-                    >
-                      {localeNames[language]}
-                    </Link>
-                  ))}
-                </div>
+                <p className="mt-6 text-center font-mono text-[11px] uppercase tracking-widest text-claw-dim">EN</p>
               </motion.div>
             </div>
           </motion.div>

@@ -1,10 +1,9 @@
 import { getRequestLocale } from "@/lib/i18n/server";
 import { en } from "./en";
-import { es } from "./es";
 import type { Dictionary, DictionaryKey } from "./types";
 import type { Locale } from "@/lib/i18n/config";
 
-const dictionaries: Record<Locale, Dictionary> = { en, es };
+const dictionaries: Record<Locale, Dictionary> = { en };
 
 /**
  * Returns the full dictionary for the current request locale (server components).

@@ -46,8 +46,6 @@ export interface FooterDict {
 
 // ── Home ──────────────────────────────────────────────────────────────────
 
-export type CountdownItem = { key: string; label: string };
-
 export type WayItem = {
   num: string;
   label: string;
@@ -75,15 +73,12 @@ export type Founder = {
 };
 
 export interface HomeDict {
-  countdown: CountdownItem[];
   hero: {
     eyebrow: string;
     titleLine1: string;
     titleLine2Prefix: string;
     titleLine2Accent: string;
     body: string;
-    nextLabel: string;
-    nextMeta: string;
     rsvp: string;
     discord: string;
     imageAlt: string;
@@ -97,24 +92,7 @@ export interface HomeDict {
     titleLine1: string;
     titleAccent: string;
     paragraphs: string[];
-    ship: string;
     tags: string[];
-  };
-  event: {
-    eyebrow: string;
-    title: string;
-    in: string;
-    locationAccent: string;
-    dateMeta: string;
-    placeMeta: string;
-    termsMeta: string;
-    startsIn: string;
-    rsvp: string;
-    discord: string;
-    imageAlt: string;
-    caption: string;
-    badgeDay: string;
-    badgeMonthTime: string;
   };
   ways: {
     eyebrow: string;
@@ -152,19 +130,6 @@ export interface HomeDict {
     notes: string;
     privacy: string;
     docs: string;
-  };
-  newsletter: {
-    success: string;
-    fallbackError: string;
-    eyebrow: string;
-    titlePrefix: string;
-    titleAccent: string;
-    body: string;
-    emailLabel: string;
-    placeholder: string;
-    sending: string;
-    subscribe: string;
-    finePrint: string;
   };
   faq: {
     eyebrow: string;
@@ -435,7 +400,6 @@ export interface EventsDict {
   ctaEyebrow: string;
   ctaHeading: string;
   ctaText: string;
-  newsletter: string;
   discord: string;
   events: EventItem[];
 }
@@ -501,12 +465,6 @@ export interface NotFoundDict {
   cta: string;
 }
 
-export interface NewsletterPageDict {
-  title: string;
-  description: string;
-  heading: string;
-}
-
 // ── Work With Us ──────────────────────────────────────────────────────────
 
 export interface WorkWithUsDict {
@@ -521,15 +479,6 @@ export interface WorkWithUsDict {
     title: string;
     body: string[];
     stats: Array<{ value: string; label: string }>;
-  };
-  hire: {
-    eyebrow: string;
-    titlePrefix: string;
-    titleAccent: string;
-    body: string;
-    bodyEmphasis: string;
-    cta: string;
-    capabilities: Array<{ label: string; desc: string }>;
   };
   waysEyebrow: string;
   ways: Array<{ num: string; label: string; title: string; desc: string }>;
@@ -572,7 +521,6 @@ export interface Dictionary {
   privacy: PrivacyDict;
   terms: TermsDict;
   notFound: NotFoundDict;
-  newsletterPage: NewsletterPageDict;
 }
 
 export type DictionaryKey = keyof Dictionary;

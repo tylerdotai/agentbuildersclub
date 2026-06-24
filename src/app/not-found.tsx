@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
-import { defaultLocale, withLocale } from "@/lib/i18n/config";
-import { getDictSlice } from "@/lib/i18n/dictionaries/server";
+import { en } from "@/lib/i18n/dictionaries";
 import type { NotFoundDict } from "@/lib/i18n/dictionaries/types";
 
 export default async function NotFound() {
-  const copy = await getDictSlice("notFound") as NotFoundDict;
+  const copy = en.notFound as NotFoundDict;
   return (
     <div className="min-h-screen">
       <Nav />
@@ -21,7 +20,7 @@ export default async function NotFound() {
           {copy.text}
         </p>
         <Link
-          href={withLocale("/", defaultLocale)}
+          href={"/"}
           className="border border-claw-blue bg-claw-blue px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-blue/90 transition-colors"
         >
           {copy.cta}
