@@ -305,13 +305,6 @@ POST https://clawplex.dev/api/contact
 
 ---
 
-## OpenClaw
-
-ClawPlex is a DFW AI agent community aligned with the OpenClaw mission: building practical AI agents and local-first infrastructure.
-
-Learn more at https://openclaw.ai
-
----
 Last updated: June 2026
 Next node: Find all upcoming events at https://clawplex.dev/events
 `;
