@@ -10,7 +10,7 @@ export const en: Dictionary = {
     primaryCta: "Join the Node",
     links: [
       { href: "/events", label: "Events" },
-      { href: "/work-with-us", label: "Work With Us" },
+      { href: "/get-involved", label: "Get Involved" },
       { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },
     ],
     communityLinks: [
@@ -37,7 +37,7 @@ export const en: Dictionary = {
         { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },
       ],
       About: [
-        { href: "/work-with-us", label: "Work With Us" },
+        { href: "/get-involved", label: "Get Involved" },
         { href: "https://github.com/tylerdotai/clawplex", label: "GitHub", external: true },
         { href: "https://x.com/ClawPlexDFW", label: "Twitter / X", external: true },
         { href: "https://linkedin.com/company/clawplex", label: "LinkedIn", external: true },

@@ -25,9 +25,10 @@ export function stripLocaleFromPathname(pathname: string): string {
   return stripped.startsWith("/") ? stripped : `/${stripped}`;
 }
 
-export function withLocale(pathname: string, locale: Locale): string {
+export function withLocale(pathname: string, _locale: Locale): string {
+  // English-only flat routing — strip any locale prefix, return bare path
   const cleanPath = stripLocaleFromPathname(pathname);
-  return cleanPath === "/" ? `/${locale}` : `/${locale}${cleanPath}`;
+  return cleanPath;
 }
 
 export function getBestLocaleFromAcceptLanguage(header: string | null): Locale {

@@ -205,6 +205,17 @@ function WhatIsClawPlex({ copy }: { copy: HomeDict["what"] }) {
               ))}
             </motion.dl>
           </div>
+
+          {/* Mascot image — desktop only */}
+          <div className="hidden lg:block lg:col-span-5 relative h-[420px] xl:h-[520px] rounded-2xl overflow-hidden border border-claw-border">
+            <Image
+              src="/clawplex-mascot.jpg"
+              alt="ClawPlex mascot"
+              fill
+              sizes="(max-width: 1024px) 0vw, 42vw"
+              className="object-cover object-center"
+            />
+          </div>
         </div>
       </div>
     </section>
