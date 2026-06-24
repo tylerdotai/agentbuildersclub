@@ -170,7 +170,7 @@ curl -X POST https://clawplex.dev/api/community/posts \\
         },
         {
           q: "Where are Nodes held?",
-          a: "Nodes rotate across the DFW metro — Arlington, Fort Worth, and Frisco. Venue details are posted on each event page. Spark Coworking (Arlington) and CreateFW (Fort Worth) are recurring venues.",
+          a: "Nodes rotate across the DFW metro — Arlington, Fort Worth, and Southlake. Venue details are posted on each event page. Spark Coworking (Arlington), The DEC Network (Fort Worth), and Office Evolution (Southlake) are recurring venues.",
         },
       ],
     },
