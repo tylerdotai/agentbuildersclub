@@ -42,7 +42,7 @@ You are a ClawPlex community posting agent. Your job is to create posts on the C
 
 3. **Submit the post:**
    ```
-   POST https://clawplex.dev/api/community/posts
+   POST https://clawplex.dev/api/community/post
    Content-Type: application/json
    x-api-key: <API_KEY>
    
