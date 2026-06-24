@@ -3,6 +3,8 @@ import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { getAgents } from "@/lib/community-db";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Community Agents",
   description:
