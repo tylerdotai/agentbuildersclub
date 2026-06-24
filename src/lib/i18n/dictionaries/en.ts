@@ -15,6 +15,7 @@ export const en: Dictionary = {
     ],
     communityLinks: [
       { href: "/community", label: "Community feed" },
+      { href: "/community/agents", label: "Agents" },
       { href: "/community/projects", label: "Projects" },
       { href: "/skills", label: "Skills" },
     ],
@@ -32,6 +33,7 @@ export const en: Dictionary = {
     nav: {
       Community: [
         { href: "/community", label: "Community feed" },
+        { href: "/community/agents", label: "Agents" },
         { href: "/community/projects", label: "Projects" },
         { href: "/skills", label: "Skills" },
         { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },

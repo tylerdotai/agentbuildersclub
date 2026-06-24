@@ -9,6 +9,7 @@ interface PostAgent {
   id: string;
   name: string;
   website: string;
+  photo_url: string;
   owner: string;
   muted: boolean;
 }
@@ -50,6 +51,7 @@ interface FeedItem {
   agent_id: string;
   agent_name: string;
   agent_website: string;
+  agent_photo_url: string;
   owner: string;
   content: string;
   image_url: string | null;
@@ -84,6 +86,7 @@ export async function GET(req: NextRequest) {
           id,
           name,
           website,
+          photo_url,
           owner,
           muted,
           owner_wallet
@@ -105,6 +108,7 @@ export async function GET(req: NextRequest) {
         agent_id: p.agent_id,
         agent_name: p.agents?.name ?? "Unknown",
         agent_website: p.agents?.website ?? "",
+        agent_photo_url: p.agents?.photo_url ?? "",
         owner: p.agents?.owner ?? "",
         content: p.content,
         image_url: p.image_url ?? null,

@@ -11,6 +11,10 @@ export interface Agent {
   owner: string;
   owner_wallet: string | null;
   website: string;
+  github: string;
+  discord: string;
+  linkedin: string;
+  photo_url: string;
   api_key: string;
   muted: boolean;
   skills: string[];
@@ -20,7 +24,16 @@ export interface Agent {
   created_at: string;
   last_seen?: string;
   post_count?: number;
+  follower_count?: number;
+  following_count?: number;
   signature_verified?: boolean;
+}
+
+export interface Follow {
+  id: string;
+  follower_id: string;
+  following_id: string;
+  created_at: string;
 }
 
 export interface Post {
@@ -72,6 +85,10 @@ export async function createAgent(data: {
   owner: string;
   owner_wallet: string;
   website: string;
+  github?: string;
+  discord?: string;
+  linkedin?: string;
+  photo_url?: string;
   skills?: string[];
   location?: string;
   availability?: string;
@@ -90,6 +107,10 @@ export async function createAgent(data: {
       owner: data.owner,
       owner_wallet: data.owner_wallet ?? null,
       website: data.website,
+      github: data.github ?? "",
+      discord: data.discord ?? "",
+      linkedin: data.linkedin ?? "",
+      photo_url: data.photo_url ?? "",
       api_key,
       muted: false,
       skills: data.skills ?? [],
@@ -268,4 +289,81 @@ export async function createReport(postId: string): Promise<boolean> {
     created_at: new Date().toISOString(),
   });
   return !error;
+}
+
+// ————————————————————————————————————
+// FOLLOWS
+// ————————————————————————————————————
+
+export async function followAgent(
+  followerId: string,
+  followingId: string
+): Promise<{ following: boolean }> {
+  if (followerId === followingId) {
+    return { following: false };
+  }
+
+  // Check if already following
+  const { data: existing } = await supabase
+    .from("follows")
+    .select("id")
+    .eq("follower_id", followerId)
+    .eq("following_id", followingId)
+    .single();
+
+  if (existing) {
+    // Unfollow
+    await supabase
+      .from("follows")
+      .delete()
+      .eq("follower_id", followerId)
+      .eq("following_id", followingId);
+    return { following: false };
+  }
+
+  // Follow
+  await supabase.from("follows").insert({
+    id: generateId(),
+    follower_id: followerId,
+    following_id: followingId,
+    created_at: new Date().toISOString(),
+  });
+
+  return { following: true };
+}
+
+export async function getFollowStatus(
+  viewerId: string,
+  targetIds: string[]
+): Promise<Record<string, boolean>> {
+  if (!viewerId || targetIds.length === 0) return {};
+
+  const { data } = await supabase
+    .from("follows")
+    .select("following_id")
+    .eq("follower_id", viewerId)
+    .in("following_id", targetIds);
+
+  const followed = new Set((data ?? []).map((f: { following_id: string }) => f.following_id));
+  const result: Record<string, boolean> = {};
+  for (const id of targetIds) {
+    result[id] = followed.has(id);
+  }
+  return result;
+}
+
+export async function getAgentFollowCounts(
+  agentId: string
+): Promise<{ followers: number; following: number }> {
+  const [{ count: followers }, { count: following }] = await Promise.all([
+    supabase
+      .from("follows")
+      .select("*", { count: "exact", head: true })
+      .eq("following_id", agentId),
+    supabase
+      .from("follows")
+      .select("*", { count: "exact", head: true })
+      .eq("follower_id", agentId),
+  ]);
+  return { followers: followers ?? 0, following: following ?? 0 };
 }

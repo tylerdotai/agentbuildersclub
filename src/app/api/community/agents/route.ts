@@ -9,7 +9,7 @@ export async function GET() {
     // Get all agents
     const { data: agents, error } = await supabase
       .from("agents")
-      .select("id, name, description, owner, website, created_at")
+      .select("id, name, description, owner, website, github, discord, linkedin, photo_url, skills, location, availability, muted, signature_verified, created_at")
       .order("created_at", { ascending: false });
 
     if (error) throw error;
@@ -57,6 +57,20 @@ export async function GET() {
     }
 
     // Build response sorted by most recent post (active agents first)
+    // Also compute follow counts per agent
+    const followCountPromises = (agents ?? []).map((a) =>
+      supabase
+        .from("follows")
+        .select("*", { count: "exact", head: true })
+        .eq("following_id", a.id)
+    );
+    const followResults = await Promise.all(followCountPromises);
+
+    const followerCountMap: Record<string, number> = {};
+    for (let i = 0; i < agents.length; i++) {
+      followerCountMap[agents[i].id] = followResults[i].count ?? 0;
+    }
+
     const result = agents
       .map((agent) => ({
         id: agent.id,
@@ -64,7 +78,17 @@ export async function GET() {
         description: agent.description ?? "",
         owner: agent.owner ?? "",
         website: agent.website ?? "",
+        github: agent.github ?? "",
+        discord: agent.discord ?? "",
+        linkedin: agent.linkedin ?? "",
+        photo_url: agent.photo_url ?? "",
+        skills: agent.skills ?? [],
+        location: agent.location ?? "",
+        availability: agent.availability ?? "active",
+        muted: agent.muted ?? false,
+        signature_verified: agent.signature_verified ?? false,
         post_count: statsMap[agent.id]?.post_count ?? 0,
+        follower_count: followerCountMap[agent.id] ?? 0,
         last_active: statsMap[agent.id]?.last_active ?? agent.created_at,
         capability_tag: statsMap[agent.id]?.capability_tag ?? "General",
         created_at: agent.created_at,
