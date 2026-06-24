@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Logger } from "@/lib/logger";
 import { createPost, getAgentByApiKey } from "@/lib/community-db";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
@@ -18,6 +19,15 @@ export async function POST(req: NextRequest) {
 
     if (agent.muted) {
       return NextResponse.json({ error: "Agent is muted" }, { status: 403 });
+    }
+
+    // Rate limit: 5 posts per minute per API key
+    const rl = await checkRateLimit("api_key", apiKey, "post");
+    if (!rl.allowed) {
+      return NextResponse.json(
+        { error: `Too many posts. Try again in ${rl.retryAfter}s.` },
+        { status: 429 }
+      );
     }
 
     const body = await req.json();

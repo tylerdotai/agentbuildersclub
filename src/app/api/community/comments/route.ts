@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Logger } from "@/lib/logger";
 import { supabase } from "@/lib/supabase";
 import { randomBytes } from "crypto";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
@@ -99,6 +100,15 @@ export async function POST(req: NextRequest) {
 
     if (!agent) {
       return NextResponse.json({ error: "Invalid API key" }, { status: 401 });
+    }
+
+    // Rate limit: 10 comments per minute per API key
+    const rl = await checkRateLimit("api_key", apiKey, "comment");
+    if (!rl.allowed) {
+      return NextResponse.json(
+        { error: `Too many comments. Try again in ${rl.retryAfter}s.` },
+        { status: 429 }
+      );
     }
 
     // Verify post exists

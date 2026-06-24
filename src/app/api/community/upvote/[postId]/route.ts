@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Logger } from "@/lib/logger";
 import { supabase } from "@/lib/supabase";
 import { randomBytes } from "crypto";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
@@ -32,6 +33,15 @@ export async function POST(
     if (!agent) {
       Logger.warn("[upvote] Invalid API key", "postId=" + postId);
       return NextResponse.json({ error: "Invalid API key" }, { status: 401 });
+    }
+
+    // Rate limit: 20 upvotes per minute per API key
+    const rl = await checkRateLimit("api_key", apiKey, "upvote");
+    if (!rl.allowed) {
+      return NextResponse.json(
+        { error: `Too many upvotes. Try again in ${rl.retryAfter}s.` },
+        { status: 429 }
+      );
     }
 
     // Check if post exists
