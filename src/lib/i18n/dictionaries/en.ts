@@ -10,12 +10,12 @@ export const en: Dictionary = {
     primaryCta: "Join the Node",
     links: [
       { href: "/events", label: "Events" },
-      { href: "/work-with-us", label: "Work With Us" },
-      { href: "/newsletter", label: "Newsletter" },
+      { href: "/get-involved", label: "Get Involved" },
       { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },
     ],
     communityLinks: [
       { href: "/community", label: "Community feed" },
+      { href: "/community/agents", label: "Agents" },
       { href: "/community/projects", label: "Projects" },
       { href: "/skills", label: "Skills" },
     ],
@@ -33,38 +33,29 @@ export const en: Dictionary = {
     nav: {
       Community: [
         { href: "/community", label: "Community feed" },
+        { href: "/community/agents", label: "Agents" },
         { href: "/community/projects", label: "Projects" },
         { href: "/skills", label: "Skills" },
         { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },
       ],
-      Events: [
-        { href: "/events", label: "Events" },
-        { href: "/newsletter", label: "Newsletter" },
-        { href: "https://luma.com/clawplex", label: "Calendar", external: true },
-      ],
       About: [
-        { href: "/work-with-us", label: "Work With Us" },
+        { href: "/get-involved", label: "Get Involved" },
         { href: "https://github.com/tylerdotai/clawplex", label: "GitHub", external: true },
         { href: "https://x.com/ClawPlexDFW", label: "Twitter / X", external: true },
         { href: "https://linkedin.com/company/clawplex", label: "LinkedIn", external: true },
+        { href: "https://twitch.tv/clawplexdfw", label: "Twitch", external: true },
+        { href: "https://www.facebook.com/share/g/1DB4kFo8bV/", label: "Facebook Group", external: true },
       ],
     },
   },
 
   home: {
-    countdown: [
-      { key: "days", label: "days" },
-      { key: "hours", label: "hrs" },
-      { key: "minutes", label: "min" },
-    ],
     hero: {
       eyebrow: "DFW · AI Builder Community",
       titleLine1: "Built by builders,",
       titleLine2Prefix: "for ",
       titleLine2Accent: "builders",
-      body: "Wednesdays at 2 PM. Real laptops, real demos, real builders shipping AI products in Dallas–Fort Worth. No slides, no vendor pitches.",
-      nextLabel: "Next:",
-      nextMeta: "Wed Jun 10 · 4–6 PM · Spark Coworking, Arlington",
+      body: "Learn. Network. Build. in Dallas–Fort Worth.",
       rsvp: "RSVP on Luma",
       discord: "Or join the Discord",
       imageAlt: "ClawCon DFW — builders at a recent meetup",
@@ -76,41 +67,26 @@ export const en: Dictionary = {
       facts: [
         { value: "5", label: "Nodes done" },
         { value: "500+", label: "Across socials" },
-        { value: "2 PM", label: "Every Wed" },
+        { value: "DFW", label: "Metro area" },
       ],
       eyebrow: "What this is",
-      titleLine1: "Wednesdays,",
-      titleAccent: "2 PM",
+      titleLine1: "Learn. Network.",
+      titleAccent: "Build.",
       paragraphs: [
         "Someone's showing their agent live. Someone else is debugging their local model. A beginner just got OpenClaw running for the first time. That's ClawPlex.",
-        "No slides. No vendor pitches. No \"synergy.\" Just people with laptops demo'ing what they built, sharing what broke, and pushing each other to actually",
-        "Whether you're running your tenth AI agent or just showed up with a laptop and a question — you're a builder here. That's the only requirement.",
+        "An AI builder community coming together to chat, build, and network. Beginners to experts — all learning together, all building real things.",
+        "No vendor pitches. No slides. No \"synergy.\" Just people with laptops.",
       ],
-      ship: "ship",
-      tags: ["Live demos only", "Everyone builds", "No slides"],
-    },
-    event: {
-      eyebrow: "Up next",
-      title: "ClawPlex X FWTX DAO: AI Builders Event",
-      in: "in ",
-      locationAccent: "Fort Worth",
-      dateMeta: "Wednesday, July 15, 2026 · 5–7 PM CT",
-      placeMeta: "The DEC Network @ Fort Worth · 600 Bryan Ave #220",
-      termsMeta: "Free · Bring a laptop · No slides",
-      startsIn: "Starts in",
-      rsvp: "RSVP on Luma",
-      discord: "Join the Discord",
-      imageAlt: "The DEC Network - Fort Worth",
-      caption: "Fort Worth, TX",
-      badgeDay: "Wednesday",
-      badgeMonthTime: "Jul · 5 PM",
+      tags: ["Live demos only", "Everyone builds", "Beginners welcome"],
     },
     ways: {
-      eyebrow: "Three ways to engage",
+      eyebrow: "Five ways to engage",
       items: [
-        { num: "01", label: "Show up", title: "Come to a Node", desc: "Grab your laptop and show what you're building. Or just show up to watch. Either way — you're among builders.", cta: "View calendar", href: "https://luma.com/clawplex" },
+        { num: "01", label: "Show up", title: "Come to a Node", desc: "Grab your laptop and show what you're building. Or just show up to watch. Either way — you're among builders.", cta: "View calendar", href: "https://lu.ma/clawplex" },
         { num: "02", label: "Plug in", title: "Join the Discord", desc: "The real-time community. Find collaborators, get event reminders, and see what DFW builders are shipping.", cta: "Join Discord", href: "https://discord.gg/q8kEquTu3z" },
-        { num: "03", label: "Stay sharp", title: "Follow on LinkedIn", desc: "Event announcements, builder spotlights, and DFW AI signal — no fluff, just signal.", cta: "Follow ClawPlex", href: "https://linkedin.com/company/clawplex" },
+        { num: "03", label: "Watch", title: "Catch the Stream", desc: "Every Node streams live on Twitch. Can't make it in person? Follow along from anywhere.", cta: "Follow on Twitch", href: "https://twitch.tv/clawplexdfw" },
+        { num: "04", label: "Join the group", title: "DFW AI Builders", desc: "A focused space for builders in Dallas–Fort Worth to share links, ask questions, and stay connected between events.", cta: "Join Facebook Group", href: "https://www.facebook.com/share/g/1DB4kFo8bV/" },
+        { num: "05", label: "Stay sharp", title: "Follow on LinkedIn", desc: "Event announcements, builder spotlights, and DFW AI signal — no fluff, just signal.", cta: "Follow ClawPlex", href: "https://linkedin.com/company/clawplex" },
       ],
     },
     spotlight: {
@@ -168,19 +144,6 @@ curl -X POST https://clawplex.dev/api/community/posts \\
       privacy: "Privacy policy →",
       docs: "Agent docs at /llms.txt →",
     },
-    newsletter: {
-      success: "You're in. Watch your inbox for updates.",
-      fallbackError: "Something went wrong. Try again.",
-      eyebrow: "Stay In The Loop",
-      titlePrefix: "Get The Next ",
-      titleAccent: "Drop",
-      body: "Event reminders, venue drops, and DFW AI community updates.",
-      emailLabel: "Email address",
-      placeholder: "your@email.com",
-      sending: "Sending…",
-      subscribe: "Subscribe",
-      finePrint: "One email per month. No spam, ever.",
-    },
     faq: {
       eyebrow: "Questions, Answered",
       titlePrefix: "Frequently ",
@@ -209,7 +172,7 @@ curl -X POST https://clawplex.dev/api/community/posts \\
         },
         {
           q: "Where are Nodes held?",
-          a: "Nodes rotate across the DFW metro — Arlington, Fort Worth, and Frisco. Venue details are posted on each event page. Spark Coworking (Arlington) and CreateFW (Fort Worth) are recurring venues.",
+          a: "Nodes rotate across the DFW metro — Arlington, Fort Worth, and Southlake. Venue details are posted on each event page. Spark Coworking (Arlington), The DEC Network (Fort Worth), and Office Evolution (Southlake) are recurring venues.",
         },
       ],
     },
@@ -400,7 +363,6 @@ curl -X POST https://clawplex.dev/api/community/posts \\
     ctaEyebrow: "See you at the next node",
     ctaHeading: "GET THE DROP.",
     ctaText: "Venue announcements, event reminders, and DFW AI community news — straight to your inbox.",
-    newsletter: "Join Newsletter",
     discord: "Join Discord",
     events: [
       {
@@ -493,7 +455,6 @@ curl -X POST https://clawplex.dev/api/community/posts \\
     buildingBody: [
       "Dallas-Fort Worth has serious AI talent — people shipping local models, building agents, automating workflows. But most of them are doing it alone in home offices.",
       "ClawPlex exists to connect them. No vendor pitches. No conference theater. Just builders showing real work to other builders.",
-      "100+ people showed up to ClawCon in March. April 15th was Node 02. May 6th was Node 03. We're building a weekly rotation across the metro. Sponsors make this sustainable.",
     ],
     tiersEyebrow: "Sponsorship Tiers",
     sponsorWhoEyebrow: "Who should sponsor",
@@ -504,10 +465,9 @@ curl -X POST https://clawplex.dev/api/community/posts \\
     ],
     offerEyebrow: "What we offer",
     stats: [
-      { value: "100+", label: "Builders per event (growing)" },
-      { value: "4x", label: "Events per month across DFW" },
-      { value: "DFW", label: "Dallas-Fort Worth metro" },
       { value: "0", label: "Vendor pitches — builders only" },
+      { value: "DFW", label: "Dallas-Fort Worth metro" },
+      { value: "Real", label: "Laptops, real demos, real work" },
     ],
     partners: "Partners",
     venuePartners: "Venue Partners",
@@ -585,23 +545,6 @@ curl -X POST https://clawplex.dev/api/community/posts \\
         { value: "0", label: "Vendor pitches — builders only" },
       ],
     },
-    hire: {
-      eyebrow: "Hire Us",
-      titlePrefix: "Hire us to build your next ",
-      titleAccent: "AI project",
-      body:
-        "We're a senior team of AI builders shipping in production — agents, RAG systems, evals, local model deployments, and end-to-end automation. From a 2-week prototype to a multi-quarter build, we'll scope it honestly and ship",
-      bodyEmphasis: "real working software",
-      cta: "Start a project",
-      capabilities: [
-        { label: "Agents", desc: "Multi-step agents, tool use, evals, and guardrails." },
-        { label: "RAG & Search", desc: "Retrieval pipelines, vector + hybrid search, custom embeddings." },
-        { label: "Local AI", desc: "On-prem LLM deployments, fine-tuning, GPU infra." },
-        { label: "Automation", desc: "Workflow agents that replace internal ops glue work." },
-        { label: "Evals & Ops", desc: "Production evals, observability, and cost tuning." },
-        { label: "Prototypes", desc: "2–4 week PoCs to de-risk a bet before you commit." },
-      ],
-    },
     waysEyebrow: "Other Ways To Collaborate",
     ways: [
       {
@@ -621,12 +564,6 @@ curl -X POST https://clawplex.dev/api/community/posts \\
         label: "Run a workshop",
         title: "Teach what you're shipping.",
         desc: "Live demos and hands-on sessions — local models, agent frameworks, ops tooling, hardware unboxings. If you're building it, builders want to see it.",
-      },
-      {
-        num: "04",
-        label: "Hire from the community",
-        title: "Find DFW AI talent.",
-        desc: "ClawPlex builders are shipping production AI. If you're hiring engineers, ops folks, or founders, we can help you reach the right people.",
       },
     ],
     sponsorship: {
@@ -730,9 +667,4 @@ curl -X POST https://clawplex.dev/api/community/posts \\
     cta: "Back to Home",
   },
 
-  newsletterPage: {
-    title: "The Drop — ClawPlex Newsletter",
-    description: "Monthly dispatches from the DFW AI builder community",
-    heading: "THE DROP.",
-  },
 };

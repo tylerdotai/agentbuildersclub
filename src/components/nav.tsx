@@ -3,29 +3,13 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  defaultLocale,
-  getLocaleFromPathname,
-  localeCookieName,
-  localeNames,
-  locales,
-  type Locale,
-  withLocale,
-} from "@/lib/i18n/config";
 import { useDictSlice } from "@/lib/i18n/dictionaries/client";
 import type { NavDict } from "@/lib/i18n/dictionaries/types";
 
-const primaryCtaHref = "https://luma.com/clawplex";
-
-function rememberLocale(locale: Locale) {
-  document.cookie = `${localeCookieName}=${locale}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
-}
+const primaryCtaHref = "https://lu.ma/clawplex";
 
 export function Nav() {
-  const pathname = usePathname();
-  const locale = getLocaleFromPathname(pathname) ?? defaultLocale;
   const copy = useDictSlice("nav") as NavDict;
   const [open, setOpen] = useState(false);
   const [communityHover, setCommunityHover] = useState(false);
@@ -40,15 +24,6 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navCommunityLinks = [
-    ...copy.communityLinks,
-  ].map((link) => ({ ...link, href: withLocale(link.href, locale) }));
-
-  const localizedLinks = copy.links.map((link) => ({
-    ...link,
-    href: link.external ? link.href : withLocale(link.href, locale),
-  }));
-
   return (
     <>
       <nav
@@ -61,7 +36,7 @@ export function Nav() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8 md:py-5">
           {/* Wordmark */}
           <Link
-            href={withLocale("/", locale)}
+            href="/"
             className="flex items-center gap-2.5 group"
             aria-label={copy.home}
           >
@@ -122,7 +97,7 @@ export function Nav() {
                     role="menu"
                   >
                     <div className="rounded-lg border border-claw-border bg-claw-surface shadow-2xl shadow-black/40 overflow-hidden">
-                      {navCommunityLinks.map((link) => (
+                      {copy.communityLinks.map((link) => (
                         <Link
                           key={link.href}
                           href={link.href}
@@ -138,7 +113,7 @@ export function Nav() {
               </AnimatePresence>
             </div>
 
-            {localizedLinks.map((link) => (
+            {copy.links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -175,26 +150,6 @@ export function Nav() {
                 />
               </svg>
             </a>
-
-            <div className="ml-2 flex items-center rounded-full border border-claw-border bg-claw-surface/80 p-1" aria-label={copy.language}>
-              <span className="px-2 text-claw-dim" aria-hidden="true">◎</span>
-              {locales.map((language) => (
-                <Link
-                  key={language}
-                  href={withLocale(pathname, language)}
-                  onClick={() => rememberLocale(language)}
-                  hrefLang={language}
-                  aria-current={language === locale ? "true" : undefined}
-                  className={`rounded-full px-2.5 py-1 text-xs transition-colors ${
-                    language === locale
-                      ? "bg-claw-blue text-claw-void"
-                      : "text-claw-muted hover:text-claw-text"
-                  }`}
-                >
-                  {localeNames[language]}
-                </Link>
-              ))}
-            </div>
           </div>
 
           {/* Mobile hamburger */}
@@ -240,8 +195,8 @@ export function Nav() {
             >
               <nav className="flex flex-col gap-1">
                 {[
-                  ...navCommunityLinks.map((l) => ({ ...l, external: false })),
-                  ...localizedLinks.map((l) => ({ ...l, external: l.external || false })),
+                  ...copy.communityLinks.map((l) => ({ ...l, external: false })),
+                  ...copy.links.map((l) => ({ ...l, external: l.external || false })),
                 ].map((link, i) => (
                   <motion.a
                     key={link.href}
@@ -267,7 +222,7 @@ export function Nav() {
                 exit={{ opacity: 0, y: 12 }}
                 transition={{
                   duration: 0.3,
-                  delay: (navCommunityLinks.length + localizedLinks.length) * 0.04 + 0.05,
+                  delay: (copy.communityLinks.length + copy.links.length) * 0.04 + 0.05,
                 }}
                 className="mt-10"
               >
@@ -280,28 +235,6 @@ export function Nav() {
                 >
                   {copy.primaryCta}
                 </a>
-
-                <div className="mt-6 flex items-center justify-center gap-2" aria-label={copy.language}>
-                  {locales.map((language) => (
-                    <Link
-                      key={language}
-                      href={withLocale(pathname, language)}
-                      onClick={() => {
-                        rememberLocale(language);
-                        setOpen(false);
-                      }}
-                      hrefLang={language}
-                      aria-current={language === locale ? "true" : undefined}
-                      className={`rounded-full border px-4 py-2 text-sm transition-colors ${
-                        language === locale
-                          ? "border-claw-blue bg-claw-blue text-claw-void"
-                          : "border-claw-border text-claw-muted hover:text-claw-text"
-                      }`}
-                    >
-                      {localeNames[language]}
-                    </Link>
-                  ))}
-                </div>
               </motion.div>
             </div>
           </motion.div>

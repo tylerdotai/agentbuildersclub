@@ -1,11 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { headers } from "next/headers";
 import "./globals.css";
 import { Playfair_Display, Karla } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { SocialProofPopup } from "@/components/social-proof-popup";
-import { defaultLocale, getLocaleFromPathname, locales } from "@/lib/i18n/config";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -32,28 +29,16 @@ export const viewport: Viewport = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const headersList = await headers();
-  const pathname = headersList.get("x-claw-pathname") ?? headersList.get("x-invoke-path") ?? headersList.get("x-matched-path") ?? "";
-  const locale = getLocaleFromPathname(pathname) ?? defaultLocale;
-  const localizedPath = pathname || `/${locale}`;
-  const pathWithoutLocale = localizedPath.replace(new RegExp(`^/${locale}`), "") || "";
   const base = process.env.NEXT_PUBLIC_BASE_URL || "https://clawplex.dev";
-  const canonical = `${base}${localizedPath}`;
 
   return {
     metadataBase: new URL(base),
     alternates: {
-      canonical,
-      languages: Object.fromEntries(
-        locales.map((language) => [
-          language,
-          `${base}/${language}${pathWithoutLocale}`,
-        ])
-      ),
+      canonical: base,
     },
     title: {
-      default: "ClawPlex \u2014 DFW AI Builder Community",
-      template: "%s \u2014 ClawPlex",
+      default: "ClawPlex — DFW AI Builder Community",
+      template: "%s — ClawPlex",
     },
     description:
       "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
@@ -73,9 +58,9 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       type: "website",
       siteName: "ClawPlex",
-      url: canonical,
-      locale,
-      title: "ClawPlex \u2014 DFW AI Builder Community",
+      url: base,
+      locale: "en",
+      title: "ClawPlex — DFW AI Builder Community",
       description:
         "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
       images: [
@@ -83,13 +68,13 @@ export async function generateMetadata(): Promise<Metadata> {
           url: "/clawplex-banner.jpg",
           width: 1200,
           height: 630,
-          alt: "ClawPlex \u2014 DFW AI Builder Community",
+          alt: "ClawPlex — DFW AI Builder Community",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "ClawPlex \u2014 DFW AI Builder Community",
+      title: "ClawPlex — DFW AI Builder Community",
       description:
         "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
       images: ["/clawplex-banner.jpg"],
@@ -101,16 +86,13 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const headersList = await headers();
-  const locale = headersList.get("x-claw-locale") ?? defaultLocale;
-
   return (
-    <html lang={locale}>
+    <html lang="en">
       <head>
         <meta charSet="utf-8" />
       </head>
@@ -119,7 +101,6 @@ export default async function RootLayout({
         style={{ fontFamily: "var(--font-sans), system-ui, sans-serif" }}
         suppressHydrationWarning
       >
-        {/* Skip to main content — a11y */}
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-claw-blue focus:text-claw-void focus:font-mono focus:text-sm focus:uppercase focus:tracking-widest"
@@ -127,7 +108,6 @@ export default async function RootLayout({
           Skip to main content
         </a>
         {children}
-        <SocialProofPopup />
         <Analytics />
         <SpeedInsights />
       </body>

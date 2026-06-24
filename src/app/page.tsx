@@ -1,8 +1,5 @@
-import { redirect } from "next/navigation";
-import { defaultLocale } from "@/lib/i18n/config";
+import { HomeClient } from "./home-client";
 
 export default function RootPage() {
-  redirect(`/${defaultLocale}`);
+  return <HomeClient />;
 }
-
-export const dynamic = "force-dynamic";

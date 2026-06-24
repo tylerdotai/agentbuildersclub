@@ -84,24 +84,13 @@ export function SocialProofPopup() {
   );
   const dismissed = persistedDismissed || manuallyDismissed;
 
-  const eventCopy = useMemo(() => {
-    if (locale === "es") {
-      return {
-        action: "se registró para",
-        ago: "hace unos minutos",
-        close: "Cerrar",
-        hermes: "Hermes Agent",
-        claude: "Claude, OpenAI & las herramientas",
-      } as const;
-    }
-    return {
-      action: "just RSVP'd to",
-      ago: "a few minutes ago",
-      close: "Dismiss",
-      hermes: "Hermes Agent",
-      claude: "Claude, OpenAI & the Tools",
-    } as const;
-  }, [locale]);
+  const eventCopy = useMemo(() => ({
+    action: "just RSVP'd to",
+    ago: "a few minutes ago",
+    close: "Dismiss",
+    hermes: "Hermes Agent",
+    claude: "Claude, OpenAI & the Tools",
+  }), []);
 
   // Cycle scheduler.
   useEffect(() => {

@@ -1,4 +1,4 @@
-export const locales = ["en", "es"] as const;
+export const locales = ["en"] as const;
 export type Locale = (typeof locales)[number];
 
 export const defaultLocale: Locale = "en";
@@ -6,7 +6,6 @@ export const localeCookieName = "NEXT_LOCALE";
 
 export const localeNames: Record<Locale, string> = {
   en: "English",
-  es: "Español",
 };
 
 export function isLocale(value: string | undefined | null): value is Locale {
@@ -26,9 +25,10 @@ export function stripLocaleFromPathname(pathname: string): string {
   return stripped.startsWith("/") ? stripped : `/${stripped}`;
 }
 
-export function withLocale(pathname: string, locale: Locale): string {
+export function withLocale(pathname: string, _locale: Locale): string {
+  // English-only flat routing — strip any locale prefix, return bare path
   const cleanPath = stripLocaleFromPathname(pathname);
-  return cleanPath === "/" ? `/${locale}` : `/${locale}${cleanPath}`;
+  return cleanPath;
 }
 
 export function getBestLocaleFromAcceptLanguage(header: string | null): Locale {

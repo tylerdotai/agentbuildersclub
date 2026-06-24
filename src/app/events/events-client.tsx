@@ -2,14 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
-import {
-  defaultLocale,
-  getLocaleFromPathname,
-  withLocale,
-} from "@/lib/i18n/config";
 import { useDictSlice } from "@/lib/i18n/dictionaries/client";
 import type { EventsDict } from "@/lib/i18n/dictionaries/types";
 
@@ -32,8 +26,6 @@ function stagger(i: number) {
 }
 
 export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProps) {
-  const pathname = usePathname();
-  const locale = getLocaleFromPathname(pathname) ?? defaultLocale;
   const copy = useDictSlice("events") as EventsDict;
   const past = copy.events;
 
@@ -181,13 +173,7 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
             <motion.p {...stagger(2)} className="text-base text-claw-muted mb-8">
               {copy.ctaText}
             </motion.p>
-            <motion.div {...stagger(3)} className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link
-                href={withLocale("/newsletter", locale)}
-                className="border border-claw-blue bg-claw-blue px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-blue/90 transition-colors text-center"
-              >
-                {copy.newsletter}
-              </Link>
+            <motion.div {...stagger(3)} className="flex justify-center">
               <a
                 href="https://discord.gg/q8kEquTu3z"
                 target="_blank"

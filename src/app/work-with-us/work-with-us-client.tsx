@@ -1,13 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  defaultLocale,
-  getLocaleFromPathname,
-} from "@/lib/i18n/config";
+import { motion } from "framer-motion";
 import { useDictSlice } from "@/lib/i18n/dictionaries/client";
 import type { WorkWithUsDict } from "@/lib/i18n/dictionaries/types";
 
@@ -23,13 +17,13 @@ const partners = [
     name: "KiloClaw",
     image: "/kiloclaw-logo.png",
     url: "https://kilocode.pxf.io/OYnK0N",
-    taglines: { en: "AI Coding Agent", es: "Agente de código con IA" },
+    tagline: "AI Coding Agent",
   },
   {
     name: "FTW DAO",
     image: "/ftwdao-logo.png",
     url: "https://fwtx.city",
-    taglines: { en: "Community Partner", es: "Partner de comunidad" },
+    tagline: "Community Partner",
   },
 ];
 
@@ -41,10 +35,16 @@ const venuePartners = [
     location: "Arlington, TX",
   },
   {
-    name: "CreateFW",
-    image: "/createfw-fort-worth.png",
+    name: "The DEC Network",
+    image: "/the-dec-network-fort-worth.png",
     url: "https://thedec.co/",
     location: "Fort Worth, TX",
+  },
+  {
+    name: "Office Evolution Southlake",
+    image: "/office-evolution-southlake.webp",
+    url: "https://www.officeevolution.com/locations/usa/texas/southlake/",
+    location: "Southlake, TX",
   },
   {
     name: "25N Coworking",
@@ -68,26 +68,7 @@ function stagger(i: number) {
 }
 
 export function WorkWithUsClient() {
-  const pathname = usePathname();
-  const locale = getLocaleFromPathname(pathname) ?? defaultLocale;
   const copy = useDictSlice("workWithUs") as WorkWithUsDict;
-  const [modalOpen, setModalOpen] = useState(false);
-
-  useEffect(() => {
-    if (!modalOpen) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setModalOpen(false);
-    }
-    window.addEventListener("keydown", onKey);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [modalOpen]);
 
   return (
     <>
@@ -115,33 +96,6 @@ export function WorkWithUsClient() {
           >
             {copy.intro}
           </motion.p>
-          <motion.div {...stagger(3)} className="mt-9 flex flex-wrap items-center gap-4">
-            <button
-              type="button"
-              onClick={() => setModalOpen(true)}
-              className="inline-flex items-center gap-2 rounded-full bg-claw-blue px-6 py-3.5 text-sm sm:text-base font-medium text-claw-void hover:bg-claw-blue-light transition-colors cursor-pointer"
-            >
-              {copy.cta}
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <path
-                  d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-            <a
-              href="https://discord.gg/q8kEquTu3z"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm sm:text-base text-claw-muted hover:text-claw-text transition-colors group"
-            >
-              {copy.discord}
-              <span className="transition-transform group-hover:translate-x-0.5">→</span>
-            </a>
-          </motion.div>
         </div>
       </section>
 
@@ -184,70 +138,6 @@ export function WorkWithUsClient() {
                     <dd className="mt-2 font-mono text-[10px] uppercase tracking-[0.16em] text-claw-muted leading-snug">
                       {stat.label}
                     </dd>
-                  </div>
-                ))}
-              </motion.dl>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Hire Us — featured */}
-      <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-            <div className="lg:col-span-5">
-              <motion.p
-                {...stagger(0)}
-                className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-5 flex items-center gap-2"
-              >
-                <span className="inline-block h-px w-6 bg-claw-blue/60" />
-                {copy.hire.eyebrow}
-              </motion.p>
-              <motion.h2
-                {...stagger(1)}
-                className="font-display text-4xl sm:text-5xl lg:text-[60px] leading-[1.02] tracking-tight text-claw-text"
-              >
-                {copy.hire.titlePrefix}
-                <span className="underline-accent">{copy.hire.titleAccent}</span>.
-              </motion.h2>
-              <motion.div {...stagger(2)} className="mt-7">
-                <button
-                  type="button"
-                  onClick={() => setModalOpen(true)}
-                  className="inline-flex items-center gap-2 rounded-full bg-claw-blue px-6 py-3.5 text-sm sm:text-base font-medium text-claw-void hover:bg-claw-blue-light transition-colors cursor-pointer"
-                >
-                  {copy.hire.cta}
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                    <path
-                      d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-              </motion.div>
-            </div>
-            <div className="lg:col-span-7">
-              <motion.p
-                {...stagger(2)}
-                className="text-lg sm:text-[19px] text-claw-muted leading-[1.65]"
-              >
-                {copy.hire.body}{" "}
-                <strong className="text-claw-text font-semibold">{copy.hire.bodyEmphasis}</strong>.
-              </motion.p>
-              <motion.dl
-                {...stagger(3)}
-                className="mt-9 grid grid-cols-2 sm:grid-cols-3 gap-px overflow-hidden rounded-lg border border-claw-border bg-claw-border"
-              >
-                {copy.hire.capabilities.map((cap) => (
-                  <div key={cap.label} className="bg-claw-surface px-4 py-5">
-                    <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-claw-blue">
-                      {cap.label}
-                    </dt>
-                    <dd className="mt-2 text-[14px] text-claw-text leading-snug">{cap.desc}</dd>
                   </div>
                 ))}
               </motion.dl>
@@ -366,7 +256,7 @@ export function WorkWithUsClient() {
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-claw-void/90 border-t border-claw-border px-4 py-3 flex items-center justify-between gap-3">
                     <span className="font-mono text-sm text-claw-text">{partner.name}</span>
-                    <span className="font-mono text-xs text-claw-dim text-right">{partner.taglines[locale]}</span>
+                    <span className="font-mono text-xs text-claw-dim text-right">{partner.tagline}</span>
                   </div>
                 </motion.a>
               ))}
@@ -418,10 +308,11 @@ export function WorkWithUsClient() {
           <p className="mt-5 text-base sm:text-lg text-claw-muted">
             {copy.bottomBody}
           </p>
-          <button
-            type="button"
-            onClick={() => setModalOpen(true)}
-            className="mt-9 inline-flex items-center gap-2 rounded-full bg-claw-blue px-6 py-3.5 text-sm sm:text-base font-medium text-claw-void hover:bg-claw-blue-light transition-colors cursor-pointer"
+          <a
+            href="https://discord.gg/q8kEquTu3z"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-9 inline-flex items-center gap-2 rounded-full bg-claw-blue px-6 py-3.5 text-sm sm:text-base font-medium text-claw-void hover:bg-claw-blue-light transition-colors"
           >
             {copy.cta}
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -433,96 +324,9 @@ export function WorkWithUsClient() {
                 strokeLinejoin="round"
               />
             </svg>
-          </button>
+          </a>
         </motion.div>
       </section>
-
-      {/* Embed form modal */}
-      <AnimatePresence>
-        {modalOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[60] flex items-center justify-center bg-claw-void/85 backdrop-blur-sm p-3 sm:p-6"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="work-with-us-modal-title"
-            onClick={() => setModalOpen(false)}
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 16, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 16, scale: 0.98 }}
-              transition={{ duration: 0.25, ease }}
-              className="relative w-full max-w-3xl h-[85vh] rounded-2xl border border-claw-border bg-claw-surface overflow-hidden shadow-2xl shadow-black/60 flex flex-col"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex items-center justify-between border-b border-claw-border px-5 py-3 sm:px-6">
-                <p
-                  id="work-with-us-modal-title"
-                  className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue"
-                >
-                  {copy.modalEyebrow}
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setModalOpen(false)}
-                  aria-label={copy.closeModal}
-                  className="rounded-full p-1.5 text-claw-muted hover:text-claw-text hover:bg-claw-surface-2 transition-colors cursor-pointer"
-                >
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                    <path
-                      d="M4.5 4.5l9 9m0-9l-9 9"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </button>
-              </div>
-              <div className="relative flex-1 bg-claw-void">
-                {EMBED_FORM_URL ? (
-                  <iframe
-                    src={EMBED_FORM_URL}
-                    title={copy.modalEyebrow}
-                    className="absolute inset-0 h-full w-full border-0"
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
-                    <div className="max-w-sm">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-claw-blue">
-                        {copy.formComingSoonEyebrow}
-                      </p>
-                      <p className="mt-4 font-display text-2xl sm:text-3xl tracking-tight text-claw-text leading-tight">
-                        {copy.formComingSoonTitle}
-                      </p>
-                      <p className="mt-4 text-[15px] text-claw-muted leading-[1.6]">
-                        {copy.formComingSoonBody}{" "}
-                        <a
-                          href="https://discord.gg/q8kEquTu3z"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-claw-blue hover:text-claw-blue-light transition-colors"
-                        >
-                          Discord
-                        </a>
-                        .
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Locale-aware sr-only marker for analytics differentiation if needed */}
-      <span className="sr-only" data-locale={locale} aria-hidden="true" />
     </>
   );
 }

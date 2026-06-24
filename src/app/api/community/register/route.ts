@@ -69,6 +69,9 @@ export async function POST(req: NextRequest) {
       skills,
       location,
       availability,
+      github,
+      discord,
+      linkedin,
     } = body;
 
     if (!name || typeof name !== "string" || name.trim() === "") {
@@ -85,6 +88,53 @@ export async function POST(req: NextRequest) {
 
     if (owner && owner.length > 100) {
       return NextResponse.json({ error: "Owner must be 100 characters or less" }, { status: 400 });
+    }
+
+    // Validate URL fields
+    const urlFields: Record<string, string> = {};
+    if (website) {
+      try {
+        const u = new URL(website);
+        if (!u.protocol || !u.host) throw new Error();
+        urlFields.website = website;
+      } catch {
+        return NextResponse.json({ error: "Website must be a valid URL" }, { status: 400 });
+      }
+    }
+    if (github) {
+      try {
+        const u = new URL(github);
+        if (!u.protocol || !u.host) throw new Error();
+        urlFields.github = github;
+      } catch {
+        return NextResponse.json({ error: "GitHub must be a valid URL" }, { status: 400 });
+      }
+    }
+    if (discord) {
+      try {
+        const u = new URL(discord);
+        if (!u.protocol || !u.host) throw new Error();
+        urlFields.discord = discord;
+      } catch {
+        return NextResponse.json({ error: "Discord must be a valid URL" }, { status: 400 });
+      }
+    }
+    if (linkedin) {
+      try {
+        const u = new URL(linkedin);
+        if (!u.protocol || !u.host) throw new Error();
+        urlFields.linkedin = linkedin;
+      } catch {
+        return NextResponse.json({ error: "LinkedIn must be a valid URL" }, { status: 400 });
+      }
+    }
+
+    // Require at least one contact field
+    if (!website && !github && !discord && !linkedin) {
+      return NextResponse.json(
+        { error: "At least one of website, github, discord, or linkedin is required" },
+        { status: 400 }
+      );
     }
 
     // If wallet + signature + challenge are provided, verify wallet signature
@@ -130,16 +180,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Owner wallet must be a string" }, { status: 400 });
     }
 
-    if (website) {
-      try {
-        const url = new URL(website);
-        if (!url.protocol || !url.host) {
-          return NextResponse.json({ error: "Website must be a valid URL" }, { status: 400 });
-        }
-      } catch {
-        return NextResponse.json({ error: "Website must be a valid URL" }, { status: 400 });
-      }
-    }
+    // Remove the old standalone website URL validation — handled above in urlFields
+    // (website was previously validated here with a duplicate try/catch block)
 
     // Quick Supabase connectivity check
     const { error: pingErr } = await supabase.from("agents").select("id").limit(1);
@@ -164,7 +206,10 @@ export async function POST(req: NextRequest) {
       description: description?.trim() ?? "",
       owner: owner?.trim() ?? "",
       owner_wallet: resolvedOwnerWallet ?? owner_wallet?.trim() ?? "",
-      website: website?.trim() ?? "",
+      website: urlFields.website ?? "",
+      github: urlFields.github ?? "",
+      discord: urlFields.discord ?? "",
+      linkedin: urlFields.linkedin ?? "",
       skills: Array.isArray(skills) ? skills.slice(0, 20) : [],
       location: location?.trim() || "DFW",
       availability: availability || "active",

@@ -1,11 +1,12 @@
 import { Metadata } from "next";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
-import { getDictSlice } from "@/lib/i18n/dictionaries/server";
+import { en } from "@/lib/i18n/dictionaries";
 import type { TermsDict } from "@/lib/i18n/dictionaries/types";
 
+const copy = en.terms as TermsDict;
+
 export async function generateMetadata(): Promise<Metadata> {
-  const copy = await getDictSlice("terms") as TermsDict;
   return {
     title: copy.title,
     description: copy.description,
@@ -17,8 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function TermsPage() {
-  const copy = await getDictSlice("terms") as TermsDict;
+export default function TermsPage() {
   return (
     <div className="min-h-screen">
       <Nav />

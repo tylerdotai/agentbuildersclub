@@ -7,8 +7,7 @@ import { Nav } from "@/components/nav";
 import { SkillCard, type Skill, type SkillCategory } from "@/components/skill-card";
 import { useDictSlice } from "@/lib/i18n/dictionaries/client";
 import type { SkillsDict } from "@/lib/i18n/dictionaries/types";
-import { withLocale, getLocaleFromPathname, defaultLocale } from "@/lib/i18n/config";
-import { usePathname } from "next/navigation";
+import { en } from "@/lib/i18n/dictionaries";
 
 const CATEGORIES: Array<SkillCategory | "All"> = [
   "All",
@@ -317,8 +316,6 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
 /* ── Skills Client ─────────────────────────────────────────────────────────── */
 export function SkillsClient() {
   const t = useDictSlice("skills") as SkillsDict;
-  const pathname = usePathname();
-  const locale = getLocaleFromPathname(pathname ?? "") ?? defaultLocale;
   const [skills, setSkills] = useState<Skill[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -377,13 +374,13 @@ export function SkillsClient() {
                   {t.submitCta}
                 </button>
                 <Link
-                  href={withLocale("/community", locale)}
+                  href={"/community"}
                   className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors text-center"
                 >
                   {t.feedCta}
                 </Link>
                 <Link
-                  href={withLocale("/community/projects", locale)}
+                  href={"/community/projects"}
                   className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors text-center"
                 >
                   {t.projectsCta}

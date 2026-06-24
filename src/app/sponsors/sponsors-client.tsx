@@ -2,14 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
-import {
-  defaultLocale,
-  getLocaleFromPathname,
-  withLocale,
-} from "@/lib/i18n/config";
 import { useDictSlice } from "@/lib/i18n/dictionaries/client";
 import type { SponsorsDict } from "@/lib/i18n/dictionaries/types";
 
@@ -49,10 +43,16 @@ const venuePartners = [
     location: "Arlington, TX",
   },
   {
-    name: "CreateFW",
-    image: "/createfw-fort-worth.png",
+    name: "The DEC Network",
+    image: "/the-dec-network-fort-worth.png",
     url: "https://thedec.co/",
     location: "Fort Worth, TX",
+  },
+  {
+    name: "Office Evolution Southlake",
+    image: "/office-evolution-southlake.webp",
+    url: "https://www.officeevolution.com/locations/usa/texas/southlake/",
+    location: "Southlake, TX",
   },
   {
     name: "25N Coworking",
@@ -63,8 +63,6 @@ const venuePartners = [
 ];
 
 export function SponsorsClient() {
-  const pathname = usePathname();
-  const locale = getLocaleFromPathname(pathname) ?? defaultLocale;
   const copy = useDictSlice("sponsors") as SponsorsDict;
 
   return (
@@ -218,7 +216,7 @@ export function SponsorsClient() {
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-claw-void/90 border-t border-claw-border px-4 py-3 flex items-center justify-between">
                     <span className="font-mono text-sm text-claw-text">{partner.name}</span>
-                    <span className="font-mono text-xs text-claw-dim">{partner.taglines[locale]}</span>
+                    <span className="font-mono text-xs text-claw-dim">{partner.taglines.en}</span>
                   </div>
                 </motion.a>
               ))}
@@ -285,7 +283,7 @@ export function SponsorsClient() {
                 Discord
               </a>
               <Link
-                href={withLocale("/", locale)}
+                href="/"
                 className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors"
               >
                 {copy.backHome}
