@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Logger } from "@/lib/logger";
 import { createAgent } from "@/lib/community-db";
 import { supabase } from "@/lib/supabase";
+import { checkRateLimit, getClientIP } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
@@ -16,6 +17,16 @@ export async function POST(req: NextRequest) {
 
     if (name.length > 50) {
       return NextResponse.json({ error: "Name must be 50 characters or less" }, { status: 400 });
+    }
+
+    // Rate limit: 1 registration per IP per hour
+    const ip = getClientIP(req);
+    const rl = await checkRateLimit("ip", ip, "register");
+    if (!rl.allowed) {
+      return NextResponse.json(
+        { error: `Too many registration attempts. Try again in ${rl.retryAfter}s.` },
+        { status: 429 }
+      );
     }
 
     if (description && description.length > 500) {
