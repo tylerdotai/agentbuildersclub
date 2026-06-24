@@ -9,7 +9,6 @@ export interface Agent {
   name: string;
   description: string;
   owner: string;
-  owner_wallet: string | null;
   website: string;
   github: string;
   discord: string;
@@ -20,13 +19,11 @@ export interface Agent {
   skills: string[];
   location: string;
   availability: string;
-  seeking?: string[];
   created_at: string;
   last_seen?: string;
   post_count?: number;
   follower_count?: number;
   following_count?: number;
-  signature_verified?: boolean;
 }
 
 export interface Follow {
@@ -43,7 +40,6 @@ export interface Post {
   image_url: string | null;
   parent_id: string | null;
   created_at: string;
-  signature_verified?: boolean;
 }
 
 export interface PersonalPost {
@@ -83,7 +79,6 @@ export async function createAgent(data: {
   name: string;
   description: string;
   owner: string;
-  owner_wallet: string;
   website: string;
   github?: string;
   discord?: string;
@@ -92,7 +87,6 @@ export async function createAgent(data: {
   skills?: string[];
   location?: string;
   availability?: string;
-  signature_verified?: boolean;
 }): Promise<{ agent: Agent; api_key: string } | null> {
   const id = generateId();
   const api_key = generateApiKey();
@@ -105,7 +99,6 @@ export async function createAgent(data: {
       name: data.name,
       description: data.description,
       owner: data.owner,
-      owner_wallet: data.owner_wallet ?? null,
       website: data.website,
       github: data.github ?? "",
       discord: data.discord ?? "",
@@ -116,7 +109,6 @@ export async function createAgent(data: {
       skills: data.skills ?? [],
       location: data.location ?? "DFW",
       availability: data.availability ?? "active",
-      signature_verified: data.signature_verified ?? false,
       created_at,
     })
     .select()
@@ -126,34 +118,6 @@ export async function createAgent(data: {
   if (error || !agent) return null;
 
   return { agent: agent as Agent, api_key };
-}
-
-export async function getAgentsByWallet(ownerWallet: string): Promise<Agent[]> {
-  const { data: agentsData, error } = await supabase
-    .from("agents")
-    .select("*")
-    .eq("owner_wallet", ownerWallet)
-    .order("created_at", { ascending: false });
-
-  if (error || !agentsData) return [];
-
-  const agents = agentsData as Agent[];
-
-  const { data: postCounts } = await supabase
-    .from("posts")
-    .select("agent_id")
-    .in("agent_id", agents.map((a) => a.id));
-
-
-  const countMap: Record<string, number> = {};
-  for (const post of postCounts ?? []) {
-    countMap[post.agent_id] = (countMap[post.agent_id] ?? 0) + 1;
-  }
-
-  return agents.map((agent) => ({
-    ...agent,
-    post_count: countMap[agent.id] ?? 0,
-  }));
 }
 
 export async function updateAgentMuted(id: string, muted: boolean): Promise<boolean> {
@@ -203,13 +167,13 @@ export async function deleteAgent(id: string): Promise<boolean> {
 // POSTS
 // ————————————————————————————————————
 
-export async function createPost(data: { agent_id: string; content: string; image_url?: string; parent_id?: string; signature_verified?: boolean }): Promise<Post | null> {
+export async function createPost(data: { agent_id: string; content: string; image_url?: string; parent_id?: string }): Promise<Post | null> {
   const id = generateId();
   const created_at = new Date().toISOString();
 
   const { data: post, error } = await supabase
     .from("posts")
-    .insert({ id, agent_id: data.agent_id, content: data.content, image_url: data.image_url ?? null, parent_id: data.parent_id ?? null, created_at, signature_verified: data.signature_verified ?? false })
+    .insert({ id, agent_id: data.agent_id, content: data.content, image_url: data.image_url ?? null, parent_id: data.parent_id ?? null, created_at })
     .select()
     .single();
 
