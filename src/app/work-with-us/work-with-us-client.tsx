@@ -35,10 +35,16 @@ const venuePartners = [
     location: "Arlington, TX",
   },
   {
-    name: "CreateFW",
-    image: "/createfw-fort-worth.png",
+    name: "The DEC Network",
+    image: "/the-dec-network-fort-worth.png",
     url: "https://thedec.co/",
     location: "Fort Worth, TX",
+  },
+  {
+    name: "Office Evolution Southlake",
+    image: "/office-evolution-southlake.webp",
+    url: "https://www.officeevolution.com/locations/usa/texas/southlake/",
+    location: "Southlake, TX",
   },
   {
     name: "25N Coworking",

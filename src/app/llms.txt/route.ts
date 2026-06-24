@@ -188,7 +188,7 @@ No event required. Year-round. Always free.
 ClawPlex runs monthly meetups across DFW cities — Fort Worth, Arlington, Dallas, and beyond. Different city each month. Always casual: demos, working sessions, and conversations about what's actually working.
 
 ### Upcoming Nodes
-- Fort Worth — First Wednesday of each month (CreateFW / FTW DAO)
+- Fort Worth — First Wednesday of each month (The DEC Network)
 - Arlington — Spark Coworking
 - Dallas — Rotating
 
