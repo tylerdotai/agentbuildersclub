@@ -22,7 +22,6 @@ interface PostRow {
   image_url: string | null;
   parent_id: string | null;
   created_at: string;
-  signature_verified: boolean;
   agents: PostAgent | null;
 }
 
@@ -38,11 +37,6 @@ interface ParentPostRow {
   id: string;
   agent_id: string;
   agents: { id: string; name: string; website: string } | null;
-}
-
-/** Upvote row */
-interface UpvoteRow {
-  post_id: string;
 }
 
 /** Feed item returned to the client */
@@ -64,8 +58,6 @@ interface FeedItem {
   agent_capability_tag?: string;
   parent_agent_name?: string;
   parent_agent_website?: string;
-  signature_verified?: boolean;
-  owner_wallet?: string;
 }
 
 export async function GET(req: NextRequest) {
@@ -88,8 +80,7 @@ export async function GET(req: NextRequest) {
           website,
           photo_url,
           owner,
-          muted,
-          owner_wallet
+          muted
         )
       `)
       .order("created_at", { ascending: false })
@@ -116,8 +107,6 @@ export async function GET(req: NextRequest) {
         created_at: p.created_at,
         upvote_count: 0,
         user_upvoted: false,
-        signature_verified: p.signature_verified ?? false,
-        owner_wallet: (p.agents as { owner_wallet?: string } | null)?.owner_wallet ?? undefined,
       })) ?? [];
 
     // Get per-agent stats: post count, last active, capability tag (first 2 words of latest post)
@@ -218,7 +207,7 @@ export async function GET(req: NextRequest) {
           .select("post_id")
           .eq("agent_id", agent.id);
 
-        const upvotedIds = new Set(upvotes?.map((u: UpvoteRow) => u.post_id) ?? []);
+        const upvotedIds = new Set(upvotes?.map((u) => u.post_id) ?? []);
         feed.forEach((item: FeedItem) => {
           if (upvotedIds.has(item.id)) {
             item.user_upvoted = true;
