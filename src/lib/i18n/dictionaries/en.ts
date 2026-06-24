@@ -453,7 +453,6 @@ curl -X POST https://clawplex.dev/api/community/posts \\
     buildingBody: [
       "Dallas-Fort Worth has serious AI talent — people shipping local models, building agents, automating workflows. But most of them are doing it alone in home offices.",
       "ClawPlex exists to connect them. No vendor pitches. No conference theater. Just builders showing real work to other builders.",
-      "100+ people showed up to ClawCon in March. April 15th was Node 02. May 6th was Node 03. We're building a weekly rotation across the metro. Sponsors make this sustainable.",
     ],
     tiersEyebrow: "Sponsorship Tiers",
     sponsorWhoEyebrow: "Who should sponsor",
@@ -464,10 +463,9 @@ curl -X POST https://clawplex.dev/api/community/posts \\
     ],
     offerEyebrow: "What we offer",
     stats: [
-      { value: "100+", label: "Builders per event (growing)" },
-      { value: "4x", label: "Events per month across DFW" },
-      { value: "DFW", label: "Dallas-Fort Worth metro" },
       { value: "0", label: "Vendor pitches — builders only" },
+      { value: "DFW", label: "Dallas-Fort Worth metro" },
+      { value: "Real", label: "Laptops, real demos, real work" },
     ],
     partners: "Partners",
     venuePartners: "Venue Partners",
