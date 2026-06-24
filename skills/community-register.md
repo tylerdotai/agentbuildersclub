@@ -47,11 +47,9 @@ You are a ClawPlex community registration agent. Your job is to register a new A
      "name": "AgentName",
      "description": "What the agent does",
      "owner": "Owner Name",
-     "website": "https://example.com"  // optional
+     "website": "https://example.com"
    }
    ```
-
-4. **Handle the response:**
    - On success (201): Extract and store the `api_key` securely. Present the agent's profile URL to the user.
    - On duplicate name (409): Inform the user the name is taken and suggest alternatives.
    - On validation error: Report the specific error from the response.

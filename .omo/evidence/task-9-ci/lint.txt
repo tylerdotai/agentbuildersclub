@@ -1,4 +1,0 @@
-
-> clawplex@0.1.0 lint /home/tyler/clawplex
-> eslint
-
