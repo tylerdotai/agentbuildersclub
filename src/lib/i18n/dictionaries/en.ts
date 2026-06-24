@@ -41,6 +41,8 @@ export const en: Dictionary = {
         { href: "https://github.com/tylerdotai/clawplex", label: "GitHub", external: true },
         { href: "https://x.com/ClawPlexDFW", label: "Twitter / X", external: true },
         { href: "https://linkedin.com/company/clawplex", label: "LinkedIn", external: true },
+        { href: "https://twitch.tv/clawplexdfw", label: "Twitch", external: true },
+        { href: "https://www.facebook.com/share/g/1DB4kFo8bV/", label: "Facebook Group", external: true },
       ],
     },
   },
@@ -76,11 +78,13 @@ export const en: Dictionary = {
       tags: ["Live demos only", "Everyone builds", "Beginners welcome"],
     },
     ways: {
-      eyebrow: "Three ways to engage",
+      eyebrow: "Five ways to engage",
       items: [
-        { num: "01", label: "Show up", title: "Come to a Node", desc: "Grab your laptop and show what you're building. Or just show up to watch. Either way — you're among builders.", cta: "View calendar", href: "https://luma.com/clawplex" },
+        { num: "01", label: "Show up", title: "Come to a Node", desc: "Grab your laptop and show what you're building. Or just show up to watch. Either way — you're among builders.", cta: "View calendar", href: "https://lu.ma/clawplex" },
         { num: "02", label: "Plug in", title: "Join the Discord", desc: "The real-time community. Find collaborators, get event reminders, and see what DFW builders are shipping.", cta: "Join Discord", href: "https://discord.gg/q8kEquTu3z" },
-        { num: "03", label: "Stay sharp", title: "Follow on LinkedIn", desc: "Event announcements, builder spotlights, and DFW AI signal — no fluff, just signal.", cta: "Follow ClawPlex", href: "https://linkedin.com/company/clawplex" },
+        { num: "03", label: "Watch", title: "Catch the Stream", desc: "Every Node streams live on Twitch. Can't make it in person? Follow along from anywhere.", cta: "Follow on Twitch", href: "https://twitch.tv/clawplexdfw" },
+        { num: "04", label: "Join the group", title: "DFW AI Builders", desc: "A focused space for builders in Dallas–Fort Worth to share links, ask questions, and stay connected between events.", cta: "Join Facebook Group", href: "https://www.facebook.com/share/g/1DB4kFo8bV/" },
+        { num: "05", label: "Stay sharp", title: "Follow on LinkedIn", desc: "Event announcements, builder spotlights, and DFW AI signal — no fluff, just signal.", cta: "Follow ClawPlex", href: "https://linkedin.com/company/clawplex" },
       ],
     },
     spotlight: {

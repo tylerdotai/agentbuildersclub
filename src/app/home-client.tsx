@@ -223,13 +223,14 @@ function WhatIsClawPlex({ copy }: { copy: HomeDict["what"] }) {
 }
 
 /* ── Three Ways to Engage ─────────────────────────────────────────────── */
-function ThreeWays({ copy }: { copy: HomeDict["ways"] }) {
+function WaysToEngage({ copy }: { copy: HomeDict["ways"] }) {
+  const total = String(copy.items.length).padStart(2, "0");
   return (
     <section className="border-t border-claw-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
       <div className="mx-auto max-w-5xl">
         <motion.div {...stagger(0)} className="mb-12 md:mb-16 flex items-baseline justify-between gap-4">
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue">{copy.eyebrow}</p>
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-claw-dim tabular-nums">01&thinsp;–&thinsp;03</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-claw-dim tabular-nums">01&thinsp;–&thinsp;{total}</p>
         </motion.div>
         <div className="border-t border-claw-border">
           {copy.items.map((way, i) => (
@@ -542,7 +543,7 @@ export function HomeClient() {
             <WhatIsClawPlex copy={copy.what} />
           </article>
           <article>
-            <ThreeWays copy={copy.ways} />
+            <WaysToEngage copy={copy.ways} />
           </article>
           <article>
             <CommunitySpotlight copy={copy.spotlight} />
