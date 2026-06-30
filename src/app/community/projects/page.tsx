@@ -82,23 +82,23 @@ export default function CommunityProjectsPage() {
       <Nav />
       <main className="pt-16">
         {/* Header */}
-        <section className="border-b border-claw-border px-5 md:px-8 py-16 md:py-24">
+        <section className="border-b border-border px-5 md:px-8 py-16 md:py-24">
           <div className="mx-auto max-w-5xl">
             <motion.p
               {...stagger(0)}
-              className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-4"
+              className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-4"
             >
               Agent Builders Club
             </motion.p>
             <motion.h1
               {...stagger(1)}
-              className="font-display text-4xl md:text-6xl tracking-wider text-claw-text leading-none mb-4"
+              className="font-display text-4xl md:text-6xl tracking-wider text-text leading-none mb-4"
             >
               We Ship Agents.
             </motion.h1>
             <motion.p
               {...stagger(2)}
-              className="text-base text-claw-muted max-w-2xl"
+              className="text-base text-muted max-w-2xl"
             >
               Real projects from real builders. Agents that work, automate things
               that matter, and get torn apart in the Node community every week.
@@ -107,9 +107,9 @@ export default function CommunityProjectsPage() {
         </section>
 
         {/* Projects grid */}
-        <section className="border-b border-claw-border px-5 md:px-8 py-16 md:py-24">
+        <section className="border-b border-border px-5 md:px-8 py-16 md:py-24">
           <div className="mx-auto max-w-5xl">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-claw-border">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-border">
               {projects.map((project, i) => (
                 <motion.a
                   key={project.name}
@@ -117,21 +117,21 @@ export default function CommunityProjectsPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   {...stagger(i)}
-                  className="border-claw-border border-b border-r p-8 hover:border-claw-blue/40 transition-colors group"
+                  className="border-border border-b border-r p-8 hover:border-accent/40 transition-colors group"
                 >
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-claw-blue mb-3">
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-accent mb-3">
                     {project.tag}
                   </p>
-                  <h3 className="font-display text-2xl tracking-wider text-claw-text mb-1 group-hover:text-claw-blue transition-colors">
+                  <h3 className="font-display text-2xl tracking-wider text-text mb-1 group-hover:text-accent transition-colors">
                     {project.name}
                   </h3>
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-4">
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-dim mb-4">
                     {project.builder}
                   </p>
-                  <p className="text-sm text-claw-muted leading-relaxed">
+                  <p className="text-sm text-muted leading-relaxed">
                     {project.description}
                   </p>
-                  <p className="mt-4 font-mono text-xs uppercase tracking-widest text-claw-blue group-hover:underline">
+                  <p className="mt-4 font-mono text-xs uppercase tracking-widest text-accent group-hover:underline">
                     View Project →
                   </p>
                 </motion.a>
@@ -141,29 +141,29 @@ export default function CommunityProjectsPage() {
         </section>
 
         {/* Resources */}
-        <section className="border-b border-claw-border px-5 md:px-8 py-16 md:py-24">
+        <section className="border-b border-border px-5 md:px-8 py-16 md:py-24">
           <div className="mx-auto max-w-5xl">
-            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-widest text-claw-dim mb-8">
+            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-widest text-dim mb-8">
               Resources
             </motion.p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-claw-border">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-border">
               {resources.map((resource, i) => (
                 <motion.a
                   key={resource.name}
                   href={resource.link}
                   {...stagger(i + 1)}
-                  className="border-claw-border border-b border-r p-8 hover:border-claw-blue/40 transition-colors group"
+                  className="border-border border-b border-r p-8 hover:border-accent/40 transition-colors group"
                 >
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-claw-blue-light mb-3">
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-accent-light mb-3">
                     {resource.tag}
                   </p>
-                  <h3 className="font-display text-xl tracking-wider text-claw-text mb-2 group-hover:text-claw-blue transition-colors">
+                  <h3 className="font-display text-xl tracking-wider text-text mb-2 group-hover:text-accent transition-colors">
                     {resource.name}
                   </h3>
-                  <p className="text-sm text-claw-muted leading-relaxed">
+                  <p className="text-sm text-muted leading-relaxed">
                     {resource.description}
                   </p>
-                  <p className="mt-4 font-mono text-xs uppercase tracking-widest text-claw-blue group-hover:underline">
+                  <p className="mt-4 font-mono text-xs uppercase tracking-widest text-accent group-hover:underline">
                     Explore →
                   </p>
                 </motion.a>
@@ -175,26 +175,26 @@ export default function CommunityProjectsPage() {
         {/* CTA */}
         <section className="px-5 md:px-8 py-16 md:py-24">
           <div className="mx-auto max-w-5xl text-center">
-            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-4">
+            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-4">
               Ship Something
             </motion.p>
-            <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-5xl tracking-wider text-claw-text mb-4">
+            <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-5xl tracking-wider text-text mb-4">
               Bring a build to the next Node.
             </motion.h2>
-            <motion.p {...stagger(2)} className="text-base text-claw-muted mb-8 max-w-xl mx-auto">
+            <motion.p {...stagger(2)} className="text-base text-muted mb-8 max-w-xl mx-auto">
               Every Node, builders show what they've shipped. Get real feedback
               from people who actually use this stuff.
             </motion.p>
             <motion.div {...stagger(3)} className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/community"
-                className="border border-claw-blue bg-claw-blue px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-blue/90 transition-colors text-center"
+                className="border border-accent bg-accent px-8 py-4 font-mono text-sm uppercase tracking-widest text-void hover:bg-accent/90 transition-colors text-center"
               >
                 Member Feed
               </Link>
               <Link
                 href="/skills"
-                className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors text-center"
+                className="border border-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-muted hover:border-accent hover:text-accent transition-colors text-center"
               >
                 Skills
               </Link>
@@ -202,7 +202,7 @@ export default function CommunityProjectsPage() {
                 href="/llms.txt"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors text-center"
+                className="border border-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-muted hover:border-accent hover:text-accent transition-colors text-center"
               >
                 LLMs.txt
               </a>

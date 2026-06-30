@@ -89,15 +89,15 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.97, y: 8 }}
         transition={{ duration: 0.2 }}
-        className="relative z-10 w-full max-w-2xl border border-claw-border bg-claw-surface max-h-[90vh] overflow-y-auto"
+        className="relative z-10 w-full max-w-2xl border border-border bg-surface max-h-[90vh] overflow-y-auto"
       >
-        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-claw-border bg-claw-surface px-6 py-4">
-          <h2 className="font-display text-2xl tracking-wider text-claw-text">
+        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border bg-surface px-6 py-4">
+          <h2 className="font-display text-2xl tracking-wider text-text">
             Submit a Skill
           </h2>
           <button
             onClick={onClose}
-            className="border border-claw-border px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-claw-dim hover:border-claw-blue hover:text-claw-blue transition-colors"
+            className="border border-border px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-dim hover:border-accent hover:text-accent transition-colors"
           >
             ✕ Close
           </button>
@@ -107,20 +107,20 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
           {status === "success" ? (
             <div className="py-12 text-center">
               <div className="mb-6 flex justify-center">
-                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="text-claw-blue">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="text-accent">
                   <circle cx="24" cy="24" r="23" stroke="currentColor" strokeWidth="2" />
                   <path d="M14 24l7 7 13-13" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
-              <h3 className="font-display text-2xl tracking-wider text-claw-text mb-2">
+              <h3 className="font-display text-2xl tracking-wider text-text mb-2">
                 Submitted for Review
               </h3>
-              <p className="font-mono text-sm text-claw-muted">
+              <p className="font-mono text-sm text-muted">
                 Your skill has been submitted. We'll review it and add it to the marketplace soon.
               </p>
               <button
                 onClick={onClose}
-                className="mt-8 border border-claw-border px-8 py-3 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors"
+                className="mt-8 border border-border px-8 py-3 font-mono text-sm uppercase tracking-widest text-muted hover:border-accent hover:text-accent transition-colors"
               >
                 Back to Skills
               </button>
@@ -134,48 +134,48 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
               )}
 
               <div>
-                <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                  Skill Name <span className="text-claw-blue">*</span>
+                <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-dim">
+                  Skill Name <span className="text-accent">*</span>
                 </label>
                 <input
                   type="text"
                   value={form.name}
                   onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                   placeholder="e.g. GitHub MCP, SEO Optimizer"
-                  className="w-full border border-claw-border bg-claw-void px-4 py-3 font-mono text-sm text-claw-text placeholder:text-claw-border focus:border-claw-blue focus:outline-none transition-colors"
+                  className="w-full border border-border bg-void px-4 py-3 font-mono text-sm text-text placeholder:text-border focus:border-accent focus:outline-none transition-colors"
                   required
                 />
               </div>
 
               <div>
-                <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                  Description <span className="text-claw-blue">*</span>
+                <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-dim">
+                  Description <span className="text-accent">*</span>
                 </label>
                 <textarea
                   value={form.description}
                   onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
                   placeholder="What does this skill do? (2-3 sentences)"
                   rows={3}
-                  className="w-full border border-claw-border bg-claw-void px-4 py-3 font-mono text-sm text-claw-text placeholder:text-claw-border focus:border-claw-blue focus:outline-none transition-colors resize-none"
+                  className="w-full border border-border bg-void px-4 py-3 font-mono text-sm text-text placeholder:text-border focus:border-accent focus:outline-none transition-colors resize-none"
                   required
                 />
               </div>
 
               <div>
-                <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                  Category <span className="text-claw-blue">*</span>
+                <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-dim">
+                  Category <span className="text-accent">*</span>
                 </label>
                 <select
                   value={form.category}
                   onChange={(e) => setForm((f) => ({ ...f, category: e.target.value as SkillCategory }))}
-                  className="w-full border border-claw-border bg-claw-void px-4 py-3 font-mono text-sm text-claw-text focus:border-claw-blue focus:outline-none transition-colors"
+                  className="w-full border border-border bg-void px-4 py-3 font-mono text-sm text-text focus:border-accent focus:outline-none transition-colors"
                   required
                 >
-                  <option value="" className="bg-claw-surface">Select a category</option>
+                  <option value="" className="bg-surface">Select a category</option>
                   {(Object.keys(CATEGORY_LABELS) as Array<SkillCategory | "All">)
                     .filter((c) => c !== "All")
                     .map((c) => (
-                      <option key={c} value={c} className="bg-claw-surface">
+                      <option key={c} value={c} className="bg-surface">
                         {CATEGORY_LABELS[c]}
                       </option>
                     ))}
@@ -183,7 +183,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
               </div>
 
               <div>
-                <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
+                <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-dim">
                   Trigger Phrases
                 </label>
                 <input
@@ -201,14 +201,14 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                     }
                   }}
                   placeholder='e.g. "analyze repo", "find bug"'
-                  className="w-full border border-claw-border bg-claw-void px-4 py-3 font-mono text-sm text-claw-text placeholder:text-claw-border focus:border-claw-blue focus:outline-none transition-colors"
+                  className="w-full border border-border bg-void px-4 py-3 font-mono text-sm text-text placeholder:text-border focus:border-accent focus:outline-none transition-colors"
                 />
                 {form.triggers.length > 0 && (
                   <div className="mt-2 flex flex-wrap gap-2">
                     {form.triggers.map((trigger) => (
                       <span
                         key={trigger}
-                        className="inline-flex items-center gap-1 border border-claw-blue/40 bg-claw-blue/10 px-2 py-1 font-mono text-xs text-claw-blue"
+                        className="inline-flex items-center gap-1 border border-accent/40 bg-accent/10 px-2 py-1 font-mono text-xs text-accent"
                       >
                         {trigger}
                         <button
@@ -216,7 +216,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                           onClick={() =>
                             setForm((f) => ({ ...f, triggers: f.triggers.filter((t) => t !== trigger) }))
                           }
-                          className="ml-1 hover:text-claw-blue-light transition-colors"
+                          className="ml-1 hover:text-accent-light transition-colors"
                         >
                           ×
                         </button>
@@ -224,16 +224,16 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                     ))}
                   </div>
                 )}
-                <p className="mt-1.5 font-mono text-[10px] text-claw-dim">
+                <p className="mt-1.5 font-mono text-[10px] text-dim">
                   Press Enter to add. {CATEGORY_LABELS[form.category as SkillCategory] || "Select a category"} skill triggers.
                 </p>
               </div>
 
               <div>
-                <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                  Instructions <span className="text-claw-blue">*</span>
+                <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-dim">
+                  Instructions <span className="text-accent">*</span>
                 </label>
-                <p className="mb-2 font-mono text-[10px] text-claw-dim">
+                <p className="mb-2 font-mono text-[10px] text-dim">
                   The actual agent prompt or skill definition. This gets copied on install.
                 </p>
                 <textarea
@@ -241,42 +241,42 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                   onChange={(e) => setForm((f) => ({ ...f, instructions: e.target.value }))}
                   placeholder="Paste your skill prompt here..."
                   rows={8}
-                  className="w-full border border-claw-border bg-claw-void px-4 py-3 font-mono text-sm text-claw-text placeholder:text-claw-border focus:border-claw-blue focus:outline-none transition-colors resize-none"
+                  className="w-full border border-border bg-void px-4 py-3 font-mono text-sm text-text placeholder:text-border focus:border-accent focus:outline-none transition-colors resize-none"
                   required
                 />
               </div>
 
               <div>
-                <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                  Your Name <span className="text-claw-blue">*</span>
+                <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-dim">
+                  Your Name <span className="text-accent">*</span>
                 </label>
                 <input
                   type="text"
                   value={form.submitter_name}
                   onChange={(e) => setForm((f) => ({ ...f, submitter_name: e.target.value }))}
                   placeholder="Tylerdotai"
-                  className="w-full border border-claw-border bg-claw-void px-4 py-3 font-mono text-sm text-claw-text placeholder:text-claw-border focus:border-claw-blue focus:outline-none transition-colors"
+                  className="w-full border border-border bg-void px-4 py-3 font-mono text-sm text-text placeholder:text-border focus:border-accent focus:outline-none transition-colors"
                   required
                 />
               </div>
 
               <div>
-                <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                  API Key <span className="text-claw-dim">(optional — for agent submissions)</span>
+                <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-dim">
+                  API Key <span className="text-dim">(optional — for agent submissions)</span>
                 </label>
                 <input
                   type="password"
                   value={form.api_key}
                   onChange={(e) => setForm((f) => ({ ...f, api_key: e.target.value }))}
                   placeholder="Your API key (optional)"
-                  className="w-full border border-claw-border bg-claw-void px-4 py-3 font-mono text-sm text-claw-text placeholder:text-claw-border focus:border-claw-blue focus:outline-none transition-colors"
+                  className="w-full border border-border bg-void px-4 py-3 font-mono text-sm text-text placeholder:text-border focus:border-accent focus:outline-none transition-colors"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full border border-claw-blue bg-claw-blue px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-blue/90 transition-colors disabled:opacity-50"
+                className="w-full border border-accent bg-accent px-8 py-4 font-mono text-sm uppercase tracking-widest text-void hover:bg-accent/90 transition-colors disabled:opacity-50"
               >
                 {status === "loading" ? "Submitting..." : "Submit Skill"}
               </button>
@@ -327,13 +327,13 @@ export function SkillsClient() {
       <Nav />
       <main>
         {/* Hero */}
-        <section className="border-b border-claw-border px-5 md:px-8 pt-20 pb-14">
+        <section className="border-b border-border px-5 md:px-8 pt-20 pb-14">
           <div className="mx-auto max-w-5xl">
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-3"
+              className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-3"
             >
               Agent Builders Club Marketplace
             </motion.p>
@@ -341,7 +341,7 @@ export function SkillsClient() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.06 }}
-              className="font-display text-4xl md:text-6xl lg:text-7xl tracking-wider text-claw-text mb-4"
+              className="font-display text-4xl md:text-6xl lg:text-7xl tracking-wider text-text mb-4"
             >
               AGENT SKILLS.
             </motion.h1>
@@ -349,7 +349,7 @@ export function SkillsClient() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.12 }}
-              className="text-base text-claw-muted max-w-xl"
+              className="text-base text-muted max-w-xl"
             >
               Community-built agents, ready to install.
             </motion.p>
@@ -361,19 +361,19 @@ export function SkillsClient() {
             >
               <button
                 onClick={() => setSubmitOpen(true)}
-                className="border border-claw-blue bg-claw-blue px-6 py-3 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-blue/90 transition-colors"
+                className="border border-accent bg-accent px-6 py-3 font-mono text-sm uppercase tracking-widest text-void hover:bg-accent/90 transition-colors"
               >
                 + Submit a Skill
               </button>
               <Link
                 href="/community"
-                className="border border-claw-border px-6 py-3 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors"
+                className="border border-border px-6 py-3 font-mono text-sm uppercase tracking-widest text-muted hover:border-accent hover:text-accent transition-colors"
               >
                 View Feed
               </Link>
               <Link
                 href="/community/projects"
-                className="border border-claw-border px-6 py-3 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors"
+                className="border border-border px-6 py-3 font-mono text-sm uppercase tracking-widest text-muted hover:border-accent hover:text-accent transition-colors"
               >
                 See Projects
               </Link>
@@ -382,7 +382,7 @@ export function SkillsClient() {
         </section>
 
         {/* Category filter */}
-        <section className="border-b border-claw-border px-5 md:px-8 py-5">
+        <section className="border-b border-border px-5 md:px-8 py-5">
           <div className="mx-auto max-w-5xl">
             <div className="flex flex-wrap gap-2">
               {CATEGORIES.map((cat) => (
@@ -391,8 +391,8 @@ export function SkillsClient() {
                   onClick={() => setActiveCategory(cat)}
                   className={`border px-4 py-1.5 font-mono text-xs uppercase tracking-widest transition-colors ${
                     activeCategory === cat
-                      ? "border-claw-blue bg-claw-blue text-claw-void"
-                      : "border-claw-border text-claw-dim hover:border-claw-blue hover:text-claw-blue"
+                      ? "border-accent bg-accent text-void"
+                      : "border-border text-dim hover:border-accent hover:text-accent"
                   }`}
                 >
                   {CATEGORY_LABELS[cat]}
@@ -406,30 +406,30 @@ export function SkillsClient() {
         <section ref={gridRef} className="px-5 md:px-8 py-10 md:py-16">
           <div className="mx-auto max-w-5xl">
             {loading ? (
-              <div className="text-center py-24 font-mono text-xs uppercase tracking-widest text-claw-dim">
+              <div className="text-center py-24 font-mono text-xs uppercase tracking-widest text-dim">
                 Loading...
               </div>
             ) : error ? (
               <div className="text-center py-16">
-                <p className="font-mono text-sm text-claw-muted mb-4">{error}</p>
+                <p className="font-mono text-sm text-muted mb-4">{error}</p>
                 <button
                   onClick={loadSkills}
-                  className="border border-claw-border px-6 py-3 font-mono text-xs uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors"
+                  className="border border-border px-6 py-3 font-mono text-xs uppercase tracking-widest text-muted hover:border-accent hover:text-accent transition-colors"
                 >
                   Retry
                 </button>
               </div>
             ) : filtered.length === 0 ? (
               <div className="text-center py-24">
-                <p className="font-display text-3xl text-claw-text mb-3">No skills yet.</p>
-                <p className="font-mono text-sm text-claw-dim">
+                <p className="font-display text-3xl text-text mb-3">No skills yet.</p>
+                <p className="font-mono text-sm text-dim">
                   {activeCategory === "All"
                     ? "Be the first to submit a skill to the marketplace."
                     : `No ${CATEGORY_LABELS[activeCategory as SkillCategory]} skills yet. Be the first to submit one.`}
                 </p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-claw-border">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-border">
                 {filtered.map((skill, i) => (
                   <motion.div
                     key={skill.id}

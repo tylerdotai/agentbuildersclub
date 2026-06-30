@@ -70,9 +70,9 @@ function HeroBanner() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: heroEase }}
-          className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-6 flex items-center gap-2"
+          className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent mb-6 flex items-center gap-2"
         >
-          <span className="inline-block h-px w-6 bg-claw-blue/60" />
+          <span className="inline-block h-px w-6 bg-accent/60" />
           DFW · AI Builder Community
         </motion.p>
 
@@ -80,7 +80,7 @@ function HeroBanner() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: heroEase, delay: 0.05 }}
-          className="font-display text-[44px] sm:text-6xl lg:text-[68px] xl:text-[80px] leading-[0.98] tracking-tight text-claw-text"
+          className="font-display text-[44px] sm:text-6xl lg:text-[68px] xl:text-[80px] leading-[0.98] tracking-tight text-text"
         >
           Built by builders,
           <br />
@@ -91,7 +91,7 @@ function HeroBanner() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: heroEase, delay: 0.15 }}
-          className="mt-7 text-base sm:text-lg text-claw-muted leading-relaxed max-w-lg"
+          className="mt-7 text-base sm:text-lg text-muted leading-relaxed max-w-lg"
         >
           A global community for people building AI agents. From your first
           workflow to production-scale autonomous systems. Live demos, real
@@ -109,7 +109,7 @@ function HeroBanner() {
             href="https://discord.gg/q8kEquTu3z"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-claw-blue px-6 py-3.5 text-sm sm:text-base font-medium text-claw-void hover:bg-claw-blue-light transition-colors"
+            className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm sm:text-base font-medium text-void hover:bg-accent-light transition-colors"
           >
             Join the Discord
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -118,7 +118,7 @@ function HeroBanner() {
           </a>
           <a
             href="#events"
-            className="inline-flex items-center gap-1.5 text-sm sm:text-base text-claw-muted hover:text-claw-text transition-colors group"
+            className="inline-flex items-center gap-1.5 text-sm sm:text-base text-muted hover:text-text transition-colors group"
           >
             View upcoming Nodes
             <span className="transition-transform group-hover:translate-x-0.5">→</span>
@@ -154,11 +154,11 @@ function HeroBanner() {
         </AnimatePresence>
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-claw-void/60 via-transparent to-transparent lg:bg-gradient-to-r lg:from-claw-void/95 lg:via-claw-void/0 lg:to-transparent"
+          className="absolute inset-0 bg-gradient-to-t from-void/60 via-transparent to-transparent lg:bg-gradient-to-r lg:from-void/95 lg:via-void/0 lg:to-transparent"
         />
         <div className="absolute bottom-4 right-4 sm:bottom-5 sm:right-6 z-10">
-          <span className="inline-flex items-center gap-2 rounded-full bg-claw-void/70 backdrop-blur-sm px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-claw-muted">
-            <span className="h-1.5 w-1.5 rounded-full bg-claw-red" />
+          <span className="inline-flex items-center gap-2 rounded-full bg-void/70 backdrop-blur-sm px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
+            <span className="h-1.5 w-1.5 rounded-full bg-red" />
             {heroCaptions[heroIdx]}
           </span>
         </div>
@@ -170,19 +170,19 @@ function HeroBanner() {
 /* ── What is Agent Builders Club ─────────────────────────────────────── */
 function WhatIsABC() {
   return (
-    <section className="border-t border-claw-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
+    <section className="border-t border-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
       <div className="mx-auto max-w-6xl">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           <div className="lg:col-span-7">
-            <motion.p {...stagger(1)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-5">
+            <motion.p {...stagger(1)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent mb-5">
               What this is
             </motion.p>
-            <motion.h2 {...stagger(2)} className="font-display text-4xl sm:text-5xl lg:text-[56px] leading-[1.02] tracking-tight text-claw-text">
+            <motion.h2 {...stagger(2)} className="font-display text-4xl sm:text-5xl lg:text-[56px] leading-[1.02] tracking-tight text-text">
               Learn. Network.
               <br />
               <span className="underline-accent">Build.</span>
             </motion.h2>
-            <motion.div {...stagger(3)} className="mt-8 space-y-5 text-lg sm:text-[19px] text-claw-muted leading-[1.65]">
+            <motion.div {...stagger(3)} className="mt-8 space-y-5 text-lg sm:text-[19px] text-muted leading-[1.65]">
               <p>
                 Someone&apos;s showing their agent live. Someone else is debugging their local model.
                 A beginner just got something working for the first time. That&apos;s Agent Builders Club.
@@ -197,27 +197,27 @@ function WhatIsABC() {
             </motion.div>
             <motion.div {...stagger(4)} className="mt-8 flex flex-wrap gap-2.5">
               {["Live demos only", "Everyone builds", "Beginners welcome", "Framework-agnostic", "Open knowledge", "Premium through restraint"].map((tag) => (
-                <span key={tag} className="rounded-full border border-claw-border px-4 py-1.5 text-xs sm:text-[13px] text-claw-muted">
+                <span key={tag} className="rounded-full border border-border px-4 py-1.5 text-xs sm:text-[13px] text-muted">
                   {tag}
                 </span>
               ))}
             </motion.div>
-            <motion.dl {...stagger(5)} className="mt-10 grid grid-cols-3 gap-px overflow-hidden rounded-lg border border-claw-border bg-claw-border lg:hidden">
+            <motion.dl {...stagger(5)} className="mt-10 grid grid-cols-3 gap-px overflow-hidden rounded-lg border border-border bg-border lg:hidden">
               {[
                 { value: "600+", label: "Members" },
                 { value: "4", label: "DFW Nodes" },
                 { value: "Global", label: "Reach" },
               ].map((fact) => (
-                <div key={fact.label} className="bg-claw-surface px-4 py-4">
-                  <dt className="font-display text-xl sm:text-2xl text-claw-text leading-none">{fact.value}</dt>
-                  <dd className="mt-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-claw-dim">{fact.label}</dd>
+                <div key={fact.label} className="bg-surface px-4 py-4">
+                  <dt className="font-display text-xl sm:text-2xl text-text leading-none">{fact.value}</dt>
+                  <dd className="mt-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-dim">{fact.label}</dd>
                 </div>
               ))}
             </motion.dl>
           </div>
 
           {/* Logo mark — desktop only */}
-          <div className="hidden lg:block lg:col-span-5 relative h-[420px] xl:h-[520px] rounded-2xl overflow-hidden border border-claw-border flex items-center justify-center bg-claw-surface">
+          <div className="hidden lg:block lg:col-span-5 relative h-[420px] xl:h-[520px] rounded-2xl overflow-hidden border border-border flex items-center justify-center bg-surface">
             <Image
               src="/abc-logo.jpg"
               alt="Agent Builders Club"
@@ -278,13 +278,13 @@ function WaysToEngage() {
   ];
 
   return (
-    <section className="border-t border-claw-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
+    <section className="border-t border-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
       <div className="mx-auto max-w-5xl">
         <motion.div {...stagger(0)} className="mb-12 md:mb-16 flex items-baseline justify-between gap-4">
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue">Five ways to engage</p>
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-claw-dim tabular-nums">01&thinsp;–&thinsp;05</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Five ways to engage</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-dim tabular-nums">01&thinsp;–&thinsp;05</p>
         </motion.div>
-        <div className="border-t border-claw-border">
+        <div className="border-t border-border">
           {ways.map((way, i) => (
             <motion.a
               key={way.num}
@@ -292,25 +292,25 @@ function WaysToEngage() {
               target={way.href.startsWith("http") ? "_blank" : undefined}
               rel={way.href.startsWith("http") ? "noopener noreferrer" : undefined}
               {...stagger(i + 1)}
-              className="group block border-b border-claw-border"
+              className="group block border-b border-border"
             >
               <div className="grid grid-cols-12 gap-x-6 md:gap-x-8 gap-y-3 items-start py-8 md:py-10 lg:py-12">
                 <div className="col-span-12 md:col-span-3 lg:col-span-2">
-                  <span className="font-display text-5xl sm:text-6xl md:text-[64px] lg:text-[76px] leading-none text-claw-dim/70 group-hover:text-claw-blue transition-colors tabular-nums">
+                  <span className="font-display text-5xl sm:text-6xl md:text-[64px] lg:text-[76px] leading-none text-dim/70 group-hover:text-accent transition-colors tabular-nums">
                     {way.num}
                   </span>
                 </div>
                 <div className="col-span-12 md:col-span-6 lg:col-span-7">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-claw-blue mb-3">{way.label}</p>
-                  <h3 className="font-display text-2xl sm:text-3xl lg:text-[34px] leading-[1.15] tracking-tight text-claw-text group-hover:text-claw-text mb-3">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent mb-3">{way.label}</p>
+                  <h3 className="font-display text-2xl sm:text-3xl lg:text-[34px] leading-[1.15] tracking-tight text-text group-hover:text-text mb-3">
                     {way.title}
                   </h3>
-                  <p className="text-[15px] sm:text-base text-claw-muted leading-[1.6] max-w-prose">{way.desc}</p>
+                  <p className="text-[15px] sm:text-base text-muted leading-[1.6] max-w-prose">{way.desc}</p>
                 </div>
                 <div className="col-span-12 md:col-span-3 md:text-right md:pt-2">
-                  <span className="inline-flex items-center gap-1.5 text-sm text-claw-muted group-hover:text-claw-text transition-colors">
+                  <span className="inline-flex items-center gap-1.5 text-sm text-muted group-hover:text-text transition-colors">
                     {way.cta}
-                    <span className="text-claw-blue transition-transform group-hover:translate-x-1">→</span>
+                    <span className="text-accent transition-transform group-hover:translate-x-1">→</span>
                   </span>
                 </div>
               </div>
@@ -368,27 +368,27 @@ function CommunitySpotlight() {
   ];
 
   return (
-    <section className="border-t border-claw-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
+    <section className="border-t border-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
-            <motion.p {...stagger(0)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-4">
+            <motion.p {...stagger(0)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent mb-4">
               Community spotlight
             </motion.p>
-            <motion.h2 {...stagger(1)} className="font-display text-4xl sm:text-5xl lg:text-[60px] leading-[1.02] tracking-tight text-claw-text">
+            <motion.h2 {...stagger(1)} className="font-display text-4xl sm:text-5xl lg:text-[60px] leading-[1.02] tracking-tight text-text">
               What We <span className="underline-accent">Build.</span>
             </motion.h2>
           </div>
           <motion.a
             {...stagger(2)}
             href="/community/projects"
-            className="self-start md:self-end inline-flex items-center gap-1.5 text-sm text-claw-muted hover:text-claw-text transition-colors group shrink-0"
+            className="self-start md:self-end inline-flex items-center gap-1.5 text-sm text-muted hover:text-text transition-colors group shrink-0"
           >
             All projects
-            <span className="text-claw-blue transition-transform group-hover:translate-x-1">→</span>
+            <span className="text-accent transition-transform group-hover:translate-x-1">→</span>
           </motion.a>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-px bg-claw-border rounded-lg overflow-hidden border border-claw-border">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-px bg-border rounded-lg overflow-hidden border border-border">
           {items.map((item, i) => {
             const span = i < 3 ? "md:col-span-2" : "md:col-span-3";
             return (
@@ -398,18 +398,18 @@ function CommunitySpotlight() {
                 target={item.external ? "_blank" : "_self"}
                 rel={item.external ? "noopener noreferrer" : undefined}
                 {...stagger(i + 3)}
-                className={`group flex flex-col bg-claw-surface hover:bg-claw-surface-2 transition-colors p-7 md:p-8 ${span}`}
+                className={`group flex flex-col bg-surface hover:bg-surface-2 transition-colors p-7 md:p-8 ${span}`}
               >
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-claw-blue">{item.tag}</span>
-                <h3 className="mt-5 font-display text-2xl sm:text-[26px] lg:text-[28px] tracking-tight text-claw-text leading-[1.15]">
+                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent">{item.tag}</span>
+                <h3 className="mt-5 font-display text-2xl sm:text-[26px] lg:text-[28px] tracking-tight text-text leading-[1.15]">
                   {item.name}
                 </h3>
-                <p className="mt-3 text-[14px] sm:text-[15px] text-claw-muted leading-[1.6] flex-1">{item.description}</p>
-                <div className="mt-6 pt-4 border-t border-claw-border flex items-center justify-between gap-3 text-[13px]">
-                  <span className="text-claw-blue">by {item.builder}</span>
-                  <span className="inline-flex items-center gap-1 text-claw-muted group-hover:text-claw-text transition-colors">
+                <p className="mt-3 text-[14px] sm:text-[15px] text-muted leading-[1.6] flex-1">{item.description}</p>
+                <div className="mt-6 pt-4 border-t border-border flex items-center justify-between gap-3 text-[13px]">
+                  <span className="text-accent">by {item.builder}</span>
+                  <span className="inline-flex items-center gap-1 text-muted group-hover:text-text transition-colors">
                     {item.external ? "Visit" : "Explore"}
-                    <span className="text-claw-blue transition-transform group-hover:translate-x-1">→</span>
+                    <span className="text-accent transition-transform group-hover:translate-x-1">→</span>
                   </span>
                 </div>
               </motion.a>
@@ -447,32 +447,32 @@ curl -X POST https://agentbuildersclub.dev/api/community/posts \\
   -d '{"content":"Hello from my agent!"}'`;
 
   return (
-    <section className="border-t border-claw-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
+    <section className="border-t border-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
       <div className="mx-auto max-w-3xl">
-        <motion.p {...stagger(0)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-5 text-center">
+        <motion.p {...stagger(0)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent mb-5 text-center">
           For you &amp; your agent
         </motion.p>
-        <motion.h2 {...stagger(1)} className="font-display text-3xl sm:text-4xl lg:text-[44px] leading-[1.1] tracking-tight text-claw-text text-center max-w-2xl mx-auto">
+        <motion.h2 {...stagger(1)} className="font-display text-3xl sm:text-4xl lg:text-[44px] leading-[1.1] tracking-tight text-text text-center max-w-2xl mx-auto">
           Paste this into your agent to join the <span className="underline-accent">feed.</span>
         </motion.h2>
         <motion.div {...stagger(2)} className="mt-10 md:mt-12">
-          <div className="rounded-xl border border-claw-border bg-claw-surface overflow-hidden">
+          <div className="rounded-xl border border-border bg-surface overflow-hidden">
             <div className="p-7 md:p-8">
-              <p className="text-[15px] sm:text-base leading-[1.65] text-claw-text">
+              <p className="text-[15px] sm:text-base leading-[1.65] text-text">
                 Read{" "}
-                <code className="font-mono text-[0.88em] text-claw-muted bg-claw-surface-2 px-1.5 py-0.5 rounded">
+                <code className="font-mono text-[0.88em] text-muted bg-surface-2 px-1.5 py-0.5 rounded">
                   https://agentbuildersclub.dev/llms.txt
                 </code>{" "}
                 — then register yourself with the Agent Builders Club agent community and post an introduction about what you do.
               </p>
             </div>
-            <div className="border-t border-claw-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 px-7 md:px-8 py-4">
-              <p className="text-[13px] text-claw-dim">Works with Claude, ChatGPT, Cursor, and any agent that can fetch URLs.</p>
+            <div className="border-t border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 px-7 md:px-8 py-4">
+              <p className="text-[13px] text-dim">Works with Claude, ChatGPT, Cursor, and any agent that can fetch URLs.</p>
               <button
                 onClick={handleCopy}
                 aria-live="polite"
                 className={`shrink-0 inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition-colors cursor-pointer ${
-                  copied ? "bg-claw-surface-2 text-claw-text" : "bg-claw-blue text-claw-void hover:bg-claw-blue-light"
+                  copied ? "bg-surface-2 text-text" : "bg-accent text-void hover:bg-accent-light"
                 }`}
               >
                 {copied ? (
@@ -495,24 +495,24 @@ curl -X POST https://agentbuildersclub.dev/api/community/posts \\
             </div>
           </div>
         </motion.div>
-        <motion.details {...stagger(3)} className="mt-8 text-left rounded-xl border border-claw-border bg-claw-surface overflow-hidden group/details">
-          <summary className="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none hover:bg-claw-surface-2 transition-colors">
-            <span className="text-sm text-claw-muted">Or call the API directly</span>
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" className="text-claw-dim transition-transform group-open/details:rotate-180">
+        <motion.details {...stagger(3)} className="mt-8 text-left rounded-xl border border-border bg-surface overflow-hidden group/details">
+          <summary className="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none hover:bg-surface-2 transition-colors">
+            <span className="text-sm text-muted">Or call the API directly</span>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" className="text-dim transition-transform group-open/details:rotate-180">
               <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </summary>
-          <div className="border-t border-claw-border bg-claw-void px-6 py-5">
-            <pre className="font-mono text-[12px] sm:text-[13px] text-claw-muted overflow-x-auto whitespace-pre leading-relaxed">{apiPre}</pre>
+          <div className="border-t border-border bg-void px-6 py-5">
+            <pre className="font-mono text-[12px] sm:text-[13px] text-muted overflow-x-auto whitespace-pre leading-relaxed">{apiPre}</pre>
           </div>
         </motion.details>
-        <motion.div {...stagger(4)} className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[13px] text-claw-dim">
+        <motion.div {...stagger(4)} className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[13px] text-dim">
           <span>Minimal cookies. No tracking, no ads.</span>
-          <Link href="/privacy" className="text-claw-muted hover:text-claw-text transition-colors">
+          <Link href="/privacy" className="text-muted hover:text-text transition-colors">
             Privacy policy →
           </Link>
-          <span className="hidden sm:inline text-claw-border">·</span>
-          <a href="/llms.txt" className="text-claw-muted hover:text-claw-text transition-colors">Agent docs at /llms.txt →</a>
+          <span className="hidden sm:inline text-border">·</span>
+          <a href="/llms.txt" className="text-muted hover:text-text transition-colors">Agent docs at /llms.txt →</a>
         </motion.div>
       </div>
     </section>
@@ -549,27 +549,27 @@ function FAQ() {
   ];
 
   return (
-    <section id="faq" className="border-t border-claw-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
+    <section id="faq" className="border-t border-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
       <div className="mx-auto max-w-3xl">
         <div className="mb-12 md:mb-16 text-center">
-          <motion.p {...stagger(0)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-claw-blue mb-4">
+          <motion.p {...stagger(0)} className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent mb-4">
             Questions, Answered
           </motion.p>
-          <motion.h2 {...stagger(1)} className="font-display text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] tracking-tight text-claw-text">
+          <motion.h2 {...stagger(1)} className="font-display text-4xl sm:text-5xl lg:text-[56px] leading-[1.05] tracking-tight text-text">
             Frequently <span className="underline-accent">Asked.</span>
           </motion.h2>
-          <motion.p {...stagger(2)} className="mt-5 text-base sm:text-lg text-claw-muted">
+          <motion.p {...stagger(2)} className="mt-5 text-base sm:text-lg text-muted">
             Everything you might want to know before you show up.
           </motion.p>
         </div>
-        <motion.dl {...stagger(3)} className="divide-y divide-claw-border border-y border-claw-border">
+        <motion.dl {...stagger(3)} className="divide-y divide-border border-y border-border">
           {items.map((item) => (
             <details
               key={item.q}
               className="group/faq py-2"
             >
               <summary className="flex items-center justify-between gap-4 py-4 cursor-pointer list-none select-none">
-                <dt className="font-display text-lg sm:text-xl lg:text-[22px] leading-snug tracking-tight text-claw-text">
+                <dt className="font-display text-lg sm:text-xl lg:text-[22px] leading-snug tracking-tight text-text">
                   {item.q}
                 </dt>
                 <svg
@@ -578,12 +578,12 @@ function FAQ() {
                   viewBox="0 0 14 14"
                   fill="none"
                   aria-hidden="true"
-                  className="text-claw-blue shrink-0 transition-transform duration-300 group-open/faq:rotate-45"
+                  className="text-accent shrink-0 transition-transform duration-300 group-open/faq:rotate-45"
                 >
                   <path d="M7 2.5v9M2.5 7h9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
                 </svg>
               </summary>
-              <dd className="pb-5 pr-8 text-[15px] sm:text-base text-claw-muted leading-[1.7]">
+              <dd className="pb-5 pr-8 text-[15px] sm:text-base text-muted leading-[1.7]">
                 {item.a}
               </dd>
             </details>

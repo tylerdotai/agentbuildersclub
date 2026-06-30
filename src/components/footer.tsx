@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="border-t border-claw-border bg-claw-void">
+    <footer className="border-t border-border bg-void">
       {/* Main footer */}
       <div className="mx-auto max-w-7xl px-5 md:px-8 py-14 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-8">
@@ -23,14 +23,14 @@ export function Footer() {
                 height={28}
                 className="object-contain"
               />
-              <span className="font-display text-xl tracking-tight text-claw-text">
+              <span className="font-display text-xl tracking-tight text-text">
                 Agent Builders Club
               </span>
             </Link>
-            <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.22em] text-claw-blue">
+            <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.22em] text-accent">
               Global AI Builder Community
             </p>
-            <p className="mt-4 text-[14px] sm:text-[15px] text-claw-muted leading-[1.6] max-w-sm">
+            <p className="mt-4 text-[14px] sm:text-[15px] text-muted leading-[1.6] max-w-sm">
               Built by builders, for builders. Weekly Node meetups in DFW,
               streaming live worldwide. No vendor pitches. Just people with
               laptops shipping real things.
@@ -39,7 +39,7 @@ export function Footer() {
 
           {/* Nav columns */}
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-claw-blue mb-5">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent mb-5">
               Community
             </p>
             <ul className="space-y-3">
@@ -55,7 +55,7 @@ export function Footer() {
                     {...(item.external
                       ? { target: "_blank", rel: "noopener noreferrer" }
                       : {})}
-                    className="text-[14px] text-claw-muted hover:text-claw-text transition-colors"
+                    className="text-[14px] text-muted hover:text-text transition-colors"
                   >
                     {item.label}
                   </a>
@@ -65,7 +65,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-claw-blue mb-5">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent mb-5">
               Events
             </p>
             <ul className="space-y-3">
@@ -79,7 +79,7 @@ export function Footer() {
                     {...(item.external
                       ? { target: "_blank", rel: "noopener noreferrer" }
                       : {})}
-                    className="text-[14px] text-claw-muted hover:text-claw-text transition-colors"
+                    className="text-[14px] text-muted hover:text-text transition-colors"
                   >
                     {item.label}
                   </a>
@@ -89,7 +89,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-claw-blue mb-5">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent mb-5">
               Organization
             </p>
             <ul className="space-y-3">
@@ -103,7 +103,7 @@ export function Footer() {
                     {...(item.external
                       ? { target: "_blank", rel: "noopener noreferrer" }
                       : {})}
-                    className="text-[14px] text-claw-muted hover:text-claw-text transition-colors"
+                    className="text-[14px] text-muted hover:text-text transition-colors"
                   >
                     {item.label}
                   </a>
@@ -115,21 +115,21 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-claw-border">
+      <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-5 md:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[13px] text-claw-dim text-center md:text-left">
+          <p className="text-[13px] text-dim text-center md:text-left">
             © {new Date().getFullYear()} Agent Builders Club DFW
           </p>
           <div className="flex items-center gap-5 text-[13px]">
             <Link
               href="/privacy"
-              className="text-claw-dim hover:text-claw-text transition-colors"
+              className="text-dim hover:text-text transition-colors"
             >
               Privacy
             </Link>
             <Link
               href="/terms"
-              className="text-claw-dim hover:text-claw-text transition-colors"
+              className="text-dim hover:text-text transition-colors"
             >
               Terms
             </Link>
@@ -137,7 +137,7 @@ export function Footer() {
               href="https://github.com/ClawPlexDFW"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-claw-dim hover:text-claw-text transition-colors"
+              className="text-dim hover:text-text transition-colors"
             >
               GitHub
             </a>

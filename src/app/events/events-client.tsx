@@ -55,21 +55,21 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
         <Nav />
         <main>
           {/* Header */}
-          <section className="border-b border-claw-border px-5 md:px-8 py-16 md:py-24">
+          <section className="border-b border-border px-5 md:px-8 py-16 md:py-24">
             <div className="mx-auto max-w-4xl text-center">
               <motion.p
                 {...stagger(0)}
-                className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-4"
+                className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-4"
               >
                 Agent Builders Club DFW
               </motion.p>
               <motion.h1
                 {...stagger(1)}
-                className="font-display text-4xl md:text-6xl tracking-wider text-claw-text leading-none"
+                className="font-display text-4xl md:text-6xl tracking-wider text-text leading-none"
               >
                 Events
               </motion.h1>
-              <motion.p {...stagger(2)} className="mt-4 text-base text-claw-muted max-w-xl mx-auto">
+              <motion.p {...stagger(2)} className="mt-4 text-base text-muted max-w-xl mx-auto">
                 Every week, builders come together to ship something real.
                 No panels. No slides. Just demos, code, and decisions made in the room.
               </motion.p>
@@ -77,11 +77,11 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
           </section>
 
           {/* Calendar */}
-          <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
+          <section className="border-b border-border px-5 md:px-8 py-20 md:py-28">
             <div className="mx-auto max-w-5xl">
               <motion.p
                 {...stagger(0)}
-                className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-10 text-center"
+                className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-10 text-center"
               >
                 Upcoming
               </motion.p>
@@ -107,45 +107,45 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
 
           {/* Past */}
           {pastEvents.length > 0 && (
-            <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
+            <section className="border-b border-border px-5 md:px-8 py-20 md:py-28">
               <div className="mx-auto max-w-5xl">
                 <motion.p
                   {...stagger(0)}
-                  className="font-mono text-xs uppercase tracking-[0.2em] text-claw-dim mb-10 text-center"
+                  className="font-mono text-xs uppercase tracking-[0.2em] text-dim mb-10 text-center"
                 >
                   Past Events
                 </motion.p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                   {pastEvents.map((event, i) => (
                     <motion.div key={event.slug} {...stagger(i + 1)}>
-                      <div className="relative overflow-hidden border border-claw-border aspect-video mb-4">
+                      <div className="relative overflow-hidden border border-border aspect-video mb-4">
                         <Image
                           src={event.image}
                           alt={event.title}
                           fill
                           className="object-cover opacity-70"
                         />
-                        <div className="absolute top-4 left-4 border border-claw-border bg-claw-void/90 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-claw-dim">
+                        <div className="absolute top-4 left-4 border border-border bg-void/90 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-dim">
                           Past
                         </div>
                       </div>
-                      <h2 className="font-display text-4xl md:text-5xl tracking-wider text-claw-text mb-2">
+                      <h2 className="font-display text-4xl md:text-5xl tracking-wider text-text mb-2">
                         {event.title}.
                       </h2>
-                      <p className="font-mono text-sm text-claw-dim uppercase tracking-widest mb-4">
+                      <p className="font-mono text-sm text-dim uppercase tracking-widest mb-4">
                         {event.date}
                       </p>
-                      <p className="text-base text-claw-muted leading-relaxed mb-6">
+                      <p className="text-base text-muted leading-relaxed mb-6">
                         {event.description}
                       </p>
                       {event.stats && (
-                        <div className="flex gap-8 border-t border-claw-border pt-6">
+                        <div className="flex gap-8 border-t border-border pt-6">
                           {event.stats.map((stat) => (
                             <div key={stat.label}>
-                              <p className="font-display text-3xl text-claw-blue">
+                              <p className="font-display text-3xl text-accent">
                                 {stat.value}
                               </p>
-                              <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mt-1">
+                              <p className="font-mono text-[10px] uppercase tracking-widest text-dim mt-1">
                                 {stat.label}
                               </p>
                             </div>
@@ -162,13 +162,13 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
           {/* CTA */}
           <section className="px-5 md:px-8 py-20 md:py-28">
             <div className="mx-auto max-w-2xl text-center">
-              <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-widest text-claw-dim mb-4">
+              <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-widest text-dim mb-4">
                 Stay in the Loop
               </motion.p>
-              <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-5xl tracking-wider text-claw-text mb-6">
+              <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-5xl tracking-wider text-text mb-6">
                 Come to the next Node.
               </motion.h2>
-              <motion.p {...stagger(2)} className="text-base text-claw-muted mb-8">
+              <motion.p {...stagger(2)} className="text-base text-muted mb-8">
                 Every Node is free to attend. Bring a build to show, or just come to watch.
                 Either way — you won't leave empty-handed.
               </motion.p>
@@ -177,7 +177,7 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
                   href="https://discord.gg/q8kEquTu3z"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors text-center"
+                  className="border border-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-muted hover:border-accent hover:text-accent transition-colors text-center"
                 >
                   Join Discord
                 </a>

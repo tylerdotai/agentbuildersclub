@@ -19,28 +19,28 @@ export default function TermsPage() {
     <div className="min-h-screen">
       <Nav />
       <main className="pt-16">
-        <section className="border-b border-claw-border px-5 md:px-8 py-16 md:py-24">
+        <section className="border-b border-border px-5 md:px-8 py-16 md:py-24">
           <div className="mx-auto max-w-3xl">
-            <h1 className="font-display text-4xl md:text-5xl tracking-wider text-claw-text mb-2">
+            <h1 className="font-display text-4xl md:text-5xl tracking-wider text-text mb-2">
               Terms of Service
             </h1>
-            <p className="font-mono text-xs text-claw-dim uppercase tracking-widest">
+            <p className="font-mono text-xs text-dim uppercase tracking-widest">
               Effective 2024
             </p>
           </div>
         </section>
 
         <section className="px-5 md:px-8 py-16 md:py-20">
-          <div className="mx-auto max-w-3xl space-y-8 text-sm text-claw-muted leading-relaxed">
+          <div className="mx-auto max-w-3xl space-y-8 text-sm text-muted leading-relaxed">
             <div>
-              <h2 className="font-display text-xl text-claw-text mb-3">Acceptance of Terms</h2>
+              <h2 className="font-display text-xl text-text mb-3">Acceptance of Terms</h2>
               <p>
                 By accessing or using the Agent Builders Club platform, you agree to be bound by
                 these Terms of Service. If you do not agree, do not use the service.
               </p>
             </div>
             <div>
-              <h2 className="font-display text-xl text-claw-text mb-3">Community Guidelines</h2>
+              <h2 className="font-display text-xl text-text mb-3">Community Guidelines</h2>
               <p>
                 You agree to act respectfully in all community spaces — Discord, events, and online
                 platforms. Harassment, hate speech, spam, and illegal activity are prohibited and
@@ -48,7 +48,7 @@ export default function TermsPage() {
               </p>
             </div>
             <div>
-              <h2 className="font-display text-xl text-claw-text mb-3">Intellectual Property</h2>
+              <h2 className="font-display text-xl text-text mb-3">Intellectual Property</h2>
               <p>
                 Content you create in our community remains yours. By posting, you grant us a
                 non-exclusive license to display and share it in connection with the community.
@@ -56,7 +56,7 @@ export default function TermsPage() {
               </p>
             </div>
             <div>
-              <h2 className="font-display text-xl text-claw-text mb-3">Agent Registration</h2>
+              <h2 className="font-display text-xl text-text mb-3">Agent Registration</h2>
               <p>
                 Registering an AI agent through our platform requires accurate information. You
                 are responsible for agents registered under your name or email. We reserve the
@@ -64,7 +64,7 @@ export default function TermsPage() {
               </p>
             </div>
             <div>
-              <h2 className="font-display text-xl text-claw-text mb-3">Event Participation</h2>
+              <h2 className="font-display text-xl text-text mb-3">Event Participation</h2>
               <p>
                 Event attendance is subject to venue rules and codes of conduct. Agent Builders
                 Club is not responsible for injuries or losses at community events. You attend at
@@ -72,19 +72,19 @@ export default function TermsPage() {
               </p>
             </div>
             <div>
-              <h2 className="font-display text-xl text-claw-text mb-3">Disclaimer</h2>
+              <h2 className="font-display text-xl text-text mb-3">Disclaimer</h2>
               <p>
                 The platform is provided as-is. We do not guarantee uninterrupted access or the
                 accuracy of third-party content shared in community channels.
               </p>
             </div>
             <div>
-              <h2 className="font-display text-xl text-claw-text mb-3">Contact</h2>
+              <h2 className="font-display text-xl text-text mb-3">Contact</h2>
               <p>
                 Questions about these terms? Reach us at{" "}
                 <a
                   href="https://discord.gg/q8kEquTu3z"
-                  className="text-claw-blue hover:underline"
+                  className="text-accent hover:underline"
                 >
                   discord.gg/q8kEquTu3z
                 </a>
