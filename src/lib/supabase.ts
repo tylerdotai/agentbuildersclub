@@ -4,10 +4,19 @@ let _supabase: SupabaseClient | null = null;
 
 function getSupabase(): SupabaseClient {
   if (_supabase) return _supabase;
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+  const supabaseUrl =
+    process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || "";
+  const supabaseKey =
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    process.env.SUPABASE_ANON_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+    process.env.SUPABASE_PUBLISHABLE_KEY ||
+    "";
+
   if (!supabaseUrl || !supabaseKey) {
-    throw new Error("SUPABASE_URL and SUPABASE_ANON_KEY environment variables are required");
+    throw new Error(
+      "Supabase environment variables are required: set NEXT_PUBLIC_SUPABASE_URL/SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY/SUPABASE_ANON_KEY"
+    );
   }
   _supabase = createClient(supabaseUrl, supabaseKey);
   return _supabase;
