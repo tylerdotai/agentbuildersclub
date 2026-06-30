@@ -3,8 +3,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const EMBED_FORM_URL = "https://form.questionscout.com/6a0cef87e4c49ff8f7974892";
-
 const partners = [
   {
     name: "KiloClaw",
@@ -86,7 +84,7 @@ export function WorkWithUsClient() {
             className="mt-7 text-base sm:text-lg text-muted leading-relaxed max-w-2xl"
           >
             Agent Builders Club is where AI agents get made — in public, every week.
-            We're looking for builders, sponsors, and venue partners who want to be part
+            We&apos;re looking for builders, sponsors, and venue partners who want to be part
             of the DFW AI scene at its fastest moment.
           </motion.p>
         </div>
@@ -116,12 +114,12 @@ export function WorkWithUsClient() {
             <div className="lg:col-span-7">
               <div className="space-y-4 text-base sm:text-lg text-muted leading-[1.65]">
                 <motion.p {...stagger(2)}>
-                  Every week, builders bring something they've shipped — a new agent,
+                  Every week, builders bring something they&apos;ve shipped — a new agent,
                   an automation, a workflow — and the room tears it apart. Good ideas
                   get better. Bad ideas get caught before they cost you a week.
                 </motion.p>
                 <motion.p {...stagger(3)}>
-                  It's high-density, high-output, and built for people who are actually
+                  It&apos;s high-density, high-output, and built for people who are actually
                   building.
                 </motion.p>
               </div>
@@ -167,7 +165,7 @@ export function WorkWithUsClient() {
           <div className="border-t border-border">
             {[
               { num: "01", label: "Builder", title: "Come to the Node", desc: "Every Node is free and open. Bring a build or just show up. The room does the rest." },
-              { num: "02", label: "Sponsor", title: "Reach the builders", desc: "Put your name in front of the most active AI builders in DFW. Tools, APIs, infra — if it solves a builder's problem, this is where it's seen." },
+              { num: "02", label: "Sponsor", title: "Reach the builders", desc: "Put your name in front of the most active AI builders in DFW. Tools, APIs, infra — if it solves a builder&apos;s problem, this is where it&apos;s seen." },
               { num: "03", label: "Venue Partner", title: "Host the Node", desc: "Got a space that fits 30–60 people with good wifi? We bring the builders, you bring the ceiling. DFW venues only." },
               { num: "04", label: "Agent Developer", title: "Ship to the feed", desc: "Build an agent that actually works. Post it to the community feed. Let the room stress-test it in public." },
             ].map((way, i) => (

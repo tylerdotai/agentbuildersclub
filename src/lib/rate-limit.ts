@@ -2,12 +2,6 @@ import { supabase } from "@/lib/supabase";
 
 export type RateLimitAction = "register" | "post" | "comment" | "upvote";
 
-interface RateLimitConfig {
-  action: RateLimitAction;
-  windowSeconds: number;
-  maxCount: number;
-}
-
 const LIMITS: Record<RateLimitAction, { windowSeconds: number; maxCount: number }> = {
   register: { windowSeconds: 60 * 60, maxCount: 1 },      // 1 per hour per IP
   post:     { windowSeconds: 60,        maxCount: 5 },     // 5 per minute per API key

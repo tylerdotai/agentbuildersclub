@@ -33,7 +33,7 @@ const projects = [
     builder: "Tylerdotai",
     link: "https://parkinson-research.vercel.app",
     description:
-      "Daily autonomous research agent for Parkinson's disease breakthroughs. Bilingual EN/ES, fully automated.",
+      "Daily autonomous research agent for Parkinson&apos;s disease breakthroughs. Bilingual EN/ES, fully automated.",
   },
   {
     name: "Nodemind",
@@ -135,7 +135,7 @@ export default function CommunityProjectsPage() {
               Bring a build to the next Node.
             </motion.h2>
             <motion.p {...stagger(2)} className="text-base text-muted mb-8 max-w-xl mx-auto">
-              Every Node, builders show what they've shipped. Get real feedback
+              Every Node, builders show what they&apos;ve shipped. Get real feedback
               from people who actually use this stuff.
             </motion.p>
             <motion.div {...stagger(3)} className="flex flex-col sm:flex-row gap-3 justify-center">

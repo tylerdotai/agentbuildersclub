@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
 
@@ -30,7 +30,7 @@ const pastEvents = [
     date: "June 28, 2026",
     image: "/node-06-hermes-arlington-03.webp",
     description:
-      "Hermes Agent launch event at Spark Coworking Arlington. The community's own AI agent made its debut — live demo, real conversations, and a look at what's next for the DFW builder ecosystem.",
+      "Hermes Agent launch event at Spark Coworking Arlington. The community&apos;s own AI agent made its debut — live demo, real conversations, and a look at what&apos;s next for the DFW builder ecosystem.",
     stats: [
       { value: "Spark Coworking", label: "Arlington" },
       { value: "Jun 28", label: "2026" },
@@ -42,7 +42,7 @@ const pastEvents = [
     date: "June 3, 2026",
     image: "/node-05-claude-tools-southlake-01.webp",
     description:
-      "20+ DFW builders gathered at Office Evolution Southlake for an honest conversation about the AI tools actually on their desks — Cursor, Claude Code, OpenCode, OpenAI, Hermes, OpenClaw, and more. No slides, no pitches — just builders sharing what's working, what isn't, and what keeps giving them trouble.",
+      "20+ DFW builders gathered at Office Evolution Southlake for an honest conversation about the AI tools actually on their desks — Cursor, Claude Code, OpenCode, OpenAI, Hermes, OpenClaw, and more. No slides, no pitches — just builders sharing what&apos;s working, what isn&apos;t, and what keeps giving them trouble.",
     stats: [
       { value: "20+", label: "Builders" },
       { value: "Tools", label: "On The Desk" },
@@ -230,7 +230,7 @@ export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProp
               </motion.h2>
               <motion.p {...stagger(2)} className="text-base text-muted mb-8">
                 Every Node is free to attend. Bring a build to show, or just come to watch.
-                Either way — you won't leave empty-handed.
+                Either way — you won&apos;t leave empty-handed.
               </motion.p>
               <motion.div {...stagger(3)} className="flex justify-center">
                 <a

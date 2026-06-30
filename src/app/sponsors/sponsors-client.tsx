@@ -67,7 +67,7 @@ const tiers = [
     price: "Pay what you can",
     color: "border-border",
     description:
-      "Get a name on the website and a warm feeling. Great if you're just getting started.",
+      "Get a name on the website and a warm feeling. Great if you&apos;re just getting started.",
     perks: [
       "Logo on website (individuals)",
       "Shoutout at events",
@@ -133,18 +133,18 @@ export function SponsorsClient() {
           </div>
         </section>
 
-        {/* What we're building */}
+        {/* What we&apos;re building */}
         <section className="border-b border-border px-5 md:px-8 py-20 md:py-28">
           <div className="mx-auto max-w-5xl">
             <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-6">
-              What We're Building
+              What We&apos;re Building
             </motion.p>
             <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-5xl tracking-wider text-text mb-8">
               A community that actually ships
             </motion.h2>
             <div className="space-y-4 text-base text-muted leading-relaxed max-w-3xl">
               <motion.p {...stagger(2)}>
-                Agent Builders Club isn't a networking group. It's a working lab.
+                Agent Builders Club isn&apos;t a networking group. It&apos;s a working lab.
                 Members are shipping agents, automating workflows, and building businesses
                 on top of LLMs — in public, every week.
               </motion.p>
@@ -212,7 +212,7 @@ export function SponsorsClient() {
                   this is the room.
                 </motion.p>
                 <motion.p {...stagger(3)} className="text-base text-muted leading-relaxed">
-                  We don't do vendor pitches. Sponsors are visible, respected, and
+                  We don&apos;t do vendor pitches. Sponsors are visible, respected, and
                   present — but the stage belongs to builders.
                 </motion.p>
               </div>
@@ -314,7 +314,7 @@ export function SponsorsClient() {
               Get In Touch
             </motion.p>
             <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-5xl tracking-wider text-text mb-6">
-              Let's talk.
+              Let&apos;s talk.
             </motion.h2>
             <motion.p {...stagger(2)} className="text-base text-muted mb-8">
               Reach out on Discord or via the form below. We respond to every serious inquiry.

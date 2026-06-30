@@ -116,7 +116,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                 Submitted for Review
               </h3>
               <p className="font-mono text-sm text-muted">
-                Your skill has been submitted. We'll review it and add it to the marketplace soon.
+                Your skill has been submitted. We&apos;ll review it and add it to the marketplace soon.
               </p>
               <button
                 onClick={onClose}
@@ -200,7 +200,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                       setPhrase("");
                     }
                   }}
-                  placeholder='e.g. "analyze repo", "find bug"'
+                  placeholder=&apos;e.g. "analyze repo", "find bug"&apos;
                   className="w-full border border-border bg-void px-4 py-3 font-mono text-sm text-text placeholder:text-border focus:border-accent focus:outline-none transition-colors"
                 />
                 {form.triggers.length > 0 && (

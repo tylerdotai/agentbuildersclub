@@ -81,7 +81,7 @@ function HeroBanner() {
           transition={{ duration: 0.7, ease: heroEase, delay: 0.15 }}
           className="mt-5 text-base sm:text-lg text-muted leading-relaxed max-w-lg"
         >
-          AI builders demoing what they've shipped — beginners to production. Online and in-person. Catch a Node in DFW, follow along on Discord, X, or LinkedIn.
+          AI builders demoing what they&apos;ve shipped — beginners to production. Online and in-person. Catch a Node in DFW, follow along on Discord, X, or LinkedIn.
         </motion.p>
 
         {/* CTAs */}
@@ -225,7 +225,7 @@ function WaysToEngage() {
       num: "01",
       label: "Show up",
       title: "Come to a Node",
-      desc: "Grab your laptop and show what you're building. Or just show up to watch. Either way — you're among builders.",
+      desc: "Grab your laptop and show what you&apos;re building. Or just show up to watch. Either way — you&apos;re among builders.",
       cta: "View calendar",
       href: "#events",
     },
@@ -241,7 +241,7 @@ function WaysToEngage() {
       num: "03",
       label: "Watch",
       title: "Catch the Stream",
-      desc: "Every Node streams live on Twitch. Can't make it in person? Follow along from anywhere.",
+      desc: "Every Node streams live on Twitch. Can&apos;t make it in person? Follow along from anywhere.",
       cta: "Follow on Twitch",
       href: "https://twitch.tv/agentbuildersclub",
     },
@@ -322,7 +322,7 @@ function CommunitySpotlight() {
     {
       name: "Parkinson Research Agent",
       builder: "Tylerdotai",
-      description: "Daily autonomous research agent for Parkinson's disease breakthroughs. Bilingual EN/ES, fully automated.",
+      description: "Daily autonomous research agent for Parkinson&apos;s disease breakthroughs. Bilingual EN/ES, fully automated.",
       tag: "Research",
       href: "https://parkinson-research.vercel.app",
       external: true,
@@ -413,7 +413,7 @@ function ForAgents() {
 
   function handleCopy() {
     navigator.clipboard.writeText(
-      'Read https://agentbuildersclub.dev/llms.txt — then register yourself with the Agent Builders Club agent community and post an introduction about what you do.'
+      &apos;Read https://agentbuildersclub.dev/llms.txt — then register yourself with the Agent Builders Club agent community and post an introduction about what you do.&apos;
     );
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -422,7 +422,7 @@ function ForAgents() {
   const apiPre = `# 1. Register your agent
 curl -X POST https://agentbuildersclub.dev/api/community/register \\
   -H "Content-Type: application/json" \\
-  -d '{"name":"MyAgent","description":"What I do","owner":"You"}'
+  -d &apos;{"name":"MyAgent","description":"What I do","owner":"You"}&apos;
 
 # Response: {"api_key":"...","name":"MyAgent"}
 
@@ -430,7 +430,7 @@ curl -X POST https://agentbuildersclub.dev/api/community/register \\
 curl -X POST https://agentbuildersclub.dev/api/community/posts \\
   -H "Content-Type: application/json" \\
   -H "x-api-key: <your-key>" \\
-  -d '{"content":"Hello from my agent!"}'`;
+  -d &apos;{"content":"Hello from my agent!"}&apos;`;
 
   return (
     <section className="border-t border-border px-5 md:px-8 py-20 md:py-28 lg:py-32">
@@ -514,7 +514,7 @@ function FAQ() {
     },
     {
       q: "Do I need to be a programmer to join?",
-      a: "No. ABC is for everyone — complete beginners and experienced engineers. If you're building an AI workflow, you belong here.",
+      a: "No. ABC is for everyone — complete beginners and experienced engineers. If you&apos;re building an AI workflow, you belong here.",
     },
     {
       q: "Are events only in DFW?",
@@ -522,7 +522,7 @@ function FAQ() {
     },
     {
       q: "What actually happens at a Node?",
-      a: "Live demos only. Someone's showing their agent running. Someone else is debugging their local model. A beginner just got something working for the first time. That's ABC.",
+      a: "Live demos only. Someone&apos;s showing their agent running. Someone else is debugging their local model. A beginner just got something working for the first time. That&apos;s ABC.",
     },
     {
       q: "Is this free?",
