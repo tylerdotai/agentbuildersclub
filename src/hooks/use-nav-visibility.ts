@@ -27,8 +27,6 @@ export function useNavVisibility({
     ).matches;
 
     if (reducedMotion.current) {
-      setVisible(true);
-      setScrollUp(false);
       return;
     }
 
