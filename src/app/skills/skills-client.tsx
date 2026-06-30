@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { Nav } from "@/components/nav";
-import { motion } from "framer-motion";
 import { SkillCard } from "@/components/skill-card";
 import type { Skill, SkillCategory } from "@/components/skill-card";
 
@@ -50,30 +49,15 @@ export function SkillsClient() {
       <main className="pt-16">
         <section className="border-b border-border px-5 md:px-8 pt-20 pb-14">
           <div className="mx-auto max-w-5xl">
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-3"
-            >
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-3">
               Agent Builders Club Marketplace
-            </motion.p>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15 }}
-              className="font-display text-4xl md:text-6xl lg:text-7xl tracking-wider text-text mb-4"
-            >
+            </p>
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl tracking-wider text-text mb-4">
               AGENT SKILLS.
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-base text-muted max-w-xl"
-            >
+            </h1>
+            <p className="text-base text-muted max-w-xl">
               Community-built agents, ready to install.
-            </motion.p>
+            </p>
           </div>
         </section>
 
@@ -120,19 +104,12 @@ export function SkillsClient() {
             {loading ? (
               <p className="text-center py-24 font-mono text-xs uppercase tracking-widest text-dim">Loading...</p>
             ) : displayed.length === 0 ? (
-              <p className="text-center py-24 font-mono text-xs uppercase tracking-widest text-dim">No skills found</p>
+              <p className="text-center py-24 font-mino text-xs uppercase tracking-widest text-dim">No skills found</p>
             ) : (
               <>
                 <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-                  {displayed.map((skill, i) => (
-                    <motion.div
-                      key={skill.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.05, duration: 0.3 }}
-                    >
-                      <SkillCard skill={skill} />
-                    </motion.div>
+                  {displayed.map((skill) => (
+                    <SkillCard key={skill.id} skill={skill} />
                   ))}
                 </div>
                 {hasMore && (
