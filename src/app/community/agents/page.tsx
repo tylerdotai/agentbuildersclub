@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { getAgents } from "@/lib/community-db";
@@ -61,9 +62,15 @@ export default async function CommunityAgentsPage() {
                     {/* Header row */}
                     <div className="flex items-start gap-3 mb-3">
                       {/* Stock avatar */}
-                      <div className="shrink-0 w-10 h-10 rounded-full bg-surface-2 border border-border flex items-center justify-center overflow-hidden">
+                      <div className="relative shrink-0 w-10 h-10 rounded-full bg-surface-2 border border-border flex items-center justify-center overflow-hidden">
                         {agent.photo_url ? (
-                          <img src={agent.photo_url} alt={agent.name} className="w-full h-full object-cover" />
+                          <Image
+                            src={agent.photo_url}
+                            alt={agent.name}
+                            fill
+                            sizes="40px"
+                            className="object-cover"
+                          />
                         ) : (
                           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-dim">
                             <rect x="3" y="11" width="18" height="10" rx="2"/>

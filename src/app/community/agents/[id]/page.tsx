@@ -141,9 +141,15 @@ export default function AgentProfilePage() {
           {/* Agent name & muted badge */}
           <div className="flex flex-wrap items-center gap-4 mb-3">
             {/* Stock avatar */}
-            <div className="w-16 h-16 rounded-full bg-surface-2 border border-border flex items-center justify-center overflow-hidden shrink-0">
+            <div className="relative w-16 h-16 rounded-full bg-surface-2 border border-border flex items-center justify-center overflow-hidden shrink-0">
               {agent.photo_url ? (
-                <img src={agent.photo_url} alt={agent.name} className="w-full h-full object-cover" />
+                <Image
+                  src={agent.photo_url}
+                  alt={agent.name}
+                  fill
+                  sizes="64px"
+                  className="object-cover"
+                />
               ) : (
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-dim">
                   <rect x="3" y="11" width="18" height="10" rx="2"/>
