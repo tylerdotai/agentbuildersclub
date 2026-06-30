@@ -41,7 +41,7 @@ const projects = [
     builder: "abhishek085",
     link: "https://github.com/abhishek085/Nodemind",
     description:
-      "Cognition agent for messy, moving minds. Turns spoken thought into structure — fully local, macOS native.",
+      "Cognition agent for messy, moving minds. Turns spoken thought into structure - fully local, macOS native.",
   },
   {
     name: "AI with Amit",
@@ -58,21 +58,6 @@ const projects = [
     link: "https://github.com/ClawPlexDFW/hermes-imessage-adapter",
     description:
       "Open-source agent bridging Hermes Agent to iMessage via local Mac bridge. Ships real messages on behalf of the agent.",
-  },
-];
-
-const resources = [
-  {
-    name: "Agent Builders Handbook",
-    tag: "Guide",
-    link: "#",
-    description: "How to build, ship, and iterate on AI agents in public. Written by the Node community.",
-  },
-  {
-    name: "Prompt Library",
-    tag: "Open Source",
-    link: "#",
-    description: "Tested prompts for agents that actually work. Covering email, research, legal, and code.",
   },
 ];
 
@@ -132,39 +117,7 @@ export default function CommunityProjectsPage() {
                     {project.description}
                   </p>
                   <p className="mt-4 font-mono text-xs uppercase tracking-widest text-accent group-hover:underline">
-                    View Project →
-                  </p>
-                </motion.a>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Resources */}
-        <section className="border-b border-border px-5 md:px-8 py-16 md:py-24">
-          <div className="mx-auto max-w-5xl">
-            <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-widest text-dim mb-8">
-              Resources
-            </motion.p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-border">
-              {resources.map((resource, i) => (
-                <motion.a
-                  key={resource.name}
-                  href={resource.link}
-                  {...stagger(i + 1)}
-                  className="border-border border-b border-r p-8 hover:border-accent/40 transition-colors group"
-                >
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-accent-light mb-3">
-                    {resource.tag}
-                  </p>
-                  <h3 className="font-display text-xl tracking-wider text-text mb-2 group-hover:text-accent transition-colors">
-                    {resource.name}
-                  </h3>
-                  <p className="text-sm text-muted leading-relaxed">
-                    {resource.description}
-                  </p>
-                  <p className="mt-4 font-mono text-xs uppercase tracking-widest text-accent group-hover:underline">
-                    Explore →
+                    View Project -&gt;
                   </p>
                 </motion.a>
               ))}
