@@ -451,3 +451,14 @@ export function SkillsClient() {
     </div>
   );
 }
+
+
+// DEBUG: catch top-level errors
+if (typeof window !== 'undefined') {
+  window.addEventListener('error', (e) => {
+    console.error('[SKILLS DEBUG] Window error:', e.message, 'at', e.filename, 'line', e.lineno, 'col', e.colno, 'error:', e.error?.stack);
+  });
+  window.addEventListener('unhandledrejection', (e) => {
+    console.error('[SKILLS DEBUG] Unhandled promise rejection:', e.reason);
+  });
+}
