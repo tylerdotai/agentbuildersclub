@@ -25,6 +25,18 @@ function stagger(i: number) {
 
 const pastEvents = [
   {
+    slug: "dfw-node-06",
+    title: "DFW Node 06 — Hermes",
+    date: "June 28, 2026",
+    image: "/node-06-hermes-arlington-03.webp",
+    description:
+      "Hermes Agent launch event at Spark Coworking Arlington. The community's own AI agent made its debut — live demo, real conversations, and a look at what's next for the DFW builder ecosystem.",
+    stats: [
+      { value: "Spark Coworking", label: "Arlington" },
+      { value: "Jun 28", label: "2026" },
+    ],
+  },
+  {
     slug: "dfw-node-05",
     title: "DFW Node 05 — Claude Tools",
     date: "June 3, 2026",
