@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { useNavVisibility } from "@/hooks/use-nav-visibility";
 
 const primaryCtaHref = "https://discord.gg/q8kEquTu3z";
 
@@ -12,181 +12,127 @@ const navLinks = [
   { href: "/community", label: "Community" },
   { href: "/skills", label: "Skills" },
   { href: "/get-involved", label: "Get Involved" },
-  {
-    href: "https://discord.gg/q8kEquTu3z",
-    label: "Join Discord",
-    external: true,
-  },
 ];
 
 export function Nav() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 12);
-    }
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const { visible } = useNavVisibility({ hideThreshold: 80 });
 
   return (
-    <>
-      <nav
-        className={`fixed inset-x-0 top-0 z-50 transition-[background,backdrop-filter,border-color] duration-300 ${
-          scrolled
-            ? "bg-void/85 backdrop-blur-md border-b border-border"
-            : "bg-transparent border-b border-transparent"
-        }`}
-      >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8 md:py-5">
-          {/* Wordmark */}
-          <Link
-            href="/"
-            className="flex items-center gap-2.5 group"
-            aria-label="Agent Builders Club home"
-          >
-            <Image
-              src="/abc-logo.jpg"
-              alt="Agent Builders Club"
-              width={32}
-              height={32}
-              className="object-contain"
-              priority
-            />
-            <span className="font-display text-xl md:text-[22px] tracking-tight text-text">
-              Agent Builders Club
-            </span>
-          </Link>
+    <nav
+      data-visible={visible || open}
+      className="fixed inset-x-0 top-0 z-50 border-b border-transparent bg-gradient-to-b from-void/90 to-transparent transition-transform duration-300 ease-out data-[visible=false]:-translate-y-full"
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8 md:py-5">
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 group"
+          aria-label="Agent Builders Club home"
+          onClick={() => setOpen(false)}
+        >
+          <Image
+            src="/abc-logo.jpg"
+            alt="Agent Builders Club"
+            width={32}
+            height={32}
+            className="object-contain"
+            priority
+          />
+          <span className="font-display text-xl tracking-tight text-text md:text-[22px]">
+            Agent Builders Club
+          </span>
+        </Link>
 
-          {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-1 lg:gap-2">
+        <div className="hidden items-center gap-8 md:flex">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="font-mono text-xs uppercase tracking-[0.14em] text-muted transition-colors hover:text-accent"
+            >
+              {link.label}
+            </Link>
+          ))}
+
+          <a
+            href={primaryCtaHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2 text-sm font-medium text-void transition-colors hover:bg-accent-light"
+          >
+            Join Discord
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M3 6h6m0 0L6 3m3 3L6 9"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          className="relative z-50 flex flex-col gap-[5px] p-2 -mr-2 md:hidden"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+        >
+          <span
+            className={`block h-0.5 w-6 origin-center bg-text transition-[transform,opacity] duration-200 ${
+              open ? "translate-y-[7px] rotate-45" : ""
+            }`}
+          />
+          <span
+            className={`block h-0.5 w-6 bg-text transition-opacity duration-200 ${
+              open ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          <span
+            className={`block h-0.5 w-6 origin-center bg-text transition-[transform,opacity] duration-200 ${
+              open ? "-translate-y-[7px] -rotate-45" : ""
+            }`}
+          />
+        </button>
+      </div>
+
+      {open && (
+        <div
+          id="mobile-navigation"
+          className="fixed inset-x-0 top-[65px] z-40 flex h-[calc(100dvh-65px)] flex-col justify-center bg-void px-8 md:hidden"
+        >
+          <div className="flex flex-col gap-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
-                {...(link.external
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
-                className="px-3 py-2 text-sm text-muted hover:text-text transition-colors"
+                onClick={() => setOpen(false)}
+                className="font-display text-4xl tracking-tight text-text transition-colors hover:text-accent"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
-
-            {/* Primary CTA */}
             <a
               href={primaryCtaHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-2 lg:ml-3 inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2 text-sm font-medium text-void hover:bg-accent-light transition-colors"
+              onClick={() => setOpen(false)}
+              className="mt-4 rounded-full bg-accent px-6 py-4 text-center text-base font-medium text-void transition-colors hover:bg-accent-light"
             >
               Join Discord
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M3 6h6m0 0L6 3m3 3L6 9"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
             </a>
           </div>
-
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden relative z-50 flex flex-col justify-center gap-1.5 p-2 -mr-2"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-          >
-            <motion.span
-              animate={{ rotate: open ? 45 : 0, y: open ? 6 : 0 }}
-              transition={{ duration: 0.2 }}
-              className="block h-[1.5px] w-5 bg-text origin-center"
-            />
-            <motion.span
-              animate={{ opacity: open ? 0 : 1 }}
-              transition={{ duration: 0.15 }}
-              className="block h-[1.5px] w-5 bg-text"
-            />
-            <motion.span
-              animate={{ rotate: open ? -45 : 0, y: open ? -6 : 0 }}
-              transition={{ duration: 0.2 }}
-              className="block h-[1.5px] w-5 bg-text origin-center"
-            />
-          </button>
         </div>
-      </nav>
-
-      {/* Mobile full-screen overlay */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-void md:hidden flex flex-col"
-            onClick={() => setOpen(false)}
-          >
-            <div
-              className="flex-1 flex flex-col justify-center px-8 pt-20"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <nav className="flex flex-col gap-1">
-                {navLinks.map((link, i) => (
-                  <motion.a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -16 }}
-                    transition={{ duration: 0.3, delay: i * 0.04 }}
-                    {...(link.external
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                    className="font-display text-4xl text-text hover:text-accent transition-colors py-3 border-b border-border last:border-0"
-                  >
-                    {link.label}
-                  </motion.a>
-                ))}
-              </nav>
-
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 12 }}
-                transition={{
-                  duration: 0.3,
-                  delay: navLinks.length * 0.04 + 0.05,
-                }}
-                className="mt-10"
-              >
-                <a
-                  href={primaryCtaHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setOpen(false)}
-                  className="block w-full rounded-full bg-accent py-4 text-center text-base font-medium text-void hover:bg-accent-light transition-colors"
-                >
-                  Join Discord
-                </a>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+      )}
+    </nav>
   );
 }

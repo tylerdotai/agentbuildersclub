@@ -76,20 +76,10 @@ export function SkillsClient() {
               + Submit a Skill
             </a>
             <a
-              href="https://github.com/ClawPlexDFW/hermes-skills"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/community"
               className="inline-flex items-center gap-2 border border-accent text-accent font-mono text-xs uppercase tracking-widest px-5 py-3 hover:bg-accent hover:text-void transition-colors"
             >
               View Feed
-            </a>
-            <a
-              href="https://github.com/ClawPlexDFW/hermes-skills"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-border text-text font-mono text-xs uppercase tracking-widest px-5 py-3 hover:border-accent hover:text-accent transition-colors"
-            >
-              See Projects
             </a>
           </div>
         </section>

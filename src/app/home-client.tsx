@@ -103,7 +103,9 @@ function HeroBanner() {
             </svg>
           </a>
           <a
-            href="#events"
+            href="https://luma.com/agentsbuilderclub"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-sm sm:text-base text-muted hover:text-text transition-colors group"
           >
             View upcoming Nodes
