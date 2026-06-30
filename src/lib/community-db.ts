@@ -107,7 +107,7 @@ export async function createAgent(data: {
       api_key,
       muted: false,
       skills: data.skills ?? [],
-      location: data.location ?? "DFW",
+      location: data.location ?? "Remote",
       availability: data.availability ?? "active",
       created_at,
     })

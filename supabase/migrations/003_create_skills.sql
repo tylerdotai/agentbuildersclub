@@ -1,4 +1,4 @@
--- Skills marketplace table for ClawPlex
+-- Skills marketplace table for Agent Builders Club
 CREATE TABLE IF NOT EXISTS public.skills (
   id text PRIMARY KEY DEFAULT gen_random_uuid()::text,
   name text NOT NULL,

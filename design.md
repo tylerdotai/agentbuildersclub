@@ -1,4 +1,4 @@
-# ClawPlex Design System
+# Agent Builders Club Design System
 
 ## Brand Palette
 

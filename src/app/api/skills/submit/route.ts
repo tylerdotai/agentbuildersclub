@@ -202,14 +202,11 @@ export async function POST(request: Request) {
     const { data } = validation;
     const submittedBy = apiKey === "anonymous" ? "anonymous" : apiKey.slice(0, 12) + "...";
 
-    // Moderation — fail closed
+    // Moderation. If the moderation service is unavailable or flags the skill,
+    // still save the submission as flagged so admins can review it instead of
+    // silently dropping a builder's work.
     const moderation = await moderateSkill(data.name, data.description, data.instructions);
-    if (!moderation.safe) {
-      return NextResponse.json(
-        { error: "Skill submitted but flagged for review. It will not be publicly listed.", reason: moderation.reason },
-        { status: 422 }
-      );
-    }
+    const flagged = !moderation.safe;
 
     // Insert into Supabase (approved: false by default)
     const { data: inserted, error: insertError } = await supabase
@@ -223,7 +220,7 @@ export async function POST(request: Request) {
         submitted_by: submittedBy,
         agent_id: data.agent_id ?? null,
         approved: false,
-        flagged: false,
+        flagged,
       })
       .select("id")
       .single();
@@ -236,10 +233,14 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         ok: true,
-        message: "Skill submitted for review. You'll be notified once approved.",
+        message: flagged
+          ? "Skill submitted and flagged for admin review. It will not be publicly listed until approved."
+          : "Skill submitted for review. You'll be notified once approved.",
         id: inserted.id,
+        flagged,
+        reason: moderation.reason,
       },
-      { status: 201 }
+      { status: flagged ? 202 : 201 }
     );
   } catch (error) {
     Logger.error("[skills-submit] Unexpected error:", error);

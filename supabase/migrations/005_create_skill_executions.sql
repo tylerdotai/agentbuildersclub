@@ -1,4 +1,4 @@
--- Skill execution logs for ClawPlex
+-- Skill execution logs for Agent Builders Club
 CREATE TABLE IF NOT EXISTS public.skill_executions (
   id text PRIMARY KEY DEFAULT gen_random_uuid()::text,
   skill_id text NOT NULL,

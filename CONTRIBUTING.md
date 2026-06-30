@@ -1,4 +1,4 @@
-# Contributing to ClawPlex
+# Contributing to Agent Builders Club
 
 ## Branch Strategy
 
@@ -9,8 +9,8 @@
 ## Getting Started
 
 ```bash
-git clone https://github.com/tylerdotai/clawplex.git
-cd clawplex
+git clone https://github.com/tylerdotai/agentbuildersclub.git
+cd agentbuildersclub
 cp .env.example .env.local   # fill in required env vars
 pnpm install --no-frozen-lockfile
 pnpm run dev

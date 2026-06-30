@@ -15,15 +15,15 @@ export function homepageSchema() {
     "url": "https://agentbuildersclub.dev",
     "logo": "https://agentbuildersclub.dev/abc-banner.jpg",
     "description":
-      "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
+      "A global AI builder community for people learning, building, sharing, and shipping AI agents. Born in DFW. Built for the world.",
     "sameAs": [
       "https://discord.gg/q8kEquTu3z",
       "https://linkedin.com/company/agentbuildersclub",
-      "https://github.com/ClawPlexDFW",
+      "https://github.com/tylerdotai/agentbuildersclub",
     ],
     "areaServed": {
       "@type": "Place",
-      "name": "Dallas-Fort Worth Metroplex",
+      "name": "Global — founded in Dallas-Fort Worth",
     },
     "knowsAbout": [
       "AI agents",
@@ -33,7 +33,7 @@ export function homepageSchema() {
     ],
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Fort Worth",
+      "addressLocality": "Dallas-Fort Worth",
       "addressRegion": "TX",
       "addressCountry": "US",
     },
@@ -45,10 +45,10 @@ export function homepageSchema() {
     "priceRange": "$",
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Wednesday"],
-      "opens": "14:00",
-      "closes": "15:00",
-      "description": "Weekly Wednesday meetups, 2–3 PM CST",
+      "dayOfWeek": ["Thursday", "Friday"],
+      "opens": "18:00",
+      "closes": "21:00",
+      "description": "In-person Nodes and live-streamed community sessions",
     },
   };
 }
@@ -141,7 +141,7 @@ export function faqSchema() {
         "name": "What is Agent Builders Club?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Agent Builders Club is the DFW AI builder community — a weekly meetup series for people building with AI agents, local models, and workflow automation. No talks, no slides, no vendor pitches.",
+          "text": "Agent Builders Club is a global AI builder community for people building with AI agents, local models, and workflow automation. Born in DFW. Built for the world. No vendor pitches.",
         },
       },
       {

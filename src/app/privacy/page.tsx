@@ -25,7 +25,7 @@ export default function PrivacyPage() {
               Privacy Policy
             </h1>
             <p className="font-mono text-xs text-dim uppercase tracking-widest">
-              Effective 2024
+              Effective 2026
             </p>
           </div>
         </section>

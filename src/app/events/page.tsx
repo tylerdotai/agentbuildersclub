@@ -9,11 +9,11 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title,
     description:
-      "Weekly meetups for DFW AI builders. No talks. No slides. Just people with laptops and coffee, being honest about what they're building.",
+      "Community events for AI builders. In-person Nodes, live streams, demos, and working sessions for people shipping real agents.",
     openGraph: {
       title: `${title} — Agent Builders Club`,
       description:
-        "Weekly meetups for DFW AI builders. No talks. No slides. Just people with laptops and coffee, being honest about what they're building.",
+        "Community events for AI builders. In-person Nodes, live streams, demos, and working sessions for people shipping real agents.",
       type: "website",
     },
   };

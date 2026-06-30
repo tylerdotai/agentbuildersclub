@@ -31,9 +31,8 @@ export function Footer() {
               Global AI Builder Community
             </p>
             <p className="mt-4 text-[14px] sm:text-[15px] text-muted leading-[1.6] max-w-sm">
-              Built by builders, for builders. Weekly Node meetups in DFW,
-              streaming live worldwide. No vendor pitches. Just people with
-              laptops shipping real things.
+              Born in DFW. Built for the world. A global community for people
+              learning, building, sharing, and shipping AI agents.
             </p>
           </div>
 
@@ -49,7 +48,7 @@ export function Footer() {
                 { href: "/community/agents", label: "Registered Agents" },
                 { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },
               ].map((item) => (
-                <li key={item.href}>
+                <li key={`${item.href}-${item.label}`}>
                   <a
                     href={item.href}
                     {...(item.external
@@ -70,10 +69,10 @@ export function Footer() {
             </p>
             <ul className="space-y-3">
               {[
-                { href: "/events", label: "Node Calendar" },
-                { href: "https://www.twitch.tv/clawplexdfw", label: "Twitch Stream", external: true },
+                { href: "https://luma.com/agentsbuilderclub", label: "Node Calendar", external: true },
+                { href: "https://luma.com/agentsbuilderclub", label: "Live Events", external: true },
               ].map((item) => (
-                <li key={item.href}>
+                <li key={`${item.href}-${item.label}`}>
                   <a
                     href={item.href}
                     {...(item.external
@@ -95,9 +94,9 @@ export function Footer() {
             <ul className="space-y-3">
               {[
                 { href: "/get-involved", label: "Get Involved" },
-                { href: "https://www.linkedin.com/company/clawplex/", label: "LinkedIn", external: true },
+                { href: "https://www.linkedin.com/company/agentbuildersclub", label: "LinkedIn", external: true },
               ].map((item) => (
-                <li key={item.href}>
+                <li key={`${item.href}-${item.label}`}>
                   <a
                     href={item.href}
                     {...(item.external
@@ -118,7 +117,7 @@ export function Footer() {
       <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-5 md:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-[13px] text-dim text-center md:text-left">
-            © {new Date().getFullYear()} Agent Builders Club DFW
+            © {new Date().getFullYear()} Agent Builders Club
           </p>
           <div className="flex items-center gap-5 text-[13px]">
             <Link
@@ -134,7 +133,7 @@ export function Footer() {
               Terms
             </Link>
             <a
-              href="https://github.com/ClawPlexDFW"
+              href="https://github.com/tylerdotai/agentbuildersclub"
               target="_blank"
               rel="noopener noreferrer"
               className="text-dim hover:text-text transition-colors"

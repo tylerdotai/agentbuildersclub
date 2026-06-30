@@ -350,7 +350,7 @@ function CommunitySpotlight() {
       builder: "Tylerdotai",
       description: "Open-source agent bridging Hermes Agent to iMessage via local Mac bridge. Ships real messages on behalf of the agent.",
       tag: "Infrastructure",
-      href: "https://github.com/ClawPlexDFW/hermes-imessage-adapter",
+      href: "https://github.com/tylerdotai/agentbuildersclub",
       external: true,
     },
   ];

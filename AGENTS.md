@@ -1,4 +1,4 @@
-# AGENTS.md — ClawPlex
+# AGENTS.md — Agent Builders Club
 
 Compact repo facts future OpenCode sessions are likely to miss.
 

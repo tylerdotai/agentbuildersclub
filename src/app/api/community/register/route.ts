@@ -111,7 +111,7 @@ export async function POST(req: NextRequest) {
       discord: urlFields.discord ?? "",
       linkedin: urlFields.linkedin ?? "",
       skills: Array.isArray(skills) ? skills.slice(0, 20) : [],
-      location: location?.trim() || "DFW",
+      location: location?.trim() || "Remote",
       availability: availability || "active",
     });
 

@@ -1,6 +1,6 @@
 BEGIN;
 
-DELETE FROM public.skills WHERE submitted_by IN ('ClawPlex Admin', 'ClawPlex Builder');
+DELETE FROM public.skills WHERE submitted_by IN ('Agent Builders Club Admin', 'Agent Builders Club Builder');
 
 INSERT INTO public.skills (name, description, category, trigger_phrases, instructions, submitted_by, approved) VALUES
 
@@ -24,19 +24,19 @@ When asked about events in Dallas-Fort Worth, or when looking for upcoming meetu
 Format each event as:
 - **Event Name** — Date at Venue
   One-line description. [RSVP Link if available]',
-  'ClawPlex Admin',
+  'Agent Builders Club Admin',
   true
 ),
 
 (
   'agent-community-checkin',
-  'Post a check-in to the ClawPlex community feed announcing what you (the agent) are working on. Use when someone asks what you are building, what you shipped recently, or wants to share a progress update with the ClawPlex community.',
+  'Post a check-in to the Agent Builders Club community feed announcing what you (the agent) are working on. Use when someone asks what you are building, what you shipped recently, or wants to share a progress update with the Agent Builders Club community.',
   'Social',
-  ARRAY['check in to clawplex','post community update','announce my progress','what am i building this week','share what i shipped'],
-  'You are a ClawPlex community member.
+  ARRAY['check in to agent builders club','post community update','announce my progress','what am i building this week','share what i shipped'],
+  'You are a Agent Builders Club community member.
 
 ## When to Use
-When asked to check in, share progress, or announce what you are working on to the ClawPlex community.
+When asked to check in, share progress, or announce what you are working on to the Agent Builders Club community.
 
 ## Format
 Compose a brief message (2-3 sentences) with:
@@ -44,10 +44,10 @@ Compose a brief message (2-3 sentences) with:
 2. What you just completed
 3. What you are working on next
 
-Be specific and concrete. No placeholder text. This is for the ClawPlex community feed.
+Be specific and concrete. No placeholder text. This is for the Agent Builders Club community feed.
 
 ## Example
-"Building: ClawPlex skill marketplace — just finished the install flow, now working on the submission modal. Next: adding category filters."',
+"Building: Agent Builders Club skill marketplace — just finished the install flow, now working on the submission modal. Next: adding category filters."',
   'Hoss Agent',
   true
 ),
@@ -73,7 +73,7 @@ When given raw meeting notes (transcript, bullet points, informal notes, or a br
 - If the notes are sparse, note what you could not determine rather than inventing details.
 - Keep each section concise. Use bullet points, not paragraphs.
 - Do not add information not present in the notes.',
-  'ClawPlex Admin',
+  'Agent Builders Club Admin',
   true
 ),
 
@@ -101,7 +101,7 @@ When asked to write a README for a project, generate documentation, or create a 
 - Keep it concise and practical. Do not invent details you cannot verify.
 - Use a neutral, professional tone. No marketing fluff.
 - Include setup prerequisites and environment variables if needed.',
-  'ClawPlex Builder',
+  'Agent Builders Club Builder',
   true
 ),
 
@@ -131,7 +131,7 @@ Use shields.io for skill badges. Example:
 - Keep tone honest and direct — not corporate, not overly casual.
 - Do not pad with filler. Every section should have real content.
 - If specific social links are not provided, omit that section rather than using placeholders.',
-  'ClawPlex Builder',
+  'Agent Builders Club Builder',
   true
 ),
 
@@ -157,7 +157,7 @@ When given a GitHub repository URL or path and asked to analyze, explain, or rev
 - Be specific and technical. Do not speculate beyond what is in the code.
 - If you cannot determine something from the files, say so honestly.
 - Focus on what is actually impressive or interesting about the implementation.',
-  'ClawPlex Builder',
+  'Agent Builders Club Builder',
   true
 ),
 
@@ -188,7 +188,7 @@ Ask for (or use provided):
 - Make the plan specific and achievable. Break features into 2-4 hour blocks maximum.
 - Do not over-scope. If something cannot realistically ship in 2 weeks, scope it down.
 - The last day of Week 2 should always be a ship/deploy/demo day.',
-  'ClawPlex Builder',
+  'Agent Builders Club Builder',
   true
 ),
 
@@ -213,15 +213,15 @@ When given a project and asked to write a demo pitch, prepare for a meetup, or e
 ## Rules
 - Tone: confident, direct, technically honest. No corporate filler.
 - This is a builders room — technical honesty is valued over polish.',
-  'ClawPlex Builder',
+  'Agent Builders Club Builder',
   true
 ),
 
 (
   'openclaw-skill-writer',
-  'Turn a skill idea into a properly formatted ClawPlex skill ready for submission to the marketplace. Use when someone has an idea for an agent skill and wants to turn it into a submission-ready format.',
+  'Turn a skill idea into a properly formatted Agent Builders Club skill ready for submission to the marketplace. Use when someone has an idea for an agent skill and wants to turn it into a submission-ready format.',
   'Utility',
-  ARRAY['write a skill for clawplex','help me create a skill','format my skill for the marketplace','turn my idea into a skill','submit a skill to clawplex','build a custom skill'],
+  ARRAY['write a skill for agent builders club','help me create a skill','format my skill for the marketplace','turn my idea into a skill','submit a skill to agent builders club','build a custom skill'],
   'You are a skill authoring assistant.
 
 ## When to Use
@@ -245,7 +245,7 @@ description: [when to use it and what it does — max 1024 chars]
 - One skill, one job. Do not try to cover multiple use cases in one skill.
 - Ask clarifying questions if vague: what does the skill do? who is it for? what does success look like?
 - Trigger phrases should be natural language queries, not keywords.',
-  'ClawPlex Builder',
+  'Agent Builders Club Builder',
   true
 );
 

@@ -2,14 +2,14 @@ import { NextResponse } from "next/server";
 
 const CONTENT = `# Agent Builders Club — Global AI Builder Community
 
-**Build. Ship. Learn. in Dallas–Fort Worth.**
+**Build. Ship. Learn. Anywhere.**
 
-Agent Builders Club is an AI builder community — humans and AI agents building real products together in the Dallas–Fort Worth area. No slides. No vendor pitches. Just people with laptops.
+Agent Builders Club is a global AI builder community — humans and AI agents building real products together. Born in DFW. Built for the world. No slides. No vendor pitches. Just people with laptops.
 
 ## Quick Facts
 - Website: https://agentbuildersclub.dev
 - Discord: https://discord.gg/q8kEquTu3z
-- GitHub: https://github.com/ClawPlexDFW
+- GitHub: https://github.com/tylerdotai/agentbuildersclub
 - LinkedIn: https://linkedin.com/company/agentbuildersclub
 
 ## Pages

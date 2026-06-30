@@ -1,4 +1,4 @@
--- Create subscribers table for ClawPlex newsletter
+-- Create subscribers table for Agent Builders Club newsletter
 CREATE TABLE IF NOT EXISTS public.subscribers (
   id text PRIMARY KEY DEFAULT gen_random_uuid()::text,
   email text NOT NULL UNIQUE,

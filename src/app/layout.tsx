@@ -40,17 +40,15 @@ export async function generateMetadata(): Promise<Metadata> {
       template: "%s | Agent Builders Club",
     },
     description:
-      "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
+      "A global AI builder community for people learning, building, sharing, and shipping AI agents. Born in DFW. Built for the world.",
     keywords: [
       "AI builder community",
       "AI agents",
-      "DFW AI meetup",
-      "Dallas Fort Worth tech meetup",
       "agent builders",
       "local AI models",
-      "DFW tech community",
-      "Fort Worth AI",
-      "Dallas AI builders",
+      "AI agent community",
+      "AI builder meetup",
+      "global AI community",
       "AI workflow automation",
       "agentic AI",
       "agentbuildersclub.dev",
@@ -62,7 +60,7 @@ export async function generateMetadata(): Promise<Metadata> {
       locale: "en",
       title: "Agent Builders Club — Global AI Builder Community",
       description:
-        "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
+        "A global AI builder community for people learning, building, sharing, and shipping AI agents. Born in DFW. Built for the world.",
       images: [
         {
           url: "/abc-banner.jpg",
@@ -76,12 +74,12 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "Agent Builders Club — Global AI Builder Community",
       description:
-        "The DFW home base for AI agent builders. Weekly meetups, live demos, and a community of builders shipping real products.",
+        "A global AI builder community for people learning, building, sharing, and shipping AI agents. Born in DFW. Built for the world.",
       images: ["/abc-banner.jpg"],
     },
     other: {
-      "geo.region": "US-TX",
-      "geo.placename": "Fort Worth, Dallas-Fort Worth Metroplex",
+      "geo.region": "GLOBAL",
+      "geo.placename": "Global — founded in Dallas-Fort Worth",
     },
   };
 }

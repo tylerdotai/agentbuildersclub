@@ -55,7 +55,7 @@ const projects = [
     name: "Hermes iMessage Adapter",
     tag: "Infrastructure",
     builder: "Tylerdotai",
-    link: "https://github.com/ClawPlexDFW/hermes-imessage-adapter",
+    link: "https://github.com/tylerdotai/agentbuildersclub",
     description:
       "Open-source agent bridging Hermes Agent to iMessage via local Mac bridge. Ships real messages on behalf of the agent.",
   },
