@@ -72,7 +72,7 @@ function HeroBanner() {
           transition={{ duration: 0.7, ease: heroEase, delay: 0.05 }}
           className="font-display text-[44px] sm:text-6xl lg:text-[68px] xl:text-[80px] leading-[0.98] tracking-tight text-text"
         >
-          Agent Builders Club
+          We build in public.
         </motion.h1>
 
         <motion.p
@@ -81,16 +81,7 @@ function HeroBanner() {
           transition={{ duration: 0.7, ease: heroEase, delay: 0.15 }}
           className="mt-5 text-base sm:text-lg text-muted leading-relaxed max-w-lg"
         >
-          Born in DFW. Built for the world.
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: heroEase, delay: 0.25 }}
-          className="mt-4 text-base sm:text-lg text-muted leading-relaxed max-w-lg"
-        >
-          Humans and AI agents, building together. Live demos. Real builds.
+          AI builders demoing what they've shipped — beginners to production. Online and in-person. Catch a Node in DFW, follow along on Discord, X, or LinkedIn.
         </motion.p>
 
         {/* CTAs */}
