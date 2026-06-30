@@ -4,8 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
-import { useDictSlice } from "@/lib/i18n/dictionaries/client";
-import type { SponsorsDict } from "@/lib/i18n/dictionaries/types";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -25,13 +23,13 @@ const partners = [
     name: "KiloClaw",
     image: "/kiloclaw-logo.png",
     url: "https://kilocode.pxf.io/OYnK0N",
-    taglines: { en: "AI Coding Agent", es: "Agente de código con IA" },
+    tagline: "AI Coding Agent",
   },
   {
     name: "FTW DAO",
     image: "/ftwdao-logo.png",
     url: "https://fwtx.city",
-    taglines: { en: "Community Partner", es: "Partner de comunidad" },
+    tagline: "Community Partner",
   },
 ];
 
@@ -62,9 +60,53 @@ const venuePartners = [
   },
 ];
 
-export function SponsorsClient() {
-  const copy = useDictSlice("sponsors") as SponsorsDict;
+const tiers = [
+  {
+    name: "Friend",
+    tagline: "For Individuals",
+    price: "Pay what you can",
+    color: "border-claw-border",
+    description:
+      "Get a name on the website and a warm feeling. Great if you're just getting started.",
+    perks: [
+      "Logo on website (individuals)",
+      "Shoutout at events",
+      "Community Discord",
+    ],
+  },
+  {
+    name: "Patron",
+    tagline: "For Small Teams",
+    price: "$500 / year",
+    color: "border-claw-blue",
+    description:
+      "Bring your team into the community, get your build showcased, and connect with the DFW AI scene.",
+    perks: [
+      "Everything in Friend",
+      "Logo on website + events page",
+      "Featured project showcase",
+      "2 free tickets to each Node",
+      "Job board posts (2x / year)",
+    ],
+  },
+  {
+    name: "Champion",
+    tagline: "For Companies",
+    price: "$2,000 / year",
+    color: "border-claw-blue",
+    description:
+      "Serious about reaching the DFW AI builder community. Your name and brand throughout every event.",
+    perks: [
+      "Everything in Patron",
+      "Logo on all event materials",
+      "Speaking slot at 2 Nodes / year",
+      "Premium job board access",
+      "Private community channel",
+    ],
+  },
+];
 
+export function SponsorsClient() {
   return (
     <div className="min-h-screen">
       <Nav />
@@ -76,16 +118,17 @@ export function SponsorsClient() {
               {...stagger(0)}
               className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-4"
             >
-              ClawPlex DFW
+              Agent Builders Club DFW
             </motion.p>
             <motion.h1
               {...stagger(1)}
               className="font-display text-4xl md:text-6xl tracking-wider text-claw-text leading-none"
             >
-              {copy.heading}
+              Sponsor the Node
             </motion.h1>
             <motion.p {...stagger(2)} className="mt-4 text-base text-claw-muted max-w-2xl">
-              {copy.intro}
+              We bring together the most active AI builders, agent developers, and
+              automation-forward teams in DFW. Reach them directly — without a vendor pitch.
             </motion.p>
           </div>
         </section>
@@ -94,17 +137,21 @@ export function SponsorsClient() {
         <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
           <div className="mx-auto max-w-5xl">
             <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-6">
-              {copy.buildingEyebrow}
+              What We're Building
             </motion.p>
             <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-5xl tracking-wider text-claw-text mb-8">
-              {copy.buildingHeading}
+              A community that actually ships
             </motion.h2>
             <div className="space-y-4 text-base text-claw-muted leading-relaxed max-w-3xl">
-              {copy.buildingBody.map((text, i) => (
-                <motion.p key={text} {...stagger(i + 2)}>
-                  {text}
-                </motion.p>
-              ))}
+              <motion.p {...stagger(2)}>
+                Agent Builders Club isn't a networking group. It's a working lab.
+                Members are shipping agents, automating workflows, and building businesses
+                on top of LLMs — in public, every week.
+              </motion.p>
+              <motion.p {...stagger(3)}>
+                Our sponsor program puts your name in front of builders who are making
+                decisions right now — about tools, APIs, and infrastructure.
+              </motion.p>
             </div>
           </div>
         </section>
@@ -113,10 +160,10 @@ export function SponsorsClient() {
         <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
           <div className="mx-auto max-w-5xl">
             <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-10">
-              {copy.tiersEyebrow}
+              Sponsorship Tiers
             </motion.p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-claw-border">
-              {copy.tiers.map((tier, i) => (
+              {tiers.map((tier, i) => (
                 <motion.div
                   key={tier.name}
                   {...stagger(i + 1)}
@@ -152,32 +199,34 @@ export function SponsorsClient() {
         <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
           <div className="mx-auto max-w-5xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
-              {/* Left: copy */}
               <div>
                 <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-6">
-                  {copy.sponsorWhoEyebrow}
+                  Who Should Sponsor
                 </motion.p>
                 <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-4xl tracking-wider text-claw-text mb-6">
-                  {copy.sponsorWhoHeading}
+                  AI tool providers, APIs, and dev infra
                 </motion.h2>
-                {copy.sponsorWhoBody.map((text, i) => (
-                  <motion.p
-                    key={text}
-                    {...stagger(i + 2)}
-                    className={`text-base text-claw-muted leading-relaxed ${i === 0 ? "mb-4" : ""}`}
-                  >
-                    {text}
-                  </motion.p>
-                ))}
+                <motion.p {...stagger(2)} className="text-base text-claw-muted leading-relaxed mb-4">
+                  Our members are early adopters who are actively evaluating tools.
+                  If you have an AI product that builders actually want to use,
+                  this is the room.
+                </motion.p>
+                <motion.p {...stagger(3)} className="text-base text-claw-muted leading-relaxed">
+                  We don't do vendor pitches. Sponsors are visible, respected, and
+                  present — but the stage belongs to builders.
+                </motion.p>
               </div>
-
-              {/* Right: stats */}
               <div>
                 <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-6">
-                  {copy.offerEyebrow}
+                  What You Get
                 </motion.p>
                 <div className="space-y-6">
-                  {copy.stats.map((stat) => (
+                  {[
+                    { value: "50+", label: "Active builders per Node" },
+                    { value: "1,000+", label: "Monthly reach (online + in-person)" },
+                    { value: "Weekly", label: "Consistent touchpoints" },
+                    { value: "DFW", label: "Fastest-growing US tech corridor" },
+                  ].map((stat) => (
                     <div key={stat.label} className="border-t border-claw-border pt-4">
                       <p className="font-display text-3xl text-claw-blue">{stat.value}</p>
                       <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mt-1">
@@ -191,11 +240,11 @@ export function SponsorsClient() {
           </div>
         </section>
 
-        {/* Partners }---*/}
+        {/* Partners */}
         <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
           <div className="mx-auto max-w-5xl">
             <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-dim mb-10">
-              {copy.partners}
+              Our Sponsors
             </motion.p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {partners.map((partner, i) => (
@@ -216,7 +265,7 @@ export function SponsorsClient() {
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-claw-void/90 border-t border-claw-border px-4 py-3 flex items-center justify-between">
                     <span className="font-mono text-sm text-claw-text">{partner.name}</span>
-                    <span className="font-mono text-xs text-claw-dim">{partner.taglines.en}</span>
+                    <span className="font-mono text-xs text-claw-dim">{partner.tagline}</span>
                   </div>
                 </motion.a>
               ))}
@@ -228,21 +277,18 @@ export function SponsorsClient() {
         <section className="border-b border-claw-border px-5 md:px-8 py-20 md:py-28">
           <div className="mx-auto max-w-5xl">
             <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-dim mb-10">
-              {copy.venuePartners}
+              Venue Partners
             </motion.p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {venuePartners.map((venue, i) => (
-                <motion.div
-                  key={venue.name}
-                  {...stagger(i + 1)}
-                >
+                <motion.div key={venue.name} {...stagger(i + 1)}>
                   <div className="group relative overflow-hidden border border-claw-border aspect-video hover:border-claw-blue transition-colors">
                     <a
                       href={venue.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="absolute inset-0 z-10"
-                      aria-label={copy.visitVenue(venue.name)}
+                      aria-label={`Visit ${venue.name}`}
                     />
                     <Image
                       src={venue.image}
@@ -265,13 +311,13 @@ export function SponsorsClient() {
         <section className="px-5 md:px-8 py-20 md:py-28">
           <div className="mx-auto max-w-5xl">
             <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-4">
-              {copy.contactEyebrow}
+              Get In Touch
             </motion.p>
             <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-5xl tracking-wider text-claw-text mb-6">
-              {copy.contactHeading}
+              Let's talk.
             </motion.h2>
             <motion.p {...stagger(2)} className="text-base text-claw-muted mb-8">
-              {copy.contactText}
+              Reach out on Discord or via the form below. We respond to every serious inquiry.
             </motion.p>
             <motion.div {...stagger(3)} className="flex gap-3">
               <a
@@ -286,7 +332,7 @@ export function SponsorsClient() {
                 href="/"
                 className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors"
               >
-                {copy.backHome}
+                Back to Home
               </Link>
             </motion.div>
           </div>

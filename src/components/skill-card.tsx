@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useDictSlice } from "@/lib/i18n/dictionaries/client";
-import type { SkillCardDict } from "@/lib/i18n/dictionaries/types";
 
 export type SkillCategory = "Research" | "Productivity" | "Social" | "Utility" | "Creative";
 
@@ -35,10 +33,13 @@ const categoryDotColors: Record<SkillCategory, string> = {
   Creative: "bg-pink-400",
 };
 
+function formatInstalls(count: number): string {
+  return `${count.toLocaleString("en")} install${count === 1 ? "" : "s"}`;
+}
+
 /* ── Skill Detail Modal ───────────────────────────────────────────────────── */
 function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
   const [copied, setCopied] = useState(false);
-  const t = useDictSlice("skillCard") as SkillCardDict;
 
   function handleInstall() {
     navigator.clipboard.writeText(skill.instructions).then(() => {
@@ -52,7 +53,6 @@ function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
 
   return (
     <>
-      {/* Backdrop */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -60,8 +60,6 @@ function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
         onClick={onClose}
         className="fixed inset-0 z-50 bg-claw-void/80 backdrop-blur-sm"
       />
-
-      {/* Modal */}
       <motion.div
         initial={{ opacity: 0, scale: 0.96, y: 16 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -69,13 +67,12 @@ function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
         transition={{ duration: 0.2 }}
         className="fixed inset-x-4 top-[5vh] z-50 max-h-[90vh] overflow-y-auto border border-claw-border bg-claw-surface shadow-2xl md:inset-x-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl"
       >
-        {/* Header */}
         <div className="sticky top-0 z-10 border-b border-claw-border bg-claw-surface px-6 py-4 flex items-start justify-between gap-4">
           <div className="flex items-start gap-3">
             <div className={`mt-1.5 h-2 w-2 rounded-full shrink-0 ${dotClass}`} />
             <div>
               <span className={`mb-1.5 inline-block border px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest ${badgeClass}`}>
-                {t.categories[skill.category]}
+                {skill.category}
               </span>
               <h2 className="font-display text-2xl md:text-3xl tracking-wider text-claw-text leading-tight">
                 {skill.name}
@@ -84,7 +81,7 @@ function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
           </div>
           <button
             onClick={onClose}
-            aria-label={t.close}
+            aria-label="Close skill details"
             className="shrink-0 border border-claw-border px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-claw-dim hover:border-claw-blue hover:text-claw-blue transition-colors"
           >
             ✕
@@ -92,16 +89,14 @@ function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
         </div>
 
         <div className="p-6 space-y-6">
-          {/* Description */}
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-2">{t.description}</p>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-2">Description</p>
             <p className="text-sm text-claw-muted leading-relaxed">{skill.description}</p>
           </div>
 
-          {/* Trigger phrases */}
           {skill.trigger_phrases.length > 0 && (
             <div>
-              <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-2">{t.triggers}</p>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-2">Trigger Phrases</p>
               <div className="flex flex-wrap gap-2">
                 {skill.trigger_phrases.map((phrase) => (
                   <span
@@ -115,9 +110,8 @@ function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
             </div>
           )}
 
-          {/* Instructions */}
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-2">{t.instructions}</p>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-claw-dim mb-2">Agent Instructions</p>
             <div className="border border-claw-border bg-claw-void p-4">
               <pre className="font-mono text-xs text-claw-muted leading-relaxed whitespace-pre-wrap">
                 {skill.instructions}
@@ -125,14 +119,13 @@ function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
             </div>
           </div>
 
-          {/* Footer */}
           <div className="flex items-center justify-between border-t border-claw-border pt-5">
             <div className="flex flex-col gap-1">
               <span className="font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                {t.submittedBy(skill.submitter_name)}
+                Submitted by {skill.submitter_name}
               </span>
               <span className="font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-                {t.installs(skill.install_count)}
+                {formatInstalls(skill.install_count)}
               </span>
             </div>
             <button
@@ -143,7 +136,7 @@ function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
                   : "border-claw-blue text-claw-blue hover:bg-claw-blue hover:text-claw-void"
               }`}
             >
-              {copied ? t.copiedClipboard : t.installSkill}
+              {copied ? "✓ Copied to Clipboard" : "Install Skill"}
             </button>
           </div>
         </div>
@@ -161,7 +154,6 @@ interface SkillCardProps {
 export function SkillCard({ skill, index = 0 }: SkillCardProps) {
   const [selected, setSelected] = useState(false);
   const [copied, setCopied] = useState(false);
-  const t = useDictSlice("skillCard") as SkillCardDict;
 
   function buildSkillMd(s: Skill): string {
     const frontmatter = [
@@ -195,22 +187,18 @@ export function SkillCard({ skill, index = 0 }: SkillCardProps) {
         onClick={() => setSelected(true)}
         className="group border border-claw-border bg-claw-surface p-6 hover:border-claw-blue/50 transition-all duration-300 flex flex-col cursor-pointer"
       >
-        {/* Category badge */}
         <span className={`self-start mb-3 border px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest ${badgeClass}`}>
-          {t.categories[skill.category]}
+          {skill.category}
         </span>
 
-        {/* Name */}
         <h3 className="font-display text-xl tracking-wider text-claw-text mb-2 group-hover:text-claw-blue transition-colors">
           {skill.name}
         </h3>
 
-        {/* Description */}
         <p className="text-sm text-claw-muted leading-relaxed mb-4 flex-1">
           {skill.description}
         </p>
 
-        {/* Trigger phrases preview */}
         {skill.trigger_phrases.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mb-4">
             {skill.trigger_phrases.slice(0, 3).map((phrase) => (
@@ -223,16 +211,15 @@ export function SkillCard({ skill, index = 0 }: SkillCardProps) {
             ))}
             {skill.trigger_phrases.length > 3 && (
               <span className="font-mono text-[10px] text-claw-dim px-1">
-                {t.more(skill.trigger_phrases.length - 3)}
+                +{skill.trigger_phrases.length - 3} more
               </span>
             )}
           </div>
         )}
 
-        {/* Footer */}
         <div className="flex items-center justify-between mt-auto pt-4 border-t border-claw-border">
           <span className="font-mono text-[10px] uppercase tracking-widest text-claw-dim">
-            {t.installs(skill.install_count)}
+            {formatInstalls(skill.install_count)}
           </span>
           <button
             onClick={handleInstall}
@@ -242,12 +229,11 @@ export function SkillCard({ skill, index = 0 }: SkillCardProps) {
                 : "border-claw-blue text-claw-blue hover:bg-claw-blue hover:text-claw-void"
             }`}
           >
-            {copied ? t.copied : t.install}
+            {copied ? "Copied!" : "Install"}
           </button>
         </div>
       </motion.div>
 
-      {/* Detail modal */}
       <AnimatePresence>
         {selected && (
           <SkillModal skill={skill} onClose={() => setSelected(false)} />

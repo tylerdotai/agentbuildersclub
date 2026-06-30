@@ -4,13 +4,23 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { useDictSlice } from "@/lib/i18n/dictionaries/client";
-import type { NavDict } from "@/lib/i18n/dictionaries/types";
 
-const primaryCtaHref = "https://lu.ma/clawplex";
+const primaryCtaHref = "https://discord.gg/q8kEquTu3z";
+
+const communityLinks = [
+  { href: "/community", label: "Community Feed" },
+  { href: "/community/projects", label: "Projects" },
+  { href: "/community/agents", label: "Registered Agents" },
+];
+
+const navLinks = [
+  { href: "/events", label: "Events", external: false },
+  { href: "https://linkedin.com/company/agentbuildersclub", label: "LinkedIn", external: true },
+  { href: "/sponsors", label: "Sponsors", external: false },
+  { href: "/get-involved", label: "Get Involved", external: false },
+];
 
 export function Nav() {
-  const copy = useDictSlice("nav") as NavDict;
   const [open, setOpen] = useState(false);
   const [communityHover, setCommunityHover] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -38,18 +48,18 @@ export function Nav() {
           <Link
             href="/"
             className="flex items-center gap-2.5 group"
-            aria-label={copy.home}
+            aria-label="Agent Builders Club home"
           >
             <Image
-              src="/clawplex-logo.png"
-              alt=""
-              width={28}
-              height={28}
+              src="/abc-logo.jpg"
+              alt="Agent Builders Club"
+              width={32}
+              height={32}
               className="object-contain"
               priority
             />
             <span className="font-display text-xl md:text-[22px] tracking-tight text-claw-text">
-              ClawPlex
+              Agent Builders Club
             </span>
           </Link>
 
@@ -66,7 +76,7 @@ export function Nav() {
                 aria-haspopup="menu"
                 aria-expanded={communityHover}
               >
-                {copy.community}
+                Community
                 <svg
                   width="10"
                   height="10"
@@ -97,7 +107,7 @@ export function Nav() {
                     role="menu"
                   >
                     <div className="rounded-lg border border-claw-border bg-claw-surface shadow-2xl shadow-black/40 overflow-hidden">
-                      {copy.communityLinks.map((link) => (
+                      {communityLinks.map((link) => (
                         <Link
                           key={link.href}
                           href={link.href}
@@ -113,7 +123,7 @@ export function Nav() {
               </AnimatePresence>
             </div>
 
-            {copy.links.map((link) => (
+            {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -133,7 +143,7 @@ export function Nav() {
               rel="noopener noreferrer"
               className="ml-2 lg:ml-3 inline-flex items-center gap-1.5 rounded-full bg-claw-blue px-5 py-2 text-sm font-medium text-claw-void hover:bg-claw-blue-light transition-colors"
             >
-              {copy.primaryCta}
+              Join Discord
               <svg
                 width="12"
                 height="12"
@@ -156,7 +166,7 @@ export function Nav() {
           <button
             onClick={() => setOpen(!open)}
             className="md:hidden relative z-50 flex flex-col justify-center gap-1.5 p-2 -mr-2"
-            aria-label={open ? copy.closeMenu : copy.openMenu}
+            aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
           >
             <motion.span
@@ -195,8 +205,8 @@ export function Nav() {
             >
               <nav className="flex flex-col gap-1">
                 {[
-                  ...copy.communityLinks.map((l) => ({ ...l, external: false })),
-                  ...copy.links.map((l) => ({ ...l, external: l.external || false })),
+                  ...communityLinks.map((l) => ({ ...l, external: false })),
+                  ...navLinks.map((l) => ({ ...l, external: l.external || false })),
                 ].map((link, i) => (
                   <motion.a
                     key={link.href}
@@ -222,7 +232,7 @@ export function Nav() {
                 exit={{ opacity: 0, y: 12 }}
                 transition={{
                   duration: 0.3,
-                  delay: (copy.communityLinks.length + copy.links.length) * 0.04 + 0.05,
+                  delay: (communityLinks.length + navLinks.length) * 0.04 + 0.05,
                 }}
                 className="mt-10"
               >
@@ -233,7 +243,7 @@ export function Nav() {
                   onClick={() => setOpen(false)}
                   className="block w-full rounded-full bg-claw-blue py-4 text-center text-base font-medium text-claw-void hover:bg-claw-blue-light transition-colors"
                 >
-                  {copy.primaryCta}
+                  Join Discord
                 </a>
               </motion.div>
             </div>

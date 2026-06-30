@@ -2,28 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import {
-  defaultLocale,
-  getLocaleFromPathname,
-  localeCookieName,
-  localeNames,
-  locales,
-  type Locale,
-  withLocale,
-} from "@/lib/i18n/config";
-import { useDictSlice } from "@/lib/i18n/dictionaries/client";
-import type { FooterDict } from "@/lib/i18n/dictionaries/types";
-
-function rememberLocale(locale: Locale) {
-  document.cookie = `${localeCookieName}=${locale}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
-}
 
 export function Footer() {
-  const pathname = usePathname();
-  const locale = getLocaleFromPathname(pathname) ?? defaultLocale;
-  const copy = useDictSlice("footer") as FooterDict;
-
   return (
     <footer className="border-t border-claw-border bg-claw-void">
       {/* Main footer */}
@@ -32,52 +12,107 @@ export function Footer() {
           {/* Brand column */}
           <div className="md:col-span-2">
             <Link
-              href={withLocale("/", locale)}
+              href="/"
               className="inline-flex items-center gap-2.5"
-              aria-label={copy.home}
+              aria-label="Agent Builders Club home"
             >
               <Image
-                src="/clawplex-logo.png"
-                alt=""
+                src="/abc-logo.jpg"
+                alt="Agent Builders Club"
                 width={28}
                 height={28}
                 className="object-contain"
               />
               <span className="font-display text-xl tracking-tight text-claw-text">
-                ClawPlex
+                Agent Builders Club
               </span>
             </Link>
             <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.22em] text-claw-blue">
-              {copy.eyebrow}
+              Global AI Builder Community
             </p>
             <p className="mt-4 text-[14px] sm:text-[15px] text-claw-muted leading-[1.6] max-w-sm">
-              {copy.description}
+              Built by builders, for builders. Weekly Node meetups in DFW,
+              streaming live worldwide. No vendor pitches. Just people with
+              laptops shipping real things.
             </p>
           </div>
 
           {/* Nav columns */}
-          {Object.entries(copy.nav).map(([category, items]) => (
-            <div key={category}>
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-claw-blue mb-5">
-                {category}
-              </p>
-              <ul className="space-y-3">
-                {items.map((item) => (
-                  <li key={item.href}>
-                    <a
-                      href={item.external ? item.href : withLocale(item.href, locale)}
-                      {...(item.external
-                        ? { target: "_blank", rel: "noopener noreferrer" }
-                        : {})}
-                      className="text-[14px] text-claw-muted hover:text-claw-text transition-colors"
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-claw-blue mb-5">
+              Community
+            </p>
+            <ul className="space-y-3">
+              {[
+                { href: "/community", label: "Community Feed" },
+                { href: "/community/projects", label: "Projects" },
+                { href: "/community/agents", label: "Registered Agents" },
+                { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },
+              ].map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    {...(item.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    className="text-[14px] text-claw-muted hover:text-claw-text transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-claw-blue mb-5">
+              Events
+            </p>
+            <ul className="space-y-3">
+              {[
+                { href: "/events", label: "Node Calendar" },
+                { href: "https://twitch.tv/agentbuildersclub", label: "Twitch Stream", external: true },
+              ].map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    {...(item.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    className="text-[14px] text-claw-muted hover:text-claw-text transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-claw-blue mb-5">
+              Organization
+            </p>
+            <ul className="space-y-3">
+              {[
+                { href: "/sponsors", label: "Sponsors" },
+                { href: "/get-involved", label: "Get Involved" },
+                { href: "/work-with-us", label: "Work With Us" },
+                { href: "https://linkedin.com/company/agentbuildersclub", label: "LinkedIn", external: true },
+              ].map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    {...(item.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    className="text-[14px] text-claw-muted hover:text-claw-text transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -85,39 +120,29 @@ export function Footer() {
       <div className="border-t border-claw-border">
         <div className="mx-auto max-w-7xl px-5 md:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-[13px] text-claw-dim text-center md:text-left">
-            © {new Date().getFullYear()} ClawPlex DFW · {copy.copyright}
+            © {new Date().getFullYear()} Agent Builders Club DFW
           </p>
           <div className="flex items-center gap-5 text-[13px]">
-            <a
-              href={withLocale("/privacy", locale)}
+            <Link
+              href="/privacy"
               className="text-claw-dim hover:text-claw-text transition-colors"
             >
-              {copy.privacy}
-            </a>
-            <a
-              href={withLocale("/terms", locale)}
+              Privacy
+            </Link>
+            <Link
+              href="/terms"
               className="text-claw-dim hover:text-claw-text transition-colors"
             >
-              {copy.terms}
+              Terms
+            </Link>
+            <a
+              href="https://github.com/ClawPlexDFW"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-claw-dim hover:text-claw-text transition-colors"
+            >
+              GitHub
             </a>
-            <span className="flex items-center gap-2" aria-label={copy.language}>
-              {locales.map((language) => (
-                <Link
-                  key={language}
-                  href={withLocale(pathname, language)}
-                  onClick={() => rememberLocale(language)}
-                  hrefLang={language}
-                  aria-current={language === locale ? "true" : undefined}
-                  className={`transition-colors ${
-                    language === locale
-                      ? "text-claw-blue"
-                      : "text-claw-dim hover:text-claw-text"
-                  }`}
-                >
-                  {localeNames[language]}
-                </Link>
-              ))}
-            </span>
           </div>
         </div>
       </div>

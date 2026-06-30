@@ -4,8 +4,6 @@ import { motion } from "framer-motion";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import Link from "next/link";
-import { useDictSlice } from "@/lib/i18n/dictionaries/client";
-import type { ProjectsDict } from "@/lib/i18n/dictionaries/types";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -20,8 +18,65 @@ function stagger(i: number) {
   return { ...fade, transition: { duration: 0.7, ease, delay: i * 0.08 } };
 }
 
+const projects = [
+  {
+    name: "Coldmail",
+    tag: "Email",
+    builder: "@alexkim",
+    link: "#",
+    description:
+      "LLM-powered cold email agent. Scrapes LinkedIn, writes personalized outreach, handles replies. 18% reply rate across 1,200 sends.",
+  },
+  {
+    name: "Research Loop",
+    tag: "Research",
+    builder: "@taylorq",
+    link: "#",
+    description:
+      "Recursive web research agent. Given a thesis, it pulls sources, cross-references claims, and returns a cited brief in under 4 minutes.",
+  },
+  {
+    name: "Permit Bot",
+    tag: "Legal",
+    builder: "@marcusbell",
+    link: "#",
+    description:
+      "Conversational agent for Texas small business permit research. Cuts permit research time from 6 hours to 22 minutes.",
+  },
+  {
+    name: "Contract Scout",
+    tag: "Legal",
+    builder: "@sarahchen",
+    link: "#",
+    description:
+      "NLP agent that reviews vendor contracts for risky clauses, auto-flags indemnity language, and summarizes exposure in plain English.",
+  },
+  {
+    name: "DFW Events Digest",
+    tag: "Social",
+    builder: "@davidpark",
+    link: "#",
+    description:
+      "Aggregates event data from Luma, Meetup, and Eventbrite across 12 DFW categories. Posts daily digest to Discord with rsvp links.",
+  },
+];
+
+const resources = [
+  {
+    name: "Agent Builders Handbook",
+    tag: "Guide",
+    link: "#",
+    description: "How to build, ship, and iterate on AI agents in public. Written by the Node community.",
+  },
+  {
+    name: "Prompt Library",
+    tag: "Open Source",
+    link: "#",
+    description: "Tested prompts for agents that actually work. Covering email, research, legal, and code.",
+  },
+];
+
 export default function CommunityProjectsPage() {
-  const t = useDictSlice("projects") as ProjectsDict;
   return (
     <div className="min-h-screen">
       <Nav />
@@ -33,19 +88,20 @@ export default function CommunityProjectsPage() {
               {...stagger(0)}
               className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-4"
             >
-              {t.eyebrow}
+              Agent Builders Club
             </motion.p>
             <motion.h1
               {...stagger(1)}
               className="font-display text-4xl md:text-6xl tracking-wider text-claw-text leading-none mb-4"
             >
-              {t.title}
+              We Ship Agents.
             </motion.h1>
             <motion.p
               {...stagger(2)}
               className="text-base text-claw-muted max-w-2xl"
             >
-              {t.dek}
+              Real projects from real builders. Agents that work, automate things
+              that matter, and get torn apart in the Node community every week.
             </motion.p>
           </div>
         </section>
@@ -54,7 +110,7 @@ export default function CommunityProjectsPage() {
         <section className="border-b border-claw-border px-5 md:px-8 py-16 md:py-24">
           <div className="mx-auto max-w-5xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-claw-border">
-              {t.projects.map((project, i) => (
+              {projects.map((project, i) => (
                 <motion.a
                   key={project.name}
                   href={project.link}
@@ -76,7 +132,7 @@ export default function CommunityProjectsPage() {
                     {project.description}
                   </p>
                   <p className="mt-4 font-mono text-xs uppercase tracking-widest text-claw-blue group-hover:underline">
-                    {t.viewProject}
+                    View Project →
                   </p>
                 </motion.a>
               ))}
@@ -88,10 +144,10 @@ export default function CommunityProjectsPage() {
         <section className="border-b border-claw-border px-5 md:px-8 py-16 md:py-24">
           <div className="mx-auto max-w-5xl">
             <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-widest text-claw-dim mb-8">
-              {t.resources}
+              Resources
             </motion.p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-claw-border">
-              {t.resourcesList.map((resource, i) => (
+              {resources.map((resource, i) => (
                 <motion.a
                   key={resource.name}
                   href={resource.link}
@@ -108,7 +164,7 @@ export default function CommunityProjectsPage() {
                     {resource.description}
                   </p>
                   <p className="mt-4 font-mono text-xs uppercase tracking-widest text-claw-blue group-hover:underline">
-                    {t.explore}
+                    Explore →
                   </p>
                 </motion.a>
               ))}
@@ -120,26 +176,27 @@ export default function CommunityProjectsPage() {
         <section className="px-5 md:px-8 py-16 md:py-24">
           <div className="mx-auto max-w-5xl text-center">
             <motion.p {...stagger(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-claw-blue mb-4">
-              {t.ctaEyebrow}
+              Ship Something
             </motion.p>
             <motion.h2 {...stagger(1)} className="font-display text-3xl md:text-5xl tracking-wider text-claw-text mb-4">
-              {t.ctaTitle}
+              Bring a build to the next Node.
             </motion.h2>
             <motion.p {...stagger(2)} className="text-base text-claw-muted mb-8 max-w-xl mx-auto">
-              {t.ctaBody}
+              Every Node, builders show what they've shipped. Get real feedback
+              from people who actually use this stuff.
             </motion.p>
             <motion.div {...stagger(3)} className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/community"
                 className="border border-claw-blue bg-claw-blue px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-void hover:bg-claw-blue/90 transition-colors text-center"
               >
-                {t.feed}
+                Member Feed
               </Link>
               <Link
                 href="/skills"
                 className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors text-center"
               >
-                {t.skills}
+                Skills
               </Link>
               <a
                 href="/llms.txt"
@@ -147,7 +204,7 @@ export default function CommunityProjectsPage() {
                 rel="noopener noreferrer"
                 className="border border-claw-border px-8 py-4 font-mono text-sm uppercase tracking-widest text-claw-muted hover:border-claw-blue hover:text-claw-blue transition-colors text-center"
               >
-                {t.llms}
+                LLMs.txt
               </a>
             </motion.div>
           </div>
