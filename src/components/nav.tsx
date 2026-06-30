@@ -7,20 +7,20 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const primaryCtaHref = "https://discord.gg/q8kEquTu3z";
 
-const communityLinks = [
-  { href: "/community", label: "Community Feed" },
-  { href: "/community/projects", label: "Projects" },
-  { href: "/community/agents", label: "Registered Agents" },
-];
-
 const navLinks = [
-  { href: "/events", label: "Events", external: false },
-  { href: "/get-involved", label: "Get Involved", external: false },
+  { href: "/events", label: "Events" },
+  { href: "/community", label: "Community" },
+  { href: "/skills", label: "Skills" },
+  { href: "/get-involved", label: "Get Involved" },
+  {
+    href: "https://discord.gg/q8kEquTu3z",
+    label: "Join Discord",
+    external: true,
+  },
 ];
 
 export function Nav() {
   const [open, setOpen] = useState(false);
-  const [communityHover, setCommunityHover] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -63,64 +63,6 @@ export function Nav() {
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-1 lg:gap-2">
-            {/* Community dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setCommunityHover(true)}
-              onMouseLeave={() => setCommunityHover(false)}
-            >
-              <button
-                className="flex items-center gap-1.5 px-3 py-2 text-sm text-muted hover:text-text transition-colors"
-                aria-haspopup="menu"
-                aria-expanded={communityHover}
-              >
-                Community
-                <svg
-                  width="10"
-                  height="10"
-                  viewBox="0 0 10 10"
-                  fill="none"
-                  className={`text-dim transition-transform ${
-                    communityHover ? "rotate-180" : ""
-                  }`}
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M2 3.5L5 6.5L8 3.5"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-              <AnimatePresence>
-                {communityHover && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 6 }}
-                    transition={{ duration: 0.18, ease: [0.25, 0.1, 0.25, 1] }}
-                    className="absolute top-full left-0 pt-3 min-w-[200px]"
-                    role="menu"
-                  >
-                    <div className="rounded-lg border border-border bg-surface shadow-2xl shadow-black/40 overflow-hidden">
-                      {communityLinks.map((link) => (
-                        <Link
-                          key={link.href}
-                          href={link.href}
-                          role="menuitem"
-                          className="block px-4 py-2.5 text-sm text-muted hover:text-text hover:bg-surface-2 transition-colors border-b border-border last:border-0"
-                        >
-                          {link.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -202,10 +144,7 @@ export function Nav() {
               onClick={(e) => e.stopPropagation()}
             >
               <nav className="flex flex-col gap-1">
-                {[
-                  ...communityLinks.map((l) => ({ ...l, external: false })),
-                  ...navLinks.map((l) => ({ ...l, external: l.external || false })),
-                ].map((link, i) => (
+                {navLinks.map((link, i) => (
                   <motion.a
                     key={link.href}
                     href={link.href}
@@ -230,7 +169,7 @@ export function Nav() {
                 exit={{ opacity: 0, y: 12 }}
                 transition={{
                   duration: 0.3,
-                  delay: (communityLinks.length + navLinks.length) * 0.04 + 0.05,
+                  delay: navLinks.length * 0.04 + 0.05,
                 }}
                 className="mt-10"
               >

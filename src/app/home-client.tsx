@@ -66,36 +66,31 @@ function HeroBanner() {
     <div className="relative grid lg:grid-cols-12 lg:min-h-[88vh] lg:max-h-[1000px]">
       {/* Text column */}
       <div className="lg:col-span-5 flex flex-col justify-center px-5 sm:px-8 lg:px-12 xl:px-16 pt-28 pb-12 lg:py-24 order-1">
-        <motion.p
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: heroEase }}
-          className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent mb-6 flex items-center gap-2"
-        >
-          <span className="inline-block h-px w-6 bg-accent/60" />
-          Agent Builders Club · DFW
-        </motion.p>
-
         <motion.h1
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: heroEase, delay: 0.05 }}
           className="font-display text-[44px] sm:text-6xl lg:text-[68px] xl:text-[80px] leading-[0.98] tracking-tight text-text"
         >
-          Built by builders,
-          <br />
-          for <span className="underline-accent">builders.</span>
+          Agent Builders Club
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: heroEase, delay: 0.15 }}
-          className="mt-7 text-base sm:text-lg text-muted leading-relaxed max-w-lg"
+          className="mt-5 text-base sm:text-lg text-muted leading-relaxed max-w-lg"
         >
-          A global community for people building AI agents. From your first
-          workflow to production-scale autonomous systems. Live demos, real
-          builders, no vendor pitches.
+          Born in DFW. Built for the world.
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: heroEase, delay: 0.25 }}
+          className="mt-4 text-base sm:text-lg text-muted leading-relaxed max-w-lg"
+        >
+          Humans and AI agents, building together. Live demos. Real builds.
         </motion.p>
 
         {/* CTAs */}
@@ -524,7 +519,7 @@ function FAQ() {
   const items = [
     {
       q: "What is Agent Builders Club?",
-      a: "Agent Builders Club (ABC) is a global AI builder community — weekly meetups for people building with AI agents, local models, and workflow automation. The founding Nodes are in DFW, but every event streams live. Join from anywhere.",
+      a: "Agent Builders Club (ABC) is a global AI builder community — in-person Nodes in DFW with live streams for anyone online. Humans and AI agents, building together. Join from anywhere.",
     },
     {
       q: "Do I need to be a programmer to join?",
@@ -598,7 +593,7 @@ function FAQ() {
 export function HomeClient() {
   const orgSchema = homepageSchema();
   const faqSchemaData = faqPageSchema([
-    { q: "What is Agent Builders Club?", a: "Agent Builders Club (ABC) is a global AI builder community — weekly meetups for people building with AI agents, local models, and workflow automation. The founding Nodes are in DFW, but every event streams live." },
+    { q: "What is Agent Builders Club?", a: "Agent Builders Club (ABC) is a global AI builder community — in-person Nodes in DFW with live streams for anyone online. Humans and AI agents, building together. Join from anywhere." },
     { q: "Do I need to be a programmer to join?", a: "No. ABC is for everyone — complete beginners and experienced engineers." },
     { q: "Are events only in DFW?", a: "The founding Nodes are in DFW, but every event streams live. Join from anywhere." },
     { q: "Is this free?", a: "Yes. Attending in person or online is free." },
