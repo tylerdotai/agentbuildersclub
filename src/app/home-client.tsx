@@ -73,7 +73,7 @@ function HeroBanner() {
           className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent mb-6 flex items-center gap-2"
         >
           <span className="inline-block h-px w-6 bg-accent/60" />
-          DFW · AI Builder Community
+          Agent Builders Club · DFW
         </motion.p>
 
         <motion.h1

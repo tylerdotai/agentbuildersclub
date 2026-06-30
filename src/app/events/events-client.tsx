@@ -23,20 +23,8 @@ function stagger(i: number) {
   return { ...fade, transition: { duration: 0.7, ease, delay: i * 0.08 } };
 }
 
-const pastEvents = [
-  {
-    slug: "node-0-launch",
-    title: "Node 0 — The Launch",
-    date: "January 2026",
-    image: "/node-0.webp",
-    description:
-      "Forty builders packed into a borrowed co-working space. No agenda, no speakers — just people who wanted to see what happens when AI agents get built in public. We raffled a 4090, someone demoed a cold email agent that actually worked, and the room didn't clear until 10pm.",
-    stats: [
-      { value: "40", label: "Attendees" },
-      { value: "5", label: "Live Demos" },
-      { value: "3", label: "Agents Shipped" },
-    ],
-  },
+const pastEvents: { slug: string; title: string; date: string; image: string; description: string; stats?: { value: string; label: string }[] }[] = [
+  // TODO: add real event data from Luma or meetup notes
 ];
 
 export function EventsClient({ eventSchemaJson, faqSchemaJson }: EventClientProps) {
