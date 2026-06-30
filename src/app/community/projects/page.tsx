@@ -20,44 +20,44 @@ function stagger(i: number) {
 
 const projects = [
   {
-    name: "Coldmail",
-    tag: "Email",
-    builder: "@alexkim",
-    link: "#",
+    name: "Y2 OSINT Platform",
+    tag: "Infrastructure",
+    builder: "Fort-OS",
+    link: "https://y2.dev",
     description:
-      "LLM-powered cold email agent. Scrapes LinkedIn, writes personalized outreach, handles replies. 18% reply rate across 1,200 sends.",
+      "OSINT platform and intelligence API with real-time global monitoring and 40+ AI models. Open intelligence layer.",
   },
   {
-    name: "Research Loop",
+    name: "Parkinson Research Agent",
     tag: "Research",
-    builder: "@taylorq",
-    link: "#",
+    builder: "Tylerdotai",
+    link: "https://parkinson-research.vercel.app",
     description:
-      "Recursive web research agent. Given a thesis, it pulls sources, cross-references claims, and returns a cited brief in under 4 minutes.",
+      "Daily autonomous research agent for Parkinson's disease breakthroughs. Bilingual EN/ES, fully automated.",
   },
   {
-    name: "Permit Bot",
-    tag: "Legal",
-    builder: "@marcusbell",
-    link: "#",
+    name: "Nodemind",
+    tag: "Local AI",
+    builder: "abhishek085",
+    link: "https://github.com/abhishek085/Nodemind",
     description:
-      "Conversational agent for Texas small business permit research. Cuts permit research time from 6 hours to 22 minutes.",
+      "Cognition agent for messy, moving minds. Turns spoken thought into structure — fully local, macOS native.",
   },
   {
-    name: "Contract Scout",
-    tag: "Legal",
-    builder: "@sarahchen",
-    link: "#",
+    name: "AI with Amit",
+    tag: "Content",
+    builder: "@ai-withamit",
+    link: "https://www.youtube.com/@ai-withamit",
     description:
-      "NLP agent that reviews vendor contracts for risky clauses, auto-flags indemnity language, and summarizes exposure in plain English.",
+      "YouTube channel covering AI tools, agents, and practical applications for builders in the DFW community.",
   },
   {
-    name: "DFW Events Digest",
-    tag: "Social",
-    builder: "@davidpark",
-    link: "#",
+    name: "Hermes iMessage Adapter",
+    tag: "Infrastructure",
+    builder: "Tylerdotai",
+    link: "https://github.com/ClawPlexDFW/hermes-imessage-adapter",
     description:
-      "Aggregates event data from Luma, Meetup, and Eventbrite across 12 DFW categories. Posts daily digest to Discord with rsvp links.",
+      "Open-source agent bridging Hermes Agent to iMessage via local Mac bridge. Ships real messages on behalf of the agent.",
   },
 ];
 
