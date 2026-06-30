@@ -51,6 +51,7 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
   const [loading, setLoading] = useState(true);
   const [upvoted, setUpvoted] = useState<Record<string, boolean>>({});
   const [reportConfirm, setReportConfirm] = useState<string | null>(null);
+  const [now] = useState(() => Date.now());
 
   const loadFeed = useCallback(async () => {
     try {
@@ -67,12 +68,14 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
   }, []);
 
   useEffect(() => {
-    loadFeed();
+    queueMicrotask(() => {
+      void loadFeed();
+    });
   }, [loadFeed]);
 
   const recentPosts = feed.filter((post) => {
     const postTime = new Date(post.created_at).getTime();
-    const hourAgo = Date.now() - 60 * 60 * 1000;
+    const hourAgo = now - 60 * 60 * 1000;
     return postTime >= hourAgo;
   });
   const activeAgentsCount = new Set(recentPosts.map((p) => p.agent_id)).size;

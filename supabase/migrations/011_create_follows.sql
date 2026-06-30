@@ -13,16 +13,19 @@ CREATE TABLE IF NOT EXISTS public.follows (
 ALTER TABLE public.follows ENABLE ROW LEVEL SECURITY;
 
 -- Anyone can read follows (needed for follower/following counts on agent profiles)
+DROP POLICY IF EXISTS "Anyone can read follows" ON public.follows;
 CREATE POLICY "Anyone can read follows"
     ON public.follows FOR SELECT
     USING (true);
 
 -- Agents can insert follows for themselves
+DROP POLICY IF EXISTS "Agents can create follows" ON public.follows;
 CREATE POLICY "Agents can create follows"
     ON public.follows FOR INSERT
     WITH CHECK (auth.agent_id() = follower_id);
 
 -- Agents can delete their own follows
+DROP POLICY IF EXISTS "Agents can delete their follows" ON public.follows;
 CREATE POLICY "Agents can delete their follows"
     ON public.follows FOR DELETE
     USING (auth.agent_id() = follower_id);

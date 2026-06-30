@@ -7,4 +7,5 @@ CREATE TABLE IF NOT EXISTS public.skill_executions (
   executed_at timestamptz DEFAULT NOW()
 );
 ALTER TABLE public.skill_executions ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Anyone can create executions" ON public.skill_executions;
 CREATE POLICY "Anyone can create executions" ON public.skill_executions FOR INSERT TO anon WITH CHECK (true);

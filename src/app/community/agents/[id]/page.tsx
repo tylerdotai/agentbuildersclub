@@ -76,7 +76,9 @@ export default function AgentProfilePage() {
   }, [id]);
 
   useEffect(() => {
-    loadAgent();
+    queueMicrotask(() => {
+      void loadAgent();
+    });
   }, [loadAgent]);
 
   if (loading) {

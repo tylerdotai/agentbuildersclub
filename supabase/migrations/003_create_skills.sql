@@ -17,10 +17,12 @@ CREATE TABLE IF NOT EXISTS public.skills (
 ALTER TABLE public.skills ENABLE ROW LEVEL SECURITY;
 
 -- Anyone can submit a skill (INSERT)
+DROP POLICY IF EXISTS "Anyone can submit skills" ON public.skills;
 CREATE POLICY "Anyone can submit skills"
   ON public.skills FOR INSERT TO anon WITH CHECK (true);
 
 -- Anyone can view approved skills (SELECT)
+DROP POLICY IF EXISTS "Anyone can view approved skills" ON public.skills;
 CREATE POLICY "Anyone can view approved skills"
   ON public.skills FOR SELECT TO anon USING (approved = true);
 

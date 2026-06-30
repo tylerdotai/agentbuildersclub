@@ -27,7 +27,11 @@ export function SkillsClient() {
     }
   }, []);
 
-  useEffect(() => { fetchSkills(); }, [fetchSkills]);
+  useEffect(() => {
+    queueMicrotask(() => {
+      void fetchSkills();
+    });
+  }, [fetchSkills]);
 
   const filtered = skills.filter((s) => {
     const matchCat = activeCategory === "All" || s.category === activeCategory;

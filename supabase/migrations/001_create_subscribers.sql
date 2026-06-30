@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS public.subscribers (
 ALTER TABLE public.subscribers ENABLE ROW LEVEL SECURITY;
 
 -- Allow anyone to subscribe (insert)
+DROP POLICY IF EXISTS "Anyone can subscribe" ON public.subscribers;
 CREATE POLICY "Anyone can subscribe"
   ON public.subscribers
   FOR INSERT
@@ -16,6 +17,7 @@ CREATE POLICY "Anyone can subscribe"
   WITH CHECK (true);
 
 -- Allow anyone to check if email exists (for "already subscribed" UX)
+DROP POLICY IF EXISTS "Anyone can view subscribed emails" ON public.subscribers;
 CREATE POLICY "Anyone can view subscribed emails"
   ON public.subscribers
   FOR SELECT

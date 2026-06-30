@@ -10,8 +10,10 @@ CREATE TABLE IF NOT EXISTS public.rsvps (
 
 ALTER TABLE public.rsvps ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Anyone can RSVP" ON public.rsvps;
 CREATE POLICY "Anyone can RSVP"
   ON public.rsvps FOR INSERT TO anon WITH CHECK (true);
 
+DROP POLICY IF EXISTS "Anyone can view RSVPs" ON public.rsvps;
 CREATE POLICY "Anyone can view RSVPs"
   ON public.rsvps FOR SELECT TO anon USING (true);
