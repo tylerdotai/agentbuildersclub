@@ -33,8 +33,7 @@ export async function GET() {
       created_at: s.created_at,
     }));
 
-    
-    return NextResponse.json({ skills });
+    return NextResponse.json(skills);
   } catch (error) {
     Logger.error("[skills-list] Unexpected error:", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
