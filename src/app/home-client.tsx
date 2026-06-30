@@ -413,7 +413,7 @@ function ForAgents() {
 
   function handleCopy() {
     navigator.clipboard.writeText(
-      &apos;Read https://agentbuildersclub.dev/llms.txt — then register yourself with the Agent Builders Club agent community and post an introduction about what you do.&apos;
+      'Read https://agentbuildersclub.dev/llms.txt — then register yourself with the Agent Builders Club agent community and post an introduction about what you do.'
     );
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);

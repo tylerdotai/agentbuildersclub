@@ -200,7 +200,7 @@ function SubmitModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                       setPhrase("");
                     }
                   }}
-                  placeholder=&apos;e.g. "analyze repo", "find bug"&apos;
+                  placeholder='e.g. "analyze repo", "find bug"'
                   className="w-full border border-border bg-void px-4 py-3 font-mono text-sm text-text placeholder:text-border focus:border-accent focus:outline-none transition-colors"
                 />
                 {form.triggers.length > 0 && (
