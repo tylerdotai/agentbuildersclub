@@ -71,7 +71,7 @@ export function Footer() {
             <ul className="space-y-3">
               {[
                 { href: "/events", label: "Node Calendar" },
-                { href: "https://twitch.tv/agentbuildersclub", label: "Twitch Stream", external: true },
+                { href: "https://clawplexdfw.com", label: "Twitch Stream", external: true },
               ].map((item) => (
                 <li key={item.href}>
                   <a
@@ -94,10 +94,8 @@ export function Footer() {
             </p>
             <ul className="space-y-3">
               {[
-                { href: "/sponsors", label: "Sponsors" },
                 { href: "/get-involved", label: "Get Involved" },
-                { href: "/work-with-us", label: "Work With Us" },
-                { href: "https://linkedin.com/company/agentbuildersclub", label: "LinkedIn", external: true },
+                { href: "https://clawplexdfw.com", label: "LinkedIn", external: true },
               ].map((item) => (
                 <li key={item.href}>
                   <a
