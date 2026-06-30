@@ -44,8 +44,8 @@ export function Footer() {
             <ul className="space-y-3">
               {[
                 { href: "/community", label: "Community Feed" },
+                { href: "/community/agents", label: "Agents" },
                 { href: "/community/projects", label: "Projects" },
-                { href: "/community/agents", label: "Registered Agents" },
                 { href: "https://discord.gg/q8kEquTu3z", label: "Discord", external: true },
               ].map((item) => (
                 <li key={`${item.href}-${item.label}`}>

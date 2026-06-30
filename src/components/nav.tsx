@@ -10,6 +10,7 @@ const primaryCtaHref = "https://discord.gg/q8kEquTu3z";
 const navLinks = [
   { href: "/events", label: "Events" },
   { href: "/community", label: "Community" },
+  { href: "/community/agents", label: "Agents" },
   { href: "/skills", label: "Skills" },
   { href: "/get-involved", label: "Get Involved" },
 ];
