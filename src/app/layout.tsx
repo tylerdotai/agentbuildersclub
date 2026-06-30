@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Playfair_Display, Karla } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -110,7 +109,6 @@ export default function RootLayout({
         </a>
         {children}
         <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );
