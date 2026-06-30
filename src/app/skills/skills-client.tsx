@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Nav } from "@/components/nav";
 import { motion } from "framer-motion";
+import { SkillCard } from "@/components/skill-card";
 
 export function SkillsClient() {
   const [data, setData] = useState<any[]>([]);
@@ -37,6 +38,9 @@ export function SkillsClient() {
             <p className="text-center py-24 font-mono text-xs uppercase tracking-widest text-dim">
               {data.length} skills loaded
             </p>
+            {data.slice(0, 1).map(skill => (
+              <SkillCard key={skill.id} skill={skill} />
+            ))}
           </div>
         </section>
       </main>
