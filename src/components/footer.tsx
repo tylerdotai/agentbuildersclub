@@ -71,7 +71,7 @@ export function Footer() {
             <ul className="space-y-3">
               {[
                 { href: "/events", label: "Node Calendar" },
-                { href: "https://clawplexdfw.com", label: "Twitch Stream", external: true },
+                { href: "https://www.twitch.tv/clawplexdfw", label: "Twitch Stream", external: true },
               ].map((item) => (
                 <li key={item.href}>
                   <a
@@ -95,7 +95,7 @@ export function Footer() {
             <ul className="space-y-3">
               {[
                 { href: "/get-involved", label: "Get Involved" },
-                { href: "https://clawplexdfw.com", label: "LinkedIn", external: true },
+                { href: "https://www.linkedin.com/company/clawplex/", label: "LinkedIn", external: true },
               ].map((item) => (
                 <li key={item.href}>
                   <a
