@@ -15,8 +15,6 @@ const communityLinks = [
 
 const navLinks = [
   { href: "/events", label: "Events", external: false },
-  { href: "https://linkedin.com/company/agentbuildersclub", label: "LinkedIn", external: true },
-  { href: "/sponsors", label: "Sponsors", external: false },
   { href: "/get-involved", label: "Get Involved", external: false },
 ];
 
