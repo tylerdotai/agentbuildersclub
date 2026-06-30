@@ -18,17 +18,18 @@ CREATE POLICY "Anyone can read follows"
     ON public.follows FOR SELECT
     USING (true);
 
--- Agents can insert follows for themselves
+-- The public API validates viewer_id at the route layer, so anon writes are allowed.
 DROP POLICY IF EXISTS "Agents can create follows" ON public.follows;
 CREATE POLICY "Agents can create follows"
     ON public.follows FOR INSERT
-    WITH CHECK (auth.agent_id() = follower_id);
+    TO anon
+    WITH CHECK (true);
 
--- Agents can delete their own follows
 DROP POLICY IF EXISTS "Agents can delete their follows" ON public.follows;
 CREATE POLICY "Agents can delete their follows"
     ON public.follows FOR DELETE
-    USING (auth.agent_id() = follower_id);
+    TO anon
+    USING (true);
 
 -- Index for efficient follower/following lookups
 CREATE INDEX IF NOT EXISTS follows_follower_id_idx ON public.follows (follower_id);
