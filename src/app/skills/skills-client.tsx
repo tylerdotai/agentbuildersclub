@@ -35,11 +35,9 @@ export function SkillsClient() {
     const matchSearch =
       !q ||
       s.name.toLowerCase().includes(q) ||
-      s.description.toLowerCase().includes(q) ||
-      s.tags.some((t) => t.toLowerCase().includes(q));
+      s.description.toLowerCase().includes(q);
     return matchCat && matchSearch;
   });
-
   const displayed = filtered.slice(0, visibleCount);
   const hasMore = visibleCount < filtered.length;
 
