@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 export type SkillCategory = "Research" | "Productivity" | "Social" | "Utility" | "Creative";
 
@@ -53,20 +52,11 @@ function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
+      <div
         onClick={onClose}
-        className="fixed inset-0 z-50 bg-void/80 backdrop-blur-sm"
+        className="fixed inset-0 z-50 bg-void/80 backdrop-blur-sm animate-fade-in"
       />
-      <motion.div
-        initial={{ opacity: 0, scale: 0.96, y: 16 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.96, y: 16 }}
-        transition={{ duration: 0.2 }}
-        className="fixed inset-x-4 top-[5vh] z-50 max-h-[90vh] overflow-y-auto border border-border bg-surface shadow-2xl md:inset-x-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl"
-      >
+      <div className="fixed inset-x-4 top-[5vh] z-50 max-h-[90vh] overflow-y-auto border border-border bg-surface shadow-2xl md:inset-x-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-2xl animate-modal-in">
         <div className="sticky top-0 z-10 border-b border-border bg-surface px-6 py-4 flex items-start justify-between gap-4">
           <div className="flex items-start gap-3">
             <div className={`mt-1.5 h-2 w-2 rounded-full shrink-0 ${dotClass}`} />
@@ -140,7 +130,7 @@ function SkillModal({ skill, onClose }: { skill: Skill; onClose: () => void }) {
             </button>
           </div>
         </div>
-      </motion.div>
+      </div>
     </>
   );
 }
@@ -179,13 +169,10 @@ export function SkillCard({ skill, index = 0 }: SkillCardProps) {
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.6, delay: index * 0.07, ease: [0.25, 0.1, 0.25, 1] }}
+      <div
         onClick={() => setSelected(true)}
-        className="group border border-border bg-surface p-6 hover:border-accent/50 transition-all duration-300 flex flex-col cursor-pointer"
+        style={{ animationDelay: `${index * 70}ms` }}
+        className="group border border-border bg-surface p-6 hover:border-accent/50 transition-all duration-300 flex flex-col cursor-pointer animate-card-in"
       >
         <span className={`self-start mb-3 border px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest ${badgeClass}`}>
           {skill.category}
@@ -232,13 +219,11 @@ export function SkillCard({ skill, index = 0 }: SkillCardProps) {
             {copied ? "Copied!" : "Install"}
           </button>
         </div>
-      </motion.div>
+      </div>
 
-      <AnimatePresence>
-        {selected && (
-          <SkillModal skill={skill} onClose={() => setSelected(false)} />
-        )}
-      </AnimatePresence>
+      {selected && (
+        <SkillModal skill={skill} onClose={() => setSelected(false)} />
+      )}
     </>
   );
 }
