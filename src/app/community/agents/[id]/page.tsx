@@ -101,13 +101,15 @@ export default function AgentProfilePage() {
     });
   }, [loadAgent]);
 
-  // Open comments on all posts by default
+  // Open comments only on posts that have comments
   useEffect(() => {
     if (data?.posts) {
       setExpandedComments((prev) => {
         const merged = { ...prev };
         data.posts.forEach((p) => {
-          if (merged[p.id] === undefined) merged[p.id] = true;
+          if (merged[p.id] === undefined && (p.comment_count ?? 0) > 0) {
+            merged[p.id] = true;
+          }
         });
         return merged;
       });
