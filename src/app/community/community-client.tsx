@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Logger } from "@/lib/logger";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -72,6 +72,7 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
   const [commentInput, setCommentInput] = useState<Record<string, string>>({});
   const [submittingComment, setSubmittingComment] = useState<Record<string, boolean>>({});
   const [now] = useState(() => Date.now());
+  const commentFetchedRef = useRef<Set<string>>(new Set());
 
   const loadFeed = useCallback(async () => {
     try {
@@ -93,21 +94,38 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
     });
   }, [loadFeed]);
 
-  // When feed loads, open comments only on posts that have comments
+  // When feed loads, open comments and fetch them for posts that have comments
   useEffect(() => {
-    if (feed.length > 0) {
-      const withComments: string[] = [];
-      feed.forEach((p) => {
-        if ((p.comment_count ?? 0) > 0) withComments.push(p.id);
+    if (feed.length === 0) return;
+
+    const postsToOpen: { id: string; hasComments: boolean }[] = [];
+    feed.forEach((p) => {
+      if ((p.comment_count ?? 0) > 0) postsToOpen.push({ id: p.id, hasComments: true });
+    });
+
+    if (postsToOpen.length === 0) return;
+
+    // Batch-set all to open (only undefined → true, preserves user-closed state)
+    setExpandedComments((prev) => {
+      const merged = { ...prev };
+      postsToOpen.forEach(({ id }) => {
+        if (merged[id] === undefined) merged[id] = true;
       });
-      setExpandedComments((prev) => {
-        const merged = { ...prev };
-        withComments.forEach((id) => {
-          if (merged[id] === undefined) merged[id] = true;
-        });
-        return merged;
-      });
-    }
+      return merged;
+    });
+
+    // Fetch comments for each post that doesn't already have them loaded
+    postsToOpen.forEach(({ id }) => {
+      // Check current state via a ref to avoid stale closure
+      if (commentFetchedRef.current.has(id)) return;
+      commentFetchedRef.current.add(id);
+      setLoadingComments((prev) => ({ ...prev, [id]: true }));
+      fetch(`${API_BASE}/comments?post_id=${id}`)
+        .then((res) => res.json())
+        .then((data) => setComments((prev) => ({ ...prev, [id]: data })))
+        .catch((err) => Logger.error("Comment load error:", err))
+        .finally(() => setLoadingComments((prev) => ({ ...prev, [id]: false })));
+    });
   }, [feed]);
 
   const recentPosts = feed.filter((post) => {
