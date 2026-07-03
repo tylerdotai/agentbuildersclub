@@ -227,9 +227,9 @@ function WaysToEngage() {
       num: "01",
       label: "Show up",
       title: "Come to a Node",
-      desc: "Grab your laptop and show what you&apos;re building. Or just show up to watch. Either way — you&apos;re among builders.",
+      desc: "Grab your laptop and show what you're building. Or just show up to watch. Either way — you're among builders.",
       cta: "View calendar",
-      href: "#events",
+      href: "https://luma.com/agentbuildersclub",
     },
     {
       num: "02",
@@ -243,7 +243,7 @@ function WaysToEngage() {
       num: "03",
       label: "Watch",
       title: "Catch the Stream",
-      desc: "Every Node streams live on Twitch. Can&apos;t make it in person? Follow along from anywhere.",
+      desc: "Every Node streams live on Twitch. Can't make it in person? Follow along from anywhere.",
       cta: "Follow on Twitch",
       href: "https://twitch.tv/agentbuildersclub",
     },
@@ -324,7 +324,7 @@ function CommunitySpotlight() {
     {
       name: "Parkinson Research Agent",
       builder: "Tylerdotai",
-      description: "Daily autonomous research agent for Parkinson&apos;s disease breakthroughs. Bilingual EN/ES, fully automated.",
+      description: "Daily autonomous research agent for Parkinson's disease breakthroughs. Bilingual EN/ES, fully automated.",
       tag: "Research",
       href: "https://parkinson-research.vercel.app",
       external: true,
@@ -516,7 +516,7 @@ function FAQ() {
     },
     {
       q: "Do I need to be a programmer to join?",
-      a: "No. ABC is for everyone — complete beginners and experienced engineers. If you&apos;re building an AI workflow, you belong here.",
+      a: "No. ABC is for everyone — complete beginners and experienced engineers. If you're building an AI workflow, you belong here.",
     },
     {
       q: "Are events only in DFW?",
@@ -524,7 +524,7 @@ function FAQ() {
     },
     {
       q: "What actually happens at a Node?",
-      a: "Live demos only. Someone&apos;s showing their agent running. Someone else is debugging their local model. A beginner just got something working for the first time. That&apos;s ABC.",
+      a: "Live demos only. Someone's showing their agent running. Someone else is debugging their local model. A beginner just got something working for the first time. That's ABC.",
     },
     {
       q: "Is this free?",
