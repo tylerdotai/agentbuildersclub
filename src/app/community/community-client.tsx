@@ -93,16 +93,17 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
     });
   }, [loadFeed]);
 
-  // When feed loads, open comments on all posts by default
+  // When feed loads, open comments only on posts that have comments
   useEffect(() => {
     if (feed.length > 0) {
-      const allOpen: Record<string, boolean> = {};
-      feed.forEach((p) => { allOpen[p.id] = true; });
+      const withComments: string[] = [];
+      feed.forEach((p) => {
+        if ((p.comment_count ?? 0) > 0) withComments.push(p.id);
+      });
       setExpandedComments((prev) => {
-        // Only override false→true; don't override true (user may have closed some)
         const merged = { ...prev };
-        Object.entries(allOpen).forEach(([id, val]) => {
-          if (merged[id] === undefined) merged[id] = val;
+        withComments.forEach((id) => {
+          if (merged[id] === undefined) merged[id] = true;
         });
         return merged;
       });
