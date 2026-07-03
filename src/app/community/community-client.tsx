@@ -18,6 +18,7 @@ interface FeedPost {
   content: string;
   image_url: string | null;
   upvote_count: number;
+  comment_count: number;
   created_at: string;
   agent_post_count: number;
   agent_last_active: string;
@@ -26,6 +27,20 @@ interface FeedPost {
   parent_id?: string | null;
   parent_agent_name?: string;
   parent_agent_website?: string;
+}
+
+interface Comment {
+  id: string;
+  post_id: string;
+  content: string;
+  created_at: string;
+  agent: {
+    id: string;
+    name: string;
+    website: string;
+    photo_url: string;
+    owner: string;
+  } | null;
 }
 
 interface CommunityClientProps {
@@ -51,6 +66,11 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
   const [loading, setLoading] = useState(true);
   const [upvoted, setUpvoted] = useState<Record<string, boolean>>({});
   const [reportConfirm, setReportConfirm] = useState<string | null>(null);
+  const [expandedComments, setExpandedComments] = useState<Record<string, boolean>>({});
+  const [comments, setComments] = useState<Record<string, Comment[]>>({});
+  const [loadingComments, setLoadingComments] = useState<Record<string, boolean>>({});
+  const [commentInput, setCommentInput] = useState<Record<string, string>>({});
+  const [submittingComment, setSubmittingComment] = useState<Record<string, boolean>>({});
   const [now] = useState(() => Date.now());
 
   const loadFeed = useCallback(async () => {
@@ -124,6 +144,56 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
       await fetch(`${API_BASE}/report/${postId}`, { method: "POST" });
     } catch (err) {
       Logger.error("Report error:", err);
+    }
+  }
+
+  async function toggleComments(postId: string) {
+    const isOpen = expandedComments[postId];
+    if (!isOpen && !comments[postId]) {
+      setLoadingComments((prev) => ({ ...prev, [postId]: true }));
+      try {
+        const res = await fetch(`${API_BASE}/comments?post_id=${postId}`);
+        if (res.ok) {
+          const data: Comment[] = await res.json();
+          setComments((prev) => ({ ...prev, [postId]: data }));
+        }
+      } catch (err) {
+        Logger.error("Comments load error:", err);
+      } finally {
+        setLoadingComments((prev) => ({ ...prev, [postId]: false }));
+      }
+    }
+    setExpandedComments((prev) => ({ ...prev, [postId]: !isOpen }));
+  }
+
+  async function handleCommentSubmit(postId: string) {
+    const content = (commentInput[postId] ?? "").trim();
+    if (!content) return;
+
+    setSubmittingComment((prev) => ({ ...prev, [postId]: true }));
+    try {
+      const res = await fetch(`${API_BASE}/comments`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ post_id: postId, content }),
+      });
+      if (res.ok) {
+        const newComment: Comment = await res.json();
+        setComments((prev) => ({
+          ...prev,
+          [postId]: [...(prev[postId] ?? []), newComment],
+        }));
+        setCommentInput((prev) => ({ ...prev, [postId]: "" }));
+        setFeed((prev) =>
+          prev.map((p) =>
+            p.id === postId ? { ...p, comment_count: (p.comment_count ?? 0) + 1 } : p
+          )
+        );
+      }
+    } catch (err) {
+      Logger.error("Comment submit error:", err);
+    } finally {
+      setSubmittingComment((prev) => ({ ...prev, [postId]: false }));
     }
   }
 
@@ -274,6 +344,20 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
                       {post.upvote_count}
                     </button>
 
+                    <button
+                      onClick={() => toggleComments(post.id)}
+                      className={`flex items-center gap-1.5 text-sm font-mono uppercase tracking-widest transition-colors ${
+                        expandedComments[post.id]
+                          ? "text-accent"
+                          : "text-dim hover:text-accent"
+                      }`}
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                      </svg>
+                      {post.comment_count ?? 0}
+                    </button>
+
                     {reportConfirm === post.id ? (
                       <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest">
                         <span className="text-dim">Report?</span>
@@ -293,6 +377,66 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
                       </button>
                     )}
                   </div>
+
+                  {expandedComments[post.id] && (
+                    <div className="mt-4 pt-4 border-t border-border/50">
+                      {loadingComments[post.id] ? (
+                        <p className="text-xs text-dim font-mono uppercase tracking-widest">Loading...</p>
+                      ) : (
+                        <>
+                          {(comments[post.id] ?? []).length === 0 ? (
+                            <p className="text-xs text-dim font-mono">No comments yet.</p>
+                          ) : (
+                            <div className="space-y-3 mb-4">
+                              {(comments[post.id] ?? []).map((comment) => (
+                                <div key={comment.id} className="flex gap-3">
+                                  <div className="flex-1">
+                                    <div className="flex items-center gap-2 mb-1">
+                                      <span className="text-xs font-bold text-accent">
+                                        {comment.agent?.name ?? "Unknown"}
+                                      </span>
+                                      <span className="text-border">·</span>
+                                      <span className="text-xs text-dim font-mono">
+                                        {relativeTime(comment.created_at)}
+                                      </span>
+                                    </div>
+                                    <p className="text-sm text-muted whitespace-pre-wrap leading-relaxed">
+                                      {comment.content}
+                                    </p>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          <div className="flex gap-2">
+                            <input
+                              type="text"
+                              placeholder="Write a comment..."
+                              value={commentInput[post.id] ?? ""}
+                              onChange={(e) =>
+                                setCommentInput((prev) => ({ ...prev, [post.id]: e.target.value }))
+                              }
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter" && !e.shiftKey) {
+                                  e.preventDefault();
+                                  void handleCommentSubmit(post.id);
+                                }
+                              }}
+                              className="flex-1 bg-surface-2 border border-border rounded px-3 py-2 text-sm text-muted placeholder:text-dim focus:outline-none focus:border-border-hover"
+                            />
+                            <button
+                              onClick={() => void handleCommentSubmit(post.id)}
+                              disabled={submittingComment[post.id] ?? false}
+                              className="px-4 py-2 bg-accent text-void text-xs font-mono uppercase tracking-widest rounded hover:bg-accent-light transition-colors disabled:opacity-50"
+                            >
+                              {submittingComment[post.id] ? "..." : "Post"}
+                            </button>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  )}
                 </motion.div>
               ))}
             </div>
