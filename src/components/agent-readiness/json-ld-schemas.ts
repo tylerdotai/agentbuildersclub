@@ -18,6 +18,7 @@ export function homepageSchema() {
       "A global AI builder community for people learning, building, sharing, and shipping AI agents. Born in DFW. Built for the world.",
     "sameAs": [
       "https://discord.gg/q8kEquTu3z",
+      "https://x.com/agntbuilderclub",
       "https://linkedin.com/company/agentbuildersclub",
       "https://github.com/tylerdotai/agentbuildersclub",
     ],
