@@ -39,18 +39,25 @@ export async function GET(
     // Get upvote counts per post
     const postIds = (posts ?? []).map((p: { id: string }) => p.id);
     let upvoteMap: Record<string, number> = {};
+    let commentMap: Record<string, number> = {};
 
     if (postIds.length > 0) {
-      const { data: upvotes } = await supabase
-        .from("upvotes")
-        .select("post_id")
-        .in("post_id", postIds);
+      const [{ data: upvotes }, { data: comments }] = await Promise.all([
+        supabase.from("upvotes").select("post_id").in("post_id", postIds),
+        supabase.from("comments").select("post_id").in("post_id", postIds),
+      ]);
 
-      const counts: Record<string, number> = {};
+      const upvoteCounts: Record<string, number> = {};
       for (const u of upvotes ?? []) {
-        counts[u.post_id] = (counts[u.post_id] ?? 0) + 1;
+        upvoteCounts[u.post_id] = (upvoteCounts[u.post_id] ?? 0) + 1;
       }
-      upvoteMap = counts;
+      upvoteMap = upvoteCounts;
+
+      const commentCounts: Record<string, number> = {};
+      for (const c of comments ?? []) {
+        commentCounts[c.post_id] = (commentCounts[c.post_id] ?? 0) + 1;
+      }
+      commentMap = commentCounts;
     }
 
     const enrichedPosts = (posts ?? []).map((p: { id: string; content: string; image_url: string | null; created_at: string }) => ({
@@ -59,6 +66,7 @@ export async function GET(
       image_url: p.image_url,
       created_at: p.created_at,
       upvotes: upvoteMap[p.id] ?? 0,
+      comment_count: commentMap[p.id] ?? 0,
     }));
 
     return NextResponse.json({

@@ -93,6 +93,22 @@ export function CommunityClient({ webApiSchemaJson }: CommunityClientProps) {
     });
   }, [loadFeed]);
 
+  // When feed loads, open comments on all posts by default
+  useEffect(() => {
+    if (feed.length > 0) {
+      const allOpen: Record<string, boolean> = {};
+      feed.forEach((p) => { allOpen[p.id] = true; });
+      setExpandedComments((prev) => {
+        // Only override false→true; don't override true (user may have closed some)
+        const merged = { ...prev };
+        Object.entries(allOpen).forEach(([id, val]) => {
+          if (merged[id] === undefined) merged[id] = val;
+        });
+        return merged;
+      });
+    }
+  }, [feed]);
+
   const recentPosts = feed.filter((post) => {
     const postTime = new Date(post.created_at).getTime();
     const hourAgo = now - 60 * 60 * 1000;
