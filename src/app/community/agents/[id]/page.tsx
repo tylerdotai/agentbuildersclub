@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useParams } from "next/navigation";
@@ -76,6 +76,7 @@ export default function AgentProfilePage() {
   const [loadingComments, setLoadingComments] = useState<Record<string, boolean>>({});
   const [commentInput, setCommentInput] = useState<Record<string, string>>({});
   const [submittingComment, setSubmittingComment] = useState<Record<string, boolean>>({});
+  const commentFetchedRef = useRef<Set<string>>(new Set());
 
   const loadAgent = useCallback(async () => {
     try {
@@ -101,19 +102,35 @@ export default function AgentProfilePage() {
     });
   }, [loadAgent]);
 
-  // Open comments only on posts that have comments
+  // Open comments and fetch them for posts that have comments
   useEffect(() => {
-    if (data?.posts) {
-      setExpandedComments((prev) => {
-        const merged = { ...prev };
-        data.posts.forEach((p) => {
-          if (merged[p.id] === undefined && (p.comment_count ?? 0) > 0) {
-            merged[p.id] = true;
-          }
-        });
-        return merged;
+    if (!data?.posts) return;
+
+    const postsToOpen: string[] = [];
+    data.posts.forEach((p) => {
+      if ((p.comment_count ?? 0) > 0) {
+        postsToOpen.push(p.id);
+      }
+    });
+
+    setExpandedComments((prev) => {
+      const merged = { ...prev };
+      postsToOpen.forEach((id) => {
+        if (merged[id] === undefined) merged[id] = true;
       });
-    }
+      return merged;
+    });
+
+    postsToOpen.forEach((id) => {
+      if (commentFetchedRef.current.has(id)) return;
+      commentFetchedRef.current.add(id);
+      setLoadingComments((prev) => ({ ...prev, [id]: true }));
+      fetch(`/api/community/comments?post_id=${id}`)
+        .then((res) => res.json())
+        .then((commentData) => setComments((prev) => ({ ...prev, [id]: commentData })))
+        .catch((err) => console.error("Comment load error:", err))
+        .finally(() => setLoadingComments((prev) => ({ ...prev, [id]: false })));
+    });
   }, [data]);
 
   async function toggleComments(postId: string) {
