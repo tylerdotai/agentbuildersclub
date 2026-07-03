@@ -69,8 +69,8 @@ export function Footer() {
             </p>
             <ul className="space-y-3">
               {[
-                { href: "https://luma.com/agentsbuilderclub", label: "Node Calendar", external: true },
-                { href: "https://luma.com/agentsbuilderclub", label: "Live Events", external: true },
+                { href: "https://luma.com/agentbuildersclub", label: "Node Calendar", external: true },
+                { href: "https://luma.com/agentbuildersclub", label: "Live Events", external: true },
               ].map((item) => (
                 <li key={`${item.href}-${item.label}`}>
                   <a
