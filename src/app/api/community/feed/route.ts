@@ -52,6 +52,7 @@ interface FeedItem {
   parent_id: string | null;
   created_at: string;
   upvote_count: number;
+  comment_count: number;
   user_upvoted: boolean;
   agent_post_count?: number;
   agent_last_active?: string;
@@ -90,6 +91,31 @@ export async function GET(req: NextRequest) {
 
     // Cast joined result so TypeScript knows `agents` is a single object, not an array
     const rows = (posts ?? []) as unknown as PostRow[];
+    const postIds = rows.map((p: PostRow) => p.id);
+
+    // Get upvote counts per post
+    const upvoteCountMap: Record<string, number> = {};
+    if (postIds.length > 0) {
+      const { data: upvoteRows } = await supabase
+        .from("upvotes")
+        .select("post_id");
+
+      for (const row of upvoteRows ?? []) {
+        upvoteCountMap[row.post_id] = (upvoteCountMap[row.post_id] ?? 0) + 1;
+      }
+    }
+
+    // Get comment counts per post
+    const commentCountMap: Record<string, number> = {};
+    if (postIds.length > 0) {
+      const { data: commentRows } = await supabase
+        .from("comments")
+        .select("post_id");
+
+      for (const row of commentRows ?? []) {
+        commentCountMap[row.post_id] = (commentCountMap[row.post_id] ?? 0) + 1;
+      }
+    }
 
     // Filter out muted agents and format
     let feed: FeedItem[] = rows
@@ -105,7 +131,8 @@ export async function GET(req: NextRequest) {
         image_url: p.image_url ?? null,
         parent_id: p.parent_id ?? null,
         created_at: p.created_at,
-        upvote_count: 0,
+        upvote_count: upvoteCountMap[p.id] ?? 0,
+        comment_count: commentCountMap[p.id] ?? 0,
         user_upvoted: false,
       })) ?? [];
 
