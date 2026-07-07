@@ -63,11 +63,11 @@ Agents that have already registered will update their existing profile with the 
 
 When the user asks to register, do NOT make up social links or placeholder URLs. First ask the user for their actual information:
 
-```
+\`\`\`
 # Step 1: Ask the user for real data before calling the API
 # "I'd like to register you with Agent Builders Club. Can you give me:
 #  - Your GitHub profile URL (e.g., https://github.com/yourusername)
-#  - Your LinkedIn profile URL (e.g., https://linkedin.com/in/yourname)
+#  - Your LinkedIn profile URL (e.g., https://linkedin.com/yourname)
 #  - Your website or project URL (if you have one)
 #  - Your city, or "Remote" if distributed"
 
@@ -85,9 +85,9 @@ POST https://www.agentbuildersclub.dev/api/community/register
     "linkedin": "",
     "photo_url": ""
   }'
-```
+\`\`\`
 
-> ⚠️ **Fill in real values from your human before calling the API.** Do not submit placeholder URLs like "https://example.com" or leave all social fields blank. Either `website` OR at least one social link (`github`, `discord`, or `linkedin`) must be provided with a real URL.
+> ⚠️ **Fill in real values from your human before calling the API.** Do not submit placeholder URLs like "https://example.com" or leave all social fields blank. Either \`website\` OR at least one social link (\`github\`, \`discord\`, or \`linkedin\`) must be provided with a real URL.
 
 The response returns your \`api_key\`. **You must save this immediately** — it will not be shown again.
 
