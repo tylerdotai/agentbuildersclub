@@ -4,7 +4,10 @@ import { supabase } from "@/lib/supabase";
 
 export const runtime = "nodejs";
 
-/** Agent sub-object from the Supabase posts × agents join */
+// ————————————————————————————————————
+// Type definitions
+// ————————————————————————————————————
+
 interface PostAgent {
   id: string;
   name: string;
@@ -14,7 +17,6 @@ interface PostAgent {
   muted: boolean;
 }
 
-/** Post row from Supabase joined with its agent */
 interface PostRow {
   id: string;
   agent_id: string;
@@ -25,21 +27,18 @@ interface PostRow {
   agents: PostAgent | null;
 }
 
-/** Post summary used for stats aggregation (no join needed) */
 interface PostSummary {
   agent_id: string;
   created_at: string;
   content: string;
 }
 
-/** Parent post row from Supabase join */
 interface ParentPostRow {
   id: string;
   agent_id: string;
   agents: { id: string; name: string; website: string } | null;
 }
 
-/** Feed item returned to the client */
 interface FeedItem {
   id: string;
   agent_id: string;
@@ -61,11 +60,51 @@ interface FeedItem {
   parent_agent_website?: string;
 }
 
+interface UpvoteRow {
+  post_id: string;
+}
+
+interface CommentRow {
+  post_id: string;
+}
+
+// ————————————————————————————————————
+// Helper: get upvote counts for all posts in one query
+// ————————————————————————————————————
+
+async function getUpvoteCounts(postIds: string[]): Promise<Record<string, number>> {
+  if (postIds.length === 0) return {};
+  const { data } = await supabase.from("upvotes").select("post_id");
+  const counts: Record<string, number> = {};
+  for (const row of data ?? []) {
+    counts[row.post_id] = (counts[row.post_id] ?? 0) + 1;
+  }
+  return counts;
+}
+
+// ————————————————————————————————————
+// Helper: get comment counts for all posts in one query
+// ————————————————————————————————————
+
+async function getCommentCounts(postIds: string[]): Promise<Record<string, number>> {
+  if (postIds.length === 0) return {};
+  const { data } = await supabase.from("comments").select("post_id");
+  const counts: Record<string, number> = {};
+  for (const row of data ?? []) {
+    counts[row.post_id] = (counts[row.post_id] ?? 0) + 1;
+  }
+  return counts;
+}
+
+// ————————————————————————————————————
+// Main handler
+// ————————————————————————————————————
+
 export async function GET(req: NextRequest) {
   try {
     const apiKey = req.headers.get("x-api-key");
 
-    // Get posts with agent info and parent_id, excluding muted agents
+    // Fetch posts with agent info
     const { data: posts, error } = await supabase
       .from("posts")
       .select(`
@@ -89,33 +128,14 @@ export async function GET(req: NextRequest) {
 
     if (error) throw error;
 
-    // Cast joined result so TypeScript knows `agents` is a single object, not an array
     const rows = (posts ?? []) as unknown as PostRow[];
     const postIds = rows.map((p: PostRow) => p.id);
 
-    // Get upvote counts per post
-    const upvoteCountMap: Record<string, number> = {};
-    if (postIds.length > 0) {
-      const { data: upvoteRows } = await supabase
-        .from("upvotes")
-        .select("post_id");
-
-      for (const row of upvoteRows ?? []) {
-        upvoteCountMap[row.post_id] = (upvoteCountMap[row.post_id] ?? 0) + 1;
-      }
-    }
-
-    // Get comment counts per post
-    const commentCountMap: Record<string, number> = {};
-    if (postIds.length > 0) {
-      const { data: commentRows } = await supabase
-        .from("comments")
-        .select("post_id");
-
-      for (const row of commentRows ?? []) {
-        commentCountMap[row.post_id] = (commentCountMap[row.post_id] ?? 0) + 1;
-      }
-    }
+    // FIX: Batch-fetch upvote and comment counts in parallel
+    const [upvoteCountMap, commentCountMap] = await Promise.all([
+      getUpvoteCounts(postIds),
+      getCommentCounts(postIds),
+    ]);
 
     // Filter out muted agents and format
     let feed: FeedItem[] = rows
@@ -136,15 +156,14 @@ export async function GET(req: NextRequest) {
         user_upvoted: false,
       })) ?? [];
 
-    // Get per-agent stats: post count, last active, capability tag (first 2 words of latest post)
-    const agentIds = [...new Set(feed.map((p) => p.agent_id))];
+    // Per-agent stats (post count, last active, capability tag)
+    const agentIds = [...new Set(feed.map((p: FeedItem) => p.agent_id))];
     const agentStatsMap: Record<
       string,
       { post_count: number; last_active: string | null; capability_tag: string }
     > = {};
 
     if (agentIds.length > 0) {
-      // Get post counts per agent
       const { data: postCounts } = await supabase
         .from("posts")
         .select("agent_id, id, created_at, content")
@@ -154,29 +173,23 @@ export async function GET(req: NextRequest) {
         const agentPosts = (postCounts ?? []).filter(
           (p: PostSummary) => p.agent_id === agentId
         );
-        // Sort by created_at desc for this agent
         agentPosts.sort(
-          (a, b) =>
+          (a: PostSummary, b: PostSummary) =>
             new Date(b.created_at).getTime() -
             new Date(a.created_at).getTime()
         );
         const latest = agentPosts[0];
-        const postCount = agentPosts.length;
-        const lastActive = latest?.created_at ?? null;
-        // Capability tag: first 2 words of latest post, truncated to 30 chars
         const tagWords = (latest?.content ?? "").trim().split(/\s+/).slice(0, 2);
-        const capabilityTag =
-          tagWords.length > 0 ? tagWords.join(" ") : "General";
         agentStatsMap[agentId] = {
-          post_count: postCount,
-          last_active: lastActive,
-          capability_tag: capabilityTag.slice(0, 30),
+          post_count: agentPosts.length,
+          last_active: latest?.created_at ?? null,
+          capability_tag:
+            tagWords.length > 0 ? tagWords.join(" ") : "General",
         };
       }
     }
 
-    // Attach agent stats to each feed item
-    feed = feed.map((p): FeedItem => ({
+    feed = feed.map((p: FeedItem): FeedItem => ({
       ...p,
       agent_post_count: agentStatsMap[p.agent_id]?.post_count ?? 0,
       agent_last_active: agentStatsMap[p.agent_id]?.last_active ?? p.created_at,
@@ -184,10 +197,10 @@ export async function GET(req: NextRequest) {
         agentStatsMap[p.agent_id]?.capability_tag ?? "General",
     }));
 
-    // Enrich posts that have parent_id with parent post info
-    const postsWithParents = feed.filter((p) => p.parent_id);
+    // Enrich posts with parent info
+    const postsWithParents = feed.filter((p: FeedItem) => p.parent_id);
     if (postsWithParents.length > 0) {
-      const parentIds = postsWithParents.map((p) => p.parent_id as string);
+      const parentIds = postsWithParents.map((p: FeedItem) => p.parent_id as string);
       const { data: parentPosts } = await supabase
         .from("posts")
         .select(`
@@ -202,7 +215,10 @@ export async function GET(req: NextRequest) {
         .in("id", parentIds);
 
       const parentRows = (parentPosts ?? []) as unknown as ParentPostRow[];
-      const parentMap = new Map<string, { parent_agent_name: string; parent_agent_website: string }>(
+      const parentMap = new Map<
+        string,
+        { parent_agent_name: string; parent_agent_website: string }
+      >(
         parentRows.map((pp: ParentPostRow) => [
           pp.id,
           {
@@ -212,7 +228,7 @@ export async function GET(req: NextRequest) {
         ])
       );
 
-      feed = feed.map((p): FeedItem => {
+      feed = feed.map((p: FeedItem): FeedItem => {
         if (p.parent_id && parentMap.has(p.parent_id)) {
           return { ...p, ...parentMap.get(p.parent_id)! };
         }
@@ -220,7 +236,7 @@ export async function GET(req: NextRequest) {
       });
     }
 
-    // If API key provided, check which posts the user has upvoted
+    // If API key provided, check which posts the viewer has upvoted
     if (apiKey) {
       const { data: agent } = await supabase
         .from("agents")
@@ -234,7 +250,9 @@ export async function GET(req: NextRequest) {
           .select("post_id")
           .eq("agent_id", agent.id);
 
-        const upvotedIds = new Set(upvotes?.map((u) => u.post_id) ?? []);
+        const upvotedIds = new Set(
+          upvotes?.map((u: UpvoteRow) => u.post_id) ?? []
+        );
         feed.forEach((item: FeedItem) => {
           if (upvotedIds.has(item.id)) {
             item.user_upvoted = true;
