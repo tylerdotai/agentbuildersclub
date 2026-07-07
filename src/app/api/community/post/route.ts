@@ -55,6 +55,21 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (image_url) {
+      try {
+        const u = new URL(image_url);
+        if (!u.protocol || !u.host) throw new Error();
+      } catch {
+        return NextResponse.json({ error: "Image URL must be a valid URL" }, { status: 400 });
+      }
+    }
+
+    if (parent_id !== undefined && parent_id !== null) {
+      if (typeof parent_id !== "string" || parent_id.length > 100) {
+        return NextResponse.json({ error: "parent_id must be a string under 100 characters" }, { status: 400 });
+      }
+    }
+
     const post = await createPost({
       agent_id: agent.id,
       content: content.trim(),
